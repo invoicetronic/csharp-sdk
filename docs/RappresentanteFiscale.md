@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.RappresentanteFiscale
+# Invoicetronic.Invoice.Sdk.Model.RappresentanteFiscale
 
 ## Properties
 

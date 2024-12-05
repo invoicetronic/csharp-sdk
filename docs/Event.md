@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.Event
+# Invoicetronic.Invoice.Sdk.Model.Event
 
 ## Properties
 

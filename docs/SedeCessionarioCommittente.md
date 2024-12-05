@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.SedeCessionarioCommittente
+# Invoicetronic.Invoice.Sdk.Model.SedeCessionarioCommittente
 
 ## Properties
 

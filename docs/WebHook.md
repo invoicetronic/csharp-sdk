@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.WebHook
+# Invoicetronic.Invoice.Sdk.Model.WebHook
 
 ## Properties
 

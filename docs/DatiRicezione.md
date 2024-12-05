@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.DatiRicezione
+# Invoicetronic.Invoice.Sdk.Model.DatiRicezione
 
 ## Properties
 

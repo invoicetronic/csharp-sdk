@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.FatturaElettronicaBody
+# Invoicetronic.Invoice.Sdk.Model.FatturaElettronicaBody
 
 ## Properties
 

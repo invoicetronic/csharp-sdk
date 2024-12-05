@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.Company
+# Invoicetronic.Invoice.Sdk.Model.Company
 A company model.
 
 ## Properties

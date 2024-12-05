@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.IscrizioneREA
+# Invoicetronic.Invoice.Sdk.Model.IscrizioneREA
 
 ## Properties
 

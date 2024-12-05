@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.DatiCassaPrevidenziale
+# Invoicetronic.Invoice.Sdk.Model.DatiCassaPrevidenziale
 
 ## Properties
 

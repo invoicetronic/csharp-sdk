@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.DatiTrasmissione
+# Invoicetronic.Invoice.Sdk.Model.DatiTrasmissione
 
 ## Properties
 

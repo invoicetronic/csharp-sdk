@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Api.CompanyApi
+# Invoicetronic.Invoice.Sdk.Api.CompanyApi
 
 All URIs are relative to *https://api.invoicetronic.com*
 
@@ -22,9 +22,9 @@ Companies are the entities that send and receive invoices. At least one company 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -120,9 +120,9 @@ Companies are the entities that send and receive invoices. At least one company 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -216,9 +216,9 @@ Companies are the entities that send and receive invoices. At least one company 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -312,9 +312,9 @@ Companies are the entities that send and receive invoices. At least one company 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -407,9 +407,9 @@ Companies are the entities that send and receive invoices. At least one company 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {

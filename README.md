@@ -55,9 +55,9 @@ Generate the DLL using your preferred tool (e.g. `dotnet build`)
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 ```
 <a id="usage"></a>
 ## Usage
@@ -76,9 +76,9 @@ c.Proxy = webProxy;
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {

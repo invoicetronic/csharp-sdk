@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.Update
+# Invoicetronic.Invoice.Sdk.Model.Update
 
 ## Properties
 

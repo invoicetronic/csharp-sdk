@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Api.LogApi
+# Invoicetronic.Invoice.Sdk.Api.LogApi
 
 All URIs are relative to *https://api.invoicetronic.com*
 
@@ -19,9 +19,9 @@ Every API operation is logged and can be retrieved here.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -117,9 +117,9 @@ Every API operation is logged and can be retrieved here.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.eInvoice.Sdk.Api;
-using Invoicetronic.eInvoice.Sdk.Client;
-using Invoicetronic.eInvoice.Sdk.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {

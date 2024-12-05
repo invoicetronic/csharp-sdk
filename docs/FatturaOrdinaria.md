@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.FatturaOrdinaria
+# Invoicetronic.Invoice.Sdk.Model.FatturaOrdinaria
 
 ## Properties
 

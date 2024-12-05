@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.DettaglioPagamento
+# Invoicetronic.Invoice.Sdk.Model.DettaglioPagamento
 
 ## Properties
 

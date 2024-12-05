@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.IdTrasmittente
+# Invoicetronic.Invoice.Sdk.Model.IdTrasmittente
 
 ## Properties
 

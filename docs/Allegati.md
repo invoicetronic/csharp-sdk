@@ -1,4 +1,4 @@
-# Invoicetronic.eInvoice.Sdk.Model.Allegati
+# Invoicetronic.Invoice.Sdk.Model.Allegati
 
 ## Properties
 

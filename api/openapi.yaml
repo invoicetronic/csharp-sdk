@@ -22,7 +22,7 @@ info:
     curl https://api.invoicetronic.com/invoice/v1/send \\\n    -u ik_test_1234567890abcdefg:\
     \ \n# The colon prevents curl from asking for a password.\n```\n\n[1]: https://invoicetronic.com/"
   title: Italian Invoice API
-  version: v1
+  version: 1.0.0
   x-logo:
     url: https://gestionaleamica.com/assets/img/Logo_Amica_Scritta.png
     altText: "Amica: tutto il software che serve per gestire la tua azienda"

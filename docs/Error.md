@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.Error
+# Invoicetronic.eInvoice.Sdk.Model.Error
 Validation error from the SDI.
 
 ## Properties

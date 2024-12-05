@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Api.SendApi
+# Invoicetronic.eInvoice.Sdk.Api.SendApi
 
 All URIs are relative to *https://api.invoicetronic.com*
 
@@ -23,9 +23,9 @@ Send invoices are the invoices that are sent to the SDI.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -120,9 +120,9 @@ test **markdown**.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -243,9 +243,9 @@ Send invoices are the invoices that are sent to the SDI.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -339,9 +339,9 @@ Send invoices are the invoices that are sent to the SDI.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -436,9 +436,9 @@ Send invoices are the invoices that are sent to the SDI.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -533,9 +533,9 @@ Send invoices are the invoices that are sent to the SDI.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {

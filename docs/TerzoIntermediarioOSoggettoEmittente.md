@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.TerzoIntermediarioOSoggettoEmittente
+# Invoicetronic.eInvoice.Sdk.Model.TerzoIntermediarioOSoggettoEmittente
 
 ## Properties
 

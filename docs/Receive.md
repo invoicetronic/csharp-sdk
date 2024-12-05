@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.Receive
+# Invoicetronic.eInvoice.Sdk.Model.Receive
 
 ## Properties
 

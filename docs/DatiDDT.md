@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.DatiDDT
+# Invoicetronic.eInvoice.Sdk.Model.DatiDDT
 
 ## Properties
 

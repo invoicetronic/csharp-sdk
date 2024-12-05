@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.DatiAnagrafici
+# Invoicetronic.eInvoice.Sdk.Model.DatiAnagrafici
 
 ## Properties
 

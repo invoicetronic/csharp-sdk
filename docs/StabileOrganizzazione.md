@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.StabileOrganizzazione
+# Invoicetronic.eInvoice.Sdk.Model.StabileOrganizzazione
 
 ## Properties
 

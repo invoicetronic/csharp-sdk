@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.CodiceArticolo
+# Invoicetronic.eInvoice.Sdk.Model.CodiceArticolo
 
 ## Properties
 

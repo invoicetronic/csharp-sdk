@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.ProblemDetails
+# Invoicetronic.eInvoice.Sdk.Model.ProblemDetails
 
 ## Properties
 

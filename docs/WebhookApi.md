@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Api.WebhookApi
+# Invoicetronic.eInvoice.Sdk.Api.WebhookApi
 
 All URIs are relative to *https://api.invoicetronic.com*
 
@@ -24,9 +24,9 @@ Webhooks are used to notify external services about write events that occur in t
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -122,9 +122,9 @@ Webhooks are used to notify external services about write events that occur in t
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -218,9 +218,9 @@ Webhooks are used to notify external services about write events that occur in t
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -314,9 +314,9 @@ Webhooks are used to notify external services about write events that occur in t
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -409,9 +409,9 @@ Webhooks are used to notify external services about write events that occur in t
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -502,9 +502,9 @@ List webhook history items
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -598,9 +598,9 @@ Get a webhook history item by id
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.DatiAnagraficiCedentePrestatore
+# Invoicetronic.eInvoice.Sdk.Model.DatiAnagraficiCedentePrestatore
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Api.UpdateApi
+# Invoicetronic.eInvoice.Sdk.Api.UpdateApi
 
 All URIs are relative to *https://api.invoicetronic.com*
 
@@ -19,9 +19,9 @@ Updates are notifications that are sent by the SDI about the status of sent invo
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -135,9 +135,9 @@ Updates are notifications that are sent by the SDI about the status of sent invo
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {

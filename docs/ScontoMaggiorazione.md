@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.ScontoMaggiorazione
+# Invoicetronic.eInvoice.Sdk.Model.ScontoMaggiorazione
 
 ## Properties
 

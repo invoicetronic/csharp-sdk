@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Model.DatiFattureCollegate
+# Invoicetronic.eInvoice.Sdk.Model.DatiFattureCollegate
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Invoicetronic.Invoice.Sdk.Api.ReceiveApi
+# Invoicetronic.eInvoice.Sdk.Api.ReceiveApi
 
 All URIs are relative to *https://api.invoicetronic.com*
 
@@ -20,9 +20,9 @@ Receive invoices are the invoices that are received from other companies.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -145,9 +145,9 @@ Receive invoices are the invoices that are received from other companies.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {
@@ -241,9 +241,9 @@ Receive invoices are the invoices that are received from other companies.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+using Invoicetronic.eInvoice.Sdk.Api;
+using Invoicetronic.eInvoice.Sdk.Client;
+using Invoicetronic.eInvoice.Sdk.Model;
 
 namespace Example
 {

@@ -4,23 +4,21 @@ info:
     email: support@invoicetronic.com
     name: Invoicetronic
     url: https://invoicetronic.com
-  description: "\n## Overview\n\nThe Invoice API is a RESTful API that allows you\
-    \ to send and receive invoices through the Italian Servizio di Interscambio (Interchange\
-    \ Service).\n\n### Authentication\n\nThe Invoicetronic API uses API keys to authenticate\
-    \ requests. If you don't have any API Key, you can request one by\nregistering\
-    \ with the [Invoicetronic Developer Portal][1].\n\nTest mode secret keys have\
-    \ the prefix `ik_test_` and live mode secret keys have the prefix `ik_live_`.\
-    \ Make sure to use\nthe correct key for each environment.\n\n> Your API keys carry\
-    \ many privileges, so be sure to keep them secure! Do not share your secret API\
-    \ keys in publicly\n> accessible areas such as GitHub, client-side code, and so\
-    \ forth.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP\
-    \ will fail. API requests without authentication will\nalso fail.\n\n#### Basic\
-    \ Authentication\n\nBasic Authentication is how you authenticate with the API.\
-    \ Use your API Key as the username and\nleave the password empty. If your client\
-    \ does not allow empty passwords, you can use any value as the password. Here's\n\
-    an example of how to authenticate with Basic Authentication and curl:\n\n```curl\n\
-    curl https://api.invoicetronic.com/invoice/v1/send \\\n    -u ik_test_1234567890abcdefg:\
-    \ \n# The colon prevents curl from asking for a password.\n```\n\n[1]: https://invoicetronic.com/"
+  description: |
+    The Italian Invoice API is a RESTful API that allows you to send and receive invoices through the
+    Italian [Servizio di Interscambio (SDI)][1] (Interchange Service). The API is designed by Invoicetronic to be simple
+    and easy to use, abstracting away the Interchange Service's complexity while still providing complete control over the
+    invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation,
+    multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.
+
+    For more information, see:
+
+    - [Invoicetronic website][2]
+    - [Invoice API reference][3]
+
+    [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/
+    [2]: https://invoicetronic.com/
+    [3]: https://api.invoicetronic.com/invoice/v1/docs
   title: Italian Invoice API
   version: 1.0.0
   x-logo:

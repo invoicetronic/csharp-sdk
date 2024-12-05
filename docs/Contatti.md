@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.Contatti
+# Invoicetronic.Invoice.Sdk.Model.Contatti
 
 ## Properties
 

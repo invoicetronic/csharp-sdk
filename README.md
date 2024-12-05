@@ -1,6 +1,6 @@
-# Italian Invoice API C# SDK
+# C# SDK for the Italian eInvoice API
 
-The Italian Invoice API is a RESTful API that allows you to send and receive invoices through the
+The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the
 Italian [Servizio di Interscambio (SDI)][1] (Interchange Service). The API is designed by Invoicetronic to be simple
 and easy to use, abstracting away the Interchange Service's complexity while still providing complete control over the
 invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation,
@@ -55,9 +55,9 @@ Generate the DLL using your preferred tool (e.g. `dotnet build`)
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 ```
 <a id="usage"></a>
 ## Usage
@@ -76,9 +76,9 @@ c.Proxy = webProxy;
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -88,7 +88,7 @@ namespace Example
         {
 
             Configuration config = new Configuration();
-            config.BasePath = "api.invoicetronic.com";
+            config.BasePath = "https://api.invoicetronic.com";
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";

@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.DatiAnagraficiVettore
+# Invoicetronic.Invoice.Sdk.Model.DatiAnagraficiVettore
 
 ## Properties
 

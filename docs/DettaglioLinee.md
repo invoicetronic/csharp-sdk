@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.DettaglioLinee
+# Invoicetronic.Invoice.Sdk.Model.DettaglioLinee
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.DatiGeneraliDocumento
+# Invoicetronic.Invoice.Sdk.Model.DatiGeneraliDocumento
 
 ## Properties
 

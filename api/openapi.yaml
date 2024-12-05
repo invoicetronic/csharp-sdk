@@ -5,7 +5,7 @@ info:
     name: Invoicetronic
     url: https://invoicetronic.com
   description: |
-    The Italian Invoice API is a RESTful API that allows you to send and receive invoices through the
+    The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the
     Italian [Servizio di Interscambio (SDI)][1] (Interchange Service). The API is designed by Invoicetronic to be simple
     and easy to use, abstracting away the Interchange Service's complexity while still providing complete control over the
     invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation,
@@ -19,7 +19,7 @@ info:
     [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/
     [2]: https://invoicetronic.com/
     [3]: https://api.invoicetronic.com/invoice/v1/docs
-  title: Italian Invoice API
+  title: Italian eInvoice API
   version: 1.0.0
   x-logo:
     url: https://gestionaleamica.com/assets/img/Logo_Amica_Scritta.png

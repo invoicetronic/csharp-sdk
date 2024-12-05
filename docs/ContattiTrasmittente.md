@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.ContattiTrasmittente
+# Invoicetronic.Invoice.Sdk.Model.ContattiTrasmittente
 
 ## Properties
 

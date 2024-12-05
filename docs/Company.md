@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.Company
+# Invoicetronic.Invoice.Sdk.Model.Company
 A company model.
 
 ## Properties

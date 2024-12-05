@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.FatturaPrincipale
+# Invoicetronic.Invoice.Sdk.Model.FatturaPrincipale
 
 ## Properties
 

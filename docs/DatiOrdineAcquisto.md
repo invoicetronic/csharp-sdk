@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.DatiOrdineAcquisto
+# Invoicetronic.Invoice.Sdk.Model.DatiOrdineAcquisto
 
 ## Properties
 

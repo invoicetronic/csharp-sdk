@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.DatiBeniServizi
+# Invoicetronic.Invoice.Sdk.Model.DatiBeniServizi
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.DatiSAL
+# Invoicetronic.Invoice.Sdk.Model.DatiSAL
 
 ## Properties
 

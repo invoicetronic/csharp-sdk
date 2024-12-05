@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.AltriDatiGestionali
+# Invoicetronic.Invoice.Sdk.Model.AltriDatiGestionali
 
 ## Properties
 

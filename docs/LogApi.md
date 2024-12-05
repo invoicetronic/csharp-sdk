@@ -1,6 +1,6 @@
-# Invoicetronic.InvoiceApi.Api.LogApi
+# Invoicetronic.Invoice.Sdk.Api.LogApi
 
-All URIs are relative to *api.invoicetronic.com*
+All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -19,9 +19,9 @@ Every API operation is logged and can be retrieved here.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -30,7 +30,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "api.invoicetronic.com";
+            config.BasePath = "https://api.invoicetronic.com";
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
@@ -117,9 +117,9 @@ Every API operation is logged and can be retrieved here.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -128,7 +128,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "api.invoicetronic.com";
+            config.BasePath = "https://api.invoicetronic.com";
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";

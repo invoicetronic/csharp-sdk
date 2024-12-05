@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.IndirizzoResa
+# Invoicetronic.Invoice.Sdk.Model.IndirizzoResa
 
 ## Properties
 

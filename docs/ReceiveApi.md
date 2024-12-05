@@ -1,6 +1,6 @@
-# Invoicetronic.InvoiceApi.Api.ReceiveApi
+# Invoicetronic.Invoice.Sdk.Api.ReceiveApi
 
-All URIs are relative to *api.invoicetronic.com*
+All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -20,9 +20,9 @@ Receive invoices are the invoices that are received from other companies.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -31,7 +31,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "api.invoicetronic.com";
+            config.BasePath = "https://api.invoicetronic.com";
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
@@ -145,9 +145,9 @@ Receive invoices are the invoices that are received from other companies.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -156,7 +156,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "api.invoicetronic.com";
+            config.BasePath = "https://api.invoicetronic.com";
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
@@ -241,9 +241,9 @@ Receive invoices are the invoices that are received from other companies.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Invoicetronic.InvoiceApi.Api;
-using Invoicetronic.InvoiceApi.Client;
-using Invoicetronic.InvoiceApi.Model;
+using Invoicetronic.Invoice.Sdk.Api;
+using Invoicetronic.Invoice.Sdk.Client;
+using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
@@ -252,7 +252,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "api.invoicetronic.com";
+            config.BasePath = "https://api.invoicetronic.com";
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";

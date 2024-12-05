@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi.Model.IdFiscaleIVA
+# Invoicetronic.Invoice.Sdk.Model.IdFiscaleIVA
 
 ## Properties
 

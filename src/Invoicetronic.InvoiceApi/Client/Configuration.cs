@@ -34,7 +34,7 @@ namespace Invoicetronic.InvoiceApi.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = ".version";
+        public const string Version = "steps.read-spec.outputs[info.version]";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -113,7 +113,7 @@ namespace Invoicetronic.InvoiceApi.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/.version/csharp");
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/steps.read-spec.outputs[info.version]/csharp");
             BasePath = "http://localhost";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -536,7 +536,7 @@ namespace Invoicetronic.InvoiceApi.Client
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: 1.0.0\n";
-            report += "    SDK Package Version: .version\n";
+            report += "    SDK Package Version: steps.read-spec.outputs[info.version]\n";
 
             return report;
         }

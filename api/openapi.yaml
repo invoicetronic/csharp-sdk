@@ -1,0 +1,4865 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@invoicetronic.com
+    name: Invoicetronic
+    url: https://invoicetronic.com
+  description: "\n## Overview\n\nThe Invoice API is a RESTful API that allows you\
+    \ to send and receive invoices through the Italian Servizio di Interscambio (Interchange\
+    \ Service).\n\n### Authentication\n\nThe Invoicetronic API uses API keys to authenticate\
+    \ requests. If you don't have any API Key, you can request one by\nregistering\
+    \ with the [Invoicetronic Developer Portal][1].\n\nTest mode secret keys have\
+    \ the prefix `ik_test_` and live mode secret keys have the prefix `ik_live_`.\
+    \ Make sure to use\nthe correct key for each environment.\n\n> Your API keys carry\
+    \ many privileges, so be sure to keep them secure! Do not share your secret API\
+    \ keys in publicly\n> accessible areas such as GitHub, client-side code, and so\
+    \ forth.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP\
+    \ will fail. API requests without authentication will\nalso fail.\n\n#### Basic\
+    \ Authentication\n\nBasic Authentication is how you authenticate with the API.\
+    \ Use your API Key as the username and\nleave the password empty. If your client\
+    \ does not allow empty passwords, you can use any value as the password. Here's\n\
+    an example of how to authenticate with Basic Authentication and curl:\n\n```curl\n\
+    curl https://api.invoicetronic.com/invoice/v1/send \\\n    -u ik_test_1234567890abcdefg:\
+    \ \n# The colon prevents curl from asking for a password.\n```\n\n[1]: https://invoicetronic.com/"
+  title: Italian Invoice API
+  version: v1
+  x-logo:
+    url: https://gestionaleamica.com/assets/img/Logo_Amica_Scritta.png
+    altText: "Amica: tutto il software che serve per gestire la tua azienda"
+servers:
+- url: /
+security:
+- Basic: []
+paths:
+  /invoice/v1/company/{id}:
+    delete:
+      description: Companies are the entities that send and receive invoices. At least
+        one company is required in order to send and receive invoices.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Delete a company
+      tags:
+      - company
+    get:
+      description: Companies are the entities that send and receive invoices. At least
+        one company is required in order to send and receive invoices.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get a company by id
+      tags:
+      - company
+  /invoice/v1/company:
+    get:
+      description: Companies are the entities that send and receive invoices. At least
+        one company is required in order to send and receive invoices.
+      parameters:
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Company'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: List companies
+      tags:
+      - company
+    post:
+      description: Companies are the entities that send and receive invoices. At least
+        one company is required in order to send and receive invoices.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: Created
+      summary: Add a company
+      tags:
+      - company
+    put:
+      description: Companies are the entities that send and receive invoices. At least
+        one company is required in order to send and receive invoices.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: OK
+      summary: Update a company
+      tags:
+      - company
+  /invoice/v1/log/{id}:
+    get:
+      description: Every API operation is logged and can be retrieved here.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get an event by id
+      tags:
+      - log
+  /invoice/v1/log:
+    get:
+      description: Every API operation is logged and can be retrieved here.
+      parameters:
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Event'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: List events
+      tags:
+      - log
+  /invoice/v1/receive/{id}:
+    delete:
+      description: Receive invoices are the invoices that are received from other
+        companies.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receive'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Delete an incoming invoice by id
+      tags:
+      - receive
+    get:
+      description: Receive invoices are the invoices that are received from other
+        companies.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receive'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get an incoming invoice by id
+      tags:
+      - receive
+  /invoice/v1/receive:
+    get:
+      description: Receive invoices are the invoices that are received from other
+        companies.
+      parameters:
+      - description: Company id.
+        explode: true
+        in: query
+        name: company_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: SDI identifier.
+        explode: true
+        in: query
+        name: identifier
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Unread items only.
+        explode: true
+        in: query
+        name: unread
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: VAT number or fiscal code.
+        explode: true
+        in: query
+        name: committente
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: VAT number or fiscal code.
+        explode: true
+        in: query
+        name: prestatore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: File name.
+        explode: true
+        in: query
+        name: file_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: last_update_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: last_update_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_sent_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_sent_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: document_date_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: document_date_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Document number.
+        explode: true
+        in: query
+        name: document_number
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Receive'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+      summary: List incoming invoices
+      tags:
+      - receive
+  /invoice/v1/send/{id}:
+    get:
+      description: Send invoices are the invoices that are sent to the SDI.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Send'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get a send invoice by id
+      tags:
+      - send
+  /invoice/v1/send:
+    get:
+      description: test **markdown**.
+      parameters:
+      - description: Company id.
+        explode: true
+        in: query
+        name: company_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: SDI identifier.
+        explode: true
+        in: query
+        name: identifier
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: VAT number or fiscal code.
+        explode: true
+        in: query
+        name: committente
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: VAT number or fiscal code.
+        explode: true
+        in: query
+        name: prestatore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: File name.
+        explode: true
+        in: query
+        name: file_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: last_update_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: last_update_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_sent_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_sent_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: document_date_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: document_date_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Document number.
+        explode: true
+        in: query
+        name: document_number
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Send'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+      summary: List send invoices
+      tags:
+      - send
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      parameters:
+      - description: "Validate the document first, and reject it on failure."
+        explode: true
+        in: query
+        name: validate
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Send'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Send'
+          description: Created
+      summary: Add a send invoice
+      tags:
+      - send
+  /invoice/v1/send/xml:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      parameters:
+      - description: "Validate the document first, and reject it on failure."
+        explode: true
+        in: query
+        name: validate
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FatturaOrdinaria'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Send'
+          description: Created
+      summary: Add a send invoice by xml
+      tags:
+      - send
+  /invoice/v1/send/files:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      parameters:
+      - description: "Validate the document first, and reject it on failure."
+        explode: true
+        in: query
+        name: validate
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              files:
+                style: form
+            schema:
+              $ref: '#/components/schemas/_invoice_v1_send_files_post_request'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Send'
+          description: Created
+      summary: Add a send invoice by file
+      tags:
+      - send
+  /invoice/v1/send/json:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      parameters:
+      - description: "Validate the document first, and reject it on failure."
+        explode: true
+        in: query
+        name: validate
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FatturaOrdinaria'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Send'
+          description: Created
+      summary: Add a send invoice by json
+      tags:
+      - send
+  /invoice/v1/update/{id}:
+    get:
+      description: Updates are notifications that are sent by the SDI about the status
+        of sent invoices.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Update'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get an update by id
+      tags:
+      - update
+  /invoice/v1/update:
+    get:
+      description: Updates are notifications that are sent by the SDI about the status
+        of sent invoices.
+      parameters:
+      - description: Company id.
+        explode: true
+        in: query
+        name: company_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: SDI identifier.
+        explode: true
+        in: query
+        name: identifier
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only unread items.
+        explode: true
+        in: query
+        name: unread
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Send item's id.
+        explode: true
+        in: query
+        name: send_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: SDI state
+        explode: true
+        in: query
+        name: state
+        required: false
+        schema:
+          enum:
+          - Inviato
+          - Consegnato
+          - NonConsegnato
+          - Scartato
+          - AccettatoDalDestinatario
+          - RifiutatoDalDestinatario
+          - ImpossibilitàDiRecapito
+          - DecorrenzaTermini
+          - AttestazioneTrasmissioneFattura
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: last_update_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: last_update_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_sent_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 format (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_sent_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Update'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: List updates
+      tags:
+      - update
+  /invoice/v1/webhook/{id}:
+    delete:
+      description: Webhooks are used to notify external services about write events
+        that occur in the API. You can subscribe to specific events and receive a
+        notification when they occur.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHook'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Delete a webhook by id
+      tags:
+      - webhook
+    get:
+      description: Webhooks are used to notify external services about write events
+        that occur in the API. You can subscribe to specific events and receive a
+        notification when they occur.
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHook'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get a webhook by id
+      tags:
+      - webhook
+  /invoice/v1/webhook:
+    get:
+      description: Webhooks are used to notify external services about write events
+        that occur in the API. You can subscribe to specific events and receive a
+        notification when they occur.
+      parameters:
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WebHook'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: List webhooks
+      tags:
+      - webhook
+    post:
+      description: Webhooks are used to notify external services about write events
+        that occur in the API. You can subscribe to specific events and receive a
+        notification when they occur.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebHook'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHook'
+          description: Created
+      summary: Add a webhook
+      tags:
+      - webhook
+    put:
+      description: Webhooks are used to notify external services about write events
+        that occur in the API. You can subscribe to specific events and receive a
+        notification when they occur.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebHook'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHook'
+          description: OK
+      summary: Update a webhook
+      tags:
+      - webhook
+  /invoice/v1/webhookhistory/{id}:
+    get:
+      parameters:
+      - description: Item id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebHookHistory'
+          description: OK
+        "404":
+          description: Not Found
+      summary: Get a webhook history item by id
+      tags:
+      - webhook
+  /invoice/v1/webhookhistory:
+    get:
+      parameters:
+      - description: Page number.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+      - description: Items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WebHookHistory'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: List webhook history items
+      tags:
+      - webhook
+components:
+  schemas:
+    Allegati:
+      additionalProperties: false
+      example:
+        algoritmo_compressione: algoritmo_compressione
+        attachment: attachment
+        descrizione_attachment: descrizione_attachment
+        formato_attachment: formato_attachment
+        nome_attachment: nome_attachment
+      properties:
+        nome_attachment:
+          nullable: true
+          type: string
+        algoritmo_compressione:
+          nullable: true
+          type: string
+        formato_attachment:
+          nullable: true
+          type: string
+        descrizione_attachment:
+          nullable: true
+          type: string
+        attachment:
+          format: byte
+          nullable: true
+          type: string
+      type: object
+    AltriDatiGestionali:
+      additionalProperties: false
+      example:
+        riferimento_testo: riferimento_testo
+        tipo_dato: tipo_dato
+        riferimento_numero: 6.965117697638846
+        riferimento_data: 2000-01-23T04:56:07.000+00:00
+      properties:
+        tipo_dato:
+          nullable: true
+          type: string
+        riferimento_testo:
+          nullable: true
+          type: string
+        riferimento_numero:
+          format: double
+          nullable: true
+          type: number
+        riferimento_data:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    Anagrafica:
+      additionalProperties: false
+      example:
+        titolo: titolo
+        cognome: cognome
+        denominazione: denominazione
+        nome: nome
+        cod_eori: cod_eori
+      properties:
+        denominazione:
+          nullable: true
+          type: string
+        nome:
+          nullable: true
+          type: string
+        cognome:
+          nullable: true
+          type: string
+        titolo:
+          nullable: true
+          type: string
+        cod_eori:
+          nullable: true
+          type: string
+      type: object
+    CedentePrestatore:
+      additionalProperties: false
+      example:
+        sede:
+          cap: cap
+          comune: comune
+          indirizzo: indirizzo
+          nazione: IT
+          numero_civico: numero_civico
+          provincia: provincia
+        contatti:
+          telefono: telefono
+          fax: fax
+          email: email
+        riferimento_amministrazione: riferimento_amministrazione
+        stabile_organizzazione:
+          cap: cap
+          comune: comune
+          indirizzo: indirizzo
+          nazione: IT
+          numero_civico: numero_civico
+          provincia: provincia
+        iscrizione_rea:
+          ufficio: ufficio
+          stato_liquidazione: stato_liquidazione
+          socio_unico: socio_unico
+          numero_rea: numero_rea
+          capitale_sociale: 0.8008281904610115
+        dati_anagrafici:
+          provincia_albo: provincia_albo
+          codice_fiscale: codice_fiscale
+          albo_professionale: albo_professionale
+          regime_fiscale: regime_fiscale
+          numero_iscrizione_albo: numero_iscrizione_albo
+          data_iscrizione_albo: 2000-01-23T04:56:07.000+00:00
+          anagrafica:
+            titolo: titolo
+            cognome: cognome
+            denominazione: denominazione
+            nome: nome
+            cod_eori: cod_eori
+          id_fiscale_iva:
+            id_codice: id_codice
+            id_paese: id_paese
+      properties:
+        dati_anagrafici:
+          $ref: '#/components/schemas/DatiAnagraficiCedentePrestatore'
+        sede:
+          $ref: '#/components/schemas/SedeCedentePrestatore'
+        stabile_organizzazione:
+          $ref: '#/components/schemas/StabileOrganizzazione'
+        iscrizione_rea:
+          $ref: '#/components/schemas/IscrizioneREA'
+        contatti:
+          $ref: '#/components/schemas/Contatti'
+        riferimento_amministrazione:
+          nullable: true
+          type: string
+      type: object
+    CessionarioCommittente:
+      additionalProperties: false
+      example:
+        sede:
+          cap: cap
+          comune: comune
+          indirizzo: indirizzo
+          nazione: IT
+          numero_civico: numero_civico
+          provincia: provincia
+        stabile_organizzazione:
+          cap: cap
+          comune: comune
+          indirizzo: indirizzo
+          nazione: IT
+          numero_civico: numero_civico
+          provincia: provincia
+        dati_anagrafici:
+          codice_fiscale: codice_fiscale
+          anagrafica:
+            titolo: titolo
+            cognome: cognome
+            denominazione: denominazione
+            nome: nome
+            cod_eori: cod_eori
+          id_fiscale_iva:
+            id_codice: id_codice
+            id_paese: id_paese
+        rappresentante_fiscale:
+          cognome: cognome
+          denominazione: denominazione
+          nome: nome
+          id_fiscale_iva:
+            id_codice: id_codice
+            id_paese: id_paese
+      properties:
+        dati_anagrafici:
+          $ref: '#/components/schemas/DatiAnagraficiCessionarioCommittente'
+        sede:
+          $ref: '#/components/schemas/SedeCessionarioCommittente'
+        stabile_organizzazione:
+          $ref: '#/components/schemas/StabileOrganizzazione'
+        rappresentante_fiscale:
+          $ref: '#/components/schemas/RappresentanteFiscaleCessionarioCommittente'
+      type: object
+    CodiceArticolo:
+      additionalProperties: false
+      example:
+        codice_tipo: codice_tipo
+        codice_valore: codice_valore
+      properties:
+        codice_tipo:
+          nullable: true
+          type: string
+        codice_valore:
+          nullable: true
+          type: string
+      type: object
+    Company:
+      additionalProperties: false
+      description: A company model.
+      example:
+        user_id: 1
+        created: 2000-01-23T04:56:07.000+00:00
+        vat: IT01234567891
+        name: Mario Rossi Srl
+        id: 0
+        counter: 5
+        fiscal_code: RSSMRA70A01F205V
+        version: 6
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        vat:
+          description: Vat number. Must include the country code.
+          example: IT01234567891
+          minLength: 1
+          type: string
+        fiscal_code:
+          description: Fiscal code. In most cases it's the same as the vat number.
+          example: RSSMRA70A01F205V
+          minLength: 1
+          type: string
+        name:
+          description: Name
+          example: Mario Rossi Srl
+          minLength: 1
+          type: string
+        counter:
+          description: "Holds the last unique value used to generate a XML filename.\
+            \ This is automatically updated by the system \r\nwhen a raw XML file\
+            \ is uploaded. Normally, you do not need or want to change this value."
+          format: int32
+          type: integer
+      required:
+      - fiscal_code
+      - name
+      - vat
+      type: object
+    Contatti:
+      additionalProperties: false
+      example:
+        telefono: telefono
+        fax: fax
+        email: email
+      properties:
+        telefono:
+          nullable: true
+          type: string
+        fax:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+      type: object
+    ContattiTrasmittente:
+      additionalProperties: false
+      example:
+        telefono: telefono
+        email: email
+      properties:
+        telefono:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+      type: object
+    DatiAnagrafici:
+      additionalProperties: false
+      example:
+        codice_fiscale: codice_fiscale
+        anagrafica:
+          titolo: titolo
+          cognome: cognome
+          denominazione: denominazione
+          nome: nome
+          cod_eori: cod_eori
+        id_fiscale_iva:
+          id_codice: id_codice
+          id_paese: id_paese
+      properties:
+        id_fiscale_iva:
+          $ref: '#/components/schemas/IdFiscaleIVA'
+        codice_fiscale:
+          nullable: true
+          type: string
+        anagrafica:
+          $ref: '#/components/schemas/Anagrafica'
+      type: object
+    DatiAnagraficiCedentePrestatore:
+      additionalProperties: false
+      example:
+        provincia_albo: provincia_albo
+        codice_fiscale: codice_fiscale
+        albo_professionale: albo_professionale
+        regime_fiscale: regime_fiscale
+        numero_iscrizione_albo: numero_iscrizione_albo
+        data_iscrizione_albo: 2000-01-23T04:56:07.000+00:00
+        anagrafica:
+          titolo: titolo
+          cognome: cognome
+          denominazione: denominazione
+          nome: nome
+          cod_eori: cod_eori
+        id_fiscale_iva:
+          id_codice: id_codice
+          id_paese: id_paese
+      properties:
+        id_fiscale_iva:
+          $ref: '#/components/schemas/IdFiscaleIVA'
+        codice_fiscale:
+          nullable: true
+          type: string
+        anagrafica:
+          $ref: '#/components/schemas/Anagrafica'
+        albo_professionale:
+          nullable: true
+          type: string
+        provincia_albo:
+          nullable: true
+          type: string
+        numero_iscrizione_albo:
+          nullable: true
+          type: string
+        data_iscrizione_albo:
+          format: date-time
+          nullable: true
+          type: string
+        regime_fiscale:
+          nullable: true
+          type: string
+      type: object
+    DatiAnagraficiCessionarioCommittente:
+      additionalProperties: false
+      example:
+        codice_fiscale: codice_fiscale
+        anagrafica:
+          titolo: titolo
+          cognome: cognome
+          denominazione: denominazione
+          nome: nome
+          cod_eori: cod_eori
+        id_fiscale_iva:
+          id_codice: id_codice
+          id_paese: id_paese
+      properties:
+        id_fiscale_iva:
+          $ref: '#/components/schemas/IdFiscaleIVA'
+        codice_fiscale:
+          nullable: true
+          type: string
+        anagrafica:
+          $ref: '#/components/schemas/Anagrafica'
+      type: object
+    DatiAnagraficiVettore:
+      additionalProperties: false
+      example:
+        codice_fiscale: codice_fiscale
+        numero_licenza_guida: numero_licenza_guida
+        anagrafica:
+          titolo: titolo
+          cognome: cognome
+          denominazione: denominazione
+          nome: nome
+          cod_eori: cod_eori
+        id_fiscale_iva:
+          id_codice: id_codice
+          id_paese: id_paese
+      properties:
+        id_fiscale_iva:
+          $ref: '#/components/schemas/IdFiscaleIVA'
+        codice_fiscale:
+          nullable: true
+          type: string
+        anagrafica:
+          $ref: '#/components/schemas/Anagrafica'
+        numero_licenza_guida:
+          nullable: true
+          type: string
+      type: object
+    DatiBeniServizi:
+      additionalProperties: false
+      example:
+        dettaglio_linee:
+        - codice_articolo:
+          - codice_tipo: codice_tipo
+            codice_valore: codice_valore
+          - codice_tipo: codice_tipo
+            codice_valore: codice_valore
+          natura: natura
+          data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+          prezzo_unitario: 9.018348186070783
+          sconto_maggiorazione:
+          - tipo: tipo
+            percentuale: 3.616076749251911
+            importo: 2.027123023002322
+          - tipo: tipo
+            percentuale: 3.616076749251911
+            importo: 2.027123023002322
+          prezzo_totale: 6.438423552598547
+          altri_dati_gestionali:
+          - riferimento_testo: riferimento_testo
+            tipo_dato: tipo_dato
+            riferimento_numero: 6.965117697638846
+            riferimento_data: 2000-01-23T04:56:07.000+00:00
+          - riferimento_testo: riferimento_testo
+            tipo_dato: tipo_dato
+            riferimento_numero: 6.965117697638846
+            riferimento_data: 2000-01-23T04:56:07.000+00:00
+          data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+          tipo_cessione_prestazione: tipo_cessione_prestazione
+          descrizione: descrizione
+          numero_linea: 6
+          ritenuta: ritenuta
+          unita_misura: unita_misura
+          riferimento_amministrazione: riferimento_amministrazione
+          quantita: 8.762042012749001
+          aliquota_iva: 3.5571952270680973
+        - codice_articolo:
+          - codice_tipo: codice_tipo
+            codice_valore: codice_valore
+          - codice_tipo: codice_tipo
+            codice_valore: codice_valore
+          natura: natura
+          data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+          prezzo_unitario: 9.018348186070783
+          sconto_maggiorazione:
+          - tipo: tipo
+            percentuale: 3.616076749251911
+            importo: 2.027123023002322
+          - tipo: tipo
+            percentuale: 3.616076749251911
+            importo: 2.027123023002322
+          prezzo_totale: 6.438423552598547
+          altri_dati_gestionali:
+          - riferimento_testo: riferimento_testo
+            tipo_dato: tipo_dato
+            riferimento_numero: 6.965117697638846
+            riferimento_data: 2000-01-23T04:56:07.000+00:00
+          - riferimento_testo: riferimento_testo
+            tipo_dato: tipo_dato
+            riferimento_numero: 6.965117697638846
+            riferimento_data: 2000-01-23T04:56:07.000+00:00
+          data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+          tipo_cessione_prestazione: tipo_cessione_prestazione
+          descrizione: descrizione
+          numero_linea: 6
+          ritenuta: ritenuta
+          unita_misura: unita_misura
+          riferimento_amministrazione: riferimento_amministrazione
+          quantita: 8.762042012749001
+          aliquota_iva: 3.5571952270680973
+        dati_riepilogo:
+        - imposta: 5.944895607614016
+          natura: natura
+          riferimento_normativo: riferimento_normativo
+          imponibile_importo: 6.878052220127876
+          spese_accessorie: 2.8841621266687802
+          esigibilita_iva: esigibilita_iva
+          aliquota_iva: 1.284659006116532
+          arrotondamento: 6.778324963048013
+        - imposta: 5.944895607614016
+          natura: natura
+          riferimento_normativo: riferimento_normativo
+          imponibile_importo: 6.878052220127876
+          spese_accessorie: 2.8841621266687802
+          esigibilita_iva: esigibilita_iva
+          aliquota_iva: 1.284659006116532
+          arrotondamento: 6.778324963048013
+      properties:
+        dettaglio_linee:
+          items:
+            $ref: '#/components/schemas/DettaglioLinee'
+          nullable: true
+          type: array
+        dati_riepilogo:
+          items:
+            $ref: '#/components/schemas/DatiRiepilogo'
+          nullable: true
+          type: array
+      type: object
+    DatiBollo:
+      additionalProperties: false
+      example:
+        bollo_virtuale: bollo_virtuale
+        importo_bollo: 5.962133916683182
+      properties:
+        bollo_virtuale:
+          nullable: true
+          type: string
+        importo_bollo:
+          format: double
+          nullable: true
+          type: number
+      type: object
+    DatiCassaPrevidenziale:
+      additionalProperties: false
+      example:
+        natura: natura
+        importo_contributo_cassa: 2.3021358869347655
+        tipo_cassa: tipo_cassa
+        ritenuta: ritenuta
+        imponibile_cassa: 7.061401241503109
+        riferimento_amministrazione: riferimento_amministrazione
+        aliquota_iva: 9.301444243932576
+        al_cassa: 5.637376656633329
+      properties:
+        tipo_cassa:
+          nullable: true
+          type: string
+        al_cassa:
+          format: double
+          type: number
+        importo_contributo_cassa:
+          format: double
+          type: number
+        imponibile_cassa:
+          format: double
+          type: number
+        aliquota_iva:
+          format: double
+          type: number
+        ritenuta:
+          nullable: true
+          type: string
+        natura:
+          nullable: true
+          type: string
+        riferimento_amministrazione:
+          nullable: true
+          type: string
+      type: object
+    DatiContratto:
+      additionalProperties: false
+      example:
+        id_documento: id_documento
+        codice_cup: codice_cup
+        data: 2000-01-23T04:56:07.000+00:00
+        codice_cig: codice_cig
+        riferimento_numero_linea:
+        - 1
+        - 1
+        num_item: num_item
+        codice_commessa_convenzione: codice_commessa_convenzione
+      properties:
+        riferimento_numero_linea:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        id_documento:
+          nullable: true
+          type: string
+        data:
+          format: date-time
+          nullable: true
+          type: string
+        num_item:
+          nullable: true
+          type: string
+        codice_commessa_convenzione:
+          nullable: true
+          type: string
+        codice_cup:
+          nullable: true
+          type: string
+        codice_cig:
+          nullable: true
+          type: string
+      type: object
+    DatiConvenzione:
+      additionalProperties: false
+      example:
+        id_documento: id_documento
+        codice_cup: codice_cup
+        data: 2000-01-23T04:56:07.000+00:00
+        codice_cig: codice_cig
+        riferimento_numero_linea:
+        - 1
+        - 1
+        num_item: num_item
+        codice_commessa_convenzione: codice_commessa_convenzione
+      properties:
+        riferimento_numero_linea:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        id_documento:
+          nullable: true
+          type: string
+        data:
+          format: date-time
+          nullable: true
+          type: string
+        num_item:
+          nullable: true
+          type: string
+        codice_commessa_convenzione:
+          nullable: true
+          type: string
+        codice_cup:
+          nullable: true
+          type: string
+        codice_cig:
+          nullable: true
+          type: string
+      type: object
+    DatiDDT:
+      additionalProperties: false
+      example:
+        data_ddt: 2000-01-23T04:56:07.000+00:00
+        riferimento_numero_linea:
+        - 4
+        - 4
+        numero_ddt: numero_ddt
+      properties:
+        numero_ddt:
+          nullable: true
+          type: string
+        data_ddt:
+          format: date-time
+          type: string
+        riferimento_numero_linea:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    DatiFattureCollegate:
+      additionalProperties: false
+      example:
+        id_documento: id_documento
+        codice_cup: codice_cup
+        data: 2000-01-23T04:56:07.000+00:00
+        codice_cig: codice_cig
+        riferimento_numero_linea:
+        - 7
+        - 7
+        num_item: num_item
+        codice_commessa_convenzione: codice_commessa_convenzione
+      properties:
+        riferimento_numero_linea:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        id_documento:
+          nullable: true
+          type: string
+        data:
+          format: date-time
+          nullable: true
+          type: string
+        num_item:
+          nullable: true
+          type: string
+        codice_commessa_convenzione:
+          nullable: true
+          type: string
+        codice_cup:
+          nullable: true
+          type: string
+        codice_cig:
+          nullable: true
+          type: string
+      type: object
+    DatiGenerali:
+      additionalProperties: false
+      example:
+        dati_generali_documento:
+          dati_cassa_previdenziale:
+          - natura: natura
+            importo_contributo_cassa: 2.3021358869347655
+            tipo_cassa: tipo_cassa
+            ritenuta: ritenuta
+            imponibile_cassa: 7.061401241503109
+            riferimento_amministrazione: riferimento_amministrazione
+            aliquota_iva: 9.301444243932576
+            al_cassa: 5.637376656633329
+          - natura: natura
+            importo_contributo_cassa: 2.3021358869347655
+            tipo_cassa: tipo_cassa
+            ritenuta: ritenuta
+            imponibile_cassa: 7.061401241503109
+            riferimento_amministrazione: riferimento_amministrazione
+            aliquota_iva: 9.301444243932576
+            al_cassa: 5.637376656633329
+          art73: art73
+          tipo_documento: tipo_documento
+          data: 2000-01-23T04:56:07.000+00:00
+          numero: numero
+          dati_ritenuta:
+          - aliquota_ritenuta: 1.4658129805029452
+            tipo_ritenuta: tipo_ritenuta
+            importo_ritenuta: 6.027456183070403
+            causale_pagamento: causale_pagamento
+          - aliquota_ritenuta: 1.4658129805029452
+            tipo_ritenuta: tipo_ritenuta
+            importo_ritenuta: 6.027456183070403
+            causale_pagamento: causale_pagamento
+          divisa: divisa
+          sconto_maggiorazione:
+          - tipo: tipo
+            percentuale: 3.616076749251911
+            importo: 2.027123023002322
+          - tipo: tipo
+            percentuale: 3.616076749251911
+            importo: 2.027123023002322
+          importo_totale_documento: 4.145608029883936
+          causale:
+          - causale
+          - causale
+          dati_bollo:
+            bollo_virtuale: bollo_virtuale
+            importo_bollo: 5.962133916683182
+          arrotondamento: 7.386281948385884
+        dati_contratto:
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 1
+          - 1
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 1
+          - 1
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        dati_ricezione:
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 6
+          - 6
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 6
+          - 6
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        dati_trasporto:
+          unita_misura_peso: unita_misura_peso
+          numero_colli: 5
+          mezzo_trasporto: mezzo_trasporto
+          causale_trasporto: causale_trasporto
+          indirizzo_resa:
+            cap: cap
+            comune: comune
+            indirizzo: indirizzo
+            nazione: IT
+            numero_civico: numero_civico
+            provincia: provincia
+          data_ora_consegna: 2000-01-23T04:56:07.000+00:00
+          descrizione: descrizione
+          peso_lordo: 9.965781217890562
+          data_inizio_trasporto: 2000-01-23T04:56:07.000+00:00
+          dati_anagrafici_vettore:
+            codice_fiscale: codice_fiscale
+            numero_licenza_guida: numero_licenza_guida
+            anagrafica:
+              titolo: titolo
+              cognome: cognome
+              denominazione: denominazione
+              nome: nome
+              cod_eori: cod_eori
+            id_fiscale_iva:
+              id_codice: id_codice
+              id_paese: id_paese
+          data_ora_ritiro: 2000-01-23T04:56:07.000+00:00
+          peso_netto: 9.369310271410669
+          tipo_resa: tipo_resa
+        dati_convenzione:
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 1
+          - 1
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 1
+          - 1
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        fattura_principale:
+          numero_fattura_principale: numero_fattura_principale
+          data_fattura_principale: 2000-01-23T04:56:07.000+00:00
+        dati_sal:
+        - riferimento_fase: 1
+        - riferimento_fase: 1
+        dati_ordine_acquisto:
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 1
+          - 1
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 1
+          - 1
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        dati_fatture_collegate:
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 7
+          - 7
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        - id_documento: id_documento
+          codice_cup: codice_cup
+          data: 2000-01-23T04:56:07.000+00:00
+          codice_cig: codice_cig
+          riferimento_numero_linea:
+          - 7
+          - 7
+          num_item: num_item
+          codice_commessa_convenzione: codice_commessa_convenzione
+        dati_ddt:
+        - data_ddt: 2000-01-23T04:56:07.000+00:00
+          riferimento_numero_linea:
+          - 4
+          - 4
+          numero_ddt: numero_ddt
+        - data_ddt: 2000-01-23T04:56:07.000+00:00
+          riferimento_numero_linea:
+          - 4
+          - 4
+          numero_ddt: numero_ddt
+      properties:
+        dati_generali_documento:
+          $ref: '#/components/schemas/DatiGeneraliDocumento'
+        dati_ordine_acquisto:
+          items:
+            $ref: '#/components/schemas/DatiOrdineAcquisto'
+          nullable: true
+          type: array
+        dati_contratto:
+          items:
+            $ref: '#/components/schemas/DatiContratto'
+          nullable: true
+          type: array
+        dati_convenzione:
+          items:
+            $ref: '#/components/schemas/DatiConvenzione'
+          nullable: true
+          type: array
+        dati_ricezione:
+          items:
+            $ref: '#/components/schemas/DatiRicezione'
+          nullable: true
+          type: array
+        dati_fatture_collegate:
+          items:
+            $ref: '#/components/schemas/DatiFattureCollegate'
+          nullable: true
+          type: array
+        dati_sal:
+          items:
+            $ref: '#/components/schemas/DatiSAL'
+          nullable: true
+          type: array
+        dati_ddt:
+          items:
+            $ref: '#/components/schemas/DatiDDT'
+          nullable: true
+          type: array
+        dati_trasporto:
+          $ref: '#/components/schemas/DatiTrasporto'
+        fattura_principale:
+          $ref: '#/components/schemas/FatturaPrincipale'
+      type: object
+    DatiGeneraliDocumento:
+      additionalProperties: false
+      example:
+        dati_cassa_previdenziale:
+        - natura: natura
+          importo_contributo_cassa: 2.3021358869347655
+          tipo_cassa: tipo_cassa
+          ritenuta: ritenuta
+          imponibile_cassa: 7.061401241503109
+          riferimento_amministrazione: riferimento_amministrazione
+          aliquota_iva: 9.301444243932576
+          al_cassa: 5.637376656633329
+        - natura: natura
+          importo_contributo_cassa: 2.3021358869347655
+          tipo_cassa: tipo_cassa
+          ritenuta: ritenuta
+          imponibile_cassa: 7.061401241503109
+          riferimento_amministrazione: riferimento_amministrazione
+          aliquota_iva: 9.301444243932576
+          al_cassa: 5.637376656633329
+        art73: art73
+        tipo_documento: tipo_documento
+        data: 2000-01-23T04:56:07.000+00:00
+        numero: numero
+        dati_ritenuta:
+        - aliquota_ritenuta: 1.4658129805029452
+          tipo_ritenuta: tipo_ritenuta
+          importo_ritenuta: 6.027456183070403
+          causale_pagamento: causale_pagamento
+        - aliquota_ritenuta: 1.4658129805029452
+          tipo_ritenuta: tipo_ritenuta
+          importo_ritenuta: 6.027456183070403
+          causale_pagamento: causale_pagamento
+        divisa: divisa
+        sconto_maggiorazione:
+        - tipo: tipo
+          percentuale: 3.616076749251911
+          importo: 2.027123023002322
+        - tipo: tipo
+          percentuale: 3.616076749251911
+          importo: 2.027123023002322
+        importo_totale_documento: 4.145608029883936
+        causale:
+        - causale
+        - causale
+        dati_bollo:
+          bollo_virtuale: bollo_virtuale
+          importo_bollo: 5.962133916683182
+        arrotondamento: 7.386281948385884
+      properties:
+        tipo_documento:
+          nullable: true
+          type: string
+        divisa:
+          nullable: true
+          type: string
+        data:
+          format: date-time
+          type: string
+        numero:
+          nullable: true
+          type: string
+        dati_ritenuta:
+          items:
+            $ref: '#/components/schemas/DatiRitenuta'
+          nullable: true
+          type: array
+        dati_bollo:
+          $ref: '#/components/schemas/DatiBollo'
+        dati_cassa_previdenziale:
+          items:
+            $ref: '#/components/schemas/DatiCassaPrevidenziale'
+          nullable: true
+          type: array
+        sconto_maggiorazione:
+          items:
+            $ref: '#/components/schemas/ScontoMaggiorazione'
+          nullable: true
+          type: array
+        importo_totale_documento:
+          format: double
+          nullable: true
+          type: number
+        arrotondamento:
+          format: double
+          nullable: true
+          type: number
+        causale:
+          items:
+            type: string
+          nullable: true
+          type: array
+        art73:
+          nullable: true
+          type: string
+      type: object
+    DatiOrdineAcquisto:
+      additionalProperties: false
+      example:
+        id_documento: id_documento
+        codice_cup: codice_cup
+        data: 2000-01-23T04:56:07.000+00:00
+        codice_cig: codice_cig
+        riferimento_numero_linea:
+        - 1
+        - 1
+        num_item: num_item
+        codice_commessa_convenzione: codice_commessa_convenzione
+      properties:
+        riferimento_numero_linea:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        id_documento:
+          nullable: true
+          type: string
+        data:
+          format: date-time
+          nullable: true
+          type: string
+        num_item:
+          nullable: true
+          type: string
+        codice_commessa_convenzione:
+          nullable: true
+          type: string
+        codice_cup:
+          nullable: true
+          type: string
+        codice_cig:
+          nullable: true
+          type: string
+      type: object
+    DatiPagamento:
+      additionalProperties: false
+      example:
+        condizioni_pagamento: condizioni_pagamento
+        dettaglio_pagamento:
+        - modalita_pagamento: modalita_pagamento
+          giorni_termini_pagamento: 6
+          cab: cab
+          penalita_pagamenti_ritardati: 7.143538047012306
+          titolo_quietanzante: titolo_quietanzante
+          abi: abi
+          data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+          nome_quietanzante: nome_quietanzante
+          data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+          data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+          istituto_finanziario: istituto_finanziario
+          codice_pagamento: codice_pagamento
+          beneficiario: beneficiario
+          sconto_pagamento_anticipato: 3.0937452626664474
+          cf_quietanzante: cf_quietanzante
+          iban: iban
+          cod_ufficio_postale: cod_ufficio_postale
+          cognome_quietanzante: cognome_quietanzante
+          importo_pagamento: 3.353193347011243
+          bic: bic
+          data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+        - modalita_pagamento: modalita_pagamento
+          giorni_termini_pagamento: 6
+          cab: cab
+          penalita_pagamenti_ritardati: 7.143538047012306
+          titolo_quietanzante: titolo_quietanzante
+          abi: abi
+          data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+          nome_quietanzante: nome_quietanzante
+          data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+          data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+          istituto_finanziario: istituto_finanziario
+          codice_pagamento: codice_pagamento
+          beneficiario: beneficiario
+          sconto_pagamento_anticipato: 3.0937452626664474
+          cf_quietanzante: cf_quietanzante
+          iban: iban
+          cod_ufficio_postale: cod_ufficio_postale
+          cognome_quietanzante: cognome_quietanzante
+          importo_pagamento: 3.353193347011243
+          bic: bic
+          data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+      properties:
+        condizioni_pagamento:
+          nullable: true
+          type: string
+        dettaglio_pagamento:
+          items:
+            $ref: '#/components/schemas/DettaglioPagamento'
+          nullable: true
+          type: array
+      type: object
+    DatiRicezione:
+      additionalProperties: false
+      example:
+        id_documento: id_documento
+        codice_cup: codice_cup
+        data: 2000-01-23T04:56:07.000+00:00
+        codice_cig: codice_cig
+        riferimento_numero_linea:
+        - 6
+        - 6
+        num_item: num_item
+        codice_commessa_convenzione: codice_commessa_convenzione
+      properties:
+        riferimento_numero_linea:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        id_documento:
+          nullable: true
+          type: string
+        data:
+          format: date-time
+          nullable: true
+          type: string
+        num_item:
+          nullable: true
+          type: string
+        codice_commessa_convenzione:
+          nullable: true
+          type: string
+        codice_cup:
+          nullable: true
+          type: string
+        codice_cig:
+          nullable: true
+          type: string
+      type: object
+    DatiRiepilogo:
+      additionalProperties: false
+      example:
+        imposta: 5.944895607614016
+        natura: natura
+        riferimento_normativo: riferimento_normativo
+        imponibile_importo: 6.878052220127876
+        spese_accessorie: 2.8841621266687802
+        esigibilita_iva: esigibilita_iva
+        aliquota_iva: 1.284659006116532
+        arrotondamento: 6.778324963048013
+      properties:
+        aliquota_iva:
+          format: double
+          type: number
+        natura:
+          nullable: true
+          type: string
+        spese_accessorie:
+          format: double
+          nullable: true
+          type: number
+        arrotondamento:
+          format: double
+          nullable: true
+          type: number
+        imponibile_importo:
+          format: double
+          type: number
+        imposta:
+          format: double
+          type: number
+        esigibilita_iva:
+          nullable: true
+          type: string
+        riferimento_normativo:
+          nullable: true
+          type: string
+      type: object
+    DatiRitenuta:
+      additionalProperties: false
+      example:
+        aliquota_ritenuta: 1.4658129805029452
+        tipo_ritenuta: tipo_ritenuta
+        importo_ritenuta: 6.027456183070403
+        causale_pagamento: causale_pagamento
+      properties:
+        tipo_ritenuta:
+          nullable: true
+          type: string
+        importo_ritenuta:
+          format: double
+          type: number
+        aliquota_ritenuta:
+          format: double
+          type: number
+        causale_pagamento:
+          nullable: true
+          type: string
+      type: object
+    DatiSAL:
+      additionalProperties: false
+      example:
+        riferimento_fase: 1
+      properties:
+        riferimento_fase:
+          format: int32
+          type: integer
+      type: object
+    DatiTrasmissione:
+      additionalProperties: false
+      example:
+        id_trasmittente:
+          id_codice: id_codice
+          id_paese: id_paese
+        codice_destinatario: codice_destinatario
+        pec_destinatario: pec_destinatario
+        progressivo_invio: progressivo_invio
+        formato_trasmissione: formato_trasmissione
+        contatti_trasmittente:
+          telefono: telefono
+          email: email
+      properties:
+        id_trasmittente:
+          $ref: '#/components/schemas/IdTrasmittente'
+        progressivo_invio:
+          nullable: true
+          type: string
+        formato_trasmissione:
+          nullable: true
+          type: string
+        codice_destinatario:
+          nullable: true
+          type: string
+        contatti_trasmittente:
+          $ref: '#/components/schemas/ContattiTrasmittente'
+        pec_destinatario:
+          nullable: true
+          type: string
+      type: object
+    DatiTrasporto:
+      additionalProperties: false
+      example:
+        unita_misura_peso: unita_misura_peso
+        numero_colli: 5
+        mezzo_trasporto: mezzo_trasporto
+        causale_trasporto: causale_trasporto
+        indirizzo_resa:
+          cap: cap
+          comune: comune
+          indirizzo: indirizzo
+          nazione: IT
+          numero_civico: numero_civico
+          provincia: provincia
+        data_ora_consegna: 2000-01-23T04:56:07.000+00:00
+        descrizione: descrizione
+        peso_lordo: 9.965781217890562
+        data_inizio_trasporto: 2000-01-23T04:56:07.000+00:00
+        dati_anagrafici_vettore:
+          codice_fiscale: codice_fiscale
+          numero_licenza_guida: numero_licenza_guida
+          anagrafica:
+            titolo: titolo
+            cognome: cognome
+            denominazione: denominazione
+            nome: nome
+            cod_eori: cod_eori
+          id_fiscale_iva:
+            id_codice: id_codice
+            id_paese: id_paese
+        data_ora_ritiro: 2000-01-23T04:56:07.000+00:00
+        peso_netto: 9.369310271410669
+        tipo_resa: tipo_resa
+      properties:
+        dati_anagrafici_vettore:
+          $ref: '#/components/schemas/DatiAnagraficiVettore'
+        mezzo_trasporto:
+          nullable: true
+          type: string
+        causale_trasporto:
+          nullable: true
+          type: string
+        numero_colli:
+          format: int32
+          nullable: true
+          type: integer
+        descrizione:
+          nullable: true
+          type: string
+        unita_misura_peso:
+          nullable: true
+          type: string
+        peso_lordo:
+          format: double
+          nullable: true
+          type: number
+        peso_netto:
+          format: double
+          nullable: true
+          type: number
+        data_ora_ritiro:
+          format: date-time
+          nullable: true
+          type: string
+        data_inizio_trasporto:
+          format: date-time
+          nullable: true
+          type: string
+        tipo_resa:
+          nullable: true
+          type: string
+        indirizzo_resa:
+          $ref: '#/components/schemas/IndirizzoResa'
+        data_ora_consegna:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    DatiVeicoli:
+      additionalProperties: false
+      example:
+        data: 2000-01-23T04:56:07.000+00:00
+        totale_percorso: totale_percorso
+      properties:
+        data:
+          format: date-time
+          nullable: true
+          type: string
+        totale_percorso:
+          nullable: true
+          type: string
+      type: object
+    DettaglioLinee:
+      additionalProperties: false
+      example:
+        codice_articolo:
+        - codice_tipo: codice_tipo
+          codice_valore: codice_valore
+        - codice_tipo: codice_tipo
+          codice_valore: codice_valore
+        natura: natura
+        data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+        prezzo_unitario: 9.018348186070783
+        sconto_maggiorazione:
+        - tipo: tipo
+          percentuale: 3.616076749251911
+          importo: 2.027123023002322
+        - tipo: tipo
+          percentuale: 3.616076749251911
+          importo: 2.027123023002322
+        prezzo_totale: 6.438423552598547
+        altri_dati_gestionali:
+        - riferimento_testo: riferimento_testo
+          tipo_dato: tipo_dato
+          riferimento_numero: 6.965117697638846
+          riferimento_data: 2000-01-23T04:56:07.000+00:00
+        - riferimento_testo: riferimento_testo
+          tipo_dato: tipo_dato
+          riferimento_numero: 6.965117697638846
+          riferimento_data: 2000-01-23T04:56:07.000+00:00
+        data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+        tipo_cessione_prestazione: tipo_cessione_prestazione
+        descrizione: descrizione
+        numero_linea: 6
+        ritenuta: ritenuta
+        unita_misura: unita_misura
+        riferimento_amministrazione: riferimento_amministrazione
+        quantita: 8.762042012749001
+        aliquota_iva: 3.5571952270680973
+      properties:
+        numero_linea:
+          format: int32
+          type: integer
+        tipo_cessione_prestazione:
+          nullable: true
+          type: string
+        codice_articolo:
+          items:
+            $ref: '#/components/schemas/CodiceArticolo'
+          nullable: true
+          type: array
+        descrizione:
+          nullable: true
+          type: string
+        quantita:
+          format: double
+          nullable: true
+          type: number
+        unita_misura:
+          nullable: true
+          type: string
+        data_inizio_periodo:
+          format: date-time
+          nullable: true
+          type: string
+        data_fine_periodo:
+          format: date-time
+          nullable: true
+          type: string
+        prezzo_unitario:
+          format: double
+          type: number
+        sconto_maggiorazione:
+          items:
+            $ref: '#/components/schemas/ScontoMaggiorazione'
+          nullable: true
+          type: array
+        prezzo_totale:
+          format: double
+          type: number
+        aliquota_iva:
+          format: double
+          type: number
+        ritenuta:
+          nullable: true
+          type: string
+        natura:
+          nullable: true
+          type: string
+        riferimento_amministrazione:
+          nullable: true
+          type: string
+        altri_dati_gestionali:
+          items:
+            $ref: '#/components/schemas/AltriDatiGestionali'
+          nullable: true
+          type: array
+      type: object
+    DettaglioPagamento:
+      additionalProperties: false
+      example:
+        modalita_pagamento: modalita_pagamento
+        giorni_termini_pagamento: 6
+        cab: cab
+        penalita_pagamenti_ritardati: 7.143538047012306
+        titolo_quietanzante: titolo_quietanzante
+        abi: abi
+        data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+        nome_quietanzante: nome_quietanzante
+        data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+        data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+        istituto_finanziario: istituto_finanziario
+        codice_pagamento: codice_pagamento
+        beneficiario: beneficiario
+        sconto_pagamento_anticipato: 3.0937452626664474
+        cf_quietanzante: cf_quietanzante
+        iban: iban
+        cod_ufficio_postale: cod_ufficio_postale
+        cognome_quietanzante: cognome_quietanzante
+        importo_pagamento: 3.353193347011243
+        bic: bic
+        data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+      properties:
+        beneficiario:
+          nullable: true
+          type: string
+        modalita_pagamento:
+          nullable: true
+          type: string
+        data_riferimento_termini_pagamento:
+          format: date-time
+          nullable: true
+          type: string
+        giorni_termini_pagamento:
+          format: int32
+          nullable: true
+          type: integer
+        data_scadenza_pagamento:
+          format: date-time
+          nullable: true
+          type: string
+        importo_pagamento:
+          format: double
+          type: number
+        cod_ufficio_postale:
+          nullable: true
+          type: string
+        cognome_quietanzante:
+          nullable: true
+          type: string
+        nome_quietanzante:
+          nullable: true
+          type: string
+        cf_quietanzante:
+          nullable: true
+          type: string
+        titolo_quietanzante:
+          nullable: true
+          type: string
+        istituto_finanziario:
+          nullable: true
+          type: string
+        iban:
+          nullable: true
+          type: string
+        abi:
+          nullable: true
+          type: string
+        cab:
+          nullable: true
+          type: string
+        bic:
+          nullable: true
+          type: string
+        sconto_pagamento_anticipato:
+          format: double
+          nullable: true
+          type: number
+        data_limite_pagamento_anticipato:
+          format: date-time
+          nullable: true
+          type: string
+        penalita_pagamenti_ritardati:
+          format: double
+          nullable: true
+          type: number
+        data_decorrenza_penale:
+          format: date-time
+          nullable: true
+          type: string
+        codice_pagamento:
+          nullable: true
+          type: string
+      type: object
+    DocumentData:
+      additionalProperties: false
+      example:
+        date: 2000-01-23T04:56:07.000+00:00
+        number: number
+      properties:
+        number:
+          nullable: true
+          type: string
+        date:
+          format: date-time
+          type: string
+      type: object
+    Error:
+      additionalProperties: false
+      description: Validation error from the SDI.
+      example:
+        code: code
+        hint: hint
+        description: description
+      properties:
+        code:
+          description: Error code.
+          nullable: true
+          type: string
+        description:
+          description: Error description.
+          nullable: true
+          type: string
+        hint:
+          description: Hint on how to solve the issue.
+          nullable: true
+          type: string
+      type: object
+    Event:
+      additionalProperties: false
+      example:
+        status_code: 5
+        company_id: 1
+        method: method
+        created: 2000-01-23T04:56:07.000+00:00
+        query: query
+        response_body: response_body
+        api_version: 5
+        error: error
+        version: 6
+        api_key_id: 7
+        endpoint: endpoint
+        date_time: 2000-01-23T04:56:07.000+00:00
+        request_body: request_body
+        user_id: 2
+        success: true
+        id: 0
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        company_id:
+          description: Company id.
+          format: int32
+          nullable: true
+          type: integer
+        method:
+          description: Request method.
+          nullable: true
+          type: string
+        query:
+          description: Request query.
+          nullable: true
+          type: string
+        endpoint:
+          description: API endpoint.
+          nullable: true
+          type: string
+        api_version:
+          description: Api version.
+          format: int32
+          type: integer
+        status_code:
+          description: Status code returned by the API.
+          format: int32
+          type: integer
+        date_time:
+          description: Date and time of the request.
+          format: date-time
+          type: string
+        error:
+          description: Response error.
+          nullable: true
+          type: string
+        request_body:
+          description: Request payload. It is guaranteed to be cyphered at rest.
+          nullable: true
+          type: string
+        response_body:
+          description: Response payload. It is guaranteed to be cyphered at rest.
+          nullable: true
+          type: string
+        success:
+          description: Wether the request was successful.
+          readOnly: true
+          type: boolean
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        api_key_id:
+          description: Api key id.
+          format: int32
+          type: integer
+      type: object
+    FatturaElettronicaBody:
+      additionalProperties: false
+      example:
+        dati_generali:
+          dati_generali_documento:
+            dati_cassa_previdenziale:
+            - natura: natura
+              importo_contributo_cassa: 2.3021358869347655
+              tipo_cassa: tipo_cassa
+              ritenuta: ritenuta
+              imponibile_cassa: 7.061401241503109
+              riferimento_amministrazione: riferimento_amministrazione
+              aliquota_iva: 9.301444243932576
+              al_cassa: 5.637376656633329
+            - natura: natura
+              importo_contributo_cassa: 2.3021358869347655
+              tipo_cassa: tipo_cassa
+              ritenuta: ritenuta
+              imponibile_cassa: 7.061401241503109
+              riferimento_amministrazione: riferimento_amministrazione
+              aliquota_iva: 9.301444243932576
+              al_cassa: 5.637376656633329
+            art73: art73
+            tipo_documento: tipo_documento
+            data: 2000-01-23T04:56:07.000+00:00
+            numero: numero
+            dati_ritenuta:
+            - aliquota_ritenuta: 1.4658129805029452
+              tipo_ritenuta: tipo_ritenuta
+              importo_ritenuta: 6.027456183070403
+              causale_pagamento: causale_pagamento
+            - aliquota_ritenuta: 1.4658129805029452
+              tipo_ritenuta: tipo_ritenuta
+              importo_ritenuta: 6.027456183070403
+              causale_pagamento: causale_pagamento
+            divisa: divisa
+            sconto_maggiorazione:
+            - tipo: tipo
+              percentuale: 3.616076749251911
+              importo: 2.027123023002322
+            - tipo: tipo
+              percentuale: 3.616076749251911
+              importo: 2.027123023002322
+            importo_totale_documento: 4.145608029883936
+            causale:
+            - causale
+            - causale
+            dati_bollo:
+              bollo_virtuale: bollo_virtuale
+              importo_bollo: 5.962133916683182
+            arrotondamento: 7.386281948385884
+          dati_contratto:
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 1
+            - 1
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 1
+            - 1
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          dati_ricezione:
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 6
+            - 6
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 6
+            - 6
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          dati_trasporto:
+            unita_misura_peso: unita_misura_peso
+            numero_colli: 5
+            mezzo_trasporto: mezzo_trasporto
+            causale_trasporto: causale_trasporto
+            indirizzo_resa:
+              cap: cap
+              comune: comune
+              indirizzo: indirizzo
+              nazione: IT
+              numero_civico: numero_civico
+              provincia: provincia
+            data_ora_consegna: 2000-01-23T04:56:07.000+00:00
+            descrizione: descrizione
+            peso_lordo: 9.965781217890562
+            data_inizio_trasporto: 2000-01-23T04:56:07.000+00:00
+            dati_anagrafici_vettore:
+              codice_fiscale: codice_fiscale
+              numero_licenza_guida: numero_licenza_guida
+              anagrafica:
+                titolo: titolo
+                cognome: cognome
+                denominazione: denominazione
+                nome: nome
+                cod_eori: cod_eori
+              id_fiscale_iva:
+                id_codice: id_codice
+                id_paese: id_paese
+            data_ora_ritiro: 2000-01-23T04:56:07.000+00:00
+            peso_netto: 9.369310271410669
+            tipo_resa: tipo_resa
+          dati_convenzione:
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 1
+            - 1
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 1
+            - 1
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          fattura_principale:
+            numero_fattura_principale: numero_fattura_principale
+            data_fattura_principale: 2000-01-23T04:56:07.000+00:00
+          dati_sal:
+          - riferimento_fase: 1
+          - riferimento_fase: 1
+          dati_ordine_acquisto:
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 1
+            - 1
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 1
+            - 1
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          dati_fatture_collegate:
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 7
+            - 7
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          - id_documento: id_documento
+            codice_cup: codice_cup
+            data: 2000-01-23T04:56:07.000+00:00
+            codice_cig: codice_cig
+            riferimento_numero_linea:
+            - 7
+            - 7
+            num_item: num_item
+            codice_commessa_convenzione: codice_commessa_convenzione
+          dati_ddt:
+          - data_ddt: 2000-01-23T04:56:07.000+00:00
+            riferimento_numero_linea:
+            - 4
+            - 4
+            numero_ddt: numero_ddt
+          - data_ddt: 2000-01-23T04:56:07.000+00:00
+            riferimento_numero_linea:
+            - 4
+            - 4
+            numero_ddt: numero_ddt
+        dati_veicoli:
+          data: 2000-01-23T04:56:07.000+00:00
+          totale_percorso: totale_percorso
+        dati_pagamento:
+        - condizioni_pagamento: condizioni_pagamento
+          dettaglio_pagamento:
+          - modalita_pagamento: modalita_pagamento
+            giorni_termini_pagamento: 6
+            cab: cab
+            penalita_pagamenti_ritardati: 7.143538047012306
+            titolo_quietanzante: titolo_quietanzante
+            abi: abi
+            data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+            nome_quietanzante: nome_quietanzante
+            data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+            data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+            istituto_finanziario: istituto_finanziario
+            codice_pagamento: codice_pagamento
+            beneficiario: beneficiario
+            sconto_pagamento_anticipato: 3.0937452626664474
+            cf_quietanzante: cf_quietanzante
+            iban: iban
+            cod_ufficio_postale: cod_ufficio_postale
+            cognome_quietanzante: cognome_quietanzante
+            importo_pagamento: 3.353193347011243
+            bic: bic
+            data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+          - modalita_pagamento: modalita_pagamento
+            giorni_termini_pagamento: 6
+            cab: cab
+            penalita_pagamenti_ritardati: 7.143538047012306
+            titolo_quietanzante: titolo_quietanzante
+            abi: abi
+            data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+            nome_quietanzante: nome_quietanzante
+            data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+            data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+            istituto_finanziario: istituto_finanziario
+            codice_pagamento: codice_pagamento
+            beneficiario: beneficiario
+            sconto_pagamento_anticipato: 3.0937452626664474
+            cf_quietanzante: cf_quietanzante
+            iban: iban
+            cod_ufficio_postale: cod_ufficio_postale
+            cognome_quietanzante: cognome_quietanzante
+            importo_pagamento: 3.353193347011243
+            bic: bic
+            data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+        - condizioni_pagamento: condizioni_pagamento
+          dettaglio_pagamento:
+          - modalita_pagamento: modalita_pagamento
+            giorni_termini_pagamento: 6
+            cab: cab
+            penalita_pagamenti_ritardati: 7.143538047012306
+            titolo_quietanzante: titolo_quietanzante
+            abi: abi
+            data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+            nome_quietanzante: nome_quietanzante
+            data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+            data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+            istituto_finanziario: istituto_finanziario
+            codice_pagamento: codice_pagamento
+            beneficiario: beneficiario
+            sconto_pagamento_anticipato: 3.0937452626664474
+            cf_quietanzante: cf_quietanzante
+            iban: iban
+            cod_ufficio_postale: cod_ufficio_postale
+            cognome_quietanzante: cognome_quietanzante
+            importo_pagamento: 3.353193347011243
+            bic: bic
+            data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+          - modalita_pagamento: modalita_pagamento
+            giorni_termini_pagamento: 6
+            cab: cab
+            penalita_pagamenti_ritardati: 7.143538047012306
+            titolo_quietanzante: titolo_quietanzante
+            abi: abi
+            data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+            nome_quietanzante: nome_quietanzante
+            data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+            data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+            istituto_finanziario: istituto_finanziario
+            codice_pagamento: codice_pagamento
+            beneficiario: beneficiario
+            sconto_pagamento_anticipato: 3.0937452626664474
+            cf_quietanzante: cf_quietanzante
+            iban: iban
+            cod_ufficio_postale: cod_ufficio_postale
+            cognome_quietanzante: cognome_quietanzante
+            importo_pagamento: 3.353193347011243
+            bic: bic
+            data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+        dati_beni_servizi:
+          dettaglio_linee:
+          - codice_articolo:
+            - codice_tipo: codice_tipo
+              codice_valore: codice_valore
+            - codice_tipo: codice_tipo
+              codice_valore: codice_valore
+            natura: natura
+            data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+            prezzo_unitario: 9.018348186070783
+            sconto_maggiorazione:
+            - tipo: tipo
+              percentuale: 3.616076749251911
+              importo: 2.027123023002322
+            - tipo: tipo
+              percentuale: 3.616076749251911
+              importo: 2.027123023002322
+            prezzo_totale: 6.438423552598547
+            altri_dati_gestionali:
+            - riferimento_testo: riferimento_testo
+              tipo_dato: tipo_dato
+              riferimento_numero: 6.965117697638846
+              riferimento_data: 2000-01-23T04:56:07.000+00:00
+            - riferimento_testo: riferimento_testo
+              tipo_dato: tipo_dato
+              riferimento_numero: 6.965117697638846
+              riferimento_data: 2000-01-23T04:56:07.000+00:00
+            data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+            tipo_cessione_prestazione: tipo_cessione_prestazione
+            descrizione: descrizione
+            numero_linea: 6
+            ritenuta: ritenuta
+            unita_misura: unita_misura
+            riferimento_amministrazione: riferimento_amministrazione
+            quantita: 8.762042012749001
+            aliquota_iva: 3.5571952270680973
+          - codice_articolo:
+            - codice_tipo: codice_tipo
+              codice_valore: codice_valore
+            - codice_tipo: codice_tipo
+              codice_valore: codice_valore
+            natura: natura
+            data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+            prezzo_unitario: 9.018348186070783
+            sconto_maggiorazione:
+            - tipo: tipo
+              percentuale: 3.616076749251911
+              importo: 2.027123023002322
+            - tipo: tipo
+              percentuale: 3.616076749251911
+              importo: 2.027123023002322
+            prezzo_totale: 6.438423552598547
+            altri_dati_gestionali:
+            - riferimento_testo: riferimento_testo
+              tipo_dato: tipo_dato
+              riferimento_numero: 6.965117697638846
+              riferimento_data: 2000-01-23T04:56:07.000+00:00
+            - riferimento_testo: riferimento_testo
+              tipo_dato: tipo_dato
+              riferimento_numero: 6.965117697638846
+              riferimento_data: 2000-01-23T04:56:07.000+00:00
+            data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+            tipo_cessione_prestazione: tipo_cessione_prestazione
+            descrizione: descrizione
+            numero_linea: 6
+            ritenuta: ritenuta
+            unita_misura: unita_misura
+            riferimento_amministrazione: riferimento_amministrazione
+            quantita: 8.762042012749001
+            aliquota_iva: 3.5571952270680973
+          dati_riepilogo:
+          - imposta: 5.944895607614016
+            natura: natura
+            riferimento_normativo: riferimento_normativo
+            imponibile_importo: 6.878052220127876
+            spese_accessorie: 2.8841621266687802
+            esigibilita_iva: esigibilita_iva
+            aliquota_iva: 1.284659006116532
+            arrotondamento: 6.778324963048013
+          - imposta: 5.944895607614016
+            natura: natura
+            riferimento_normativo: riferimento_normativo
+            imponibile_importo: 6.878052220127876
+            spese_accessorie: 2.8841621266687802
+            esigibilita_iva: esigibilita_iva
+            aliquota_iva: 1.284659006116532
+            arrotondamento: 6.778324963048013
+        allegati:
+        - algoritmo_compressione: algoritmo_compressione
+          attachment: attachment
+          descrizione_attachment: descrizione_attachment
+          formato_attachment: formato_attachment
+          nome_attachment: nome_attachment
+        - algoritmo_compressione: algoritmo_compressione
+          attachment: attachment
+          descrizione_attachment: descrizione_attachment
+          formato_attachment: formato_attachment
+          nome_attachment: nome_attachment
+      properties:
+        dati_generali:
+          $ref: '#/components/schemas/DatiGenerali'
+        dati_beni_servizi:
+          $ref: '#/components/schemas/DatiBeniServizi'
+        dati_veicoli:
+          $ref: '#/components/schemas/DatiVeicoli'
+        dati_pagamento:
+          items:
+            $ref: '#/components/schemas/DatiPagamento'
+          nullable: true
+          type: array
+        allegati:
+          items:
+            $ref: '#/components/schemas/Allegati'
+          nullable: true
+          type: array
+      type: object
+    FatturaElettronicaHeader:
+      additionalProperties: false
+      example:
+        terzo_intermediario_o_soggetto_emittente:
+          dati_anagrafici:
+            codice_fiscale: codice_fiscale
+            anagrafica:
+              titolo: titolo
+              cognome: cognome
+              denominazione: denominazione
+              nome: nome
+              cod_eori: cod_eori
+            id_fiscale_iva:
+              id_codice: id_codice
+              id_paese: id_paese
+        soggetto_emittente: soggetto_emittente
+        cedente_prestatore:
+          sede:
+            cap: cap
+            comune: comune
+            indirizzo: indirizzo
+            nazione: IT
+            numero_civico: numero_civico
+            provincia: provincia
+          contatti:
+            telefono: telefono
+            fax: fax
+            email: email
+          riferimento_amministrazione: riferimento_amministrazione
+          stabile_organizzazione:
+            cap: cap
+            comune: comune
+            indirizzo: indirizzo
+            nazione: IT
+            numero_civico: numero_civico
+            provincia: provincia
+          iscrizione_rea:
+            ufficio: ufficio
+            stato_liquidazione: stato_liquidazione
+            socio_unico: socio_unico
+            numero_rea: numero_rea
+            capitale_sociale: 0.8008281904610115
+          dati_anagrafici:
+            provincia_albo: provincia_albo
+            codice_fiscale: codice_fiscale
+            albo_professionale: albo_professionale
+            regime_fiscale: regime_fiscale
+            numero_iscrizione_albo: numero_iscrizione_albo
+            data_iscrizione_albo: 2000-01-23T04:56:07.000+00:00
+            anagrafica:
+              titolo: titolo
+              cognome: cognome
+              denominazione: denominazione
+              nome: nome
+              cod_eori: cod_eori
+            id_fiscale_iva:
+              id_codice: id_codice
+              id_paese: id_paese
+        dati_trasmissione:
+          id_trasmittente:
+            id_codice: id_codice
+            id_paese: id_paese
+          codice_destinatario: codice_destinatario
+          pec_destinatario: pec_destinatario
+          progressivo_invio: progressivo_invio
+          formato_trasmissione: formato_trasmissione
+          contatti_trasmittente:
+            telefono: telefono
+            email: email
+        cessionario_committente:
+          sede:
+            cap: cap
+            comune: comune
+            indirizzo: indirizzo
+            nazione: IT
+            numero_civico: numero_civico
+            provincia: provincia
+          stabile_organizzazione:
+            cap: cap
+            comune: comune
+            indirizzo: indirizzo
+            nazione: IT
+            numero_civico: numero_civico
+            provincia: provincia
+          dati_anagrafici:
+            codice_fiscale: codice_fiscale
+            anagrafica:
+              titolo: titolo
+              cognome: cognome
+              denominazione: denominazione
+              nome: nome
+              cod_eori: cod_eori
+            id_fiscale_iva:
+              id_codice: id_codice
+              id_paese: id_paese
+          rappresentante_fiscale:
+            cognome: cognome
+            denominazione: denominazione
+            nome: nome
+            id_fiscale_iva:
+              id_codice: id_codice
+              id_paese: id_paese
+        RappresentanteFiscale:
+          dati_anagrafici:
+            codice_fiscale: codice_fiscale
+            anagrafica:
+              titolo: titolo
+              cognome: cognome
+              denominazione: denominazione
+              nome: nome
+              cod_eori: cod_eori
+            id_fiscale_iva:
+              id_codice: id_codice
+              id_paese: id_paese
+      properties:
+        dati_trasmissione:
+          $ref: '#/components/schemas/DatiTrasmissione'
+        cedente_prestatore:
+          $ref: '#/components/schemas/CedentePrestatore'
+        RappresentanteFiscale:
+          $ref: '#/components/schemas/RappresentanteFiscale'
+        cessionario_committente:
+          $ref: '#/components/schemas/CessionarioCommittente'
+        terzo_intermediario_o_soggetto_emittente:
+          $ref: '#/components/schemas/TerzoIntermediarioOSoggettoEmittente'
+        soggetto_emittente:
+          nullable: true
+          type: string
+      type: object
+    FatturaOrdinaria:
+      additionalProperties: false
+      example:
+        fattura_elettronica_header:
+          terzo_intermediario_o_soggetto_emittente:
+            dati_anagrafici:
+              codice_fiscale: codice_fiscale
+              anagrafica:
+                titolo: titolo
+                cognome: cognome
+                denominazione: denominazione
+                nome: nome
+                cod_eori: cod_eori
+              id_fiscale_iva:
+                id_codice: id_codice
+                id_paese: id_paese
+          soggetto_emittente: soggetto_emittente
+          cedente_prestatore:
+            sede:
+              cap: cap
+              comune: comune
+              indirizzo: indirizzo
+              nazione: IT
+              numero_civico: numero_civico
+              provincia: provincia
+            contatti:
+              telefono: telefono
+              fax: fax
+              email: email
+            riferimento_amministrazione: riferimento_amministrazione
+            stabile_organizzazione:
+              cap: cap
+              comune: comune
+              indirizzo: indirizzo
+              nazione: IT
+              numero_civico: numero_civico
+              provincia: provincia
+            iscrizione_rea:
+              ufficio: ufficio
+              stato_liquidazione: stato_liquidazione
+              socio_unico: socio_unico
+              numero_rea: numero_rea
+              capitale_sociale: 0.8008281904610115
+            dati_anagrafici:
+              provincia_albo: provincia_albo
+              codice_fiscale: codice_fiscale
+              albo_professionale: albo_professionale
+              regime_fiscale: regime_fiscale
+              numero_iscrizione_albo: numero_iscrizione_albo
+              data_iscrizione_albo: 2000-01-23T04:56:07.000+00:00
+              anagrafica:
+                titolo: titolo
+                cognome: cognome
+                denominazione: denominazione
+                nome: nome
+                cod_eori: cod_eori
+              id_fiscale_iva:
+                id_codice: id_codice
+                id_paese: id_paese
+          dati_trasmissione:
+            id_trasmittente:
+              id_codice: id_codice
+              id_paese: id_paese
+            codice_destinatario: codice_destinatario
+            pec_destinatario: pec_destinatario
+            progressivo_invio: progressivo_invio
+            formato_trasmissione: formato_trasmissione
+            contatti_trasmittente:
+              telefono: telefono
+              email: email
+          cessionario_committente:
+            sede:
+              cap: cap
+              comune: comune
+              indirizzo: indirizzo
+              nazione: IT
+              numero_civico: numero_civico
+              provincia: provincia
+            stabile_organizzazione:
+              cap: cap
+              comune: comune
+              indirizzo: indirizzo
+              nazione: IT
+              numero_civico: numero_civico
+              provincia: provincia
+            dati_anagrafici:
+              codice_fiscale: codice_fiscale
+              anagrafica:
+                titolo: titolo
+                cognome: cognome
+                denominazione: denominazione
+                nome: nome
+                cod_eori: cod_eori
+              id_fiscale_iva:
+                id_codice: id_codice
+                id_paese: id_paese
+            rappresentante_fiscale:
+              cognome: cognome
+              denominazione: denominazione
+              nome: nome
+              id_fiscale_iva:
+                id_codice: id_codice
+                id_paese: id_paese
+          RappresentanteFiscale:
+            dati_anagrafici:
+              codice_fiscale: codice_fiscale
+              anagrafica:
+                titolo: titolo
+                cognome: cognome
+                denominazione: denominazione
+                nome: nome
+                cod_eori: cod_eori
+              id_fiscale_iva:
+                id_codice: id_codice
+                id_paese: id_paese
+        sistema_emittente: sistema_emittente
+        fattura_elettronica_body:
+        - dati_generali:
+            dati_generali_documento:
+              dati_cassa_previdenziale:
+              - natura: natura
+                importo_contributo_cassa: 2.3021358869347655
+                tipo_cassa: tipo_cassa
+                ritenuta: ritenuta
+                imponibile_cassa: 7.061401241503109
+                riferimento_amministrazione: riferimento_amministrazione
+                aliquota_iva: 9.301444243932576
+                al_cassa: 5.637376656633329
+              - natura: natura
+                importo_contributo_cassa: 2.3021358869347655
+                tipo_cassa: tipo_cassa
+                ritenuta: ritenuta
+                imponibile_cassa: 7.061401241503109
+                riferimento_amministrazione: riferimento_amministrazione
+                aliquota_iva: 9.301444243932576
+                al_cassa: 5.637376656633329
+              art73: art73
+              tipo_documento: tipo_documento
+              data: 2000-01-23T04:56:07.000+00:00
+              numero: numero
+              dati_ritenuta:
+              - aliquota_ritenuta: 1.4658129805029452
+                tipo_ritenuta: tipo_ritenuta
+                importo_ritenuta: 6.027456183070403
+                causale_pagamento: causale_pagamento
+              - aliquota_ritenuta: 1.4658129805029452
+                tipo_ritenuta: tipo_ritenuta
+                importo_ritenuta: 6.027456183070403
+                causale_pagamento: causale_pagamento
+              divisa: divisa
+              sconto_maggiorazione:
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              importo_totale_documento: 4.145608029883936
+              causale:
+              - causale
+              - causale
+              dati_bollo:
+                bollo_virtuale: bollo_virtuale
+                importo_bollo: 5.962133916683182
+              arrotondamento: 7.386281948385884
+            dati_contratto:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_ricezione:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 6
+              - 6
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 6
+              - 6
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_trasporto:
+              unita_misura_peso: unita_misura_peso
+              numero_colli: 5
+              mezzo_trasporto: mezzo_trasporto
+              causale_trasporto: causale_trasporto
+              indirizzo_resa:
+                cap: cap
+                comune: comune
+                indirizzo: indirizzo
+                nazione: IT
+                numero_civico: numero_civico
+                provincia: provincia
+              data_ora_consegna: 2000-01-23T04:56:07.000+00:00
+              descrizione: descrizione
+              peso_lordo: 9.965781217890562
+              data_inizio_trasporto: 2000-01-23T04:56:07.000+00:00
+              dati_anagrafici_vettore:
+                codice_fiscale: codice_fiscale
+                numero_licenza_guida: numero_licenza_guida
+                anagrafica:
+                  titolo: titolo
+                  cognome: cognome
+                  denominazione: denominazione
+                  nome: nome
+                  cod_eori: cod_eori
+                id_fiscale_iva:
+                  id_codice: id_codice
+                  id_paese: id_paese
+              data_ora_ritiro: 2000-01-23T04:56:07.000+00:00
+              peso_netto: 9.369310271410669
+              tipo_resa: tipo_resa
+            dati_convenzione:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            fattura_principale:
+              numero_fattura_principale: numero_fattura_principale
+              data_fattura_principale: 2000-01-23T04:56:07.000+00:00
+            dati_sal:
+            - riferimento_fase: 1
+            - riferimento_fase: 1
+            dati_ordine_acquisto:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_fatture_collegate:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 7
+              - 7
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 7
+              - 7
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_ddt:
+            - data_ddt: 2000-01-23T04:56:07.000+00:00
+              riferimento_numero_linea:
+              - 4
+              - 4
+              numero_ddt: numero_ddt
+            - data_ddt: 2000-01-23T04:56:07.000+00:00
+              riferimento_numero_linea:
+              - 4
+              - 4
+              numero_ddt: numero_ddt
+          dati_veicoli:
+            data: 2000-01-23T04:56:07.000+00:00
+            totale_percorso: totale_percorso
+          dati_pagamento:
+          - condizioni_pagamento: condizioni_pagamento
+            dettaglio_pagamento:
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+          - condizioni_pagamento: condizioni_pagamento
+            dettaglio_pagamento:
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+          dati_beni_servizi:
+            dettaglio_linee:
+            - codice_articolo:
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              natura: natura
+              data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+              prezzo_unitario: 9.018348186070783
+              sconto_maggiorazione:
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              prezzo_totale: 6.438423552598547
+              altri_dati_gestionali:
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+              tipo_cessione_prestazione: tipo_cessione_prestazione
+              descrizione: descrizione
+              numero_linea: 6
+              ritenuta: ritenuta
+              unita_misura: unita_misura
+              riferimento_amministrazione: riferimento_amministrazione
+              quantita: 8.762042012749001
+              aliquota_iva: 3.5571952270680973
+            - codice_articolo:
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              natura: natura
+              data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+              prezzo_unitario: 9.018348186070783
+              sconto_maggiorazione:
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              prezzo_totale: 6.438423552598547
+              altri_dati_gestionali:
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+              tipo_cessione_prestazione: tipo_cessione_prestazione
+              descrizione: descrizione
+              numero_linea: 6
+              ritenuta: ritenuta
+              unita_misura: unita_misura
+              riferimento_amministrazione: riferimento_amministrazione
+              quantita: 8.762042012749001
+              aliquota_iva: 3.5571952270680973
+            dati_riepilogo:
+            - imposta: 5.944895607614016
+              natura: natura
+              riferimento_normativo: riferimento_normativo
+              imponibile_importo: 6.878052220127876
+              spese_accessorie: 2.8841621266687802
+              esigibilita_iva: esigibilita_iva
+              aliquota_iva: 1.284659006116532
+              arrotondamento: 6.778324963048013
+            - imposta: 5.944895607614016
+              natura: natura
+              riferimento_normativo: riferimento_normativo
+              imponibile_importo: 6.878052220127876
+              spese_accessorie: 2.8841621266687802
+              esigibilita_iva: esigibilita_iva
+              aliquota_iva: 1.284659006116532
+              arrotondamento: 6.778324963048013
+          allegati:
+          - algoritmo_compressione: algoritmo_compressione
+            attachment: attachment
+            descrizione_attachment: descrizione_attachment
+            formato_attachment: formato_attachment
+            nome_attachment: nome_attachment
+          - algoritmo_compressione: algoritmo_compressione
+            attachment: attachment
+            descrizione_attachment: descrizione_attachment
+            formato_attachment: formato_attachment
+            nome_attachment: nome_attachment
+        - dati_generali:
+            dati_generali_documento:
+              dati_cassa_previdenziale:
+              - natura: natura
+                importo_contributo_cassa: 2.3021358869347655
+                tipo_cassa: tipo_cassa
+                ritenuta: ritenuta
+                imponibile_cassa: 7.061401241503109
+                riferimento_amministrazione: riferimento_amministrazione
+                aliquota_iva: 9.301444243932576
+                al_cassa: 5.637376656633329
+              - natura: natura
+                importo_contributo_cassa: 2.3021358869347655
+                tipo_cassa: tipo_cassa
+                ritenuta: ritenuta
+                imponibile_cassa: 7.061401241503109
+                riferimento_amministrazione: riferimento_amministrazione
+                aliquota_iva: 9.301444243932576
+                al_cassa: 5.637376656633329
+              art73: art73
+              tipo_documento: tipo_documento
+              data: 2000-01-23T04:56:07.000+00:00
+              numero: numero
+              dati_ritenuta:
+              - aliquota_ritenuta: 1.4658129805029452
+                tipo_ritenuta: tipo_ritenuta
+                importo_ritenuta: 6.027456183070403
+                causale_pagamento: causale_pagamento
+              - aliquota_ritenuta: 1.4658129805029452
+                tipo_ritenuta: tipo_ritenuta
+                importo_ritenuta: 6.027456183070403
+                causale_pagamento: causale_pagamento
+              divisa: divisa
+              sconto_maggiorazione:
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              importo_totale_documento: 4.145608029883936
+              causale:
+              - causale
+              - causale
+              dati_bollo:
+                bollo_virtuale: bollo_virtuale
+                importo_bollo: 5.962133916683182
+              arrotondamento: 7.386281948385884
+            dati_contratto:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_ricezione:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 6
+              - 6
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 6
+              - 6
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_trasporto:
+              unita_misura_peso: unita_misura_peso
+              numero_colli: 5
+              mezzo_trasporto: mezzo_trasporto
+              causale_trasporto: causale_trasporto
+              indirizzo_resa:
+                cap: cap
+                comune: comune
+                indirizzo: indirizzo
+                nazione: IT
+                numero_civico: numero_civico
+                provincia: provincia
+              data_ora_consegna: 2000-01-23T04:56:07.000+00:00
+              descrizione: descrizione
+              peso_lordo: 9.965781217890562
+              data_inizio_trasporto: 2000-01-23T04:56:07.000+00:00
+              dati_anagrafici_vettore:
+                codice_fiscale: codice_fiscale
+                numero_licenza_guida: numero_licenza_guida
+                anagrafica:
+                  titolo: titolo
+                  cognome: cognome
+                  denominazione: denominazione
+                  nome: nome
+                  cod_eori: cod_eori
+                id_fiscale_iva:
+                  id_codice: id_codice
+                  id_paese: id_paese
+              data_ora_ritiro: 2000-01-23T04:56:07.000+00:00
+              peso_netto: 9.369310271410669
+              tipo_resa: tipo_resa
+            dati_convenzione:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            fattura_principale:
+              numero_fattura_principale: numero_fattura_principale
+              data_fattura_principale: 2000-01-23T04:56:07.000+00:00
+            dati_sal:
+            - riferimento_fase: 1
+            - riferimento_fase: 1
+            dati_ordine_acquisto:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 1
+              - 1
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_fatture_collegate:
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 7
+              - 7
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            - id_documento: id_documento
+              codice_cup: codice_cup
+              data: 2000-01-23T04:56:07.000+00:00
+              codice_cig: codice_cig
+              riferimento_numero_linea:
+              - 7
+              - 7
+              num_item: num_item
+              codice_commessa_convenzione: codice_commessa_convenzione
+            dati_ddt:
+            - data_ddt: 2000-01-23T04:56:07.000+00:00
+              riferimento_numero_linea:
+              - 4
+              - 4
+              numero_ddt: numero_ddt
+            - data_ddt: 2000-01-23T04:56:07.000+00:00
+              riferimento_numero_linea:
+              - 4
+              - 4
+              numero_ddt: numero_ddt
+          dati_veicoli:
+            data: 2000-01-23T04:56:07.000+00:00
+            totale_percorso: totale_percorso
+          dati_pagamento:
+          - condizioni_pagamento: condizioni_pagamento
+            dettaglio_pagamento:
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+          - condizioni_pagamento: condizioni_pagamento
+            dettaglio_pagamento:
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+            - modalita_pagamento: modalita_pagamento
+              giorni_termini_pagamento: 6
+              cab: cab
+              penalita_pagamenti_ritardati: 7.143538047012306
+              titolo_quietanzante: titolo_quietanzante
+              abi: abi
+              data_scadenza_pagamento: 2000-01-23T04:56:07.000+00:00
+              nome_quietanzante: nome_quietanzante
+              data_decorrenza_penale: 2000-01-23T04:56:07.000+00:00
+              data_riferimento_termini_pagamento: 2000-01-23T04:56:07.000+00:00
+              istituto_finanziario: istituto_finanziario
+              codice_pagamento: codice_pagamento
+              beneficiario: beneficiario
+              sconto_pagamento_anticipato: 3.0937452626664474
+              cf_quietanzante: cf_quietanzante
+              iban: iban
+              cod_ufficio_postale: cod_ufficio_postale
+              cognome_quietanzante: cognome_quietanzante
+              importo_pagamento: 3.353193347011243
+              bic: bic
+              data_limite_pagamento_anticipato: 2000-01-23T04:56:07.000+00:00
+          dati_beni_servizi:
+            dettaglio_linee:
+            - codice_articolo:
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              natura: natura
+              data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+              prezzo_unitario: 9.018348186070783
+              sconto_maggiorazione:
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              prezzo_totale: 6.438423552598547
+              altri_dati_gestionali:
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+              tipo_cessione_prestazione: tipo_cessione_prestazione
+              descrizione: descrizione
+              numero_linea: 6
+              ritenuta: ritenuta
+              unita_misura: unita_misura
+              riferimento_amministrazione: riferimento_amministrazione
+              quantita: 8.762042012749001
+              aliquota_iva: 3.5571952270680973
+            - codice_articolo:
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              - codice_tipo: codice_tipo
+                codice_valore: codice_valore
+              natura: natura
+              data_inizio_periodo: 2000-01-23T04:56:07.000+00:00
+              prezzo_unitario: 9.018348186070783
+              sconto_maggiorazione:
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              - tipo: tipo
+                percentuale: 3.616076749251911
+                importo: 2.027123023002322
+              prezzo_totale: 6.438423552598547
+              altri_dati_gestionali:
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              - riferimento_testo: riferimento_testo
+                tipo_dato: tipo_dato
+                riferimento_numero: 6.965117697638846
+                riferimento_data: 2000-01-23T04:56:07.000+00:00
+              data_fine_periodo: 2000-01-23T04:56:07.000+00:00
+              tipo_cessione_prestazione: tipo_cessione_prestazione
+              descrizione: descrizione
+              numero_linea: 6
+              ritenuta: ritenuta
+              unita_misura: unita_misura
+              riferimento_amministrazione: riferimento_amministrazione
+              quantita: 8.762042012749001
+              aliquota_iva: 3.5571952270680973
+            dati_riepilogo:
+            - imposta: 5.944895607614016
+              natura: natura
+              riferimento_normativo: riferimento_normativo
+              imponibile_importo: 6.878052220127876
+              spese_accessorie: 2.8841621266687802
+              esigibilita_iva: esigibilita_iva
+              aliquota_iva: 1.284659006116532
+              arrotondamento: 6.778324963048013
+            - imposta: 5.944895607614016
+              natura: natura
+              riferimento_normativo: riferimento_normativo
+              imponibile_importo: 6.878052220127876
+              spese_accessorie: 2.8841621266687802
+              esigibilita_iva: esigibilita_iva
+              aliquota_iva: 1.284659006116532
+              arrotondamento: 6.778324963048013
+          allegati:
+          - algoritmo_compressione: algoritmo_compressione
+            attachment: attachment
+            descrizione_attachment: descrizione_attachment
+            formato_attachment: formato_attachment
+            nome_attachment: nome_attachment
+          - algoritmo_compressione: algoritmo_compressione
+            attachment: attachment
+            descrizione_attachment: descrizione_attachment
+            formato_attachment: formato_attachment
+            nome_attachment: nome_attachment
+      properties:
+        sistema_emittente:
+          nullable: true
+          type: string
+        fattura_elettronica_header:
+          $ref: '#/components/schemas/FatturaElettronicaHeader'
+        fattura_elettronica_body:
+          items:
+            $ref: '#/components/schemas/FatturaElettronicaBody'
+          nullable: true
+          type: array
+      type: object
+    FatturaPrincipale:
+      additionalProperties: false
+      example:
+        numero_fattura_principale: numero_fattura_principale
+        data_fattura_principale: 2000-01-23T04:56:07.000+00:00
+      properties:
+        numero_fattura_principale:
+          nullable: true
+          type: string
+        data_fattura_principale:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    IdFiscaleIVA:
+      additionalProperties: false
+      example:
+        id_codice: id_codice
+        id_paese: id_paese
+      properties:
+        id_paese:
+          nullable: true
+          type: string
+        id_codice:
+          nullable: true
+          type: string
+      type: object
+    IdTrasmittente:
+      additionalProperties: false
+      example:
+        id_codice: id_codice
+        id_paese: id_paese
+      properties:
+        id_paese:
+          nullable: true
+          type: string
+        id_codice:
+          nullable: true
+          type: string
+      type: object
+    IndirizzoResa:
+      additionalProperties: false
+      example:
+        cap: cap
+        comune: comune
+        indirizzo: indirizzo
+        nazione: IT
+        numero_civico: numero_civico
+        provincia: provincia
+      properties:
+        indirizzo:
+          nullable: true
+          type: string
+        numero_civico:
+          nullable: true
+          type: string
+        cap:
+          nullable: true
+          type: string
+        comune:
+          nullable: true
+          type: string
+        provincia:
+          nullable: true
+          type: string
+        nazione:
+          default: IT
+          nullable: true
+          type: string
+      type: object
+    IscrizioneREA:
+      additionalProperties: false
+      example:
+        ufficio: ufficio
+        stato_liquidazione: stato_liquidazione
+        socio_unico: socio_unico
+        numero_rea: numero_rea
+        capitale_sociale: 0.8008281904610115
+      properties:
+        ufficio:
+          nullable: true
+          type: string
+        numero_rea:
+          nullable: true
+          type: string
+        capitale_sociale:
+          format: double
+          nullable: true
+          type: number
+        socio_unico:
+          nullable: true
+          type: string
+        stato_liquidazione:
+          nullable: true
+          type: string
+      type: object
+    ProblemDetails:
+      additionalProperties: {}
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    RappresentanteFiscale:
+      additionalProperties: false
+      example:
+        dati_anagrafici:
+          codice_fiscale: codice_fiscale
+          anagrafica:
+            titolo: titolo
+            cognome: cognome
+            denominazione: denominazione
+            nome: nome
+            cod_eori: cod_eori
+          id_fiscale_iva:
+            id_codice: id_codice
+            id_paese: id_paese
+      properties:
+        dati_anagrafici:
+          $ref: '#/components/schemas/DatiAnagrafici'
+      type: object
+    RappresentanteFiscaleCessionarioCommittente:
+      additionalProperties: false
+      example:
+        cognome: cognome
+        denominazione: denominazione
+        nome: nome
+        id_fiscale_iva:
+          id_codice: id_codice
+          id_paese: id_paese
+      properties:
+        denominazione:
+          nullable: true
+          type: string
+        nome:
+          nullable: true
+          type: string
+        cognome:
+          nullable: true
+          type: string
+        id_fiscale_iva:
+          $ref: '#/components/schemas/IdFiscaleIVA'
+      type: object
+    Receive:
+      additionalProperties: false
+      example:
+        identifier: identifier
+        date_sent: 2000-01-23T04:56:07.000+00:00
+        company_id: 5
+        documents:
+        - date: 2000-01-23T04:56:07.000+00:00
+          number: number
+        - date: 2000-01-23T04:56:07.000+00:00
+          number: number
+        created: 2000-01-23T04:56:07.000+00:00
+        file_name: file_name
+        committente: committente
+        format: format
+        version: 6
+        is_read: true
+        user_id: 1
+        payload: payload
+        prestatore: prestatore
+        last_update: 2000-01-23T04:56:07.000+00:00
+        id: 0
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        company_id:
+          description: "Company id. On send, this is the sender and must be set in\
+            \ advance. On receive, it will be\r\nautomatically set based on the recipient's\
+            \ VAT number. If a matching company is not found, the invoice will be\
+            \ rejected until the company is created."
+          format: int32
+          type: integer
+        committente:
+          description: VAT number of the Cessionario/Committente (customer). This
+            is automatically set based on the recipient's VAT number.
+          nullable: true
+          type: string
+        prestatore:
+          description: VAT number of the Cedente/Prestatore (vendor). This is automatically
+            set based on the sender's VAT number.
+          nullable: true
+          type: string
+        identifier:
+          description: SDI identifier. This is set by the SDI and is guaranted to
+            be unique within the SDI system.
+          nullable: true
+          type: string
+        file_name:
+          description: Xml file name.
+          nullable: true
+          type: string
+        format:
+          description: "SDI format (FPA12, FPR12, FSM10, ...)"
+          nullable: true
+          type: string
+        payload:
+          description: "Xml payloaad. This is the actual xml content, as string. On\
+            \ send, it can be base64 encoded. If it's not, it will be encoded before\
+            \ sending. It is guaranteed to be cyphered at rest."
+          nullable: true
+          type: string
+        last_update:
+          description: Last update from SDI.
+          format: date-time
+          nullable: true
+          type: string
+        date_sent:
+          description: When the invoice was sent to SDI.
+          format: date-time
+          nullable: true
+          type: string
+        documents:
+          description: "The invoices included in the payload. This is set by the system,\
+            \ based on the xml content."
+          items:
+            $ref: '#/components/schemas/DocumentData'
+          nullable: true
+          type: array
+        is_read:
+          description: Wether the invoice has been read at least once.
+          type: boolean
+      type: object
+    ScontoMaggiorazione:
+      additionalProperties: false
+      example:
+        tipo: tipo
+        percentuale: 3.616076749251911
+        importo: 2.027123023002322
+      properties:
+        tipo:
+          nullable: true
+          type: string
+        percentuale:
+          format: double
+          nullable: true
+          type: number
+        importo:
+          format: double
+          nullable: true
+          type: number
+      type: object
+    SedeCedentePrestatore:
+      additionalProperties: false
+      example:
+        cap: cap
+        comune: comune
+        indirizzo: indirizzo
+        nazione: IT
+        numero_civico: numero_civico
+        provincia: provincia
+      properties:
+        indirizzo:
+          nullable: true
+          type: string
+        numero_civico:
+          nullable: true
+          type: string
+        cap:
+          nullable: true
+          type: string
+        comune:
+          nullable: true
+          type: string
+        provincia:
+          nullable: true
+          type: string
+        nazione:
+          default: IT
+          nullable: true
+          type: string
+      type: object
+    SedeCessionarioCommittente:
+      additionalProperties: false
+      example:
+        cap: cap
+        comune: comune
+        indirizzo: indirizzo
+        nazione: IT
+        numero_civico: numero_civico
+        provincia: provincia
+      properties:
+        indirizzo:
+          nullable: true
+          type: string
+        numero_civico:
+          nullable: true
+          type: string
+        cap:
+          nullable: true
+          type: string
+        comune:
+          nullable: true
+          type: string
+        provincia:
+          nullable: true
+          type: string
+        nazione:
+          default: IT
+          nullable: true
+          type: string
+      type: object
+    Send:
+      additionalProperties: false
+      example:
+        identifier: identifier
+        date_sent: 2000-01-23T04:56:07.000+00:00
+        company_id: 5
+        documents:
+        - date: 2000-01-23T04:56:07.000+00:00
+          number: number
+        - date: 2000-01-23T04:56:07.000+00:00
+          number: number
+        created: 2000-01-23T04:56:07.000+00:00
+        file_name: file_name
+        committente: committente
+        format: format
+        version: 6
+        user_id: 1
+        payload: payload
+        prestatore: prestatore
+        last_update: 2000-01-23T04:56:07.000+00:00
+        meta_data:
+          key: meta_data
+        id: 0
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        company_id:
+          description: "Company id. On send, this is the sender and must be set in\
+            \ advance. On receive, it will be\r\nautomatically set based on the recipient's\
+            \ VAT number. If a matching company is not found, the invoice will be\
+            \ rejected until the company is created."
+          format: int32
+          type: integer
+        committente:
+          description: VAT number of the Cessionario/Committente (customer). This
+            is automatically set based on the recipient's VAT number.
+          nullable: true
+          type: string
+        prestatore:
+          description: VAT number of the Cedente/Prestatore (vendor). This is automatically
+            set based on the sender's VAT number.
+          nullable: true
+          type: string
+        identifier:
+          description: SDI identifier. This is set by the SDI and is guaranted to
+            be unique within the SDI system.
+          nullable: true
+          type: string
+        file_name:
+          description: Xml file name.
+          nullable: true
+          type: string
+        format:
+          description: "SDI format (FPA12, FPR12, FSM10, ...)"
+          nullable: true
+          type: string
+        payload:
+          description: "Xml payloaad. This is the actual xml content, as string. On\
+            \ send, it can be base64 encoded. If it's not, it will be encoded before\
+            \ sending. It is guaranteed to be cyphered at rest."
+          nullable: true
+          type: string
+        last_update:
+          description: Last update from SDI.
+          format: date-time
+          nullable: true
+          type: string
+        date_sent:
+          description: When the invoice was sent to SDI.
+          format: date-time
+          nullable: true
+          type: string
+        documents:
+          description: "The invoices included in the payload. This is set by the system,\
+            \ based on the xml content."
+          items:
+            $ref: '#/components/schemas/DocumentData'
+          nullable: true
+          type: array
+        meta_data:
+          additionalProperties:
+            type: string
+          description: "Optional metadata, as json."
+          nullable: true
+          type: object
+      type: object
+    StabileOrganizzazione:
+      additionalProperties: false
+      example:
+        cap: cap
+        comune: comune
+        indirizzo: indirizzo
+        nazione: IT
+        numero_civico: numero_civico
+        provincia: provincia
+      properties:
+        indirizzo:
+          nullable: true
+          type: string
+        numero_civico:
+          nullable: true
+          type: string
+        cap:
+          nullable: true
+          type: string
+        comune:
+          nullable: true
+          type: string
+        provincia:
+          nullable: true
+          type: string
+        nazione:
+          default: IT
+          nullable: true
+          type: string
+      type: object
+    TerzoIntermediarioOSoggettoEmittente:
+      additionalProperties: false
+      example:
+        dati_anagrafici:
+          codice_fiscale: codice_fiscale
+          anagrafica:
+            titolo: titolo
+            cognome: cognome
+            denominazione: denominazione
+            nome: nome
+            cod_eori: cod_eori
+          id_fiscale_iva:
+            id_codice: id_codice
+            id_paese: id_paese
+      properties:
+        dati_anagrafici:
+          $ref: '#/components/schemas/DatiAnagrafici'
+      type: object
+    Update:
+      additionalProperties: false
+      example:
+        identifier: identifier
+        date_sent: 2000-01-23T04:56:07.000+00:00
+        company_id: 5
+        created: 2000-01-23T04:56:07.000+00:00
+        description: description
+        message_id: message_id
+        version: 6
+        is_read: true
+        send_id: 5
+        user_id: 1
+        last_update: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        state: Inviato
+        errors:
+        - code: code
+          hint: hint
+          description: description
+        - code: code
+          hint: hint
+          description: description
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        company_id:
+          description: Company id.
+          format: int32
+          type: integer
+        send_id:
+          description: Send id. This is the id of the sent invoice to which this update
+            refers to.
+          format: int32
+          type: integer
+        date_sent:
+          description: When the document was sent to the SDI.
+          format: date-time
+          nullable: true
+          type: string
+        last_update:
+          description: Last update from SDI.
+          format: date-time
+          type: string
+        identifier:
+          description: SDI identifier. This is set by the SDI and it is unique within
+            the SDI system.
+          nullable: true
+          type: string
+        state:
+          description: "State of the document. Theses are the possible values, as\
+            \ per the SDI documentation:"
+          enum:
+          - Inviato
+          - Consegnato
+          - NonConsegnato
+          - Scartato
+          - AccettatoDalDestinatario
+          - RifiutatoDalDestinatario
+          - ImpossibilitàDiRecapito
+          - DecorrenzaTermini
+          - AttestazioneTrasmissioneFattura
+          type: string
+        description:
+          description: Description for the state.
+          nullable: true
+          type: string
+        message_id:
+          description: SDI message id.
+          nullable: true
+          type: string
+        errors:
+          description: "SDI errors, if any."
+          items:
+            $ref: '#/components/schemas/Error'
+          nullable: true
+          type: array
+        is_read:
+          description: Wether the item has been read at least once.
+          type: boolean
+      type: object
+    WebHook:
+      additionalProperties: false
+      example:
+        company_id: 5
+        user_id: 1
+        created: 2000-01-23T04:56:07.000+00:00
+        description: description
+        id: 0
+        secret: secret
+        version: 6
+        url: url
+        enabled: true
+        events:
+        - events
+        - events
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        company_id:
+          description: Company id.
+          format: int32
+          nullable: true
+          type: integer
+        url:
+          description: The url of your application's endpoint that will receive a
+            POST request when the webhook is fired.
+          nullable: true
+          type: string
+        enabled:
+          description: "Wetehr the webhooks is enabled or not. On creation, this is\
+            \ set to `true`."
+          type: boolean
+        secret:
+          description: "The secret used to generate webhook signatures, only returned\
+            \ on creation. You should store this value securely and validate it on\
+            \ every call, to ensure that the caller is InvoiceApi."
+          nullable: true
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        events:
+          description: "List of events to that trigger the webhook.\r\nSee InvoiceApi.SupportedEvents.Available\
+            \ for a list of valid event names."
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    WebHookHistory:
+      additionalProperties: false
+      description: Webhook history.
+      example:
+        status_code: 5
+        request_body: request_body
+        date_time: 2000-01-23T04:56:07.000+00:00
+        user_id: 5
+        created: 2000-01-23T04:56:07.000+00:00
+        success: true
+        web_hook_id: 1
+        response_body: response_body
+        id: 0
+        event: event
+        version: 6
+      properties:
+        id:
+          description: Unique identifier. Leave it at 0 for new records as it will
+            be set automatically.
+          format: int32
+          type: integer
+        created:
+          description: Creation date. It is set automatically.
+          format: date-time
+          type: string
+        version:
+          description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        web_hook_id:
+          description: Webhook id.
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        event:
+          description: Event name.
+          nullable: true
+          type: string
+        status_code:
+          description: Status code.
+          format: int32
+          type: integer
+        request_body:
+          description: Webhook request body.
+          nullable: true
+          type: string
+        response_body:
+          description: Webhook response body.
+          nullable: true
+          type: string
+        date_time:
+          description: Date and time of the request.
+          format: date-time
+          type: string
+        success:
+          description: Wether the request was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    _invoice_v1_send_files_post_request:
+      properties:
+        files:
+          items:
+            format: binary
+            type: string
+          type: array
+      required:
+      - files
+      type: object
+  securitySchemes:
+    Basic:
+      description: "Use your API key as the basic auth username, and an empty password.\
+        \ If you don't have an API key, you can get one by signing up at [Invoicetronic](https://invoicetronic.com)."
+      scheme: basic
+      type: http
+

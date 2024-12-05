@@ -1,4 +1,4 @@
-# C# SDK for the Italian eInvoice API
+# Italian eInvoice API C# SDK
 
 The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the
 Italian [Servizio di Interscambio (SDI)][1] (Interchange Service). The API is designed by Invoicetronic to be simple

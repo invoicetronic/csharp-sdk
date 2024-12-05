@@ -1,4 +1,4 @@
-# Invoicetronic.InvoiceApi - the C# library for the Italian Invoice API
+# Invoicetronic Invoice API C# SDK
 
 
 ## Overview

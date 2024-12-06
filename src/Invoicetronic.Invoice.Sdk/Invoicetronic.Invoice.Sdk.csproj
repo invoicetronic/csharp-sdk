@@ -14,7 +14,7 @@
     <RootNamespace>Invoicetronic.Invoice.Sdk</RootNamespace>
     <Version>1.0.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Invoicetronic.Invoice.Sdk.xml</DocumentationFile>
-    <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/invoicetronic/invoice-csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Minor update</PackageReleaseNotes>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>

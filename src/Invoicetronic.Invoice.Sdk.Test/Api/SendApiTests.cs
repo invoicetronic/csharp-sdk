@@ -132,6 +132,49 @@ namespace Invoicetronic.Invoice.Sdk.Test.Api
         }
 
         /// <summary>
+        /// Test InvoiceV1SendValidateFilesPost
+        /// </summary>
+        [Fact]
+        public void InvoiceV1SendValidateFilesPostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //List<System.IO.Stream> files = null;
+            //instance.InvoiceV1SendValidateFilesPost(files);
+        }
+
+        /// <summary>
+        /// Test InvoiceV1SendValidateJsonPost
+        /// </summary>
+        [Fact]
+        public void InvoiceV1SendValidateJsonPostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //FatturaOrdinaria fatturaOrdinaria = null;
+            //instance.InvoiceV1SendValidateJsonPost(fatturaOrdinaria);
+        }
+
+        /// <summary>
+        /// Test InvoiceV1SendValidatePost
+        /// </summary>
+        [Fact]
+        public void InvoiceV1SendValidatePostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //Send send = null;
+            //instance.InvoiceV1SendValidatePost(send);
+        }
+
+        /// <summary>
+        /// Test InvoiceV1SendValidateXmlPost
+        /// </summary>
+        [Fact]
+        public void InvoiceV1SendValidateXmlPostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //instance.InvoiceV1SendValidateXmlPost();
+        }
+
+        /// <summary>
         /// Test InvoiceV1SendXmlPost
         /// </summary>
         [Fact]

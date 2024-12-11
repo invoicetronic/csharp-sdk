@@ -46,6 +46,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Company'
           description: OK
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
         "404":
           description: Not Found
       summary: Delete a company
@@ -112,6 +124,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: List companies
       tags:
       - company
@@ -131,6 +149,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Company'
           description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
       summary: Add a company
       tags:
       - company
@@ -150,6 +180,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Company'
           description: OK
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: Update a company
       tags:
       - company
@@ -213,6 +255,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: List events
       tags:
       - log
@@ -237,6 +285,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Receive'
           description: OK
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
         "404":
           description: Not Found
       summary: Delete an incoming invoice by id
@@ -416,9 +476,9 @@ paths:
           description: Not Found
         "400":
           content:
-            application/problem+json:
+            application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ProblemHttpResult'
           description: Bad Request
       summary: List incoming invoices
       tags:
@@ -445,7 +505,7 @@ paths:
           description: OK
         "404":
           description: Not Found
-      summary: Get a send invoice by id
+      summary: Get a invoice by id
       tags:
       - send
   /invoice/v1/send:
@@ -588,11 +648,11 @@ paths:
           description: Not Found
         "400":
           content:
-            application/problem+json:
+            application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ProblemHttpResult'
           description: Bad Request
-      summary: List send invoices
+      summary: List invoices
       tags:
       - send
     post:
@@ -620,7 +680,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Send'
           description: Created
-      summary: Add a send invoice
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Add an invoice
       tags:
       - send
   /invoice/v1/send/xml:
@@ -649,7 +721,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Send'
           description: Created
-      summary: Add a send invoice by xml
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Add an invoice by xml
       tags:
       - send
   /invoice/v1/send/files:
@@ -680,7 +764,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Send'
           description: Created
-      summary: Add a send invoice by file
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Add an invoice by file
       tags:
       - send
   /invoice/v1/send/json:
@@ -709,7 +805,123 @@ paths:
               schema:
                 $ref: '#/components/schemas/Send'
           description: Created
-      summary: Add a send invoice by json
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Add an invoice by json
+      tags:
+      - send
+  /invoice/v1/send/validate:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Send'
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Validate an invoice
+      tags:
+      - send
+  /invoice/v1/send/validate/xml:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Validate an invoice by xml
+      tags:
+      - send
+  /invoice/v1/send/validate/files:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              files:
+                style: form
+            schema:
+              $ref: '#/components/schemas/_invoice_v1_send_files_post_request'
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Validate an invoice by file
+      tags:
+      - send
+  /invoice/v1/send/validate/json:
+    post:
+      description: Send invoices are the invoices that are sent to the SDI.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FatturaOrdinaria'
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+      summary: Validate an invoice by json
       tags:
       - send
   /invoice/v1/update/{id}:
@@ -862,6 +1074,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: List updates
       tags:
       - update
@@ -887,6 +1105,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebHook'
           description: OK
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
         "404":
           description: Not Found
       summary: Delete a webhook by id
@@ -955,6 +1185,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: List webhooks
       tags:
       - webhook
@@ -975,6 +1211,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebHook'
           description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
       summary: Add a webhook
       tags:
       - webhook
@@ -995,6 +1243,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebHook'
           description: OK
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Unprocessable Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: Update a webhook
       tags:
       - webhook
@@ -1056,6 +1316,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemHttpResult'
+          description: Bad Request
       summary: List webhook history items
       tags:
       - webhook
@@ -4234,6 +4500,12 @@ components:
       type: object
     ProblemDetails:
       additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: 0
       properties:
         type:
           nullable: true
@@ -4251,6 +4523,29 @@ components:
         instance:
           nullable: true
           type: string
+      type: object
+    ProblemHttpResult:
+      additionalProperties: false
+      example:
+        status_code: 6
+        content_type: content_type
+        problem_details:
+          instance: instance
+          detail: detail
+          type: type
+          title: title
+          status: 0
+      properties:
+        problem_details:
+          $ref: '#/components/schemas/ProblemDetails'
+        content_type:
+          nullable: true
+          readOnly: true
+          type: string
+        status_code:
+          format: int32
+          readOnly: true
+          type: integer
       type: object
     RappresentanteFiscale:
       additionalProperties: false

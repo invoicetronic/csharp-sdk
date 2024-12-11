@@ -413,8 +413,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json",
-                "application/problem+json"
+                "application/json"
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -574,8 +573,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json",
-                "application/problem+json"
+                "application/json"
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);

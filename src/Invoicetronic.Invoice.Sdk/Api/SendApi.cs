@@ -28,7 +28,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Add a send invoice by file
+        /// Add an invoice by file
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -41,7 +41,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         Send InvoiceV1SendFilesPost(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0);
 
         /// <summary>
-        /// Add a send invoice by file
+        /// Add an invoice by file
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -53,7 +53,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>ApiResponse of Send</returns>
         ApiResponse<Send> InvoiceV1SendFilesPostWithHttpInfo(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0);
         /// <summary>
-        /// List send invoices
+        /// List invoices
         /// </summary>
         /// <remarks>
         /// test **markdown**.
@@ -78,7 +78,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         List<Send> InvoiceV1SendGet(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
 
         /// <summary>
-        /// List send invoices
+        /// List invoices
         /// </summary>
         /// <remarks>
         /// test **markdown**.
@@ -102,7 +102,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
         ApiResponse<List<Send>> InvoiceV1SendGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
         /// <summary>
-        /// Get a send invoice by id
+        /// Get a invoice by id
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -114,7 +114,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         Send InvoiceV1SendIdGet(int id, int operationIndex = 0);
 
         /// <summary>
-        /// Get a send invoice by id
+        /// Get a invoice by id
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -125,7 +125,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>ApiResponse of Send</returns>
         ApiResponse<Send> InvoiceV1SendIdGetWithHttpInfo(int id, int operationIndex = 0);
         /// <summary>
-        /// Add a send invoice by json
+        /// Add an invoice by json
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -138,7 +138,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         Send InvoiceV1SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
 
         /// <summary>
-        /// Add a send invoice by json
+        /// Add an invoice by json
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -150,7 +150,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>ApiResponse of Send</returns>
         ApiResponse<Send> InvoiceV1SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
         /// <summary>
-        /// Add a send invoice
+        /// Add an invoice
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -163,7 +163,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         Send InvoiceV1SendPost(Send send, bool? validate = default(bool?), int operationIndex = 0);
 
         /// <summary>
-        /// Add a send invoice
+        /// Add an invoice
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -175,7 +175,97 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>ApiResponse of Send</returns>
         ApiResponse<Send> InvoiceV1SendPostWithHttpInfo(Send send, bool? validate = default(bool?), int operationIndex = 0);
         /// <summary>
-        /// Add a send invoice by xml
+        /// Validate an invoice by file
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        void InvoiceV1SendValidateFilesPost(List<System.IO.Stream> files, int operationIndex = 0);
+
+        /// <summary>
+        /// Validate an invoice by file
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> InvoiceV1SendValidateFilesPostWithHttpInfo(List<System.IO.Stream> files, int operationIndex = 0);
+        /// <summary>
+        /// Validate an invoice by json
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        void InvoiceV1SendValidateJsonPost(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0);
+
+        /// <summary>
+        /// Validate an invoice by json
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> InvoiceV1SendValidateJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0);
+        /// <summary>
+        /// Validate an invoice
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        void InvoiceV1SendValidatePost(Send send, int operationIndex = 0);
+
+        /// <summary>
+        /// Validate an invoice
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> InvoiceV1SendValidatePostWithHttpInfo(Send send, int operationIndex = 0);
+        /// <summary>
+        /// Validate an invoice by xml
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        void InvoiceV1SendValidateXmlPost(int operationIndex = 0);
+
+        /// <summary>
+        /// Validate an invoice by xml
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> InvoiceV1SendValidateXmlPostWithHttpInfo(int operationIndex = 0);
+        /// <summary>
+        /// Add an invoice by xml
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -188,7 +278,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         Send InvoiceV1SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
 
         /// <summary>
-        /// Add a send invoice by xml
+        /// Add an invoice by xml
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -209,7 +299,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Add a send invoice by file
+        /// Add an invoice by file
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -223,7 +313,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         System.Threading.Tasks.Task<Send> InvoiceV1SendFilesPostAsync(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Add a send invoice by file
+        /// Add an invoice by file
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -236,7 +326,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>Task of ApiResponse (Send)</returns>
         System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// List send invoices
+        /// List invoices
         /// </summary>
         /// <remarks>
         /// test **markdown**.
@@ -262,7 +352,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         System.Threading.Tasks.Task<List<Send>> InvoiceV1SendGetAsync(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// List send invoices
+        /// List invoices
         /// </summary>
         /// <remarks>
         /// test **markdown**.
@@ -287,7 +377,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Send>>> InvoiceV1SendGetWithHttpInfoAsync(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Get a send invoice by id
+        /// Get a invoice by id
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -300,7 +390,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         System.Threading.Tasks.Task<Send> InvoiceV1SendIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get a send invoice by id
+        /// Get a invoice by id
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -312,7 +402,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>Task of ApiResponse (Send)</returns>
         System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Add a send invoice by json
+        /// Add an invoice by json
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -326,7 +416,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         System.Threading.Tasks.Task<Send> InvoiceV1SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Add a send invoice by json
+        /// Add an invoice by json
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -339,7 +429,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>Task of ApiResponse (Send)</returns>
         System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Add a send invoice
+        /// Add an invoice
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -353,7 +443,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         System.Threading.Tasks.Task<Send> InvoiceV1SendPostAsync(Send send, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Add a send invoice
+        /// Add an invoice
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -366,7 +456,105 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <returns>Task of ApiResponse (Send)</returns>
         System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendPostWithHttpInfoAsync(Send send, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Add a send invoice by xml
+        /// Validate an invoice by file
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task InvoiceV1SendValidateFilesPostAsync(List<System.IO.Stream> files, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Validate an invoice by file
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> InvoiceV1SendValidateFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Validate an invoice by json
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task InvoiceV1SendValidateJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Validate an invoice by json
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> InvoiceV1SendValidateJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Validate an invoice
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task InvoiceV1SendValidatePostAsync(Send send, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Validate an invoice
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> InvoiceV1SendValidatePostWithHttpInfoAsync(Send send, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Validate an invoice by xml
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task InvoiceV1SendValidateXmlPostAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Validate an invoice by xml
+        /// </summary>
+        /// <remarks>
+        /// Send invoices are the invoices that are sent to the SDI.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> InvoiceV1SendValidateXmlPostWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Add an invoice by xml
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -380,7 +568,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         System.Threading.Tasks.Task<Send> InvoiceV1SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Add a send invoice by xml
+        /// Add an invoice by xml
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI.
@@ -513,7 +701,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by file Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
@@ -527,7 +715,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by file Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
@@ -599,7 +787,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by file Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
@@ -614,7 +802,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by file Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
@@ -689,7 +877,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List send invoices test **markdown**.
+        /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id. (optional)</param>
@@ -715,7 +903,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List send invoices test **markdown**.
+        /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id. (optional)</param>
@@ -743,8 +931,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json",
-                "application/problem+json"
+                "application/json"
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -841,7 +1028,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List send invoices test **markdown**.
+        /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id. (optional)</param>
@@ -868,7 +1055,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List send invoices test **markdown**.
+        /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id. (optional)</param>
@@ -898,8 +1085,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json",
-                "application/problem+json"
+                "application/json"
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -997,7 +1183,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a send invoice by id Send invoices are the invoices that are sent to the SDI.
+        /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id.</param>
@@ -1010,7 +1196,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a send invoice by id Send invoices are the invoices that are sent to the SDI.
+        /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id.</param>
@@ -1067,7 +1253,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a send invoice by id Send invoices are the invoices that are sent to the SDI.
+        /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id.</param>
@@ -1081,7 +1267,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a send invoice by id Send invoices are the invoices that are sent to the SDI.
+        /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id.</param>
@@ -1141,7 +1327,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by json Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1155,7 +1341,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by json Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1224,7 +1410,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by json Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1239,7 +1425,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by json Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1311,7 +1497,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
@@ -1325,7 +1511,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
@@ -1394,7 +1580,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
@@ -1409,7 +1595,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
@@ -1481,7 +1667,617 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// Validate an invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        public void InvoiceV1SendValidateFilesPost(List<System.IO.Stream> files, int operationIndex = 0)
+        {
+            InvoiceV1SendValidateFilesPostWithHttpInfo(files);
+        }
+
+        /// <summary>
+        /// Validate an invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object> InvoiceV1SendValidateFilesPostWithHttpInfo(List<System.IO.Stream> files, int operationIndex = 0)
+        {
+            // verify the required parameter 'files' is set
+            if (files == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'files' when calling SendApi->InvoiceV1SendValidateFilesPost");
+            }
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            foreach (var file in files)
+            {
+                localVarRequestOptions.FileParameters.Add("files", file);
+            }
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateFilesPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/invoice/v1/send/validate/files", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidateFilesPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task InvoiceV1SendValidateFilesPostAsync(List<System.IO.Stream> files, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            await InvoiceV1SendValidateFilesPostWithHttpInfoAsync(files, operationIndex, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Validate an invoice by file Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="files"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object>> InvoiceV1SendValidateFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'files' is set
+            if (files == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'files' when calling SendApi->InvoiceV1SendValidateFilesPost");
+            }
+
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            foreach (var file in files)
+            {
+                localVarRequestOptions.FileParameters.Add("files", file);
+            }
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateFilesPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/invoice/v1/send/validate/files", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidateFilesPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        public void InvoiceV1SendValidateJsonPost(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0)
+        {
+            InvoiceV1SendValidateJsonPostWithHttpInfo(fatturaOrdinaria);
+        }
+
+        /// <summary>
+        /// Validate an invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object> InvoiceV1SendValidateJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0)
+        {
+            // verify the required parameter 'fatturaOrdinaria' is set
+            if (fatturaOrdinaria == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->InvoiceV1SendValidateJsonPost");
+            }
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = fatturaOrdinaria;
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateJsonPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/invoice/v1/send/validate/json", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidateJsonPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task InvoiceV1SendValidateJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            await InvoiceV1SendValidateJsonPostWithHttpInfoAsync(fatturaOrdinaria, operationIndex, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Validate an invoice by json Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object>> InvoiceV1SendValidateJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'fatturaOrdinaria' is set
+            if (fatturaOrdinaria == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->InvoiceV1SendValidateJsonPost");
+            }
+
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = fatturaOrdinaria;
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateJsonPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/invoice/v1/send/validate/json", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidateJsonPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        public void InvoiceV1SendValidatePost(Send send, int operationIndex = 0)
+        {
+            InvoiceV1SendValidatePostWithHttpInfo(send);
+        }
+
+        /// <summary>
+        /// Validate an invoice Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object> InvoiceV1SendValidatePostWithHttpInfo(Send send, int operationIndex = 0)
+        {
+            // verify the required parameter 'send' is set
+            if (send == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'send' when calling SendApi->InvoiceV1SendValidatePost");
+            }
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = send;
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidatePost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/invoice/v1/send/validate", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidatePost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task InvoiceV1SendValidatePostAsync(Send send, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            await InvoiceV1SendValidatePostWithHttpInfoAsync(send, operationIndex, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Validate an invoice Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="send"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object>> InvoiceV1SendValidatePostWithHttpInfoAsync(Send send, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'send' is set
+            if (send == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'send' when calling SendApi->InvoiceV1SendValidatePost");
+            }
+
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = send;
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidatePost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/invoice/v1/send/validate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidatePost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        public void InvoiceV1SendValidateXmlPost(int operationIndex = 0)
+        {
+            InvoiceV1SendValidateXmlPostWithHttpInfo();
+        }
+
+        /// <summary>
+        /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object> InvoiceV1SendValidateXmlPostWithHttpInfo(int operationIndex = 0)
+        {
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateXmlPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/invoice/v1/send/validate/xml", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidateXmlPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task InvoiceV1SendValidateXmlPostAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            await InvoiceV1SendValidateXmlPostWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object>> InvoiceV1SendValidateXmlPostWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+
+            localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateXmlPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Invoice.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/invoice/v1/send/validate/xml", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoiceV1SendValidateXmlPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1495,7 +2291,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1564,7 +2360,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
@@ -1579,7 +2375,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a send invoice by xml Send invoices are the invoices that are sent to the SDI.
+        /// Add an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>

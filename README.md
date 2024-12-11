@@ -127,12 +127,16 @@ Class | Method | HTTP request | Description
 *ReceiveApi* | [**InvoiceV1ReceiveGet**](docs/ReceiveApi.md#invoicev1receiveget) | **GET** /invoice/v1/receive | List incoming invoices
 *ReceiveApi* | [**InvoiceV1ReceiveIdDelete**](docs/ReceiveApi.md#invoicev1receiveiddelete) | **DELETE** /invoice/v1/receive/{id} | Delete an incoming invoice by id
 *ReceiveApi* | [**InvoiceV1ReceiveIdGet**](docs/ReceiveApi.md#invoicev1receiveidget) | **GET** /invoice/v1/receive/{id} | Get an incoming invoice by id
-*SendApi* | [**InvoiceV1SendFilesPost**](docs/SendApi.md#invoicev1sendfilespost) | **POST** /invoice/v1/send/files | Add a send invoice by file
-*SendApi* | [**InvoiceV1SendGet**](docs/SendApi.md#invoicev1sendget) | **GET** /invoice/v1/send | List send invoices
-*SendApi* | [**InvoiceV1SendIdGet**](docs/SendApi.md#invoicev1sendidget) | **GET** /invoice/v1/send/{id} | Get a send invoice by id
-*SendApi* | [**InvoiceV1SendJsonPost**](docs/SendApi.md#invoicev1sendjsonpost) | **POST** /invoice/v1/send/json | Add a send invoice by json
-*SendApi* | [**InvoiceV1SendPost**](docs/SendApi.md#invoicev1sendpost) | **POST** /invoice/v1/send | Add a send invoice
-*SendApi* | [**InvoiceV1SendXmlPost**](docs/SendApi.md#invoicev1sendxmlpost) | **POST** /invoice/v1/send/xml | Add a send invoice by xml
+*SendApi* | [**InvoiceV1SendFilesPost**](docs/SendApi.md#invoicev1sendfilespost) | **POST** /invoice/v1/send/files | Add an invoice by file
+*SendApi* | [**InvoiceV1SendGet**](docs/SendApi.md#invoicev1sendget) | **GET** /invoice/v1/send | List invoices
+*SendApi* | [**InvoiceV1SendIdGet**](docs/SendApi.md#invoicev1sendidget) | **GET** /invoice/v1/send/{id} | Get a invoice by id
+*SendApi* | [**InvoiceV1SendJsonPost**](docs/SendApi.md#invoicev1sendjsonpost) | **POST** /invoice/v1/send/json | Add an invoice by json
+*SendApi* | [**InvoiceV1SendPost**](docs/SendApi.md#invoicev1sendpost) | **POST** /invoice/v1/send | Add an invoice
+*SendApi* | [**InvoiceV1SendValidateFilesPost**](docs/SendApi.md#invoicev1sendvalidatefilespost) | **POST** /invoice/v1/send/validate/files | Validate an invoice by file
+*SendApi* | [**InvoiceV1SendValidateJsonPost**](docs/SendApi.md#invoicev1sendvalidatejsonpost) | **POST** /invoice/v1/send/validate/json | Validate an invoice by json
+*SendApi* | [**InvoiceV1SendValidatePost**](docs/SendApi.md#invoicev1sendvalidatepost) | **POST** /invoice/v1/send/validate | Validate an invoice
+*SendApi* | [**InvoiceV1SendValidateXmlPost**](docs/SendApi.md#invoicev1sendvalidatexmlpost) | **POST** /invoice/v1/send/validate/xml | Validate an invoice by xml
+*SendApi* | [**InvoiceV1SendXmlPost**](docs/SendApi.md#invoicev1sendxmlpost) | **POST** /invoice/v1/send/xml | Add an invoice by xml
 *UpdateApi* | [**InvoiceV1UpdateGet**](docs/UpdateApi.md#invoicev1updateget) | **GET** /invoice/v1/update | List updates
 *UpdateApi* | [**InvoiceV1UpdateIdGet**](docs/UpdateApi.md#invoicev1updateidget) | **GET** /invoice/v1/update/{id} | Get an update by id
 *WebhookApi* | [**InvoiceV1WebhookGet**](docs/WebhookApi.md#invoicev1webhookget) | **GET** /invoice/v1/webhook | List webhooks
@@ -192,6 +196,7 @@ Class | Method | HTTP request | Description
  - [Model.IndirizzoResa](docs/IndirizzoResa.md)
  - [Model.IscrizioneREA](docs/IscrizioneREA.md)
  - [Model.ProblemDetails](docs/ProblemDetails.md)
+ - [Model.ProblemHttpResult](docs/ProblemHttpResult.md)
  - [Model.RappresentanteFiscale](docs/RappresentanteFiscale.md)
  - [Model.RappresentanteFiscaleCessionarioCommittente](docs/RappresentanteFiscaleCessionarioCommittente.md)
  - [Model.Receive](docs/Receive.md)

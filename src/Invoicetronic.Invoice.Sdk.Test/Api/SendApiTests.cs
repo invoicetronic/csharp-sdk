@@ -171,7 +171,8 @@ namespace Invoicetronic.Invoice.Sdk.Test.Api
         public void InvoiceV1SendValidateXmlPostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //instance.InvoiceV1SendValidateXmlPost();
+            //FatturaOrdinaria fatturaOrdinaria = null;
+            //instance.InvoiceV1SendValidateXmlPost(fatturaOrdinaria);
         }
 
         /// <summary>

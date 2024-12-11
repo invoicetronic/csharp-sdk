@@ -250,9 +250,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void InvoiceV1SendValidateXmlPost(int operationIndex = 0);
+        void InvoiceV1SendValidateXmlPost(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0);
 
         /// <summary>
         /// Validate an invoice by xml
@@ -261,9 +262,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> InvoiceV1SendValidateXmlPostWithHttpInfo(int operationIndex = 0);
+        ApiResponse<Object> InvoiceV1SendValidateXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0);
         /// <summary>
         /// Add an invoice by xml
         /// </summary>
@@ -537,10 +539,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task InvoiceV1SendValidateXmlPostAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task InvoiceV1SendValidateXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Validate an invoice by xml
@@ -549,10 +552,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InvoiceV1SendValidateXmlPostWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> InvoiceV1SendValidateXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Add an invoice by xml
         /// </summary>
@@ -2144,24 +2148,33 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void InvoiceV1SendValidateXmlPost(int operationIndex = 0)
+        public void InvoiceV1SendValidateXmlPost(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0)
         {
-            InvoiceV1SendValidateXmlPostWithHttpInfo();
+            InvoiceV1SendValidateXmlPostWithHttpInfo(fatturaOrdinaria);
         }
 
         /// <summary>
         /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object> InvoiceV1SendValidateXmlPostWithHttpInfo(int operationIndex = 0)
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object> InvoiceV1SendValidateXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0)
         {
+            // verify the required parameter 'fatturaOrdinaria' is set
+            if (fatturaOrdinaria == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->InvoiceV1SendValidateXmlPost");
+            }
+
             Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/xml"
             };
 
             // to determine the Accept header
@@ -2181,6 +2194,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.Data = fatturaOrdinaria;
 
             localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateXmlPost";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -2210,27 +2224,36 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task InvoiceV1SendValidateXmlPostAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task InvoiceV1SendValidateXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await InvoiceV1SendValidateXmlPostWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+            await InvoiceV1SendValidateXmlPostWithHttpInfoAsync(fatturaOrdinaria, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Validate an invoice by xml Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="fatturaOrdinaria"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object>> InvoiceV1SendValidateXmlPostWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Object>> InvoiceV1SendValidateXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
+            // verify the required parameter 'fatturaOrdinaria' is set
+            if (fatturaOrdinaria == null)
+            {
+                throw new Invoicetronic.Invoice.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->InvoiceV1SendValidateXmlPost");
+            }
+
 
             Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/xml"
             };
 
             // to determine the Accept header
@@ -2250,6 +2273,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.Data = fatturaOrdinaria;
 
             localVarRequestOptions.Operation = "SendApi.InvoiceV1SendValidateXmlPost";
             localVarRequestOptions.OperationIndex = operationIndex;

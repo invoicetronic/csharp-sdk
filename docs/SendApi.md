@@ -812,7 +812,7 @@ void (empty response body)
 
 <a id="invoicev1sendvalidatexmlpost"></a>
 # **InvoiceV1SendValidateXmlPost**
-> void InvoiceV1SendValidateXmlPost ()
+> void InvoiceV1SendValidateXmlPost (FatturaOrdinaria fatturaOrdinaria)
 
 Validate an invoice by xml
 
@@ -839,11 +839,12 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new SendApi(config);
+            var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
 
             try
             {
                 // Validate an invoice by xml
-                apiInstance.InvoiceV1SendValidateXmlPost();
+                apiInstance.InvoiceV1SendValidateXmlPost(fatturaOrdinaria);
             }
             catch (ApiException  e)
             {
@@ -863,7 +864,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Validate an invoice by xml
-    apiInstance.InvoiceV1SendValidateXmlPostWithHttpInfo();
+    apiInstance.InvoiceV1SendValidateXmlPostWithHttpInfo(fatturaOrdinaria);
 }
 catch (ApiException e)
 {
@@ -874,7 +875,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
+
 ### Return type
 
 void (empty response body)
@@ -885,7 +890,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/xml
  - **Accept**: application/json
 
 

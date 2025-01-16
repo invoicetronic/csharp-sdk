@@ -6,10 +6,10 @@
     <AssemblyName>Invoicetronic.Invoice.Sdk</AssemblyName>
     <PackageId>Invoicetronic.Invoice.Sdk</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>OpenAPI</Authors>
-    <Company>OpenAPI</Company>
-    <AssemblyTitle>OpenAPI Library</AssemblyTitle>
-    <Description>A library generated from a OpenAPI doc</Description>
+    <Authors>Invoicetronic DevTeam</Authors>
+    <Company>CIR2000</Company>
+    <AssemblyTitle>Italian eInvoice API C# SDK</AssemblyTitle>
+    <Description>A library that allows developers to interact with the Italian eInvoice API.</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>Invoicetronic.Invoice.Sdk</RootNamespace>
     <Version>1.0.0</Version>

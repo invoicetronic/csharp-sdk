@@ -1,7 +1,0 @@
-bin/
-obj/
-/packages/.idea
-logs/
-.idea/
-appsettings.Secrets.*
-*.private.env.json

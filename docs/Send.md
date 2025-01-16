@@ -18,7 +18,9 @@ Name | Type | Description | Notes
 **LastUpdate** | **DateTime?** | Last update from SDI. | [optional] 
 **DateSent** | **DateTime?** | When the invoice was sent to SDI. | [optional] 
 **Documents** | [**List&lt;DocumentData&gt;**](DocumentData.md) | The invoices included in the payload. This is set by the system, based on the xml content. | [optional] 
+**Encoding** | **string** | Whether the payload is Base64 encoded or a plain XML (text). | [optional] 
 **MetaData** | **Dictionary&lt;string, string&gt;** | Optional metadata, as json. | [optional] 
+**Company** | [**Company**](Company.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

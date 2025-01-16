@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -31,11 +31,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Company&gt;</returns>
         List<Company> InvoiceV1CompanyGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -44,11 +44,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
         ApiResponse<List<Company>> InvoiceV1CompanyGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -56,10 +56,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
         Company InvoiceV1CompanyIdDelete(int id, int operationIndex = 0);
@@ -68,10 +68,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
         ApiResponse<Company> InvoiceV1CompanyIdDeleteWithHttpInfo(int id, int operationIndex = 0);
@@ -79,10 +79,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
         Company InvoiceV1CompanyIdGet(int id, int operationIndex = 0);
@@ -91,10 +91,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
         ApiResponse<Company> InvoiceV1CompanyIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -102,7 +102,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -114,7 +114,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -125,7 +125,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -137,7 +137,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -157,11 +157,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
@@ -171,11 +171,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
@@ -184,10 +184,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
@@ -197,10 +197,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
@@ -209,10 +209,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
@@ -222,10 +222,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
@@ -234,7 +234,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -247,7 +247,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -259,7 +259,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -272,7 +272,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -401,11 +401,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Company&gt;</returns>
         public List<Company> InvoiceV1CompanyGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -415,11 +415,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Company>> InvoiceV1CompanyGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -452,7 +452,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
             }
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
 
             localVarRequestOptions.Operation = "CompanyApi.InvoiceV1CompanyGet";
@@ -480,11 +480,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
@@ -495,11 +495,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
@@ -534,7 +534,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
             }
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
 
             localVarRequestOptions.Operation = "CompanyApi.InvoiceV1CompanyGet";
@@ -563,10 +563,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
         public Company InvoiceV1CompanyIdDelete(int id, int operationIndex = 0)
@@ -576,10 +576,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Company> InvoiceV1CompanyIdDeleteWithHttpInfo(int id, int operationIndex = 0)
@@ -633,10 +633,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
@@ -647,10 +647,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
@@ -707,10 +707,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
         public Company InvoiceV1CompanyIdGet(int id, int operationIndex = 0)
@@ -720,10 +720,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Company> InvoiceV1CompanyIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -777,10 +777,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
@@ -791,10 +791,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
@@ -851,7 +851,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -864,7 +864,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -928,7 +928,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -942,7 +942,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1009,7 +1009,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1022,7 +1022,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1086,7 +1086,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1100,7 +1100,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>

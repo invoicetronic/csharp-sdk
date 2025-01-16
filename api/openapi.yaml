@@ -7,9 +7,9 @@ info:
   description: |-
     The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the
     Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple
-    and easy to use, abstracting away SDI complexity while still providing complete control over the
-    invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation,
-    multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.
+    and easy to use, abstracting away SDI complexity while providing complete control over the
+    invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation,
+    multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.
 
     For more information, see  [Invoicetronic website][2]
 
@@ -27,10 +27,11 @@ security:
 paths:
   /invoice/v1/company/{id}:
     delete:
-      description: Companies are the entities that send and receive invoices. At least
-        one company is required in order to send and receive invoices.
+      description: |-
+        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
+        can only receive invoices for existing companies**.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -64,10 +65,11 @@ paths:
       tags:
       - company
     get:
-      description: Companies are the entities that send and receive invoices. At least
-        one company is required in order to send and receive invoices.
+      description: |-
+        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
+        can only receive invoices for existing companies**.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -90,10 +92,11 @@ paths:
       - company
   /invoice/v1/company:
     get:
-      description: Companies are the entities that send and receive invoices. At least
-        one company is required in order to send and receive invoices.
+      description: |-
+        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
+        can only receive invoices for existing companies**.
       parameters:
-      - description: Page number.
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -103,10 +106,10 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
-        name: pageSize
+        name: page_size
         required: false
         schema:
           default: 100
@@ -134,8 +137,9 @@ paths:
       tags:
       - company
     post:
-      description: Companies are the entities that send and receive invoices. At least
-        one company is required in order to send and receive invoices.
+      description: |-
+        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
+        can only receive invoices for existing companies**.
       requestBody:
         content:
           application/json:
@@ -165,8 +169,9 @@ paths:
       tags:
       - company
     put:
-      description: Companies are the entities that send and receive invoices. At least
-        one company is required in order to send and receive invoices.
+      description: |-
+        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
+        can only receive invoices for existing companies**.
       requestBody:
         content:
           application/json:
@@ -199,7 +204,7 @@ paths:
     get:
       description: Every API operation is logged and can be retrieved here.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -224,7 +229,66 @@ paths:
     get:
       description: Every API operation is logged and can be retrieved here.
       parameters:
-      - description: Page number.
+      - description: Company id
+        explode: true
+        in: query
+        name: company_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: endpoint
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: method
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Api version
+        explode: true
+        in: query
+        name: api_verion
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Response status code
+        explode: true
+        in: query
+        name: status_code
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_created_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
+        explode: true
+        in: query
+        name: date_created_to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -234,7 +298,7 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
         name: page_size
@@ -269,7 +333,7 @@ paths:
       description: Receive invoices are the invoices that are received from other
         companies.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -306,7 +370,7 @@ paths:
       description: Receive invoices are the invoices that are received from other
         companies.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -332,7 +396,7 @@ paths:
       description: Receive invoices are the invoices that are received from other
         companies.
       parameters:
-      - description: Company id.
+      - description: Company id
         explode: true
         in: query
         name: company_id
@@ -357,7 +421,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: VAT number or fiscal code.
+      - description: Vat number or fiscal code.
         explode: true
         in: query
         name: committente
@@ -365,7 +429,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: VAT number or fiscal code.
+      - description: Vat number or fiscal code.
         explode: true
         in: query
         name: prestatore
@@ -443,7 +507,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Page number.
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -453,7 +517,7 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
         name: page_size
@@ -487,7 +551,7 @@ paths:
     get:
       description: Send invoices are the invoices that are sent to the SDI.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -512,7 +576,7 @@ paths:
     get:
       description: test **markdown**.
       parameters:
-      - description: Company id.
+      - description: Company id
         explode: true
         in: query
         name: company_id
@@ -529,7 +593,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: VAT number or fiscal code.
+      - description: Vat number or fiscal code.
         explode: true
         in: query
         name: committente
@@ -537,7 +601,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: VAT number or fiscal code.
+      - description: Vat number or fiscal code.
         explode: true
         in: query
         name: prestatore
@@ -615,7 +679,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Page number.
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -625,7 +689,7 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
         name: page_size
@@ -666,6 +730,20 @@ paths:
         schema:
           default: false
           type: boolean
+        style: form
+      - description: Whether to digitally sign the document.
+        explode: true
+        in: query
+        name: signature
+        required: false
+        schema:
+          default: Auto
+          enum:
+          - None
+          - Apply
+          - Force
+          - Auto
+          type: string
         style: form
       requestBody:
         content:
@@ -708,6 +786,20 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: Whether to digitally sign the document.
+        explode: true
+        in: query
+        name: signature
+        required: false
+        schema:
+          default: Auto
+          enum:
+          - None
+          - Apply
+          - Force
+          - Auto
+          type: string
+        style: form
       requestBody:
         content:
           application/xml:
@@ -748,6 +840,20 @@ paths:
         schema:
           default: false
           type: boolean
+        style: form
+      - description: Whether to digitally sign the document.
+        explode: true
+        in: query
+        name: signature
+        required: false
+        schema:
+          default: Auto
+          enum:
+          - None
+          - Apply
+          - Force
+          - Auto
+          type: string
         style: form
       requestBody:
         content:
@@ -791,6 +897,20 @@ paths:
         schema:
           default: false
           type: boolean
+        style: form
+      - description: Whether to digitally sign the document.
+        explode: true
+        in: query
+        name: signature
+        required: false
+        schema:
+          default: Auto
+          enum:
+          - None
+          - Apply
+          - Force
+          - Auto
+          type: string
         style: form
       requestBody:
         content:
@@ -935,7 +1055,7 @@ paths:
       description: Updates are notifications that are sent by the SDI about the status
         of sent invoices.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -961,7 +1081,7 @@ paths:
       description: Updates are notifications that are sent by the SDI about the status
         of sent invoices.
       parameters:
-      - description: Company id.
+      - description: Company id
         explode: true
         in: query
         name: company_id
@@ -978,7 +1098,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Only unread items.
+      - description: Unread items only.
         explode: true
         in: query
         name: unread
@@ -1040,7 +1160,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: UTC ISO 8601 format (2024-11-29T12:34:56Z)
+      - description: UTC ISO 8601 (2024-11-29T12:34:56Z)
         explode: true
         in: query
         name: date_sent_to
@@ -1049,7 +1169,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Page number.
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -1059,7 +1179,7 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
         name: page_size
@@ -1095,7 +1215,7 @@ paths:
         that occur in the API. You can subscribe to specific events and receive a
         notification when they occur.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -1133,7 +1253,7 @@ paths:
         that occur in the API. You can subscribe to specific events and receive a
         notification when they occur.
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -1160,7 +1280,7 @@ paths:
         that occur in the API. You can subscribe to specific events and receive a
         notification when they occur.
       parameters:
-      - description: Page number.
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -1170,7 +1290,7 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
         name: page_size
@@ -1267,7 +1387,7 @@ paths:
   /invoice/v1/webhookhistory/{id}:
     get:
       parameters:
-      - description: Item id.
+      - description: Item id
         explode: false
         in: path
         name: id
@@ -1291,7 +1411,7 @@ paths:
   /invoice/v1/webhookhistory:
     get:
       parameters:
-      - description: Page number.
+      - description: Page number. Defaults to 1.
         explode: true
         in: query
         name: page
@@ -1301,7 +1421,7 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Items per page.
+      - description: Items per page. Defaults to 50. Cannot be greater than 200.
         explode: true
         in: query
         name: page_size
@@ -2902,20 +3022,19 @@ components:
     Event:
       additionalProperties: false
       example:
-        status_code: 5
-        company_id: 1
+        status_code: 7
+        company_id: 5
         method: method
         created: 2000-01-23T04:56:07.000+00:00
         query: query
         response_body: response_body
-        api_version: 5
+        api_version: 2
         error: error
         version: 6
-        api_key_id: 7
+        api_key_id: 5
         endpoint: endpoint
         date_time: 2000-01-23T04:56:07.000+00:00
-        request_body: request_body
-        user_id: 2
+        user_id: 1
         success: true
         id: 0
       properties:
@@ -2930,6 +3049,14 @@ components:
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
+          format: int32
+          type: integer
+        user_id:
+          description: User id.
+          format: int32
+          type: integer
+        api_key_id:
+          description: Api key id.
           format: int32
           type: integer
         company_id:
@@ -2965,26 +3092,14 @@ components:
           description: Response error.
           nullable: true
           type: string
-        request_body:
-          description: Request payload. It is guaranteed to be cyphered at rest.
-          nullable: true
-          type: string
-        response_body:
-          description: Response payload. It is guaranteed to be cyphered at rest.
-          nullable: true
-          type: string
         success:
           description: Wether the request was successful.
           readOnly: true
           type: boolean
-        user_id:
-          description: User id.
-          format: int32
-          type: integer
-        api_key_id:
-          description: Api key id.
-          format: int32
-          type: integer
+        response_body:
+          description: Response payload. It is guaranteed to be cyphered at rest.
+          nullable: true
+          type: string
       type: object
     FatturaElettronicaBody:
       additionalProperties: false
@@ -4608,6 +4723,8 @@ components:
         file_name: file_name
         committente: committente
         format: format
+        message_id: message_id
+        encoding: Xml
         version: 6
         is_read: true
         user_id: 1
@@ -4686,9 +4803,19 @@ components:
             $ref: '#/components/schemas/DocumentData'
           nullable: true
           type: array
+        encoding:
+          description: Whether the payload is Base64 encoded or a plain XML (text).
+          enum:
+          - Xml
+          - Base64
+          type: string
         is_read:
           description: Wether the invoice has been read at least once.
           type: boolean
+        message_id:
+          description: SDI message id.
+          nullable: true
+          type: string
       type: object
     ScontoMaggiorazione:
       additionalProperties: false
@@ -4784,6 +4911,7 @@ components:
         file_name: file_name
         committente: committente
         format: format
+        encoding: Xml
         version: 6
         user_id: 1
         payload: payload
@@ -4791,6 +4919,15 @@ components:
         last_update: 2000-01-23T04:56:07.000+00:00
         meta_data:
           key: meta_data
+        company:
+          user_id: 1
+          created: 2000-01-23T04:56:07.000+00:00
+          vat: IT01234567891
+          name: Mario Rossi Srl
+          id: 0
+          counter: 5
+          fiscal_code: RSSMRA70A01F205V
+          version: 6
         id: 0
       properties:
         id:
@@ -4863,12 +5000,20 @@ components:
             $ref: '#/components/schemas/DocumentData'
           nullable: true
           type: array
+        encoding:
+          description: Whether the payload is Base64 encoded or a plain XML (text).
+          enum:
+          - Xml
+          - Base64
+          type: string
         meta_data:
           additionalProperties:
             type: string
           description: "Optional metadata, as json."
           nullable: true
           type: object
+        company:
+          $ref: '#/components/schemas/Company'
       type: object
     StabileOrganizzazione:
       additionalProperties: false
@@ -5084,13 +5229,11 @@ components:
       description: Webhook history.
       example:
         status_code: 5
-        request_body: request_body
         date_time: 2000-01-23T04:56:07.000+00:00
         user_id: 5
         created: 2000-01-23T04:56:07.000+00:00
         success: true
         web_hook_id: 1
-        response_body: response_body
         id: 0
         event: event
         version: 6
@@ -5124,14 +5267,6 @@ components:
           description: Status code.
           format: int32
           type: integer
-        request_body:
-          description: Webhook request body.
-          nullable: true
-          type: string
-        response_body:
-          description: Webhook response body.
-          nullable: true
-          type: string
         date_time:
           description: Date and time of the request.
           format: date-time

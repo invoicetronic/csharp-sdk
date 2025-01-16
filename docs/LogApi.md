@@ -9,7 +9,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="invoicev1logget"></a>
 # **InvoiceV1LogGet**
-> List&lt;Event&gt; InvoiceV1LogGet (int? page = null, int? pageSize = null)
+> List&lt;Event&gt; InvoiceV1LogGet (int? companyId = null, string endpoint = null, string method = null, int? apiVerion = null, int? statusCode = null, DateTime? dateCreatedFrom = null, DateTime? dateCreatedTo = null, int? page = null, int? pageSize = null)
 
 List events
 
@@ -36,13 +36,20 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new LogApi(config);
-            var page = 1;  // int? | Page number. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. (optional)  (default to 100)
+            var companyId = 56;  // int? | Company id (optional) 
+            var endpoint = "endpoint_example";  // string |  (optional) 
+            var method = "method_example";  // string |  (optional) 
+            var apiVerion = 56;  // int? | Api version (optional) 
+            var statusCode = 56;  // int? | Response status code (optional) 
+            var dateCreatedFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
+            var dateCreatedTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
+            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
 
             try
             {
                 // List events
-                List<Event> result = apiInstance.InvoiceV1LogGet(page, pageSize);
+                List<Event> result = apiInstance.InvoiceV1LogGet(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -63,7 +70,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List events
-    ApiResponse<List<Event>> response = apiInstance.InvoiceV1LogGetWithHttpInfo(page, pageSize);
+    ApiResponse<List<Event>> response = apiInstance.InvoiceV1LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -80,8 +87,15 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **int?** | Page number. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. | [optional] [default to 100] |
+| **companyId** | **int?** | Company id | [optional]  |
+| **endpoint** | **string** |  | [optional]  |
+| **method** | **string** |  | [optional]  |
+| **apiVerion** | **int?** | Api version | [optional]  |
+| **statusCode** | **int?** | Response status code | [optional]  |
+| **dateCreatedFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
+| **dateCreatedTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
+| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 
 ### Return type
 
@@ -135,7 +149,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new LogApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -178,7 +192,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 

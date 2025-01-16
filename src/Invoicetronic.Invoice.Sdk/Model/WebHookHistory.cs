@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -42,10 +42,8 @@ namespace Invoicetronic.Invoice.Sdk.Model
         /// <param name="userId">User id..</param>
         /// <param name="varEvent">Event name..</param>
         /// <param name="statusCode">Status code..</param>
-        /// <param name="requestBody">Webhook request body..</param>
-        /// <param name="responseBody">Webhook response body..</param>
         /// <param name="dateTime">Date and time of the request..</param>
-        public WebHookHistory(int id = default(int), DateTime created = default(DateTime), int varVersion = default(int), int webHookId = default(int), int userId = default(int), string varEvent = default(string), int statusCode = default(int), string requestBody = default(string), string responseBody = default(string), DateTime dateTime = default(DateTime))
+        public WebHookHistory(int id = default(int), DateTime created = default(DateTime), int varVersion = default(int), int webHookId = default(int), int userId = default(int), string varEvent = default(string), int statusCode = default(int), DateTime dateTime = default(DateTime))
         {
             this.Id = id;
             this.Created = created;
@@ -54,8 +52,6 @@ namespace Invoicetronic.Invoice.Sdk.Model
             this.UserId = userId;
             this.Event = varEvent;
             this.StatusCode = statusCode;
-            this.RequestBody = requestBody;
-            this.ResponseBody = responseBody;
             this.DateTime = dateTime;
         }
 
@@ -109,20 +105,6 @@ namespace Invoicetronic.Invoice.Sdk.Model
         public int StatusCode { get; set; }
 
         /// <summary>
-        /// Webhook request body.
-        /// </summary>
-        /// <value>Webhook request body.</value>
-        [DataMember(Name = "request_body", EmitDefaultValue = true)]
-        public string RequestBody { get; set; }
-
-        /// <summary>
-        /// Webhook response body.
-        /// </summary>
-        /// <value>Webhook response body.</value>
-        [DataMember(Name = "response_body", EmitDefaultValue = true)]
-        public string ResponseBody { get; set; }
-
-        /// <summary>
         /// Date and time of the request.
         /// </summary>
         /// <value>Date and time of the request.</value>
@@ -159,8 +141,6 @@ namespace Invoicetronic.Invoice.Sdk.Model
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");
-            sb.Append("  RequestBody: ").Append(RequestBody).Append("\n");
-            sb.Append("  ResponseBody: ").Append(ResponseBody).Append("\n");
             sb.Append("  DateTime: ").Append(DateTime).Append("\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("}\n");

@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -34,17 +34,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Update&gt;</returns>
         List<Update> InvoiceV1UpdateGet(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), int? sendId = default(int?), string state = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -56,17 +56,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Update&gt;</returns>
         ApiResponse<List<Update>> InvoiceV1UpdateGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), int? sendId = default(int?), string state = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -77,7 +77,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Update</returns>
         Update InvoiceV1UpdateIdGet(int id, int operationIndex = 0);
@@ -89,7 +89,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Update</returns>
         ApiResponse<Update> InvoiceV1UpdateIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -109,17 +109,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Update&gt;</returns>
@@ -132,17 +132,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Update&gt;)</returns>
@@ -154,7 +154,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Update</returns>
@@ -167,7 +167,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Update)</returns>
@@ -296,17 +296,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List updates Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Update&gt;</returns>
         public List<Update> InvoiceV1UpdateGet(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), int? sendId = default(int?), string state = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -319,17 +319,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List updates Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Update&gt;</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Update>> InvoiceV1UpdateGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), int? sendId = default(int?), string state = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -429,17 +429,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List updates Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Update&gt;</returns>
@@ -453,17 +453,17 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List updates Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="unread">Only unread items. (optional)</param>
+        /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateSentFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="dateSentTo">UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Update&gt;)</returns>
@@ -566,7 +566,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an update by id Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Update</returns>
         public Update InvoiceV1UpdateIdGet(int id, int operationIndex = 0)
@@ -579,7 +579,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an update by id Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Update</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Update> InvoiceV1UpdateIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -636,7 +636,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an update by id Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Update</returns>
@@ -650,7 +650,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an update by id Updates are notifications that are sent by the SDI about the status of sent invoices.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Update)</returns>

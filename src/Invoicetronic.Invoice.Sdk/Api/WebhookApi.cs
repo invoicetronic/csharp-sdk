@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -34,8 +34,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHook&gt;</returns>
         List<WebHook> InvoiceV1WebhookGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -47,8 +47,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHook&gt;</returns>
         ApiResponse<List<WebHook>> InvoiceV1WebhookGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -59,7 +59,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
         WebHook InvoiceV1WebhookIdDelete(int id, int operationIndex = 0);
@@ -71,7 +71,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
         ApiResponse<WebHook> InvoiceV1WebhookIdDeleteWithHttpInfo(int id, int operationIndex = 0);
@@ -82,7 +82,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
         WebHook InvoiceV1WebhookIdGet(int id, int operationIndex = 0);
@@ -94,7 +94,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
         ApiResponse<WebHook> InvoiceV1WebhookIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -148,8 +148,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhook history items
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHookHistory&gt;</returns>
         List<WebHookHistory> InvoiceV1WebhookhistoryGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -161,8 +161,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHookHistory&gt;</returns>
         ApiResponse<List<WebHookHistory>> InvoiceV1WebhookhistoryGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -170,7 +170,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook history item by id
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHookHistory</returns>
         WebHookHistory InvoiceV1WebhookhistoryIdGet(int id, int operationIndex = 0);
@@ -182,7 +182,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHookHistory</returns>
         ApiResponse<WebHookHistory> InvoiceV1WebhookhistoryIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -202,8 +202,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHook&gt;</returns>
@@ -216,8 +216,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHook&gt;)</returns>
@@ -229,7 +229,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
@@ -242,7 +242,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
@@ -254,7 +254,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
@@ -267,7 +267,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
@@ -329,8 +329,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHookHistory&gt;</returns>
@@ -343,8 +343,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHookHistory&gt;)</returns>
@@ -356,7 +356,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHookHistory</returns>
@@ -369,7 +369,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHookHistory)</returns>
@@ -498,8 +498,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhooks Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHook&gt;</returns>
         public List<WebHook> InvoiceV1WebhookGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -512,8 +512,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhooks Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHook&gt;</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<WebHook>> InvoiceV1WebhookGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -577,8 +577,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhooks Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHook&gt;</returns>
@@ -592,8 +592,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhooks Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHook&gt;)</returns>
@@ -660,7 +660,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
         public WebHook InvoiceV1WebhookIdDelete(int id, int operationIndex = 0)
@@ -673,7 +673,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<WebHook> InvoiceV1WebhookIdDeleteWithHttpInfo(int id, int operationIndex = 0)
@@ -730,7 +730,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
@@ -744,7 +744,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
@@ -804,7 +804,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
         public WebHook InvoiceV1WebhookIdGet(int id, int operationIndex = 0)
@@ -817,7 +817,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<WebHook> InvoiceV1WebhookIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -874,7 +874,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
@@ -888,7 +888,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook by id Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
@@ -1264,8 +1264,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhook history items 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHookHistory&gt;</returns>
         public List<WebHookHistory> InvoiceV1WebhookhistoryGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -1278,8 +1278,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhook history items 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHookHistory&gt;</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<WebHookHistory>> InvoiceV1WebhookhistoryGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -1343,8 +1343,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhook history items 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHookHistory&gt;</returns>
@@ -1358,8 +1358,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List webhook history items 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHookHistory&gt;)</returns>
@@ -1426,7 +1426,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook history item by id 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHookHistory</returns>
         public WebHookHistory InvoiceV1WebhookhistoryIdGet(int id, int operationIndex = 0)
@@ -1439,7 +1439,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook history item by id 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHookHistory</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<WebHookHistory> InvoiceV1WebhookhistoryIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -1496,7 +1496,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook history item by id 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHookHistory</returns>
@@ -1510,7 +1510,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a webhook history item by id 
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHookHistory)</returns>

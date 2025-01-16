@@ -2,9 +2,9 @@
 
 The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the
 Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple
-and easy to use, abstracting away SDI complexity while still providing complete control over the
-invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation,
-multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.
+and easy to use, abstracting away SDI complexity while providing complete control over the
+invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation,
+multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.
 
 For more information, see  [Invoicetronic website][2]
 
@@ -89,8 +89,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CompanyApi(config);
-            var page = 1;  // int? | Page number. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. (optional)  (default to 100)
+            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
 
             try
             {

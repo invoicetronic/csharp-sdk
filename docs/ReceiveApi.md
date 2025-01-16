@@ -37,11 +37,11 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ReceiveApi(config);
-            var companyId = 56;  // int? | Company id. (optional) 
+            var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
             var unread = true;  // bool? | Unread items only. (optional) 
-            var committente = "committente_example";  // string | VAT number or fiscal code. (optional) 
-            var prestatore = "prestatore_example";  // string | VAT number or fiscal code. (optional) 
+            var committente = "committente_example";  // string | Vat number or fiscal code. (optional) 
+            var prestatore = "prestatore_example";  // string | Vat number or fiscal code. (optional) 
             var fileName = "fileName_example";  // string | File name. (optional) 
             var lastUpdateFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var lastUpdateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
@@ -50,8 +50,8 @@ namespace Example
             var documentDateFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var documentDateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var documentNumber = "documentNumber_example";  // string | Document number. (optional) 
-            var page = 1;  // int? | Page number. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. (optional)  (default to 100)
+            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
 
             try
             {
@@ -94,11 +94,11 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **companyId** | **int?** | Company id. | [optional]  |
+| **companyId** | **int?** | Company id | [optional]  |
 | **identifier** | **string** | SDI identifier. | [optional]  |
 | **unread** | **bool?** | Unread items only. | [optional]  |
-| **committente** | **string** | VAT number or fiscal code. | [optional]  |
-| **prestatore** | **string** | VAT number or fiscal code. | [optional]  |
+| **committente** | **string** | Vat number or fiscal code. | [optional]  |
+| **prestatore** | **string** | Vat number or fiscal code. | [optional]  |
 | **fileName** | **string** | File name. | [optional]  |
 | **lastUpdateFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **lastUpdateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
@@ -107,8 +107,8 @@ catch (ApiException e)
 | **documentDateFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **documentDateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **documentNumber** | **string** | Document number. | [optional]  |
-| **page** | **int?** | Page number. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. | [optional] [default to 100] |
+| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 
 ### Return type
 
@@ -162,7 +162,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ReceiveApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -205,7 +205,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 
@@ -260,7 +260,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ReceiveApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -303,7 +303,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 

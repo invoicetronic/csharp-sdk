@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -83,6 +83,24 @@ namespace Invoicetronic.Invoice.Sdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UserId'
+        /// </summary>
+        [Fact]
+        public void UserIdTest()
+        {
+            // TODO unit test for the property 'UserId'
+        }
+
+        /// <summary>
+        /// Test the property 'ApiKeyId'
+        /// </summary>
+        [Fact]
+        public void ApiKeyIdTest()
+        {
+            // TODO unit test for the property 'ApiKeyId'
+        }
+
+        /// <summary>
         /// Test the property 'CompanyId'
         /// </summary>
         [Fact]
@@ -155,24 +173,6 @@ namespace Invoicetronic.Invoice.Sdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'RequestBody'
-        /// </summary>
-        [Fact]
-        public void RequestBodyTest()
-        {
-            // TODO unit test for the property 'RequestBody'
-        }
-
-        /// <summary>
-        /// Test the property 'ResponseBody'
-        /// </summary>
-        [Fact]
-        public void ResponseBodyTest()
-        {
-            // TODO unit test for the property 'ResponseBody'
-        }
-
-        /// <summary>
         /// Test the property 'Success'
         /// </summary>
         [Fact]
@@ -182,21 +182,12 @@ namespace Invoicetronic.Invoice.Sdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UserId'
+        /// Test the property 'ResponseBody'
         /// </summary>
         [Fact]
-        public void UserIdTest()
+        public void ResponseBodyTest()
         {
-            // TODO unit test for the property 'UserId'
-        }
-
-        /// <summary>
-        /// Test the property 'ApiKeyId'
-        /// </summary>
-        [Fact]
-        public void ApiKeyIdTest()
-        {
-            // TODO unit test for the property 'ApiKeyId'
+            // TODO unit test for the property 'ResponseBody'
         }
     }
 }

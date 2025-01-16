@@ -36,17 +36,17 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new UpdateApi(config);
-            var companyId = 56;  // int? | Company id. (optional) 
+            var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
-            var unread = true;  // bool? | Only unread items. (optional) 
+            var unread = true;  // bool? | Unread items only. (optional) 
             var sendId = 56;  // int? | Send item's id. (optional) 
             var state = "Inviato";  // string | SDI state (optional) 
             var lastUpdateFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var lastUpdateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var dateSentFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
-            var dateSentTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 format (2024-11-29T12:34:56Z) (optional) 
-            var page = 1;  // int? | Page number. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. (optional)  (default to 100)
+            var dateSentTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
+            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
 
             try
             {
@@ -89,17 +89,17 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **companyId** | **int?** | Company id. | [optional]  |
+| **companyId** | **int?** | Company id | [optional]  |
 | **identifier** | **string** | SDI identifier. | [optional]  |
-| **unread** | **bool?** | Only unread items. | [optional]  |
+| **unread** | **bool?** | Unread items only. | [optional]  |
 | **sendId** | **int?** | Send item&#39;s id. | [optional]  |
 | **state** | **string** | SDI state | [optional]  |
 | **lastUpdateFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **lastUpdateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **dateSentFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
-| **dateSentTo** | **DateTime?** | UTC ISO 8601 format (2024-11-29T12:34:56Z) | [optional]  |
-| **page** | **int?** | Page number. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. | [optional] [default to 100] |
+| **dateSentTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
+| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 
 ### Return type
 
@@ -153,7 +153,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new UpdateApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -196,7 +196,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 

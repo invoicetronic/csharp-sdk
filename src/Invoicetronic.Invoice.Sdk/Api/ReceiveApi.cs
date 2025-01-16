@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -34,11 +34,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -47,8 +47,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Receive&gt;</returns>
         List<Receive> InvoiceV1ReceiveGet(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -60,11 +60,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -73,8 +73,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Receive&gt;</returns>
         ApiResponse<List<Receive>> InvoiceV1ReceiveGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -85,7 +85,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Receive</returns>
         Receive InvoiceV1ReceiveIdDelete(int id, int operationIndex = 0);
@@ -97,7 +97,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Receive</returns>
         ApiResponse<Receive> InvoiceV1ReceiveIdDeleteWithHttpInfo(int id, int operationIndex = 0);
@@ -108,7 +108,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Receive</returns>
         Receive InvoiceV1ReceiveIdGet(int id, int operationIndex = 0);
@@ -120,7 +120,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Receive</returns>
         ApiResponse<Receive> InvoiceV1ReceiveIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -140,11 +140,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -153,8 +153,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Receive&gt;</returns>
@@ -167,11 +167,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -180,8 +180,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Receive&gt;)</returns>
@@ -193,7 +193,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Receive</returns>
@@ -206,7 +206,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>
@@ -218,7 +218,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Receive</returns>
@@ -231,7 +231,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Receive invoices are the invoices that are received from other companies.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>
@@ -360,11 +360,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List incoming invoices Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -373,8 +373,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Receive&gt;</returns>
         public List<Receive> InvoiceV1ReceiveGet(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -387,11 +387,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List incoming invoices Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -400,8 +400,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Receive&gt;</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Receive>> InvoiceV1ReceiveGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), bool? unread = default(bool?), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -517,11 +517,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List incoming invoices Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -530,8 +530,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Receive&gt;</returns>
@@ -545,11 +545,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List incoming invoices Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -558,8 +558,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Receive&gt;)</returns>
@@ -678,7 +678,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Receive</returns>
         public Receive InvoiceV1ReceiveIdDelete(int id, int operationIndex = 0)
@@ -691,7 +691,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Receive</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Receive> InvoiceV1ReceiveIdDeleteWithHttpInfo(int id, int operationIndex = 0)
@@ -748,7 +748,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Receive</returns>
@@ -762,7 +762,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Delete an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>
@@ -822,7 +822,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Receive</returns>
         public Receive InvoiceV1ReceiveIdGet(int id, int operationIndex = 0)
@@ -835,7 +835,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Receive</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Receive> InvoiceV1ReceiveIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -892,7 +892,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Receive</returns>
@@ -906,7 +906,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an incoming invoice by id Receive invoices are the invoices that are received from other companies.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>

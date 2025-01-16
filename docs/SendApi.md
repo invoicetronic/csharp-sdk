@@ -17,7 +17,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="invoicev1sendfilespost"></a>
 # **InvoiceV1SendFilesPost**
-> Send InvoiceV1SendFilesPost (List<System.IO.Stream> files, bool? validate = null)
+> Send InvoiceV1SendFilesPost (List<System.IO.Stream> files, bool? validate = null, string signature = null)
 
 Add an invoice by file
 
@@ -46,11 +46,12 @@ namespace Example
             var apiInstance = new SendApi(config);
             var files = new List<System.IO.Stream>(); // List<System.IO.Stream> | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
+            var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice by file
-                Send result = apiInstance.InvoiceV1SendFilesPost(files, validate);
+                Send result = apiInstance.InvoiceV1SendFilesPost(files, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -71,7 +72,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add an invoice by file
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendFilesPostWithHttpInfo(files, validate);
+    ApiResponse<Send> response = apiInstance.InvoiceV1SendFilesPostWithHttpInfo(files, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -90,6 +91,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **files** | **List&lt;System.IO.Stream&gt;** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
+| **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
 ### Return type
 
@@ -143,10 +145,10 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new SendApi(config);
-            var companyId = 56;  // int? | Company id. (optional) 
+            var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
-            var committente = "committente_example";  // string | VAT number or fiscal code. (optional) 
-            var prestatore = "prestatore_example";  // string | VAT number or fiscal code. (optional) 
+            var committente = "committente_example";  // string | Vat number or fiscal code. (optional) 
+            var prestatore = "prestatore_example";  // string | Vat number or fiscal code. (optional) 
             var fileName = "fileName_example";  // string | File name. (optional) 
             var lastUpdateFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var lastUpdateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
@@ -155,8 +157,8 @@ namespace Example
             var documentDateFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var documentDateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var documentNumber = "documentNumber_example";  // string | Document number. (optional) 
-            var page = 1;  // int? | Page number. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. (optional)  (default to 100)
+            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
 
             try
             {
@@ -199,10 +201,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **companyId** | **int?** | Company id. | [optional]  |
+| **companyId** | **int?** | Company id | [optional]  |
 | **identifier** | **string** | SDI identifier. | [optional]  |
-| **committente** | **string** | VAT number or fiscal code. | [optional]  |
-| **prestatore** | **string** | VAT number or fiscal code. | [optional]  |
+| **committente** | **string** | Vat number or fiscal code. | [optional]  |
+| **prestatore** | **string** | Vat number or fiscal code. | [optional]  |
 | **fileName** | **string** | File name. | [optional]  |
 | **lastUpdateFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **lastUpdateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
@@ -211,8 +213,8 @@ catch (ApiException e)
 | **documentDateFrom** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **documentDateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **documentNumber** | **string** | Document number. | [optional]  |
-| **page** | **int?** | Page number. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. | [optional] [default to 100] |
+| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 
 ### Return type
 
@@ -266,7 +268,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new SendApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -309,7 +311,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 
@@ -335,7 +337,7 @@ catch (ApiException e)
 
 <a id="invoicev1sendjsonpost"></a>
 # **InvoiceV1SendJsonPost**
-> Send InvoiceV1SendJsonPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null)
+> Send InvoiceV1SendJsonPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
 
 Add an invoice by json
 
@@ -364,11 +366,12 @@ namespace Example
             var apiInstance = new SendApi(config);
             var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
+            var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice by json
-                Send result = apiInstance.InvoiceV1SendJsonPost(fatturaOrdinaria, validate);
+                Send result = apiInstance.InvoiceV1SendJsonPost(fatturaOrdinaria, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -389,7 +392,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add an invoice by json
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendJsonPostWithHttpInfo(fatturaOrdinaria, validate);
+    ApiResponse<Send> response = apiInstance.InvoiceV1SendJsonPostWithHttpInfo(fatturaOrdinaria, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -408,6 +411,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
+| **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
 ### Return type
 
@@ -434,7 +438,7 @@ catch (ApiException e)
 
 <a id="invoicev1sendpost"></a>
 # **InvoiceV1SendPost**
-> Send InvoiceV1SendPost (Send send, bool? validate = null)
+> Send InvoiceV1SendPost (Send send, bool? validate = null, string signature = null)
 
 Add an invoice
 
@@ -463,11 +467,12 @@ namespace Example
             var apiInstance = new SendApi(config);
             var send = new Send(); // Send | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
+            var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice
-                Send result = apiInstance.InvoiceV1SendPost(send, validate);
+                Send result = apiInstance.InvoiceV1SendPost(send, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -488,7 +493,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add an invoice
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendPostWithHttpInfo(send, validate);
+    ApiResponse<Send> response = apiInstance.InvoiceV1SendPostWithHttpInfo(send, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -507,6 +512,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **send** | [**Send**](Send.md) |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
+| **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
 ### Return type
 
@@ -905,7 +911,7 @@ void (empty response body)
 
 <a id="invoicev1sendxmlpost"></a>
 # **InvoiceV1SendXmlPost**
-> Send InvoiceV1SendXmlPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null)
+> Send InvoiceV1SendXmlPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
 
 Add an invoice by xml
 
@@ -934,11 +940,12 @@ namespace Example
             var apiInstance = new SendApi(config);
             var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
+            var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice by xml
-                Send result = apiInstance.InvoiceV1SendXmlPost(fatturaOrdinaria, validate);
+                Send result = apiInstance.InvoiceV1SendXmlPost(fatturaOrdinaria, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -959,7 +966,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add an invoice by xml
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendXmlPostWithHttpInfo(fatturaOrdinaria, validate);
+    ApiResponse<Send> response = apiInstance.InvoiceV1SendXmlPostWithHttpInfo(fatturaOrdinaria, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -978,6 +985,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
+| **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
 ### Return type
 

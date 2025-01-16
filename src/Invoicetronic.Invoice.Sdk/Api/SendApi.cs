@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -36,9 +36,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        Send InvoiceV1SendFilesPost(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0);
+        Send InvoiceV1SendFilesPost(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
 
         /// <summary>
         /// Add an invoice by file
@@ -49,9 +50,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        ApiResponse<Send> InvoiceV1SendFilesPostWithHttpInfo(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0);
+        ApiResponse<Send> InvoiceV1SendFilesPostWithHttpInfo(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
         /// <summary>
         /// List invoices
         /// </summary>
@@ -59,10 +61,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// test **markdown**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -71,8 +73,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Send&gt;</returns>
         List<Send> InvoiceV1SendGet(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -84,10 +86,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// test **markdown**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -96,8 +98,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
         ApiResponse<List<Send>> InvoiceV1SendGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
@@ -108,7 +110,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
         Send InvoiceV1SendIdGet(int id, int operationIndex = 0);
@@ -120,7 +122,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
         ApiResponse<Send> InvoiceV1SendIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -133,9 +135,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        Send InvoiceV1SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
+        Send InvoiceV1SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
 
         /// <summary>
         /// Add an invoice by json
@@ -146,9 +149,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        ApiResponse<Send> InvoiceV1SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
+        ApiResponse<Send> InvoiceV1SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
         /// <summary>
         /// Add an invoice
         /// </summary>
@@ -158,9 +162,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        Send InvoiceV1SendPost(Send send, bool? validate = default(bool?), int operationIndex = 0);
+        Send InvoiceV1SendPost(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
 
         /// <summary>
         /// Add an invoice
@@ -171,9 +176,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        ApiResponse<Send> InvoiceV1SendPostWithHttpInfo(Send send, bool? validate = default(bool?), int operationIndex = 0);
+        ApiResponse<Send> InvoiceV1SendPostWithHttpInfo(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
         /// <summary>
         /// Validate an invoice by file
         /// </summary>
@@ -275,9 +281,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        Send InvoiceV1SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
+        Send InvoiceV1SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
 
         /// <summary>
         /// Add an invoice by xml
@@ -288,9 +295,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        ApiResponse<Send> InvoiceV1SendXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0);
+        ApiResponse<Send> InvoiceV1SendXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -309,10 +317,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        System.Threading.Tasks.Task<Send> InvoiceV1SendFilesPostAsync(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Send> InvoiceV1SendFilesPostAsync(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Add an invoice by file
@@ -323,10 +332,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// List invoices
         /// </summary>
@@ -334,10 +344,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// test **markdown**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -346,8 +356,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Send&gt;</returns>
@@ -360,10 +370,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// test **markdown**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -372,8 +382,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
@@ -385,7 +395,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
@@ -398,7 +408,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Send invoices are the invoices that are sent to the SDI.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
@@ -412,10 +422,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        System.Threading.Tasks.Task<Send> InvoiceV1SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Send> InvoiceV1SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Add an invoice by json
@@ -426,10 +437,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Add an invoice
         /// </summary>
@@ -439,10 +451,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        System.Threading.Tasks.Task<Send> InvoiceV1SendPostAsync(Send send, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Send> InvoiceV1SendPostAsync(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Add an invoice
@@ -453,10 +466,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendPostWithHttpInfoAsync(Send send, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendPostWithHttpInfoAsync(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Validate an invoice by file
         /// </summary>
@@ -566,10 +580,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        System.Threading.Tasks.Task<Send> InvoiceV1SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Send> InvoiceV1SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Add an invoice by xml
@@ -580,10 +595,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Send>> InvoiceV1SendXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -710,11 +726,12 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        public Send InvoiceV1SendFilesPost(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0)
+        public Send InvoiceV1SendFilesPost(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendFilesPostWithHttpInfo(files, validate);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendFilesPostWithHttpInfo(files, validate, signature);
             return localVarResponse.Data;
         }
 
@@ -724,9 +741,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendFilesPostWithHttpInfo(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0)
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendFilesPostWithHttpInfo(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
             // verify the required parameter 'files' is set
             if (files == null)
@@ -760,6 +778,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             foreach (var file in files)
             {
@@ -796,12 +818,13 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        public async System.Threading.Tasks.Task<Send> InvoiceV1SendFilesPostAsync(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Send> InvoiceV1SendFilesPostAsync(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendFilesPostWithHttpInfoAsync(files, validate, operationIndex, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendFilesPostWithHttpInfoAsync(files, validate, signature, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -811,10 +834,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="files"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendFilesPostWithHttpInfoAsync(List<System.IO.Stream> files, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'files' is set
             if (files == null)
@@ -850,6 +874,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
             }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
+            }
             foreach (var file in files)
             {
                 localVarRequestOptions.FileParameters.Add("files", file);
@@ -884,10 +912,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -896,8 +924,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Send&gt;</returns>
         public List<Send> InvoiceV1SendGet(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -910,10 +938,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -922,8 +950,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Send>> InvoiceV1SendGetWithHttpInfo(int? companyId = default(int?), string identifier = default(string), string committente = default(string), string prestatore = default(string), string fileName = default(string), DateTime? lastUpdateFrom = default(DateTime?), DateTime? lastUpdateTo = default(DateTime?), DateTime? dateSentFrom = default(DateTime?), DateTime? dateSentTo = default(DateTime?), DateTime? documentDateFrom = default(DateTime?), DateTime? documentDateTo = default(DateTime?), string documentNumber = default(string), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
@@ -1035,10 +1063,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -1047,8 +1075,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Send&gt;</returns>
@@ -1062,10 +1090,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List invoices test **markdown**.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyId">Company id. (optional)</param>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
-        /// <param name="committente">VAT number or fiscal code. (optional)</param>
-        /// <param name="prestatore">VAT number or fiscal code. (optional)</param>
+        /// <param name="committente">Vat number or fiscal code. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="fileName">File name. (optional)</param>
         /// <param name="lastUpdateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="lastUpdateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
@@ -1074,8 +1102,8 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
@@ -1190,7 +1218,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
         public Send InvoiceV1SendIdGet(int id, int operationIndex = 0)
@@ -1203,7 +1231,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -1260,7 +1288,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
@@ -1274,7 +1302,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get a invoice by id Send invoices are the invoices that are sent to the SDI.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
@@ -1336,11 +1364,12 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        public Send InvoiceV1SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0)
+        public Send InvoiceV1SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendJsonPostWithHttpInfo(fatturaOrdinaria, validate);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendJsonPostWithHttpInfo(fatturaOrdinaria, validate, signature);
             return localVarResponse.Data;
         }
 
@@ -1350,9 +1379,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0)
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
             // verify the required parameter 'fatturaOrdinaria' is set
             if (fatturaOrdinaria == null)
@@ -1386,6 +1416,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             localVarRequestOptions.Data = fatturaOrdinaria;
 
@@ -1419,12 +1453,13 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        public async System.Threading.Tasks.Task<Send> InvoiceV1SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Send> InvoiceV1SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendJsonPostWithHttpInfoAsync(fatturaOrdinaria, validate, operationIndex, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendJsonPostWithHttpInfoAsync(fatturaOrdinaria, validate, signature, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1434,10 +1469,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'fatturaOrdinaria' is set
             if (fatturaOrdinaria == null)
@@ -1472,6 +1508,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             localVarRequestOptions.Data = fatturaOrdinaria;
 
@@ -1506,11 +1546,12 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        public Send InvoiceV1SendPost(Send send, bool? validate = default(bool?), int operationIndex = 0)
+        public Send InvoiceV1SendPost(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendPostWithHttpInfo(send, validate);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendPostWithHttpInfo(send, validate, signature);
             return localVarResponse.Data;
         }
 
@@ -1520,9 +1561,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendPostWithHttpInfo(Send send, bool? validate = default(bool?), int operationIndex = 0)
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendPostWithHttpInfo(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
             // verify the required parameter 'send' is set
             if (send == null)
@@ -1556,6 +1598,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             localVarRequestOptions.Data = send;
 
@@ -1589,12 +1635,13 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        public async System.Threading.Tasks.Task<Send> InvoiceV1SendPostAsync(Send send, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Send> InvoiceV1SendPostAsync(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendPostWithHttpInfoAsync(send, validate, operationIndex, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendPostWithHttpInfoAsync(send, validate, signature, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1604,10 +1651,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="send"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendPostWithHttpInfoAsync(Send send, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendPostWithHttpInfoAsync(Send send, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'send' is set
             if (send == null)
@@ -1642,6 +1690,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             localVarRequestOptions.Data = send;
 
@@ -2306,11 +2358,12 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Send</returns>
-        public Send InvoiceV1SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0)
+        public Send InvoiceV1SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendXmlPostWithHttpInfo(fatturaOrdinaria, validate);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = InvoiceV1SendXmlPostWithHttpInfo(fatturaOrdinaria, validate, signature);
             return localVarResponse.Data;
         }
 
@@ -2320,9 +2373,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Send</returns>
-        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0)
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> InvoiceV1SendXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0)
         {
             // verify the required parameter 'fatturaOrdinaria' is set
             if (fatturaOrdinaria == null)
@@ -2356,6 +2410,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             localVarRequestOptions.Data = fatturaOrdinaria;
 
@@ -2389,12 +2447,13 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        public async System.Threading.Tasks.Task<Send> InvoiceV1SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Send> InvoiceV1SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendXmlPostWithHttpInfoAsync(fatturaOrdinaria, validate, operationIndex, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send> localVarResponse = await InvoiceV1SendXmlPostWithHttpInfoAsync(fatturaOrdinaria, validate, signature, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2404,10 +2463,11 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fatturaOrdinaria"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
+        /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<Send>> InvoiceV1SendXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default(bool?), string signature = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'fatturaOrdinaria' is set
             if (fatturaOrdinaria == null)
@@ -2442,6 +2502,10 @@ namespace Invoicetronic.Invoice.Sdk.Api
             if (validate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "validate", validate));
+            }
+            if (signature != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
             localVarRequestOptions.Data = fatturaOrdinaria;
 

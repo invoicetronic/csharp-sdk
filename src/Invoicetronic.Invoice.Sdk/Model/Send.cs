@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -33,6 +33,33 @@ namespace Invoicetronic.Invoice.Sdk.Model
     public partial class Send : IValidatableObject
     {
         /// <summary>
+        /// Whether the payload is Base64 encoded or a plain XML (text).
+        /// </summary>
+        /// <value>Whether the payload is Base64 encoded or a plain XML (text).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum EncodingEnum
+        {
+            /// <summary>
+            /// Enum Xml for value: Xml
+            /// </summary>
+            [EnumMember(Value = "Xml")]
+            Xml = 1,
+
+            /// <summary>
+            /// Enum Base64 for value: Base64
+            /// </summary>
+            [EnumMember(Value = "Base64")]
+            Base64 = 2
+        }
+
+
+        /// <summary>
+        /// Whether the payload is Base64 encoded or a plain XML (text).
+        /// </summary>
+        /// <value>Whether the payload is Base64 encoded or a plain XML (text).</value>
+        [DataMember(Name = "encoding", EmitDefaultValue = false)]
+        public EncodingEnum? Encoding { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="Send" /> class.
         /// </summary>
         /// <param name="id">Unique identifier. Leave it at 0 for new records as it will be set automatically..</param>
@@ -49,8 +76,10 @@ namespace Invoicetronic.Invoice.Sdk.Model
         /// <param name="lastUpdate">Last update from SDI..</param>
         /// <param name="dateSent">When the invoice was sent to SDI..</param>
         /// <param name="documents">The invoices included in the payload. This is set by the system, based on the xml content..</param>
+        /// <param name="encoding">Whether the payload is Base64 encoded or a plain XML (text)..</param>
         /// <param name="metaData">Optional metadata, as json..</param>
-        public Send(int id = default(int), DateTime created = default(DateTime), int varVersion = default(int), int userId = default(int), int companyId = default(int), string committente = default(string), string prestatore = default(string), string identifier = default(string), string fileName = default(string), string format = default(string), string payload = default(string), DateTime? lastUpdate = default(DateTime?), DateTime? dateSent = default(DateTime?), List<DocumentData> documents = default(List<DocumentData>), Dictionary<string, string> metaData = default(Dictionary<string, string>))
+        /// <param name="company">company.</param>
+        public Send(int id = default(int), DateTime created = default(DateTime), int varVersion = default(int), int userId = default(int), int companyId = default(int), string committente = default(string), string prestatore = default(string), string identifier = default(string), string fileName = default(string), string format = default(string), string payload = default(string), DateTime? lastUpdate = default(DateTime?), DateTime? dateSent = default(DateTime?), List<DocumentData> documents = default(List<DocumentData>), EncodingEnum? encoding = default(EncodingEnum?), Dictionary<string, string> metaData = default(Dictionary<string, string>), Company company = default(Company))
         {
             this.Id = id;
             this.Created = created;
@@ -66,7 +95,9 @@ namespace Invoicetronic.Invoice.Sdk.Model
             this.LastUpdate = lastUpdate;
             this.DateSent = dateSent;
             this.Documents = documents;
+            this.Encoding = encoding;
             this.MetaData = metaData;
+            this.Company = company;
         }
 
         /// <summary>
@@ -175,6 +206,12 @@ namespace Invoicetronic.Invoice.Sdk.Model
         public Dictionary<string, string> MetaData { get; set; }
 
         /// <summary>
+        /// Gets or Sets Company
+        /// </summary>
+        [DataMember(Name = "company", EmitDefaultValue = false)]
+        public Company Company { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -196,7 +233,9 @@ namespace Invoicetronic.Invoice.Sdk.Model
             sb.Append("  LastUpdate: ").Append(LastUpdate).Append("\n");
             sb.Append("  DateSent: ").Append(DateSent).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
+            sb.Append("  Encoding: ").Append(Encoding).Append("\n");
             sb.Append("  MetaData: ").Append(MetaData).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

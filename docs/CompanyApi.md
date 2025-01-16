@@ -16,7 +16,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 List companies
 
-Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
 
 ### Example
 ```csharp
@@ -39,8 +39,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CompanyApi(config);
-            var page = 1;  // int? | Page number. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. (optional)  (default to 100)
+            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
 
             try
             {
@@ -83,8 +83,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **int?** | Page number. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. | [optional] [default to 100] |
+| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 
 ### Return type
 
@@ -115,7 +115,7 @@ catch (ApiException e)
 
 Delete a company
 
-Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
 
 ### Example
 ```csharp
@@ -138,7 +138,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CompanyApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -181,7 +181,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 
@@ -213,7 +213,7 @@ catch (ApiException e)
 
 Get a company by id
 
-Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
 
 ### Example
 ```csharp
@@ -236,7 +236,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CompanyApi(config);
-            var id = 56;  // int | Item id.
+            var id = 56;  // int | Item id
 
             try
             {
@@ -279,7 +279,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | Item id. |  |
+| **id** | **int** | Item id |  |
 
 ### Return type
 
@@ -309,7 +309,7 @@ catch (ApiException e)
 
 Add a company
 
-Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
 
 ### Example
 ```csharp
@@ -406,7 +406,7 @@ catch (ApiException e)
 
 Update a company
 
-Companies are the entities that send and receive invoices. At least one company is required in order to send and receive invoices.
+Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You can only receive invoices for existing companies**.
 
 ### Example
 ```csharp

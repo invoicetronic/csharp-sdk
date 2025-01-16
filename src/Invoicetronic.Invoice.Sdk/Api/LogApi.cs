@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -34,11 +34,18 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Event&gt;</returns>
-        List<Event> InvoiceV1LogGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
+        List<Event> InvoiceV1LogGet(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
 
         /// <summary>
         /// List events
@@ -47,11 +54,18 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Event&gt;</returns>
-        ApiResponse<List<Event>> InvoiceV1LogGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
+        ApiResponse<List<Event>> InvoiceV1LogGetWithHttpInfo(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
         /// <summary>
         /// Get an event by id
         /// </summary>
@@ -59,7 +73,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Event</returns>
         Event InvoiceV1LogIdGet(int id, int operationIndex = 0);
@@ -71,7 +85,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Event</returns>
         ApiResponse<Event> InvoiceV1LogIdGetWithHttpInfo(int id, int operationIndex = 0);
@@ -91,12 +105,19 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Event&gt;</returns>
-        System.Threading.Tasks.Task<List<Event>> InvoiceV1LogGetAsync(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<Event>> InvoiceV1LogGetAsync(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// List events
@@ -105,12 +126,19 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Event&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Event>>> InvoiceV1LogGetWithHttpInfoAsync(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<Event>>> InvoiceV1LogGetWithHttpInfoAsync(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Get an event by id
         /// </summary>
@@ -118,7 +146,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Event</returns>
@@ -131,7 +159,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Every API operation is logged and can be retrieved here.
         /// </remarks>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Event)</returns>
@@ -260,13 +288,20 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List events Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Event&gt;</returns>
-        public List<Event> InvoiceV1LogGet(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
+        public List<Event> InvoiceV1LogGet(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>> localVarResponse = InvoiceV1LogGetWithHttpInfo(page, pageSize);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>> localVarResponse = InvoiceV1LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize);
             return localVarResponse.Data;
         }
 
@@ -274,11 +309,18 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List events Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Event&gt;</returns>
-        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>> InvoiceV1LogGetWithHttpInfo(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
+        public Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>> InvoiceV1LogGetWithHttpInfo(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
         {
             Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
 
@@ -302,6 +344,34 @@ namespace Invoicetronic.Invoice.Sdk.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            if (companyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "company_id", companyId));
+            }
+            if (endpoint != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "endpoint", endpoint));
+            }
+            if (method != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "method", method));
+            }
+            if (apiVerion != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "api_verion", apiVerion));
+            }
+            if (statusCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "status_code", statusCode));
+            }
+            if (dateCreatedFrom != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "date_created_from", dateCreatedFrom));
+            }
+            if (dateCreatedTo != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "date_created_to", dateCreatedTo));
+            }
             if (page != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "page", page));
@@ -339,14 +409,21 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List events Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Event&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Event>> InvoiceV1LogGetAsync(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<Event>> InvoiceV1LogGetAsync(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>> localVarResponse = await InvoiceV1LogGetWithHttpInfoAsync(page, pageSize, operationIndex, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>> localVarResponse = await InvoiceV1LogGetWithHttpInfoAsync(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -354,12 +431,19 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// List events Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. (optional, default to 100)</param>
+        /// <param name="companyId">Company id (optional)</param>
+        /// <param name="endpoint"> (optional)</param>
+        /// <param name="method"> (optional)</param>
+        /// <param name="apiVerion">Api version (optional)</param>
+        /// <param name="statusCode">Response status code (optional)</param>
+        /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
+        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Event&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>>> InvoiceV1LogGetWithHttpInfoAsync(int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoicetronic.Invoice.Sdk.Client.ApiResponse<List<Event>>> InvoiceV1LogGetWithHttpInfoAsync(int? companyId = default(int?), string endpoint = default(string), string method = default(string), int? apiVerion = default(int?), int? statusCode = default(int?), DateTime? dateCreatedFrom = default(DateTime?), DateTime? dateCreatedTo = default(DateTime?), int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             Invoicetronic.Invoice.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Invoice.Sdk.Client.RequestOptions();
@@ -384,6 +468,34 @@ namespace Invoicetronic.Invoice.Sdk.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            if (companyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "company_id", companyId));
+            }
+            if (endpoint != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "endpoint", endpoint));
+            }
+            if (method != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "method", method));
+            }
+            if (apiVerion != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "api_verion", apiVerion));
+            }
+            if (statusCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "status_code", statusCode));
+            }
+            if (dateCreatedFrom != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "date_created_from", dateCreatedFrom));
+            }
+            if (dateCreatedTo != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "date_created_to", dateCreatedTo));
+            }
             if (page != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Invoice.Sdk.Client.ClientUtils.ParameterToMultiMap("", "page", page));
@@ -422,7 +534,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an event by id Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Event</returns>
         public Event InvoiceV1LogIdGet(int id, int operationIndex = 0)
@@ -435,7 +547,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an event by id Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Event</returns>
         public Invoicetronic.Invoice.Sdk.Client.ApiResponse<Event> InvoiceV1LogIdGetWithHttpInfo(int id, int operationIndex = 0)
@@ -492,7 +604,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an event by id Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Event</returns>
@@ -506,7 +618,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
         /// Get an event by id Every API operation is logged and can be retrieved here.
         /// </summary>
         /// <exception cref="Invoicetronic.Invoice.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Item id.</param>
+        /// <param name="id">Item id</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Event)</returns>

@@ -1,7 +1,7 @@
 /*
  * Italian eInvoice API
  *
- * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while still providing complete control over the invoice send/receive process. The API also provides advanced features and a rich toolchain, such as invoice validation, multiple upload methods, webhooks, event logs, CORS support, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
+ * The Italian eInvoice API is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.  For more information, see  [Invoicetronic website][2]  [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/ [2]: https://invoicetronic.com/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@invoicetronic.com
@@ -38,6 +38,8 @@ namespace Invoicetronic.Invoice.Sdk.Model
         /// <param name="id">Unique identifier. Leave it at 0 for new records as it will be set automatically..</param>
         /// <param name="created">Creation date. It is set automatically..</param>
         /// <param name="varVersion">Row version, for optimistic concurrency. It is set automatically..</param>
+        /// <param name="userId">User id..</param>
+        /// <param name="apiKeyId">Api key id..</param>
         /// <param name="companyId">Company id..</param>
         /// <param name="method">Request method..</param>
         /// <param name="query">Request query..</param>
@@ -46,15 +48,14 @@ namespace Invoicetronic.Invoice.Sdk.Model
         /// <param name="statusCode">Status code returned by the API..</param>
         /// <param name="dateTime">Date and time of the request..</param>
         /// <param name="error">Response error..</param>
-        /// <param name="requestBody">Request payload. It is guaranteed to be cyphered at rest..</param>
         /// <param name="responseBody">Response payload. It is guaranteed to be cyphered at rest..</param>
-        /// <param name="userId">User id..</param>
-        /// <param name="apiKeyId">Api key id..</param>
-        public Event(int id = default(int), DateTime created = default(DateTime), int varVersion = default(int), int? companyId = default(int?), string method = default(string), string query = default(string), string endpoint = default(string), int apiVersion = default(int), int statusCode = default(int), DateTime dateTime = default(DateTime), string error = default(string), string requestBody = default(string), string responseBody = default(string), int userId = default(int), int apiKeyId = default(int))
+        public Event(int id = default(int), DateTime created = default(DateTime), int varVersion = default(int), int userId = default(int), int apiKeyId = default(int), int? companyId = default(int?), string method = default(string), string query = default(string), string endpoint = default(string), int apiVersion = default(int), int statusCode = default(int), DateTime dateTime = default(DateTime), string error = default(string), string responseBody = default(string))
         {
             this.Id = id;
             this.Created = created;
             this.VarVersion = varVersion;
+            this.UserId = userId;
+            this.ApiKeyId = apiKeyId;
             this.CompanyId = companyId;
             this.Method = method;
             this.Query = query;
@@ -63,10 +64,7 @@ namespace Invoicetronic.Invoice.Sdk.Model
             this.StatusCode = statusCode;
             this.DateTime = dateTime;
             this.Error = error;
-            this.RequestBody = requestBody;
             this.ResponseBody = responseBody;
-            this.UserId = userId;
-            this.ApiKeyId = apiKeyId;
         }
 
         /// <summary>
@@ -89,6 +87,20 @@ namespace Invoicetronic.Invoice.Sdk.Model
         /// <value>Row version, for optimistic concurrency. It is set automatically.</value>
         [DataMember(Name = "version", EmitDefaultValue = false)]
         public int VarVersion { get; set; }
+
+        /// <summary>
+        /// User id.
+        /// </summary>
+        /// <value>User id.</value>
+        [DataMember(Name = "user_id", EmitDefaultValue = false)]
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// Api key id.
+        /// </summary>
+        /// <value>Api key id.</value>
+        [DataMember(Name = "api_key_id", EmitDefaultValue = false)]
+        public int ApiKeyId { get; set; }
 
         /// <summary>
         /// Company id.
@@ -147,20 +159,6 @@ namespace Invoicetronic.Invoice.Sdk.Model
         public string Error { get; set; }
 
         /// <summary>
-        /// Request payload. It is guaranteed to be cyphered at rest.
-        /// </summary>
-        /// <value>Request payload. It is guaranteed to be cyphered at rest.</value>
-        [DataMember(Name = "request_body", EmitDefaultValue = true)]
-        public string RequestBody { get; set; }
-
-        /// <summary>
-        /// Response payload. It is guaranteed to be cyphered at rest.
-        /// </summary>
-        /// <value>Response payload. It is guaranteed to be cyphered at rest.</value>
-        [DataMember(Name = "response_body", EmitDefaultValue = true)]
-        public string ResponseBody { get; set; }
-
-        /// <summary>
         /// Wether the request was successful.
         /// </summary>
         /// <value>Wether the request was successful.</value>
@@ -176,18 +174,11 @@ namespace Invoicetronic.Invoice.Sdk.Model
             return false;
         }
         /// <summary>
-        /// User id.
+        /// Response payload. It is guaranteed to be cyphered at rest.
         /// </summary>
-        /// <value>User id.</value>
-        [DataMember(Name = "user_id", EmitDefaultValue = false)]
-        public int UserId { get; set; }
-
-        /// <summary>
-        /// Api key id.
-        /// </summary>
-        /// <value>Api key id.</value>
-        [DataMember(Name = "api_key_id", EmitDefaultValue = false)]
-        public int ApiKeyId { get; set; }
+        /// <value>Response payload. It is guaranteed to be cyphered at rest.</value>
+        [DataMember(Name = "response_body", EmitDefaultValue = true)]
+        public string ResponseBody { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -200,6 +191,8 @@ namespace Invoicetronic.Invoice.Sdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  VarVersion: ").Append(VarVersion).Append("\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
+            sb.Append("  ApiKeyId: ").Append(ApiKeyId).Append("\n");
             sb.Append("  CompanyId: ").Append(CompanyId).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
@@ -208,11 +201,8 @@ namespace Invoicetronic.Invoice.Sdk.Model
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");
             sb.Append("  DateTime: ").Append(DateTime).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  RequestBody: ").Append(RequestBody).Append("\n");
-            sb.Append("  ResponseBody: ").Append(ResponseBody).Append("\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
-            sb.Append("  UserId: ").Append(UserId).Append("\n");
-            sb.Append("  ApiKeyId: ").Append(ApiKeyId).Append("\n");
+            sb.Append("  ResponseBody: ").Append(ResponseBody).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

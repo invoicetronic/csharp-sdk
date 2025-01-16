@@ -19,6 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>bumping version to 1.0.0</PackageReleaseNotes>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

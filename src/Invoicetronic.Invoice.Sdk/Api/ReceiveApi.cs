@@ -417,6 +417,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -707,6 +708,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -851,6 +853,7 @@ namespace Invoicetronic.Invoice.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Invoice.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);

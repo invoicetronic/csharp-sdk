@@ -4,12 +4,12 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InvoiceV1UpdateGet**](UpdateApi.md#invoicev1updateget) | **GET** /invoice/v1/update | List updates |
-| [**InvoiceV1UpdateIdGet**](UpdateApi.md#invoicev1updateidget) | **GET** /invoice/v1/update/{id} | Get an update by id |
+| [**UpdateGet**](UpdateApi.md#updateget) | **GET** /update | List updates |
+| [**UpdateIdGet**](UpdateApi.md#updateidget) | **GET** /update/{id} | Get an update by id |
 
-<a id="invoicev1updateget"></a>
-# **InvoiceV1UpdateGet**
-> List&lt;Update&gt; InvoiceV1UpdateGet (int? companyId = null, string identifier = null, bool? unread = null, int? sendId = null, string state = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, int? page = null, int? pageSize = null)
+<a id="updateget"></a>
+# **UpdateGet**
+> List&lt;Update&gt; UpdateGet (int? companyId = null, string identifier = null, bool? unread = null, int? sendId = null, string state = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, int? page = null, int? pageSize = null, string sort = null)
 
 List updates
 
@@ -25,7 +25,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1UpdateGetExample
+    public class UpdateGetExample
     {
         public static void Main()
         {
@@ -47,16 +47,17 @@ namespace Example
             var dateSentTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
             {
                 // List updates
-                List<Update> result = apiInstance.InvoiceV1UpdateGet(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize);
+                List<Update> result = apiInstance.UpdateGet(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UpdateApi.InvoiceV1UpdateGet: " + e.Message);
+                Debug.Print("Exception when calling UpdateApi.UpdateGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -65,21 +66,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1UpdateGetWithHttpInfo variant
+#### Using the UpdateGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List updates
-    ApiResponse<List<Update>> response = apiInstance.InvoiceV1UpdateGetWithHttpInfo(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize);
+    ApiResponse<List<Update>> response = apiInstance.UpdateGetWithHttpInfo(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UpdateApi.InvoiceV1UpdateGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UpdateApi.UpdateGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -100,6 +101,7 @@ catch (ApiException e)
 | **dateSentTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type
 
@@ -124,9 +126,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1updateidget"></a>
-# **InvoiceV1UpdateIdGet**
-> Update InvoiceV1UpdateIdGet (int id)
+<a id="updateidget"></a>
+# **UpdateIdGet**
+> Update UpdateIdGet (int id)
 
 Get an update by id
 
@@ -142,7 +144,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1UpdateIdGetExample
+    public class UpdateIdGetExample
     {
         public static void Main()
         {
@@ -158,12 +160,12 @@ namespace Example
             try
             {
                 // Get an update by id
-                Update result = apiInstance.InvoiceV1UpdateIdGet(id);
+                Update result = apiInstance.UpdateIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UpdateApi.InvoiceV1UpdateIdGet: " + e.Message);
+                Debug.Print("Exception when calling UpdateApi.UpdateIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -172,21 +174,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1UpdateIdGetWithHttpInfo variant
+#### Using the UpdateIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get an update by id
-    ApiResponse<Update> response = apiInstance.InvoiceV1UpdateIdGetWithHttpInfo(id);
+    ApiResponse<Update> response = apiInstance.UpdateIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UpdateApi.InvoiceV1UpdateIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UpdateApi.UpdateIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

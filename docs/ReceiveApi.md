@@ -4,13 +4,13 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InvoiceV1ReceiveGet**](ReceiveApi.md#invoicev1receiveget) | **GET** /invoice/v1/receive | List incoming invoices |
-| [**InvoiceV1ReceiveIdDelete**](ReceiveApi.md#invoicev1receiveiddelete) | **DELETE** /invoice/v1/receive/{id} | Delete an incoming invoice by id |
-| [**InvoiceV1ReceiveIdGet**](ReceiveApi.md#invoicev1receiveidget) | **GET** /invoice/v1/receive/{id} | Get an incoming invoice by id |
+| [**ReceiveGet**](ReceiveApi.md#receiveget) | **GET** /receive | List incoming invoices |
+| [**ReceiveIdDelete**](ReceiveApi.md#receiveiddelete) | **DELETE** /receive/{id} | Delete an incoming invoice by id |
+| [**ReceiveIdGet**](ReceiveApi.md#receiveidget) | **GET** /receive/{id} | Get an incoming invoice by id |
 
-<a id="invoicev1receiveget"></a>
-# **InvoiceV1ReceiveGet**
-> List&lt;Receive&gt; InvoiceV1ReceiveGet (int? companyId = null, string identifier = null, bool? unread = null, string committente = null, string prestatore = null, string fileName = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, DateTime? documentDateFrom = null, DateTime? documentDateTo = null, string documentNumber = null, int? page = null, int? pageSize = null)
+<a id="receiveget"></a>
+# **ReceiveGet**
+> List&lt;Receive&gt; ReceiveGet (int? companyId = null, string identifier = null, bool? unread = null, string committente = null, string prestatore = null, string fileName = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, DateTime? documentDateFrom = null, DateTime? documentDateTo = null, string documentNumber = null, int? page = null, int? pageSize = null, string sort = null)
 
 List incoming invoices
 
@@ -26,7 +26,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1ReceiveGetExample
+    public class ReceiveGetExample
     {
         public static void Main()
         {
@@ -52,16 +52,17 @@ namespace Example
             var documentNumber = "documentNumber_example";  // string | Document number. (optional) 
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
             {
                 // List incoming invoices
-                List<Receive> result = apiInstance.InvoiceV1ReceiveGet(companyId, identifier, unread, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize);
+                List<Receive> result = apiInstance.ReceiveGet(companyId, identifier, unread, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ReceiveApi.InvoiceV1ReceiveGet: " + e.Message);
+                Debug.Print("Exception when calling ReceiveApi.ReceiveGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -70,21 +71,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1ReceiveGetWithHttpInfo variant
+#### Using the ReceiveGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List incoming invoices
-    ApiResponse<List<Receive>> response = apiInstance.InvoiceV1ReceiveGetWithHttpInfo(companyId, identifier, unread, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize);
+    ApiResponse<List<Receive>> response = apiInstance.ReceiveGetWithHttpInfo(companyId, identifier, unread, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling ReceiveApi.InvoiceV1ReceiveGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling ReceiveApi.ReceiveGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -109,6 +110,7 @@ catch (ApiException e)
 | **documentNumber** | **string** | Document number. | [optional]  |
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type
 
@@ -133,9 +135,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1receiveiddelete"></a>
-# **InvoiceV1ReceiveIdDelete**
-> Receive InvoiceV1ReceiveIdDelete (int id)
+<a id="receiveiddelete"></a>
+# **ReceiveIdDelete**
+> Receive ReceiveIdDelete (int id)
 
 Delete an incoming invoice by id
 
@@ -151,7 +153,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1ReceiveIdDeleteExample
+    public class ReceiveIdDeleteExample
     {
         public static void Main()
         {
@@ -167,12 +169,12 @@ namespace Example
             try
             {
                 // Delete an incoming invoice by id
-                Receive result = apiInstance.InvoiceV1ReceiveIdDelete(id);
+                Receive result = apiInstance.ReceiveIdDelete(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ReceiveApi.InvoiceV1ReceiveIdDelete: " + e.Message);
+                Debug.Print("Exception when calling ReceiveApi.ReceiveIdDelete: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -181,21 +183,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1ReceiveIdDeleteWithHttpInfo variant
+#### Using the ReceiveIdDeleteWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Delete an incoming invoice by id
-    ApiResponse<Receive> response = apiInstance.InvoiceV1ReceiveIdDeleteWithHttpInfo(id);
+    ApiResponse<Receive> response = apiInstance.ReceiveIdDeleteWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling ReceiveApi.InvoiceV1ReceiveIdDeleteWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling ReceiveApi.ReceiveIdDeleteWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -231,9 +233,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1receiveidget"></a>
-# **InvoiceV1ReceiveIdGet**
-> Receive InvoiceV1ReceiveIdGet (int id)
+<a id="receiveidget"></a>
+# **ReceiveIdGet**
+> Receive ReceiveIdGet (int id)
 
 Get an incoming invoice by id
 
@@ -249,7 +251,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1ReceiveIdGetExample
+    public class ReceiveIdGetExample
     {
         public static void Main()
         {
@@ -265,12 +267,12 @@ namespace Example
             try
             {
                 // Get an incoming invoice by id
-                Receive result = apiInstance.InvoiceV1ReceiveIdGet(id);
+                Receive result = apiInstance.ReceiveIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ReceiveApi.InvoiceV1ReceiveIdGet: " + e.Message);
+                Debug.Print("Exception when calling ReceiveApi.ReceiveIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -279,21 +281,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1ReceiveIdGetWithHttpInfo variant
+#### Using the ReceiveIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get an incoming invoice by id
-    ApiResponse<Receive> response = apiInstance.InvoiceV1ReceiveIdGetWithHttpInfo(id);
+    ApiResponse<Receive> response = apiInstance.ReceiveIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling ReceiveApi.InvoiceV1ReceiveIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling ReceiveApi.ReceiveIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

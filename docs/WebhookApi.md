@@ -4,17 +4,17 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InvoiceV1WebhookGet**](WebhookApi.md#invoicev1webhookget) | **GET** /invoice/v1/webhook | List webhooks |
-| [**InvoiceV1WebhookIdDelete**](WebhookApi.md#invoicev1webhookiddelete) | **DELETE** /invoice/v1/webhook/{id} | Delete a webhook by id |
-| [**InvoiceV1WebhookIdGet**](WebhookApi.md#invoicev1webhookidget) | **GET** /invoice/v1/webhook/{id} | Get a webhook by id |
-| [**InvoiceV1WebhookPost**](WebhookApi.md#invoicev1webhookpost) | **POST** /invoice/v1/webhook | Add a webhook |
-| [**InvoiceV1WebhookPut**](WebhookApi.md#invoicev1webhookput) | **PUT** /invoice/v1/webhook | Update a webhook |
-| [**InvoiceV1WebhookhistoryGet**](WebhookApi.md#invoicev1webhookhistoryget) | **GET** /invoice/v1/webhookhistory | List webhook history items |
-| [**InvoiceV1WebhookhistoryIdGet**](WebhookApi.md#invoicev1webhookhistoryidget) | **GET** /invoice/v1/webhookhistory/{id} | Get a webhook history item by id |
+| [**WebhookGet**](WebhookApi.md#webhookget) | **GET** /webhook | List webhooks |
+| [**WebhookIdDelete**](WebhookApi.md#webhookiddelete) | **DELETE** /webhook/{id} | Delete a webhook by id |
+| [**WebhookIdGet**](WebhookApi.md#webhookidget) | **GET** /webhook/{id} | Get a webhook by id |
+| [**WebhookPost**](WebhookApi.md#webhookpost) | **POST** /webhook | Add a webhook |
+| [**WebhookPut**](WebhookApi.md#webhookput) | **PUT** /webhook | Update a webhook |
+| [**WebhookhistoryGet**](WebhookApi.md#webhookhistoryget) | **GET** /webhookhistory | List webhook history items |
+| [**WebhookhistoryIdGet**](WebhookApi.md#webhookhistoryidget) | **GET** /webhookhistory/{id} | Get a webhook history item by id |
 
-<a id="invoicev1webhookget"></a>
-# **InvoiceV1WebhookGet**
-> List&lt;WebHook&gt; InvoiceV1WebhookGet (int? page = null, int? pageSize = null)
+<a id="webhookget"></a>
+# **WebhookGet**
+> List&lt;WebHook&gt; WebhookGet (int? page = null, int? pageSize = null, string sort = null)
 
 List webhooks
 
@@ -30,7 +30,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookGetExample
+    public class WebhookGetExample
     {
         public static void Main()
         {
@@ -43,16 +43,17 @@ namespace Example
             var apiInstance = new WebhookApi(config);
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
             {
                 // List webhooks
-                List<WebHook> result = apiInstance.InvoiceV1WebhookGet(page, pageSize);
+                List<WebHook> result = apiInstance.WebhookGet(page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookGet: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -61,21 +62,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookGetWithHttpInfo variant
+#### Using the WebhookGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List webhooks
-    ApiResponse<List<WebHook>> response = apiInstance.InvoiceV1WebhookGetWithHttpInfo(page, pageSize);
+    ApiResponse<List<WebHook>> response = apiInstance.WebhookGetWithHttpInfo(page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -87,6 +88,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type
 
@@ -111,9 +113,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1webhookiddelete"></a>
-# **InvoiceV1WebhookIdDelete**
-> WebHook InvoiceV1WebhookIdDelete (int id)
+<a id="webhookiddelete"></a>
+# **WebhookIdDelete**
+> WebHook WebhookIdDelete (int id)
 
 Delete a webhook by id
 
@@ -129,7 +131,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookIdDeleteExample
+    public class WebhookIdDeleteExample
     {
         public static void Main()
         {
@@ -145,12 +147,12 @@ namespace Example
             try
             {
                 // Delete a webhook by id
-                WebHook result = apiInstance.InvoiceV1WebhookIdDelete(id);
+                WebHook result = apiInstance.WebhookIdDelete(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookIdDelete: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookIdDelete: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -159,21 +161,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookIdDeleteWithHttpInfo variant
+#### Using the WebhookIdDeleteWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Delete a webhook by id
-    ApiResponse<WebHook> response = apiInstance.InvoiceV1WebhookIdDeleteWithHttpInfo(id);
+    ApiResponse<WebHook> response = apiInstance.WebhookIdDeleteWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookIdDeleteWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookIdDeleteWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -209,9 +211,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1webhookidget"></a>
-# **InvoiceV1WebhookIdGet**
-> WebHook InvoiceV1WebhookIdGet (int id)
+<a id="webhookidget"></a>
+# **WebhookIdGet**
+> WebHook WebhookIdGet (int id)
 
 Get a webhook by id
 
@@ -227,7 +229,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookIdGetExample
+    public class WebhookIdGetExample
     {
         public static void Main()
         {
@@ -243,12 +245,12 @@ namespace Example
             try
             {
                 // Get a webhook by id
-                WebHook result = apiInstance.InvoiceV1WebhookIdGet(id);
+                WebHook result = apiInstance.WebhookIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookIdGet: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -257,21 +259,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookIdGetWithHttpInfo variant
+#### Using the WebhookIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get a webhook by id
-    ApiResponse<WebHook> response = apiInstance.InvoiceV1WebhookIdGetWithHttpInfo(id);
+    ApiResponse<WebHook> response = apiInstance.WebhookIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -305,9 +307,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1webhookpost"></a>
-# **InvoiceV1WebhookPost**
-> WebHook InvoiceV1WebhookPost (WebHook webHook)
+<a id="webhookpost"></a>
+# **WebhookPost**
+> WebHook WebhookPost (WebHook webHook)
 
 Add a webhook
 
@@ -323,7 +325,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookPostExample
+    public class WebhookPostExample
     {
         public static void Main()
         {
@@ -339,12 +341,12 @@ namespace Example
             try
             {
                 // Add a webhook
-                WebHook result = apiInstance.InvoiceV1WebhookPost(webHook);
+                WebHook result = apiInstance.WebhookPost(webHook);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookPost: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -353,21 +355,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookPostWithHttpInfo variant
+#### Using the WebhookPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add a webhook
-    ApiResponse<WebHook> response = apiInstance.InvoiceV1WebhookPostWithHttpInfo(webHook);
+    ApiResponse<WebHook> response = apiInstance.WebhookPostWithHttpInfo(webHook);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -402,9 +404,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1webhookput"></a>
-# **InvoiceV1WebhookPut**
-> WebHook InvoiceV1WebhookPut (WebHook webHook)
+<a id="webhookput"></a>
+# **WebhookPut**
+> WebHook WebhookPut (WebHook webHook)
 
 Update a webhook
 
@@ -420,7 +422,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookPutExample
+    public class WebhookPutExample
     {
         public static void Main()
         {
@@ -436,12 +438,12 @@ namespace Example
             try
             {
                 // Update a webhook
-                WebHook result = apiInstance.InvoiceV1WebhookPut(webHook);
+                WebHook result = apiInstance.WebhookPut(webHook);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookPut: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookPut: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -450,21 +452,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookPutWithHttpInfo variant
+#### Using the WebhookPutWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Update a webhook
-    ApiResponse<WebHook> response = apiInstance.InvoiceV1WebhookPutWithHttpInfo(webHook);
+    ApiResponse<WebHook> response = apiInstance.WebhookPutWithHttpInfo(webHook);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookPutWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookPutWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -499,9 +501,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1webhookhistoryget"></a>
-# **InvoiceV1WebhookhistoryGet**
-> List&lt;WebHookHistory&gt; InvoiceV1WebhookhistoryGet (int? page = null, int? pageSize = null)
+<a id="webhookhistoryget"></a>
+# **WebhookhistoryGet**
+> List&lt;WebHookHistory&gt; WebhookhistoryGet (int? page = null, int? pageSize = null, string sort = null)
 
 List webhook history items
 
@@ -515,7 +517,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookhistoryGetExample
+    public class WebhookhistoryGetExample
     {
         public static void Main()
         {
@@ -528,16 +530,17 @@ namespace Example
             var apiInstance = new WebhookApi(config);
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
             {
                 // List webhook history items
-                List<WebHookHistory> result = apiInstance.InvoiceV1WebhookhistoryGet(page, pageSize);
+                List<WebHookHistory> result = apiInstance.WebhookhistoryGet(page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookhistoryGet: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookhistoryGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -546,21 +549,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookhistoryGetWithHttpInfo variant
+#### Using the WebhookhistoryGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List webhook history items
-    ApiResponse<List<WebHookHistory>> response = apiInstance.InvoiceV1WebhookhistoryGetWithHttpInfo(page, pageSize);
+    ApiResponse<List<WebHookHistory>> response = apiInstance.WebhookhistoryGetWithHttpInfo(page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookhistoryGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookhistoryGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -572,6 +575,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type
 
@@ -596,9 +600,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1webhookhistoryidget"></a>
-# **InvoiceV1WebhookhistoryIdGet**
-> WebHookHistory InvoiceV1WebhookhistoryIdGet (int id)
+<a id="webhookhistoryidget"></a>
+# **WebhookhistoryIdGet**
+> WebHookHistory WebhookhistoryIdGet (int id)
 
 Get a webhook history item by id
 
@@ -612,7 +616,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1WebhookhistoryIdGetExample
+    public class WebhookhistoryIdGetExample
     {
         public static void Main()
         {
@@ -628,12 +632,12 @@ namespace Example
             try
             {
                 // Get a webhook history item by id
-                WebHookHistory result = apiInstance.InvoiceV1WebhookhistoryIdGet(id);
+                WebHookHistory result = apiInstance.WebhookhistoryIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookhistoryIdGet: " + e.Message);
+                Debug.Print("Exception when calling WebhookApi.WebhookhistoryIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -642,21 +646,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1WebhookhistoryIdGetWithHttpInfo variant
+#### Using the WebhookhistoryIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get a webhook history item by id
-    ApiResponse<WebHookHistory> response = apiInstance.InvoiceV1WebhookhistoryIdGetWithHttpInfo(id);
+    ApiResponse<WebHookHistory> response = apiInstance.WebhookhistoryIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling WebhookApi.InvoiceV1WebhookhistoryIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling WebhookApi.WebhookhistoryIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

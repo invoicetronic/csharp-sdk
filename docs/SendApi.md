@@ -4,20 +4,20 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InvoiceV1SendFilesPost**](SendApi.md#invoicev1sendfilespost) | **POST** /invoice/v1/send/files | Add an invoice by file |
-| [**InvoiceV1SendGet**](SendApi.md#invoicev1sendget) | **GET** /invoice/v1/send | List invoices |
-| [**InvoiceV1SendIdGet**](SendApi.md#invoicev1sendidget) | **GET** /invoice/v1/send/{id} | Get a invoice by id |
-| [**InvoiceV1SendJsonPost**](SendApi.md#invoicev1sendjsonpost) | **POST** /invoice/v1/send/json | Add an invoice by json |
-| [**InvoiceV1SendPost**](SendApi.md#invoicev1sendpost) | **POST** /invoice/v1/send | Add an invoice |
-| [**InvoiceV1SendValidateFilesPost**](SendApi.md#invoicev1sendvalidatefilespost) | **POST** /invoice/v1/send/validate/files | Validate an invoice by file |
-| [**InvoiceV1SendValidateJsonPost**](SendApi.md#invoicev1sendvalidatejsonpost) | **POST** /invoice/v1/send/validate/json | Validate an invoice by json |
-| [**InvoiceV1SendValidatePost**](SendApi.md#invoicev1sendvalidatepost) | **POST** /invoice/v1/send/validate | Validate an invoice |
-| [**InvoiceV1SendValidateXmlPost**](SendApi.md#invoicev1sendvalidatexmlpost) | **POST** /invoice/v1/send/validate/xml | Validate an invoice by xml |
-| [**InvoiceV1SendXmlPost**](SendApi.md#invoicev1sendxmlpost) | **POST** /invoice/v1/send/xml | Add an invoice by xml |
+| [**SendFilePost**](SendApi.md#sendfilepost) | **POST** /send/file | Add an invoice by file |
+| [**SendGet**](SendApi.md#sendget) | **GET** /send | List invoices |
+| [**SendIdGet**](SendApi.md#sendidget) | **GET** /send/{id} | Get a invoice by id |
+| [**SendJsonPost**](SendApi.md#sendjsonpost) | **POST** /send/json | Add an invoice by json |
+| [**SendPost**](SendApi.md#sendpost) | **POST** /send | Add an invoice |
+| [**SendValidateFilesPost**](SendApi.md#sendvalidatefilespost) | **POST** /send/validate/files | Validate an invoice by file |
+| [**SendValidateJsonPost**](SendApi.md#sendvalidatejsonpost) | **POST** /send/validate/json | Validate an invoice by json |
+| [**SendValidatePost**](SendApi.md#sendvalidatepost) | **POST** /send/validate | Validate an invoice |
+| [**SendValidateXmlPost**](SendApi.md#sendvalidatexmlpost) | **POST** /send/validate/xml | Validate an invoice by xml |
+| [**SendXmlPost**](SendApi.md#sendxmlpost) | **POST** /send/xml | Add an invoice by xml |
 
-<a id="invoicev1sendfilespost"></a>
-# **InvoiceV1SendFilesPost**
-> Send InvoiceV1SendFilesPost (List<System.IO.Stream> files, bool? validate = null, string signature = null)
+<a id="sendfilepost"></a>
+# **SendFilePost**
+> Send SendFilePost (System.IO.Stream file, bool? validate = null, string signature = null)
 
 Add an invoice by file
 
@@ -33,7 +33,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendFilesPostExample
+    public class SendFilePostExample
     {
         public static void Main()
         {
@@ -44,19 +44,19 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new SendApi(config);
-            var files = new List<System.IO.Stream>(); // List<System.IO.Stream> | 
+            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice by file
-                Send result = apiInstance.InvoiceV1SendFilesPost(files, validate, signature);
+                Send result = apiInstance.SendFilePost(file, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendFilesPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendFilePost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -65,21 +65,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendFilesPostWithHttpInfo variant
+#### Using the SendFilePostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add an invoice by file
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendFilesPostWithHttpInfo(files, validate, signature);
+    ApiResponse<Send> response = apiInstance.SendFilePostWithHttpInfo(file, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendFilesPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendFilePostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -89,7 +89,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **files** | **List&lt;System.IO.Stream&gt;** |  |  |
+| **file** | **System.IO.Stream****System.IO.Stream** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
@@ -116,9 +116,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendget"></a>
-# **InvoiceV1SendGet**
-> List&lt;Send&gt; InvoiceV1SendGet (int? companyId = null, string identifier = null, string committente = null, string prestatore = null, string fileName = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, DateTime? documentDateFrom = null, DateTime? documentDateTo = null, string documentNumber = null, int? page = null, int? pageSize = null)
+<a id="sendget"></a>
+# **SendGet**
+> List&lt;Send&gt; SendGet (int? companyId = null, string identifier = null, string committente = null, string prestatore = null, string fileName = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, DateTime? documentDateFrom = null, DateTime? documentDateTo = null, string documentNumber = null, int? page = null, int? pageSize = null, string sort = null)
 
 List invoices
 
@@ -134,7 +134,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendGetExample
+    public class SendGetExample
     {
         public static void Main()
         {
@@ -159,16 +159,17 @@ namespace Example
             var documentNumber = "documentNumber_example";  // string | Document number. (optional) 
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
             {
                 // List invoices
-                List<Send> result = apiInstance.InvoiceV1SendGet(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize);
+                List<Send> result = apiInstance.SendGet(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendGet: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -177,21 +178,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendGetWithHttpInfo variant
+#### Using the SendGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List invoices
-    ApiResponse<List<Send>> response = apiInstance.InvoiceV1SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize);
+    ApiResponse<List<Send>> response = apiInstance.SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -215,6 +216,7 @@ catch (ApiException e)
 | **documentNumber** | **string** | Document number. | [optional]  |
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type
 
@@ -239,9 +241,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendidget"></a>
-# **InvoiceV1SendIdGet**
-> Send InvoiceV1SendIdGet (int id)
+<a id="sendidget"></a>
+# **SendIdGet**
+> Send SendIdGet (int id)
 
 Get a invoice by id
 
@@ -257,7 +259,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendIdGetExample
+    public class SendIdGetExample
     {
         public static void Main()
         {
@@ -273,12 +275,12 @@ namespace Example
             try
             {
                 // Get a invoice by id
-                Send result = apiInstance.InvoiceV1SendIdGet(id);
+                Send result = apiInstance.SendIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendIdGet: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -287,21 +289,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendIdGetWithHttpInfo variant
+#### Using the SendIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get a invoice by id
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendIdGetWithHttpInfo(id);
+    ApiResponse<Send> response = apiInstance.SendIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -335,9 +337,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendjsonpost"></a>
-# **InvoiceV1SendJsonPost**
-> Send InvoiceV1SendJsonPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
+<a id="sendjsonpost"></a>
+# **SendJsonPost**
+> Send SendJsonPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
 
 Add an invoice by json
 
@@ -353,7 +355,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendJsonPostExample
+    public class SendJsonPostExample
     {
         public static void Main()
         {
@@ -371,12 +373,12 @@ namespace Example
             try
             {
                 // Add an invoice by json
-                Send result = apiInstance.InvoiceV1SendJsonPost(fatturaOrdinaria, validate, signature);
+                Send result = apiInstance.SendJsonPost(fatturaOrdinaria, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendJsonPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendJsonPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -385,21 +387,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendJsonPostWithHttpInfo variant
+#### Using the SendJsonPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add an invoice by json
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendJsonPostWithHttpInfo(fatturaOrdinaria, validate, signature);
+    ApiResponse<Send> response = apiInstance.SendJsonPostWithHttpInfo(fatturaOrdinaria, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendJsonPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendJsonPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -436,9 +438,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendpost"></a>
-# **InvoiceV1SendPost**
-> Send InvoiceV1SendPost (Send send, bool? validate = null, string signature = null)
+<a id="sendpost"></a>
+# **SendPost**
+> Send SendPost (Send send, bool? validate = null, string signature = null)
 
 Add an invoice
 
@@ -454,7 +456,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendPostExample
+    public class SendPostExample
     {
         public static void Main()
         {
@@ -472,12 +474,12 @@ namespace Example
             try
             {
                 // Add an invoice
-                Send result = apiInstance.InvoiceV1SendPost(send, validate, signature);
+                Send result = apiInstance.SendPost(send, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -486,21 +488,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendPostWithHttpInfo variant
+#### Using the SendPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add an invoice
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendPostWithHttpInfo(send, validate, signature);
+    ApiResponse<Send> response = apiInstance.SendPostWithHttpInfo(send, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -537,9 +539,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendvalidatefilespost"></a>
-# **InvoiceV1SendValidateFilesPost**
-> void InvoiceV1SendValidateFilesPost (List<System.IO.Stream> files)
+<a id="sendvalidatefilespost"></a>
+# **SendValidateFilesPost**
+> void SendValidateFilesPost (List<System.IO.Stream> files)
 
 Validate an invoice by file
 
@@ -555,7 +557,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendValidateFilesPostExample
+    public class SendValidateFilesPostExample
     {
         public static void Main()
         {
@@ -571,11 +573,11 @@ namespace Example
             try
             {
                 // Validate an invoice by file
-                apiInstance.InvoiceV1SendValidateFilesPost(files);
+                apiInstance.SendValidateFilesPost(files);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendValidateFilesPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendValidateFilesPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -584,18 +586,18 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendValidateFilesPostWithHttpInfo variant
+#### Using the SendValidateFilesPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Validate an invoice by file
-    apiInstance.InvoiceV1SendValidateFilesPostWithHttpInfo(files);
+    apiInstance.SendValidateFilesPostWithHttpInfo(files);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendValidateFilesPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendValidateFilesPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -630,9 +632,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendvalidatejsonpost"></a>
-# **InvoiceV1SendValidateJsonPost**
-> void InvoiceV1SendValidateJsonPost (FatturaOrdinaria fatturaOrdinaria)
+<a id="sendvalidatejsonpost"></a>
+# **SendValidateJsonPost**
+> void SendValidateJsonPost (FatturaOrdinaria fatturaOrdinaria)
 
 Validate an invoice by json
 
@@ -648,7 +650,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendValidateJsonPostExample
+    public class SendValidateJsonPostExample
     {
         public static void Main()
         {
@@ -664,11 +666,11 @@ namespace Example
             try
             {
                 // Validate an invoice by json
-                apiInstance.InvoiceV1SendValidateJsonPost(fatturaOrdinaria);
+                apiInstance.SendValidateJsonPost(fatturaOrdinaria);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendValidateJsonPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendValidateJsonPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -677,18 +679,18 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendValidateJsonPostWithHttpInfo variant
+#### Using the SendValidateJsonPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Validate an invoice by json
-    apiInstance.InvoiceV1SendValidateJsonPostWithHttpInfo(fatturaOrdinaria);
+    apiInstance.SendValidateJsonPostWithHttpInfo(fatturaOrdinaria);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendValidateJsonPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendValidateJsonPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -723,9 +725,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendvalidatepost"></a>
-# **InvoiceV1SendValidatePost**
-> void InvoiceV1SendValidatePost (Send send)
+<a id="sendvalidatepost"></a>
+# **SendValidatePost**
+> void SendValidatePost (Send send)
 
 Validate an invoice
 
@@ -741,7 +743,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendValidatePostExample
+    public class SendValidatePostExample
     {
         public static void Main()
         {
@@ -757,11 +759,11 @@ namespace Example
             try
             {
                 // Validate an invoice
-                apiInstance.InvoiceV1SendValidatePost(send);
+                apiInstance.SendValidatePost(send);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendValidatePost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendValidatePost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -770,18 +772,18 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendValidatePostWithHttpInfo variant
+#### Using the SendValidatePostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Validate an invoice
-    apiInstance.InvoiceV1SendValidatePostWithHttpInfo(send);
+    apiInstance.SendValidatePostWithHttpInfo(send);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendValidatePostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendValidatePostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -816,9 +818,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendvalidatexmlpost"></a>
-# **InvoiceV1SendValidateXmlPost**
-> void InvoiceV1SendValidateXmlPost (FatturaOrdinaria fatturaOrdinaria)
+<a id="sendvalidatexmlpost"></a>
+# **SendValidateXmlPost**
+> void SendValidateXmlPost (FatturaOrdinaria fatturaOrdinaria)
 
 Validate an invoice by xml
 
@@ -834,7 +836,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendValidateXmlPostExample
+    public class SendValidateXmlPostExample
     {
         public static void Main()
         {
@@ -850,11 +852,11 @@ namespace Example
             try
             {
                 // Validate an invoice by xml
-                apiInstance.InvoiceV1SendValidateXmlPost(fatturaOrdinaria);
+                apiInstance.SendValidateXmlPost(fatturaOrdinaria);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendValidateXmlPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendValidateXmlPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -863,18 +865,18 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendValidateXmlPostWithHttpInfo variant
+#### Using the SendValidateXmlPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Validate an invoice by xml
-    apiInstance.InvoiceV1SendValidateXmlPostWithHttpInfo(fatturaOrdinaria);
+    apiInstance.SendValidateXmlPostWithHttpInfo(fatturaOrdinaria);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendValidateXmlPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendValidateXmlPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -909,9 +911,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1sendxmlpost"></a>
-# **InvoiceV1SendXmlPost**
-> Send InvoiceV1SendXmlPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
+<a id="sendxmlpost"></a>
+# **SendXmlPost**
+> Send SendXmlPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
 
 Add an invoice by xml
 
@@ -927,7 +929,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1SendXmlPostExample
+    public class SendXmlPostExample
     {
         public static void Main()
         {
@@ -945,12 +947,12 @@ namespace Example
             try
             {
                 // Add an invoice by xml
-                Send result = apiInstance.InvoiceV1SendXmlPost(fatturaOrdinaria, validate, signature);
+                Send result = apiInstance.SendXmlPost(fatturaOrdinaria, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.InvoiceV1SendXmlPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendXmlPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -959,21 +961,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1SendXmlPostWithHttpInfo variant
+#### Using the SendXmlPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add an invoice by xml
-    ApiResponse<Send> response = apiInstance.InvoiceV1SendXmlPostWithHttpInfo(fatturaOrdinaria, validate, signature);
+    ApiResponse<Send> response = apiInstance.SendXmlPostWithHttpInfo(fatturaOrdinaria, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.InvoiceV1SendXmlPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendXmlPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

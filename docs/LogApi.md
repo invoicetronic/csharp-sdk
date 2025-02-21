@@ -4,12 +4,12 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InvoiceV1LogGet**](LogApi.md#invoicev1logget) | **GET** /invoice/v1/log | List events |
-| [**InvoiceV1LogIdGet**](LogApi.md#invoicev1logidget) | **GET** /invoice/v1/log/{id} | Get an event by id |
+| [**LogGet**](LogApi.md#logget) | **GET** /log | List events |
+| [**LogIdGet**](LogApi.md#logidget) | **GET** /log/{id} | Get an event by id |
 
-<a id="invoicev1logget"></a>
-# **InvoiceV1LogGet**
-> List&lt;Event&gt; InvoiceV1LogGet (int? companyId = null, string endpoint = null, string method = null, int? apiVerion = null, int? statusCode = null, DateTime? dateCreatedFrom = null, DateTime? dateCreatedTo = null, int? page = null, int? pageSize = null)
+<a id="logget"></a>
+# **LogGet**
+> List&lt;Event&gt; LogGet (int? companyId = null, string endpoint = null, string method = null, int? apiVerion = null, int? statusCode = null, DateTime? dateCreatedFrom = null, DateTime? dateCreatedTo = null, int? page = null, int? pageSize = null, string sort = null, string query = null, bool? success = null, DateTime? dateTimeFrom = null, DateTime? dateTimeTo = null)
 
 List events
 
@@ -25,7 +25,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1LogGetExample
+    public class LogGetExample
     {
         public static void Main()
         {
@@ -45,16 +45,21 @@ namespace Example
             var dateCreatedTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
+            var query = "query_example";  // string |  (optional) 
+            var success = true;  // bool? |  (optional) 
+            var dateTimeFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Date and time of the event (optional) 
+            var dateTimeTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Date and time of the event (optional) 
 
             try
             {
                 // List events
-                List<Event> result = apiInstance.InvoiceV1LogGet(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize);
+                List<Event> result = apiInstance.LogGet(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LogApi.InvoiceV1LogGet: " + e.Message);
+                Debug.Print("Exception when calling LogApi.LogGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -63,21 +68,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1LogGetWithHttpInfo variant
+#### Using the LogGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List events
-    ApiResponse<List<Event>> response = apiInstance.InvoiceV1LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize);
+    ApiResponse<List<Event>> response = apiInstance.LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling LogApi.InvoiceV1LogGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling LogApi.LogGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -96,6 +101,11 @@ catch (ApiException e)
 | **dateCreatedTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
+| **query** | **string** |  | [optional]  |
+| **success** | **bool?** |  | [optional]  |
+| **dateTimeFrom** | **DateTime?** | Date and time of the event | [optional]  |
+| **dateTimeTo** | **DateTime?** | Date and time of the event | [optional]  |
 
 ### Return type
 
@@ -120,9 +130,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1logidget"></a>
-# **InvoiceV1LogIdGet**
-> Event InvoiceV1LogIdGet (int id)
+<a id="logidget"></a>
+# **LogIdGet**
+> Event LogIdGet (int id)
 
 Get an event by id
 
@@ -138,7 +148,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1LogIdGetExample
+    public class LogIdGetExample
     {
         public static void Main()
         {
@@ -154,12 +164,12 @@ namespace Example
             try
             {
                 // Get an event by id
-                Event result = apiInstance.InvoiceV1LogIdGet(id);
+                Event result = apiInstance.LogIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LogApi.InvoiceV1LogIdGet: " + e.Message);
+                Debug.Print("Exception when calling LogApi.LogIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -168,21 +178,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1LogIdGetWithHttpInfo variant
+#### Using the LogIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get an event by id
-    ApiResponse<Event> response = apiInstance.InvoiceV1LogIdGetWithHttpInfo(id);
+    ApiResponse<Event> response = apiInstance.LogIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling LogApi.InvoiceV1LogIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling LogApi.LogIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

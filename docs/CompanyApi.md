@@ -4,15 +4,15 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InvoiceV1CompanyGet**](CompanyApi.md#invoicev1companyget) | **GET** /invoice/v1/company | List companies |
-| [**InvoiceV1CompanyIdDelete**](CompanyApi.md#invoicev1companyiddelete) | **DELETE** /invoice/v1/company/{id} | Delete a company |
-| [**InvoiceV1CompanyIdGet**](CompanyApi.md#invoicev1companyidget) | **GET** /invoice/v1/company/{id} | Get a company by id |
-| [**InvoiceV1CompanyPost**](CompanyApi.md#invoicev1companypost) | **POST** /invoice/v1/company | Add a company |
-| [**InvoiceV1CompanyPut**](CompanyApi.md#invoicev1companyput) | **PUT** /invoice/v1/company | Update a company |
+| [**CompanyGet**](CompanyApi.md#companyget) | **GET** /company | List companies |
+| [**CompanyIdDelete**](CompanyApi.md#companyiddelete) | **DELETE** /company/{id} | Delete a company |
+| [**CompanyIdGet**](CompanyApi.md#companyidget) | **GET** /company/{id} | Get a company by id |
+| [**CompanyPost**](CompanyApi.md#companypost) | **POST** /company | Add a company |
+| [**CompanyPut**](CompanyApi.md#companyput) | **PUT** /company | Update a company |
 
-<a id="invoicev1companyget"></a>
-# **InvoiceV1CompanyGet**
-> List&lt;Company&gt; InvoiceV1CompanyGet (int? page = null, int? pageSize = null)
+<a id="companyget"></a>
+# **CompanyGet**
+> List&lt;Company&gt; CompanyGet (int? page = null, int? pageSize = null, string sort = null)
 
 List companies
 
@@ -28,7 +28,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1CompanyGetExample
+    public class CompanyGetExample
     {
         public static void Main()
         {
@@ -41,16 +41,17 @@ namespace Example
             var apiInstance = new CompanyApi(config);
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
             {
                 // List companies
-                List<Company> result = apiInstance.InvoiceV1CompanyGet(page, pageSize);
+                List<Company> result = apiInstance.CompanyGet(page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyGet: " + e.Message);
+                Debug.Print("Exception when calling CompanyApi.CompanyGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -59,21 +60,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1CompanyGetWithHttpInfo variant
+#### Using the CompanyGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // List companies
-    ApiResponse<List<Company>> response = apiInstance.InvoiceV1CompanyGetWithHttpInfo(page, pageSize);
+    ApiResponse<List<Company>> response = apiInstance.CompanyGetWithHttpInfo(page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CompanyApi.CompanyGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -85,6 +86,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type
 
@@ -109,9 +111,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1companyiddelete"></a>
-# **InvoiceV1CompanyIdDelete**
-> Company InvoiceV1CompanyIdDelete (int id)
+<a id="companyiddelete"></a>
+# **CompanyIdDelete**
+> Company CompanyIdDelete (int id)
 
 Delete a company
 
@@ -127,7 +129,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1CompanyIdDeleteExample
+    public class CompanyIdDeleteExample
     {
         public static void Main()
         {
@@ -143,12 +145,12 @@ namespace Example
             try
             {
                 // Delete a company
-                Company result = apiInstance.InvoiceV1CompanyIdDelete(id);
+                Company result = apiInstance.CompanyIdDelete(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyIdDelete: " + e.Message);
+                Debug.Print("Exception when calling CompanyApi.CompanyIdDelete: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -157,21 +159,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1CompanyIdDeleteWithHttpInfo variant
+#### Using the CompanyIdDeleteWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Delete a company
-    ApiResponse<Company> response = apiInstance.InvoiceV1CompanyIdDeleteWithHttpInfo(id);
+    ApiResponse<Company> response = apiInstance.CompanyIdDeleteWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyIdDeleteWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CompanyApi.CompanyIdDeleteWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -207,9 +209,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1companyidget"></a>
-# **InvoiceV1CompanyIdGet**
-> Company InvoiceV1CompanyIdGet (int id)
+<a id="companyidget"></a>
+# **CompanyIdGet**
+> Company CompanyIdGet (int id)
 
 Get a company by id
 
@@ -225,7 +227,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1CompanyIdGetExample
+    public class CompanyIdGetExample
     {
         public static void Main()
         {
@@ -241,12 +243,12 @@ namespace Example
             try
             {
                 // Get a company by id
-                Company result = apiInstance.InvoiceV1CompanyIdGet(id);
+                Company result = apiInstance.CompanyIdGet(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyIdGet: " + e.Message);
+                Debug.Print("Exception when calling CompanyApi.CompanyIdGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -255,21 +257,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1CompanyIdGetWithHttpInfo variant
+#### Using the CompanyIdGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get a company by id
-    ApiResponse<Company> response = apiInstance.InvoiceV1CompanyIdGetWithHttpInfo(id);
+    ApiResponse<Company> response = apiInstance.CompanyIdGetWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CompanyApi.CompanyIdGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -303,9 +305,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1companypost"></a>
-# **InvoiceV1CompanyPost**
-> Company InvoiceV1CompanyPost (Company company)
+<a id="companypost"></a>
+# **CompanyPost**
+> Company CompanyPost (Company company)
 
 Add a company
 
@@ -321,7 +323,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1CompanyPostExample
+    public class CompanyPostExample
     {
         public static void Main()
         {
@@ -337,12 +339,12 @@ namespace Example
             try
             {
                 // Add a company
-                Company result = apiInstance.InvoiceV1CompanyPost(company);
+                Company result = apiInstance.CompanyPost(company);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyPost: " + e.Message);
+                Debug.Print("Exception when calling CompanyApi.CompanyPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -351,21 +353,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1CompanyPostWithHttpInfo variant
+#### Using the CompanyPostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add a company
-    ApiResponse<Company> response = apiInstance.InvoiceV1CompanyPostWithHttpInfo(company);
+    ApiResponse<Company> response = apiInstance.CompanyPostWithHttpInfo(company);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CompanyApi.CompanyPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -400,9 +402,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="invoicev1companyput"></a>
-# **InvoiceV1CompanyPut**
-> Company InvoiceV1CompanyPut (Company company)
+<a id="companyput"></a>
+# **CompanyPut**
+> Company CompanyPut (Company company)
 
 Update a company
 
@@ -418,7 +420,7 @@ using Invoicetronic.Invoice.Sdk.Model;
 
 namespace Example
 {
-    public class InvoiceV1CompanyPutExample
+    public class CompanyPutExample
     {
         public static void Main()
         {
@@ -434,12 +436,12 @@ namespace Example
             try
             {
                 // Update a company
-                Company result = apiInstance.InvoiceV1CompanyPut(company);
+                Company result = apiInstance.CompanyPut(company);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyPut: " + e.Message);
+                Debug.Print("Exception when calling CompanyApi.CompanyPut: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -448,21 +450,21 @@ namespace Example
 }
 ```
 
-#### Using the InvoiceV1CompanyPutWithHttpInfo variant
+#### Using the CompanyPutWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Update a company
-    ApiResponse<Company> response = apiInstance.InvoiceV1CompanyPutWithHttpInfo(company);
+    ApiResponse<Company> response = apiInstance.CompanyPutWithHttpInfo(company);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CompanyApi.InvoiceV1CompanyPutWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CompanyApi.CompanyPutWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

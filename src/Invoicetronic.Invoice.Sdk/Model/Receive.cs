@@ -43,13 +43,13 @@ namespace Invoicetronic.Invoice.Sdk.Model
             /// Enum Xml for value: Xml
             /// </summary>
             [EnumMember(Value = "Xml")]
-            Xml,
+            Xml = 1,
 
             /// <summary>
             /// Enum Base64 for value: Base64
             /// </summary>
             [EnumMember(Value = "Base64")]
-            Base64
+            Base64 = 2
         }
 
 

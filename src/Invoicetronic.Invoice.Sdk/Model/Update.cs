@@ -43,55 +43,55 @@ namespace Invoicetronic.Invoice.Sdk.Model
             /// Enum Inviato for value: Inviato
             /// </summary>
             [EnumMember(Value = "Inviato")]
-            Inviato,
+            Inviato = 1,
 
             /// <summary>
             /// Enum Consegnato for value: Consegnato
             /// </summary>
             [EnumMember(Value = "Consegnato")]
-            Consegnato,
+            Consegnato = 2,
 
             /// <summary>
             /// Enum NonConsegnato for value: NonConsegnato
             /// </summary>
             [EnumMember(Value = "NonConsegnato")]
-            NonConsegnato,
+            NonConsegnato = 3,
 
             /// <summary>
             /// Enum Scartato for value: Scartato
             /// </summary>
             [EnumMember(Value = "Scartato")]
-            Scartato,
+            Scartato = 4,
 
             /// <summary>
             /// Enum AccettatoDalDestinatario for value: AccettatoDalDestinatario
             /// </summary>
             [EnumMember(Value = "AccettatoDalDestinatario")]
-            AccettatoDalDestinatario,
+            AccettatoDalDestinatario = 5,
 
             /// <summary>
             /// Enum RifiutatoDalDestinatario for value: RifiutatoDalDestinatario
             /// </summary>
             [EnumMember(Value = "RifiutatoDalDestinatario")]
-            RifiutatoDalDestinatario,
+            RifiutatoDalDestinatario = 6,
 
             /// <summary>
             /// Enum ImpossibilitDiRecapito for value: ImpossibilitàDiRecapito
             /// </summary>
             [EnumMember(Value = "ImpossibilitàDiRecapito")]
-            ImpossibilitDiRecapito,
+            ImpossibilitDiRecapito = 7,
 
             /// <summary>
             /// Enum DecorrenzaTermini for value: DecorrenzaTermini
             /// </summary>
             [EnumMember(Value = "DecorrenzaTermini")]
-            DecorrenzaTermini,
+            DecorrenzaTermini = 8,
 
             /// <summary>
             /// Enum AttestazioneTrasmissioneFattura for value: AttestazioneTrasmissioneFattura
             /// </summary>
             [EnumMember(Value = "AttestazioneTrasmissioneFattura")]
-            AttestazioneTrasmissioneFattura
+            AttestazioneTrasmissioneFattura = 9
         }
 
 

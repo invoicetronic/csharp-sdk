@@ -9,7 +9,7 @@ on:
 
 env:
   DOTNET_VERSION: '8.0.x'
-  PROJECT_PATH: 'src/Invoicetronic.Invoice.Sdk/Invoicetronic.Invoice.Sdk.csproj'
+  PROJECT_PATH: 'src/Invoicetronic.Sdk/Invoicetronic.Sdk.csproj'
 
 jobs:
   build-and-publish:

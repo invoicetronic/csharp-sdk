@@ -5,13 +5,13 @@ info:
     name: Invoicetronic
     url: https://invoicetronic.com
   description: |-
-    The [Italian eInvoice API][2] is a RESTful API that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed by Invoicetronic to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. The API also provides advanced features as encryption at rest, invoice validation, multiple upload formats, webhooks, event logging, client SDKs for commonly used languages, and CLI tools.
+    The [Invoicetronic API][2] is a RESTful service that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. It provides advanced features as encryption at rest, multi-language pre-flight invoice validation, multiple upload formats, webhooks, event logging, client SDKs, and CLI tools.
 
     For more information, see  [Invoicetronic website][2]
 
     [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/
     [2]: https://invoicetronic.com/
-  title: Italian eInvoice API v1
+  title: Invoicetronic API
   version: "1"
   x-logo:
     url: https://gestionaleamica.com/assets/img/Logo_Amica_Scritta.png
@@ -23,9 +23,9 @@ security:
 paths:
   /company/{id}:
     delete:
-      description: |-
-        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
-        can only receive invoices for existing companies**.
+      description: "Companies are the entities that send and receive invoices. As\
+        \ you send invoices, companies are added as needed (company details are extrapolated).\
+        \ **You can only receive invoices for existing companies, so ensure they exist**."
       parameters:
       - description: Item id
         explode: false
@@ -61,9 +61,9 @@ paths:
       tags:
       - company
     get:
-      description: |-
-        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
-        can only receive invoices for existing companies**.
+      description: "Companies are the entities that send and receive invoices. As\
+        \ you send invoices, companies are added as needed (company details are extrapolated).\
+        \ **You can only receive invoices for existing companies, so ensure they exist**."
       parameters:
       - description: Item id
         explode: false
@@ -88,9 +88,9 @@ paths:
       - company
   /company:
     get:
-      description: |-
-        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
-        can only receive invoices for existing companies**.
+      description: "Companies are the entities that send and receive invoices. As\
+        \ you send invoices, companies are added as needed (company details are extrapolated).\
+        \ **You can only receive invoices for existing companies, so ensure they exist**."
       parameters:
       - description: Page number. Defaults to 1.
         explode: true
@@ -141,9 +141,9 @@ paths:
       tags:
       - company
     post:
-      description: |-
-        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
-        can only receive invoices for existing companies**.
+      description: "Companies are the entities that send and receive invoices. As\
+        \ you send invoices, companies are added as needed (company details are extrapolated).\
+        \ **You can only receive invoices for existing companies, so ensure they exist**."
       requestBody:
         content:
           application/json:
@@ -167,15 +167,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Add a company
       tags:
       - company
     put:
-      description: |-
-        Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed. **You
-        can only receive invoices for existing companies**.
+      description: "Companies are the entities that send and receive invoices. As\
+        \ you send invoices, companies are added as needed (company details are extrapolated).\
+        \ **You can only receive invoices for existing companies, so ensure they exist**."
       requestBody:
         content:
           application/json:
@@ -193,7 +193,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
         "400":
           content:
@@ -206,7 +206,8 @@ paths:
       - company
   /log/{id}:
     get:
-      description: Every API operation is logged and can be retrieved here.
+      description: Every API operation is logged and can be retrieved here. Log records
+        are preserved for 15 days.
       parameters:
       - description: Item id
         explode: false
@@ -231,7 +232,8 @@ paths:
       - log
   /log:
     get:
-      description: Every API operation is logged and can be retrieved here.
+      description: Every API operation is logged and can be retrieved here. Log records
+        are preserved for 15 days.
       parameters:
       - description: Company id
         explode: true
@@ -375,7 +377,8 @@ paths:
   /receive/{id}:
     delete:
       description: Receive invoices are the invoices that are received from other
-        companies.
+        companies. They are preserved for two years in the live environment and 24
+        hours in the Sandbox.
       parameters:
       - description: Item id
         explode: false
@@ -412,7 +415,8 @@ paths:
       - receive
     get:
       description: Receive invoices are the invoices that are received from other
-        companies.
+        companies. They are preserved for two years in the live environment and 24
+        hours in the Sandbox.
       parameters:
       - description: Item id
         explode: false
@@ -438,7 +442,8 @@ paths:
   /receive:
     get:
       description: Receive invoices are the invoices that are received from other
-        companies.
+        companies. They are preserved for two years in the live environment and 24
+        hours in the Sandbox.
       parameters:
       - description: Company id
         explode: true
@@ -601,7 +606,8 @@ paths:
       - receive
   /send/{id}:
     get:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       parameters:
       - description: Item id
         explode: false
@@ -780,7 +786,8 @@ paths:
       tags:
       - send
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -828,14 +835,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Add an invoice
       tags:
       - send
   /send/xml:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -883,14 +891,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Add an invoice by xml
       tags:
       - send
   /send/file:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -940,14 +949,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Add an invoice by file
       tags:
       - send
   /send/json:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -995,14 +1005,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Add an invoice by json
       tags:
       - send
   /send/validate:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       requestBody:
         content:
           application/json:
@@ -1022,14 +1033,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Validate an invoice
       tags:
       - send
   /send/validate/xml:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       requestBody:
         content:
           application/xml:
@@ -1049,14 +1061,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Validate an invoice by xml
       tags:
       - send
   /send/validate/files:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       requestBody:
         content:
           multipart/form-data:
@@ -1078,14 +1091,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Validate an invoice by file
       tags:
       - send
   /send/validate/json:
     post:
-      description: Send invoices are the invoices that are sent to the SDI.
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
       requestBody:
         content:
           application/json:
@@ -1105,15 +1119,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Validate an invoice by json
       tags:
       - send
+  /status:
+    get:
+      description: "This endpoint is used to know how many operations (invoices +\
+        \ validations) and signatures are left on your account. \n\nWhen `signature_left`\
+        \ is 0, you will receive a `403 Forbidden` response if you try to sign an\
+        \ invoice. Likewise, if `operation_left` is 0, you will receive a `403 Forbidden`\
+        \ response when storing or validating an invoice.\n\nYou can raise the limits\
+        \ by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).\n\
+        \n__Please note__ that these values are not enforced if you are on the Sandbox.\
+        \ See the [API Keys & Sandbox](https://invoicetronic.com/apikeys/) documentation\
+        \ section to learn more about the Sandbox."
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: OK
+      summary: Account status
+      tags:
+      - status
   /update/{id}:
     get:
-      description: Updates are notifications that are sent by the SDI about the status
-        of sent invoices.
+      description: Updates are notifications sent by the SDI about the status of invoices
+        you sent.
       parameters:
       - description: Item id
         explode: false
@@ -1138,8 +1173,8 @@ paths:
       - update
   /update:
     get:
-      description: Updates are notifications that are sent by the SDI about the status
-        of sent invoices.
+      description: Updates are notifications sent by the SDI about the status of invoices
+        you sent.
       parameters:
       - description: Company id
         explode: true
@@ -1423,7 +1458,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
       summary: Add a webhook
       tags:
@@ -1449,7 +1484,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemHttpResult'
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
         "400":
           content:
@@ -1462,6 +1497,8 @@ paths:
       - webhook
   /webhookhistory/{id}:
     get:
+      description: Webhook history items are stored in the database and can be accessed
+        via the API. They are preserved for 15 in both the live and sandbox environments.
       parameters:
       - description: Item id
         explode: false
@@ -1486,6 +1523,8 @@ paths:
       - webhook
   /webhookhistory:
     get:
+      description: Webhook history items are stored in the database and can be accessed
+        via the API. They are preserved for 15 in both the live and sandbox environments.
       parameters:
       - description: Page number. Defaults to 1.
         explode: true
@@ -5129,6 +5168,21 @@ components:
           nullable: true
           type: string
       type: object
+    Status:
+      additionalProperties: false
+      example:
+        signature_left: 6
+        operation_left: 0
+      properties:
+        operation_left:
+          description: Operations (invoices and validations) left.
+          format: int32
+          type: integer
+        signature_left:
+          description: Signatures left.
+          format: int32
+          type: integer
+      type: object
     TerzoIntermediarioOSoggettoEmittente:
       additionalProperties: false
       example:
@@ -5293,7 +5347,7 @@ components:
         secret:
           description: "The secret used to generate webhook signatures, only returned\
             \ on creation. You should store this value securely and validate it on\
-            \ every call, to ensure that the caller is InvoiceApi."
+            \ every call, to ensure that the caller is InvoicetronicApi."
           nullable: true
           type: string
         description:
@@ -5301,7 +5355,7 @@ components:
           nullable: true
           type: string
         events:
-          description: "List of events to that trigger the webhook.\r\nSee InvoiceApi.SupportedEvents.Available\
+          description: "List of events to that trigger the webhook.\r\nSee Invoicetronic.SupportedEvents.Available\
             \ for a list of valid event names."
           items:
             type: string

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo> <!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Invoicetronic.Sdk</AssemblyName>
+    <PackageId>Invoicetronic.Sdk</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>Invoicetronic DevTeam</Authors>
+    <Company>CIR2000</Company>
+    <AssemblyTitle>C# SDK for the Invoicetronic API</AssemblyTitle>
+    <Description>A library that allows developers to interact with the Invoicetronic API.</Description>
+    <Copyright>CIR2000</Copyright>
+    <RootNamespace>Invoicetronic.Sdk</RootNamespace>
+    <Version>1</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Invoicetronic.Sdk.xml</DocumentationFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/invoicetronic/invoice-csharp-sdk.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>bumping version to 1</PackageReleaseNotes>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="5.0.1" />
+    <PackageReference Include="System.Threading.Channels" Version="8.0.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+    
+
+</Project>

@@ -36,7 +36,7 @@ java -jar "<path>/openapi-generator/modules/openapi-generator-cli/target/openapi
     --additional-properties $properties `
     --global-property $global `
     --git-host "github.com" `
-    --git-repo-id "invoice-csharp-sdk" `
+    --git-repo-id "csharp-sdk" `
     --git-user-id "invoicetronic" `
     --release-note "bumping version to 1"
     # -t templates
@@ -153,7 +153,7 @@ Authentication schemes defined for the API:
 - conditionalSerialization: false
 - disallowAdditionalPropertiesIfNotPresent: 
 - gitHost: github.com
-- gitRepoId: invoice-csharp-sdk
+- gitRepoId: csharp-sdk
 - gitUserId: invoicetronic
 - hideGenerationTimestamp: true
 - interfacePrefix: I
@@ -171,7 +171,7 @@ Authentication schemes defined for the API:
 - packageCompany: CIR2000
 - packageCopyright: CIR2000
 - packageDescription: A library that allows developers to interact with the Invoicetronic API.
-- packageGuid: {58210841-79E0-4476-9379-66A410870140}
+- packageGuid: {A85AAF67-A7DB-44BA-956A-065AAB30EB70}
 - packageName: Invoicetronic.Sdk
 - packageTags: 
 - packageTitle: C# SDK for the Invoicetronic API

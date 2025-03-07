@@ -1,7 +1,7 @@
 param(
     [Parameter()][Alias("g")][String]$GitHost = "github.com",
     [Parameter()][Alias("u")][String]$GitUserId = "invoicetronic",
-    [Parameter()][Alias("r")][String]$GitRepoId = "invoice-csharp-sdk",
+    [Parameter()][Alias("r")][String]$GitRepoId = "csharp-sdk",
     [Parameter()][Alias("m")][string]$Message = "bumping version to 1",
     [Parameter()][Alias("h")][switch]$Help
 )

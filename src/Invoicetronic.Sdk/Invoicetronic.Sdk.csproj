@@ -15,7 +15,7 @@
     <Version>1</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Invoicetronic.Sdk.xml</DocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/invoicetronic/invoice-csharp-sdk.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/invoicetronic/csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>bumping version to 1</PackageReleaseNotes>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>

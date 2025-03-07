@@ -171,7 +171,7 @@ Authentication schemes defined for the API:
 - packageCompany: CIR2000
 - packageCopyright: CIR2000
 - packageDescription: A library that allows developers to interact with the Invoicetronic API.
-- packageGuid: {7C665DF5-07EF-40C8-8182-3EA30FE8F7CE}
+- packageGuid: {16231016-85F5-40EF-ABEA-C2EC53C3280B}
 - packageName: Invoicetronic.Sdk
 - packageTags: 
 - packageTitle: C# SDK for the Invoicetronic API

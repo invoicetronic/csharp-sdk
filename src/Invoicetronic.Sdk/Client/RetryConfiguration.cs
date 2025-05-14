@@ -10,7 +10,7 @@
 
 
 using Polly;
-using RestSharp;
+using System.Net.Http;
 
 namespace Invoicetronic.Sdk.Client
 {
@@ -22,11 +22,11 @@ namespace Invoicetronic.Sdk.Client
         /// <summary>
         /// Retry policy
         /// </summary>
-        public static ISyncPolicy<RestResponse> RetryPolicy { get; set; }
+        public static ISyncPolicy<HttpResponseMessage> RetryPolicy { get; set; }
 
         /// <summary>
         /// Async retry policy
         /// </summary>
-        public static IAsyncPolicy<RestResponse> AsyncRetryPolicy { get; set; }
+        public static IAsyncPolicy<HttpResponseMessage> AsyncRetryPolicy { get; set; }
     }
 }

@@ -22,6 +22,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using FileParameter = Invoicetronic.Sdk.Client.FileParameter;
 using OpenAPIDateConverter = Invoicetronic.Sdk.Client.OpenAPIDateConverter;
 
 namespace Invoicetronic.Sdk.Model

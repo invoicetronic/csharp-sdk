@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using RestSharp;
 using Xunit;
 
 using Invoicetronic.Sdk.Client;
@@ -62,7 +61,7 @@ namespace Invoicetronic.Sdk.Test.Api
         public void SendFilePostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //System.IO.Stream file = null;
+            //FileParameter file = null;
             //bool? validate = null;
             //string signature = null;
             //var response = instance.SendFilePost(file, validate, signature);
@@ -142,7 +141,7 @@ namespace Invoicetronic.Sdk.Test.Api
         public void SendValidateFilePostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //System.IO.Stream file = null;
+            //FileParameter file = null;
             //instance.SendValidateFilePost(file);
         }
 

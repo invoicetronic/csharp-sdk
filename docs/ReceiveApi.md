@@ -20,6 +20,7 @@ Receive invoices are the invoices that are received from other companies. They a
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -36,7 +37,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new ReceiveApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ReceiveApi(httpClient, config, httpClientHandler);
             var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
             var unread = true;  // bool? | Unread items only. (optional) 
@@ -147,6 +151,7 @@ Receive invoices are the invoices that are received from other companies. They a
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -163,7 +168,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new ReceiveApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ReceiveApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
 
             try
@@ -245,6 +253,7 @@ Receive invoices are the invoices that are received from other companies. They a
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -261,7 +270,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new ReceiveApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ReceiveApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
 
             try

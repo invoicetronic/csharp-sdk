@@ -19,6 +19,7 @@ Updates are notifications sent by the SDI about the status of invoices you sent.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -35,7 +36,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new UpdateApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new UpdateApi(httpClient, config, httpClientHandler);
             var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
             var unread = true;  // bool? | Unread items only. (optional) 
@@ -138,6 +142,7 @@ Updates are notifications sent by the SDI about the status of invoices you sent.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -154,7 +159,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new UpdateApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new UpdateApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
 
             try

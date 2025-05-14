@@ -22,6 +22,7 @@ Companies are the entities that send and receive invoices. As you send invoices,
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -38,7 +39,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new CompanyApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
             var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
@@ -123,6 +127,7 @@ Companies are the entities that send and receive invoices. As you send invoices,
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -139,7 +144,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new CompanyApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
 
             try
@@ -221,6 +229,7 @@ Companies are the entities that send and receive invoices. As you send invoices,
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -237,7 +246,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new CompanyApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
 
             try
@@ -317,6 +329,7 @@ Companies are the entities that send and receive invoices. As you send invoices,
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -333,7 +346,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new CompanyApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
             var company = new Company(); // Company | 
 
             try
@@ -414,6 +430,7 @@ Companies are the entities that send and receive invoices. As you send invoices,
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -430,7 +447,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new CompanyApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
             var company = new Company(); // Company | 
 
             try

@@ -17,7 +17,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="sendfilepost"></a>
 # **SendFilePost**
-> Send SendFilePost (System.IO.Stream file, bool? validate = null, string signature = null)
+> Send SendFilePost (FileParameter file, bool? validate = null, string signature = null)
 
 Add an invoice by file
 
@@ -27,6 +27,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -43,8 +44,11 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
-            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
+            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
@@ -89,7 +93,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **file** | **System.IO.Stream****System.IO.Stream** |  |  |
+| **file** | **FileParameter****FileParameter** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
@@ -128,6 +132,7 @@ test **markdown**.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -144,7 +149,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
             var committente = "committente_example";  // string | Vat number or fiscal code. (optional) 
@@ -253,6 +261,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -269,7 +278,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
 
             try
@@ -349,6 +361,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -365,7 +378,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
@@ -450,6 +466,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -466,7 +483,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var send = new Send(); // Send | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
@@ -541,7 +561,7 @@ catch (ApiException e)
 
 <a id="sendvalidatefilepost"></a>
 # **SendValidateFilePost**
-> void SendValidateFilePost (System.IO.Stream file)
+> void SendValidateFilePost (FileParameter file)
 
 Validate an invoice file
 
@@ -551,6 +571,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -567,8 +588,11 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
-            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
+            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter | 
 
             try
             {
@@ -607,7 +631,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **file** | **System.IO.Stream****System.IO.Stream** |  |  |
+| **file** | **FileParameter****FileParameter** |  |  |
 
 ### Return type
 
@@ -644,6 +668,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -660,7 +685,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
 
             try
@@ -737,6 +765,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -753,7 +782,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var send = new Send(); // Send | 
 
             try
@@ -830,6 +862,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -846,7 +879,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
 
             try
@@ -923,6 +959,7 @@ Send invoices are the invoices that are sent to the SDI. They are preserved for 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -939,7 +976,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new SendApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)

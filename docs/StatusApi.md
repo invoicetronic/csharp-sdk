@@ -18,6 +18,7 @@ This endpoint is used to know how many operations (invoices + validations) and s
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -34,7 +35,10 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new StatusApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new StatusApi(httpClient, config, httpClientHandler);
 
             try
             {

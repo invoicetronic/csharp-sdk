@@ -189,27 +189,27 @@ namespace Invoicetronic.Sdk.Api
         Task<ISendPostApiResponse> SendPostOrDefaultAsync(Send send, Option<bool> validate = default, Option<string> signature = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Validate an invoice by file
+        /// Validate an invoice file
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="files"></param>
+        /// <param name="file"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilesPostApiResponse"/>&gt;</returns>
-        Task<ISendValidateFilesPostApiResponse> SendValidateFilesPostAsync(List<System.IO.Stream> files, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilePostApiResponse"/>&gt;</returns>
+        Task<ISendValidateFilePostApiResponse> SendValidateFilePostAsync(System.IO.Stream file, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Validate an invoice by file
+        /// Validate an invoice file
         /// </summary>
         /// <remarks>
         /// Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
         /// </remarks>
-        /// <param name="files"></param>
+        /// <param name="file"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilesPostApiResponse"/>&gt;</returns>
-        Task<ISendValidateFilesPostApiResponse> SendValidateFilesPostOrDefaultAsync(List<System.IO.Stream> files, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilePostApiResponse"/>&gt;</returns>
+        Task<ISendValidateFilePostApiResponse> SendValidateFilePostOrDefaultAsync(System.IO.Stream file, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Validate an invoice by json
@@ -423,9 +423,9 @@ namespace Invoicetronic.Sdk.Api
     }
 
     /// <summary>
-    /// The <see cref="ISendValidateFilesPostApiResponse"/>
+    /// The <see cref="ISendValidateFilePostApiResponse"/>
     /// </summary>
-    public interface ISendValidateFilesPostApiResponse : Invoicetronic.Sdk.Client.IApiResponse, IBadRequest<Invoicetronic.Sdk.Model.ProblemHttpResult>, IUnprocessableContent<Invoicetronic.Sdk.Model.ProblemDetails>
+    public interface ISendValidateFilePostApiResponse : Invoicetronic.Sdk.Client.IApiResponse, IBadRequest<Invoicetronic.Sdk.Model.ProblemHttpResult>, IUnprocessableContent<Invoicetronic.Sdk.Model.ProblemDetails>
     {
         /// <summary>
         /// Returns true if the response is 204 NoContent
@@ -650,21 +650,21 @@ namespace Invoicetronic.Sdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs> OnSendValidateFilesPost;
+        public event EventHandler<ApiResponseEventArgs> OnSendValidateFilePost;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs> OnErrorSendValidateFilesPost;
+        public event EventHandler<ExceptionEventArgs> OnErrorSendValidateFilePost;
 
-        internal void ExecuteOnSendValidateFilesPost(SendApi.SendValidateFilesPostApiResponse apiResponse)
+        internal void ExecuteOnSendValidateFilePost(SendApi.SendValidateFilePostApiResponse apiResponse)
         {
-            OnSendValidateFilesPost?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnSendValidateFilePost?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorSendValidateFilesPost(Exception exception)
+        internal void ExecuteOnErrorSendValidateFilePost(Exception exception)
         {
-            OnErrorSendValidateFilesPost?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorSendValidateFilePost?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -2480,28 +2480,28 @@ namespace Invoicetronic.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatSendValidateFilesPost(List<System.IO.Stream> files);
+        partial void FormatSendValidateFilePost(ref System.IO.Stream file);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="files"></param>
+        /// <param name="file"></param>
         /// <returns></returns>
-        private void ValidateSendValidateFilesPost(List<System.IO.Stream> files)
+        private void ValidateSendValidateFilePost(System.IO.Stream file)
         {
-            if (files == null)
-                throw new ArgumentNullException(nameof(files));
+            if (file == null)
+                throw new ArgumentNullException(nameof(file));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="files"></param>
-        private void AfterSendValidateFilesPostDefaultImplementation(ISendValidateFilesPostApiResponse apiResponseLocalVar, List<System.IO.Stream> files)
+        /// <param name="file"></param>
+        private void AfterSendValidateFilePostDefaultImplementation(ISendValidateFilePostApiResponse apiResponseLocalVar, System.IO.Stream file)
         {
             bool suppressDefaultLog = false;
-            AfterSendValidateFilesPost(ref suppressDefaultLog, apiResponseLocalVar, files);
+            AfterSendValidateFilePost(ref suppressDefaultLog, apiResponseLocalVar, file);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2511,8 +2511,8 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="files"></param>
-        partial void AfterSendValidateFilesPost(ref bool suppressDefaultLog, ISendValidateFilesPostApiResponse apiResponseLocalVar, List<System.IO.Stream> files);
+        /// <param name="file"></param>
+        partial void AfterSendValidateFilePost(ref bool suppressDefaultLog, ISendValidateFilePostApiResponse apiResponseLocalVar, System.IO.Stream file);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2520,11 +2520,11 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="files"></param>
-        private void OnErrorSendValidateFilesPostDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<System.IO.Stream> files)
+        /// <param name="file"></param>
+        private void OnErrorSendValidateFilePostDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream file)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorSendValidateFilesPost(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, files);
+            OnErrorSendValidateFilePost(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, file);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2536,20 +2536,20 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="files"></param>
-        partial void OnErrorSendValidateFilesPost(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<System.IO.Stream> files);
+        /// <param name="file"></param>
+        partial void OnErrorSendValidateFilePost(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream file);
 
         /// <summary>
-        /// Validate an invoice by file Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
+        /// Validate an invoice file Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
         /// </summary>
-        /// <param name="files"></param>
+        /// <param name="file"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilesPostApiResponse"/>&gt;</returns>
-        public async Task<ISendValidateFilesPostApiResponse> SendValidateFilesPostOrDefaultAsync(List<System.IO.Stream> files, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilePostApiResponse"/>&gt;</returns>
+        public async Task<ISendValidateFilePostApiResponse> SendValidateFilePostOrDefaultAsync(System.IO.Stream file, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await SendValidateFilesPostAsync(files, cancellationToken).ConfigureAwait(false);
+                return await SendValidateFilePostAsync(file, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2558,21 +2558,21 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Validate an invoice by file Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
+        /// Validate an invoice file Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="files"></param>
+        /// <param name="file"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilesPostApiResponse"/>&gt;</returns>
-        public async Task<ISendValidateFilesPostApiResponse> SendValidateFilesPostAsync(List<System.IO.Stream> files, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="ISendValidateFilePostApiResponse"/>&gt;</returns>
+        public async Task<ISendValidateFilePostApiResponse> SendValidateFilePostAsync(System.IO.Stream file, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateSendValidateFilesPost(files);
+                ValidateSendValidateFilePost(file);
 
-                FormatSendValidateFilesPost(files);
+                FormatSendValidateFilePost(ref file);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2580,8 +2580,8 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/send/validate/files"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/send/validate/files");
+                        ? "/send/validate/file"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/send/validate/file");
 
                     MultipartContent multipartContentLocalVar = new MultipartContent();
 
@@ -2589,7 +2589,7 @@ namespace Invoicetronic.Sdk.Api
 
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
-                    multipartContentLocalVar.Add(new FormUrlEncodedContent(formParameterLocalVars));                    multipartContentLocalVar.Add(new StreamContent(files));
+                    multipartContentLocalVar.Add(new FormUrlEncodedContent(formParameterLocalVars));                    multipartContentLocalVar.Add(new StreamContent(file));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -2625,13 +2625,13 @@ namespace Invoicetronic.Sdk.Api
                     {
                         string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                        ILogger<SendValidateFilesPostApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<SendValidateFilesPostApiResponse>();
+                        ILogger<SendValidateFilePostApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<SendValidateFilePostApiResponse>();
 
-                        SendValidateFilesPostApiResponse apiResponseLocalVar = new SendValidateFilesPostApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/send/validate/files", requestedAtLocalVar, _jsonSerializerOptions);
+                        SendValidateFilePostApiResponse apiResponseLocalVar = new SendValidateFilePostApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/send/validate/file", requestedAtLocalVar, _jsonSerializerOptions);
 
-                        AfterSendValidateFilesPostDefaultImplementation(apiResponseLocalVar, files);
+                        AfterSendValidateFilePostDefaultImplementation(apiResponseLocalVar, file);
 
-                        Events.ExecuteOnSendValidateFilesPost(apiResponseLocalVar);
+                        Events.ExecuteOnSendValidateFilePost(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2643,24 +2643,24 @@ namespace Invoicetronic.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorSendValidateFilesPostDefaultImplementation(e, "/send/validate/files", uriBuilderLocalVar.Path, files);
-                Events.ExecuteOnErrorSendValidateFilesPost(e);
+                OnErrorSendValidateFilePostDefaultImplementation(e, "/send/validate/file", uriBuilderLocalVar.Path, file);
+                Events.ExecuteOnErrorSendValidateFilePost(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="SendValidateFilesPostApiResponse"/>
+        /// The <see cref="SendValidateFilePostApiResponse"/>
         /// </summary>
-        public partial class SendValidateFilesPostApiResponse : Invoicetronic.Sdk.Client.ApiResponse, ISendValidateFilesPostApiResponse
+        public partial class SendValidateFilePostApiResponse : Invoicetronic.Sdk.Client.ApiResponse, ISendValidateFilePostApiResponse
         {
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<SendValidateFilesPostApiResponse> Logger { get; }
+            public ILogger<SendValidateFilePostApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="SendValidateFilesPostApiResponse"/>
+            /// The <see cref="SendValidateFilePostApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2669,7 +2669,7 @@ namespace Invoicetronic.Sdk.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public SendValidateFilesPostApiResponse(ILogger<SendValidateFilesPostApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public SendValidateFilePostApiResponse(ILogger<SendValidateFilePostApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

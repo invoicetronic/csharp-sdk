@@ -9,7 +9,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 | [**SendIdGet**](SendApi.md#sendidget) | **GET** /send/{id} | Get a invoice by id |
 | [**SendJsonPost**](SendApi.md#sendjsonpost) | **POST** /send/json | Add an invoice by json |
 | [**SendPost**](SendApi.md#sendpost) | **POST** /send | Add an invoice |
-| [**SendValidateFilesPost**](SendApi.md#sendvalidatefilespost) | **POST** /send/validate/files | Validate an invoice by file |
+| [**SendValidateFilePost**](SendApi.md#sendvalidatefilepost) | **POST** /send/validate/file | Validate an invoice file |
 | [**SendValidateJsonPost**](SendApi.md#sendvalidatejsonpost) | **POST** /send/validate/json | Validate an invoice by json |
 | [**SendValidatePost**](SendApi.md#sendvalidatepost) | **POST** /send/validate | Validate an invoice |
 | [**SendValidateXmlPost**](SendApi.md#sendvalidatexmlpost) | **POST** /send/validate/xml | Validate an invoice by xml |
@@ -539,11 +539,11 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-<a id="sendvalidatefilespost"></a>
-# **SendValidateFilesPost**
-> void SendValidateFilesPost (List<System.IO.Stream> files)
+<a id="sendvalidatefilepost"></a>
+# **SendValidateFilePost**
+> void SendValidateFilePost (System.IO.Stream file)
 
-Validate an invoice by file
+Validate an invoice file
 
 Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
 
@@ -557,7 +557,7 @@ using Invoicetronic.Sdk.Model;
 
 namespace Example
 {
-    public class SendValidateFilesPostExample
+    public class SendValidateFilePostExample
     {
         public static void Main()
         {
@@ -568,16 +568,16 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new SendApi(config);
-            var files = new List<System.IO.Stream>(); // List<System.IO.Stream> | 
+            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
 
             try
             {
-                // Validate an invoice by file
-                apiInstance.SendValidateFilesPost(files);
+                // Validate an invoice file
+                apiInstance.SendValidateFilePost(file);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SendApi.SendValidateFilesPost: " + e.Message);
+                Debug.Print("Exception when calling SendApi.SendValidateFilePost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -586,18 +586,18 @@ namespace Example
 }
 ```
 
-#### Using the SendValidateFilesPostWithHttpInfo variant
+#### Using the SendValidateFilePostWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    // Validate an invoice by file
-    apiInstance.SendValidateFilesPostWithHttpInfo(files);
+    // Validate an invoice file
+    apiInstance.SendValidateFilePostWithHttpInfo(file);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling SendApi.SendValidateFilesPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling SendApi.SendValidateFilePostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -607,7 +607,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **files** | **List&lt;System.IO.Stream&gt;** |  |  |
+| **file** | **System.IO.Stream****System.IO.Stream** |  |  |
 
 ### Return type
 

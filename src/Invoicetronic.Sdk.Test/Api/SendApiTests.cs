@@ -132,13 +132,13 @@ namespace Invoicetronic.Sdk.Test.Api
         }
 
         /// <summary>
-        /// Test SendValidateFilesPost
+        /// Test SendValidateFilePost
         /// </summary>
         [Fact (Skip = "not implemented")]
-        public async Task SendValidateFilesPostAsyncTest()
+        public async Task SendValidateFilePostAsyncTest()
         {
-            List<System.IO.Stream> files = default;
-            await _instance.SendValidateFilesPostAsync(files);
+            System.IO.Stream file = default;
+            await _instance.SendValidateFilePostAsync(file);
         }
 
         /// <summary>

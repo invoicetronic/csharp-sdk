@@ -1066,7 +1066,7 @@ paths:
       summary: Validate an invoice by xml
       tags:
       - send
-  /send/validate/files:
+  /send/validate/file:
     post:
       description: Send invoices are the invoices that are sent to the SDI. They are
         preserved for two years in the live environment and 15 days in the Sandbox.
@@ -1074,10 +1074,10 @@ paths:
         content:
           multipart/form-data:
             encoding:
-              files:
+              file:
                 style: form
             schema:
-              $ref: '#/components/schemas/_send_validate_files_post_request'
+              $ref: '#/components/schemas/_send_file_post_request'
       responses:
         "204":
           description: No Content
@@ -1093,7 +1093,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Unprocessable Content
-      summary: Validate an invoice by file
+      summary: Validate an invoice file
       tags:
       - send
   /send/validate/json:
@@ -5467,16 +5467,6 @@ components:
           type: string
       required:
       - file
-      type: object
-    _send_validate_files_post_request:
-      properties:
-        files:
-          items:
-            format: binary
-            type: string
-          type: array
-      required:
-      - files
       type: object
   securitySchemes:
     Basic:

@@ -204,24 +204,19 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_trasmissione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiTrasmissione = new Option<DatiTrasmissione>(JsonSerializer.Deserialize<DatiTrasmissione>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiTrasmissione = new Option<DatiTrasmissione>(JsonSerializer.Deserialize<DatiTrasmissione>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "cedente_prestatore":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cedentePrestatore = new Option<CedentePrestatore>(JsonSerializer.Deserialize<CedentePrestatore>(ref utf8JsonReader, jsonSerializerOptions));
+                            cedentePrestatore = new Option<CedentePrestatore>(JsonSerializer.Deserialize<CedentePrestatore>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "RappresentanteFiscale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rappresentanteFiscale = new Option<RappresentanteFiscale>(JsonSerializer.Deserialize<RappresentanteFiscale>(ref utf8JsonReader, jsonSerializerOptions));
+                            rappresentanteFiscale = new Option<RappresentanteFiscale>(JsonSerializer.Deserialize<RappresentanteFiscale>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "cessionario_committente":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cessionarioCommittente = new Option<CessionarioCommittente>(JsonSerializer.Deserialize<CessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            cessionarioCommittente = new Option<CessionarioCommittente>(JsonSerializer.Deserialize<CessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "terzo_intermediario_o_soggetto_emittente":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                terzoIntermediarioOSoggettoEmittente = new Option<TerzoIntermediarioOSoggettoEmittente>(JsonSerializer.Deserialize<TerzoIntermediarioOSoggettoEmittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            terzoIntermediarioOSoggettoEmittente = new Option<TerzoIntermediarioOSoggettoEmittente>(JsonSerializer.Deserialize<TerzoIntermediarioOSoggettoEmittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "soggetto_emittente":
                             soggettoEmittente = new Option<string>(utf8JsonReader.GetString());

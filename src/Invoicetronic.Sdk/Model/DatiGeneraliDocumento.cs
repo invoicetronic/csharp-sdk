@@ -317,39 +317,31 @@ namespace Invoicetronic.Sdk.Model
                             divisa = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "numero":
                             numero = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "dati_ritenuta":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiRitenuta = new Option<List<DatiRitenuta>>(JsonSerializer.Deserialize<List<DatiRitenuta>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiRitenuta = new Option<List<DatiRitenuta>>(JsonSerializer.Deserialize<List<DatiRitenuta>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_bollo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiBollo = new Option<DatiBollo>(JsonSerializer.Deserialize<DatiBollo>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiBollo = new Option<DatiBollo>(JsonSerializer.Deserialize<DatiBollo>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_cassa_previdenziale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiCassaPrevidenziale = new Option<List<DatiCassaPrevidenziale>>(JsonSerializer.Deserialize<List<DatiCassaPrevidenziale>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiCassaPrevidenziale = new Option<List<DatiCassaPrevidenziale>>(JsonSerializer.Deserialize<List<DatiCassaPrevidenziale>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sconto_maggiorazione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                scontoMaggiorazione = new Option<List<ScontoMaggiorazione>>(JsonSerializer.Deserialize<List<ScontoMaggiorazione>>(ref utf8JsonReader, jsonSerializerOptions));
+                            scontoMaggiorazione = new Option<List<ScontoMaggiorazione>>(JsonSerializer.Deserialize<List<ScontoMaggiorazione>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "importo_totale_documento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importoTotaleDocumento = new Option<double?>(utf8JsonReader.GetDouble());
+                            importoTotaleDocumento = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "arrotondamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                arrotondamento = new Option<double?>(utf8JsonReader.GetDouble());
+                            arrotondamento = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "causale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                causale = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            causale = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "art73":
                             art73 = new Option<string>(utf8JsonReader.GetString());

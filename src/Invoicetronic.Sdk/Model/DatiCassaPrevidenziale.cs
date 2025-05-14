@@ -241,20 +241,16 @@ namespace Invoicetronic.Sdk.Model
                             tipoCassa = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "al_cassa":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                alCassa = new Option<double?>(utf8JsonReader.GetDouble());
+                            alCassa = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "importo_contributo_cassa":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importoContributoCassa = new Option<double?>(utf8JsonReader.GetDouble());
+                            importoContributoCassa = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "imponibile_cassa":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                imponibileCassa = new Option<double?>(utf8JsonReader.GetDouble());
+                            imponibileCassa = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "aliquota_iva":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                aliquotaIva = new Option<double?>(utf8JsonReader.GetDouble());
+                            aliquotaIva = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "ritenuta":
                             ritenuta = new Option<string>(utf8JsonReader.GetString());

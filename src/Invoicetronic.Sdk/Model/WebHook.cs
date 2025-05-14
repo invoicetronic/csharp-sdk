@@ -38,7 +38,7 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="userId">User id.</param>
         /// <param name="companyId">Company id.</param>
         /// <param name="url">The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired.</param>
-        /// <param name="enabled">Wetehr the webhooks is enabled or not. On creation, this is set to &#x60;true&#x60;.</param>
+        /// <param name="enabled">Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.</param>
         /// <param name="secret">The secret used to generate webhook signatures, only returned on creation. You should store this value securely and validate it on every call, to ensure that the caller is InvoicetronicApi.</param>
         /// <param name="description">An optional description.</param>
         /// <param name="events">List of events to that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names.</param>
@@ -152,9 +152,9 @@ namespace Invoicetronic.Sdk.Model
         public Option<bool?> EnabledOption { get; private set; }
 
         /// <summary>
-        /// Wetehr the webhooks is enabled or not. On creation, this is set to &#x60;true&#x60;.
+        /// Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.
         /// </summary>
-        /// <value>Wetehr the webhooks is enabled or not. On creation, this is set to &#x60;true&#x60;.</value>
+        /// <value>Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.</value>
         [JsonPropertyName("enabled")]
         public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new Option<bool?>(value); } }
 
@@ -287,31 +287,25 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<int?>(utf8JsonReader.GetInt32());
+                            id = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "version":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varVersion = new Option<int?>(utf8JsonReader.GetInt32());
+                            varVersion = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "user_id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userId = new Option<int?>(utf8JsonReader.GetInt32());
+                            userId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "company_id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                companyId = new Option<int?>(utf8JsonReader.GetInt32());
+                            companyId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "url":
                             url = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "secret":
                             secret = new Option<string>(utf8JsonReader.GetString());
@@ -320,8 +314,7 @@ namespace Invoicetronic.Sdk.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "events":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                events = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            events = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

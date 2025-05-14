@@ -40,12 +40,17 @@ namespace Invoicetronic.Sdk.Api
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="enabled"> (optional)</param>
+        /// <param name="events"> (optional)</param>
+        /// <param name="url"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookGetApiResponse"/>&gt;</returns>
-        Task<IWebhookGetApiResponse> WebhookGetAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IWebhookGetApiResponse> WebhookGetAsync(Option<int> companyId = default, Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<string> description = default, Option<bool> enabled = default, Option<string> events = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List webhooks
@@ -53,12 +58,17 @@ namespace Invoicetronic.Sdk.Api
         /// <remarks>
         /// Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </remarks>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="enabled"> (optional)</param>
+        /// <param name="events"> (optional)</param>
+        /// <param name="url"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookGetApiResponse"/>&gt;</returns>
-        Task<IWebhookGetApiResponse> WebhookGetOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IWebhookGetApiResponse> WebhookGetOrDefaultAsync(Option<int> companyId = default, Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<string> description = default, Option<bool> enabled = default, Option<string> events = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a webhook by id
@@ -162,9 +172,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookhistoryGetApiResponse"/>&gt;</returns>
-        Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<int> webhookId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List webhook history items
@@ -175,9 +186,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookhistoryGetApiResponse"/>&gt;</returns>
-        Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<int> webhookId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a webhook history item by id
@@ -558,30 +570,47 @@ namespace Invoicetronic.Sdk.Api
             BasicTokenProvider = basicTokenProvider;
         }
 
-        partial void FormatWebhookGet(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sort);
+        partial void FormatWebhookGet(ref Option<int> companyId, ref Option<int> page, ref Option<int> pageSize, ref Option<string> sort, ref Option<string> description, ref Option<bool> enabled, ref Option<string> events, ref Option<string> url);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="sort"></param>
+        /// <param name="description"></param>
+        /// <param name="events"></param>
+        /// <param name="url"></param>
         /// <returns></returns>
-        private void ValidateWebhookGet(Option<string> sort)
+        private void ValidateWebhookGet(Option<string> sort, Option<string> description, Option<string> events, Option<string> url)
         {
             if (sort.IsSet && sort.Value == null)
                 throw new ArgumentNullException(nameof(sort));
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description));
+
+            if (events.IsSet && events.Value == null)
+                throw new ArgumentNullException(nameof(events));
+
+            if (url.IsSet && url.Value == null)
+                throw new ArgumentNullException(nameof(url));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
+        /// <param name="companyId"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        private void AfterWebhookGetDefaultImplementation(IWebhookGetApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort)
+        /// <param name="description"></param>
+        /// <param name="enabled"></param>
+        /// <param name="events"></param>
+        /// <param name="url"></param>
+        private void AfterWebhookGetDefaultImplementation(IWebhookGetApiResponse apiResponseLocalVar, Option<int> companyId, Option<int> page, Option<int> pageSize, Option<string> sort, Option<string> description, Option<bool> enabled, Option<string> events, Option<string> url)
         {
             bool suppressDefaultLog = false;
-            AfterWebhookGet(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sort);
+            AfterWebhookGet(ref suppressDefaultLog, apiResponseLocalVar, companyId, page, pageSize, sort, description, enabled, events, url);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -591,10 +620,15 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
+        /// <param name="companyId"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        partial void AfterWebhookGet(ref bool suppressDefaultLog, IWebhookGetApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort);
+        /// <param name="description"></param>
+        /// <param name="enabled"></param>
+        /// <param name="events"></param>
+        /// <param name="url"></param>
+        partial void AfterWebhookGet(ref bool suppressDefaultLog, IWebhookGetApiResponse apiResponseLocalVar, Option<int> companyId, Option<int> page, Option<int> pageSize, Option<string> sort, Option<string> description, Option<bool> enabled, Option<string> events, Option<string> url);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -602,13 +636,18 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
+        /// <param name="companyId"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        private void OnErrorWebhookGetDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort)
+        /// <param name="description"></param>
+        /// <param name="enabled"></param>
+        /// <param name="events"></param>
+        /// <param name="url"></param>
+        private void OnErrorWebhookGetDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> companyId, Option<int> page, Option<int> pageSize, Option<string> sort, Option<string> description, Option<bool> enabled, Option<string> events, Option<string> url)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorWebhookGet(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sort);
+            OnErrorWebhookGet(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, companyId, page, pageSize, sort, description, enabled, events, url);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -620,24 +659,34 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
+        /// <param name="companyId"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        partial void OnErrorWebhookGet(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort);
+        /// <param name="description"></param>
+        /// <param name="enabled"></param>
+        /// <param name="events"></param>
+        /// <param name="url"></param>
+        partial void OnErrorWebhookGet(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> companyId, Option<int> page, Option<int> pageSize, Option<string> sort, Option<string> description, Option<bool> enabled, Option<string> events, Option<string> url);
 
         /// <summary>
         /// List webhooks Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="enabled"> (optional)</param>
+        /// <param name="events"> (optional)</param>
+        /// <param name="url"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookGetApiResponse"/>&gt;</returns>
-        public async Task<IWebhookGetApiResponse> WebhookGetOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IWebhookGetApiResponse> WebhookGetOrDefaultAsync(Option<int> companyId = default, Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<string> description = default, Option<bool> enabled = default, Option<string> events = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await WebhookGetAsync(page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+                return await WebhookGetAsync(companyId, page, pageSize, sort, description, enabled, events, url, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -649,29 +698,39 @@ namespace Invoicetronic.Sdk.Api
         /// List webhooks Webhooks are used to notify external services about write events that occur in the API. You can subscribe to specific events and receive a notification when they occur.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="companyId">Company id (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="enabled"> (optional)</param>
+        /// <param name="events"> (optional)</param>
+        /// <param name="url"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookGetApiResponse"/>&gt;</returns>
-        public async Task<IWebhookGetApiResponse> WebhookGetAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IWebhookGetApiResponse> WebhookGetAsync(Option<int> companyId = default, Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<string> description = default, Option<bool> enabled = default, Option<string> events = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateWebhookGet(sort);
+                ValidateWebhookGet(sort, description, events, url);
 
-                FormatWebhookGet(ref page, ref pageSize, ref sort);
+                FormatWebhookGet(ref companyId, ref page, ref pageSize, ref sort, ref description, ref enabled, ref events, ref url);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhook";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhook"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhook");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (companyId.IsSet)
+                        parseQueryStringLocalVar["company_id"] = ClientUtils.ParameterToString(companyId.Value);
 
                     if (page.IsSet)
                         parseQueryStringLocalVar["page"] = ClientUtils.ParameterToString(page.Value);
@@ -681,6 +740,18 @@ namespace Invoicetronic.Sdk.Api
 
                     if (sort.IsSet)
                         parseQueryStringLocalVar["sort"] = ClientUtils.ParameterToString(sort.Value);
+
+                    if (description.IsSet)
+                        parseQueryStringLocalVar["description"] = ClientUtils.ParameterToString(description.Value);
+
+                    if (enabled.IsSet)
+                        parseQueryStringLocalVar["enabled"] = ClientUtils.ParameterToString(enabled.Value);
+
+                    if (events.IsSet)
+                        parseQueryStringLocalVar["events"] = ClientUtils.ParameterToString(events.Value);
+
+                    if (url.IsSet)
+                        parseQueryStringLocalVar["url"] = ClientUtils.ParameterToString(url.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -713,7 +784,7 @@ namespace Invoicetronic.Sdk.Api
 
                         WebhookGetApiResponse apiResponseLocalVar = new WebhookGetApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/webhook", requestedAtLocalVar, _jsonSerializerOptions);
 
-                        AfterWebhookGetDefaultImplementation(apiResponseLocalVar, page, pageSize, sort);
+                        AfterWebhookGetDefaultImplementation(apiResponseLocalVar, companyId, page, pageSize, sort, description, enabled, events, url);
 
                         Events.ExecuteOnWebhookGet(apiResponseLocalVar);
 
@@ -727,7 +798,7 @@ namespace Invoicetronic.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorWebhookGetDefaultImplementation(e, "/webhook", uriBuilderLocalVar.Path, page, pageSize, sort);
+                OnErrorWebhookGetDefaultImplementation(e, "/webhook", uriBuilderLocalVar.Path, companyId, page, pageSize, sort, description, enabled, events, url);
                 Events.ExecuteOnErrorWebhookGet(e);
                 throw;
             }
@@ -940,7 +1011,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhook/{id}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhook/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhook/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -1237,7 +1310,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhook/{id}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhook/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhook/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -1471,7 +1546,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhook";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhook"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhook");
 
                     httpRequestMessageLocalVar.Content = (webHook as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -1787,7 +1864,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhook";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhook"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhook");
 
                     httpRequestMessageLocalVar.Content = (webHook as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -2004,7 +2083,7 @@ namespace Invoicetronic.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatWebhookhistoryGet(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sort);
+        partial void FormatWebhookhistoryGet(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sort, ref Option<int> webhookId);
 
         /// <summary>
         /// Validates the request parameters
@@ -2024,10 +2103,11 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        private void AfterWebhookhistoryGetDefaultImplementation(IWebhookhistoryGetApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort)
+        /// <param name="webhookId"></param>
+        private void AfterWebhookhistoryGetDefaultImplementation(IWebhookhistoryGetApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort, Option<int> webhookId)
         {
             bool suppressDefaultLog = false;
-            AfterWebhookhistoryGet(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sort);
+            AfterWebhookhistoryGet(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sort, webhookId);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2040,7 +2120,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        partial void AfterWebhookhistoryGet(ref bool suppressDefaultLog, IWebhookhistoryGetApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort);
+        /// <param name="webhookId"></param>
+        partial void AfterWebhookhistoryGet(ref bool suppressDefaultLog, IWebhookhistoryGetApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort, Option<int> webhookId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2051,10 +2132,11 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        private void OnErrorWebhookhistoryGetDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort)
+        /// <param name="webhookId"></param>
+        private void OnErrorWebhookhistoryGetDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort, Option<int> webhookId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorWebhookhistoryGet(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sort);
+            OnErrorWebhookhistoryGet(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sort, webhookId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2069,7 +2151,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sort"></param>
-        partial void OnErrorWebhookhistoryGet(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort);
+        /// <param name="webhookId"></param>
+        partial void OnErrorWebhookhistoryGet(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sort, Option<int> webhookId);
 
         /// <summary>
         /// List webhook history items Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
@@ -2077,13 +2160,14 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookhistoryGetApiResponse"/>&gt;</returns>
-        public async Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<int> webhookId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await WebhookhistoryGetAsync(page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+                return await WebhookhistoryGetAsync(page, pageSize, sort, webhookId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2098,9 +2182,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IWebhookhistoryGetApiResponse"/>&gt;</returns>
-        public async Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IWebhookhistoryGetApiResponse> WebhookhistoryGetAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sort = default, Option<int> webhookId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -2108,14 +2193,16 @@ namespace Invoicetronic.Sdk.Api
             {
                 ValidateWebhookhistoryGet(sort);
 
-                FormatWebhookhistoryGet(ref page, ref pageSize, ref sort);
+                FormatWebhookhistoryGet(ref page, ref pageSize, ref sort, ref webhookId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhookhistory";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhookhistory"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhookhistory");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -2127,6 +2214,9 @@ namespace Invoicetronic.Sdk.Api
 
                     if (sort.IsSet)
                         parseQueryStringLocalVar["sort"] = ClientUtils.ParameterToString(sort.Value);
+
+                    if (webhookId.IsSet)
+                        parseQueryStringLocalVar["webhook_id"] = ClientUtils.ParameterToString(webhookId.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -2159,7 +2249,7 @@ namespace Invoicetronic.Sdk.Api
 
                         WebhookhistoryGetApiResponse apiResponseLocalVar = new WebhookhistoryGetApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/webhookhistory", requestedAtLocalVar, _jsonSerializerOptions);
 
-                        AfterWebhookhistoryGetDefaultImplementation(apiResponseLocalVar, page, pageSize, sort);
+                        AfterWebhookhistoryGetDefaultImplementation(apiResponseLocalVar, page, pageSize, sort, webhookId);
 
                         Events.ExecuteOnWebhookhistoryGet(apiResponseLocalVar);
 
@@ -2173,7 +2263,7 @@ namespace Invoicetronic.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorWebhookhistoryGetDefaultImplementation(e, "/webhookhistory", uriBuilderLocalVar.Path, page, pageSize, sort);
+                OnErrorWebhookhistoryGetDefaultImplementation(e, "/webhookhistory", uriBuilderLocalVar.Path, page, pageSize, sort, webhookId);
                 Events.ExecuteOnErrorWebhookhistoryGet(e);
                 throw;
             }
@@ -2386,7 +2476,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/webhookhistory/{id}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/webhookhistory/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/webhookhistory/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();

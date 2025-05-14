@@ -226,15 +226,13 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "riferimento_numero_linea":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                riferimentoNumeroLinea = new Option<List<int>>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
+                            riferimentoNumeroLinea = new Option<List<int>>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id_documento":
                             idDocumento = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "num_item":
                             numItem = new Option<string>(utf8JsonReader.GetString());

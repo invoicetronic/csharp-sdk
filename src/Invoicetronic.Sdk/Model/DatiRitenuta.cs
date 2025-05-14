@@ -173,12 +173,10 @@ namespace Invoicetronic.Sdk.Model
                             tipoRitenuta = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "importo_ritenuta":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importoRitenuta = new Option<double?>(utf8JsonReader.GetDouble());
+                            importoRitenuta = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "aliquota_ritenuta":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                aliquotaRitenuta = new Option<double?>(utf8JsonReader.GetDouble());
+                            aliquotaRitenuta = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "causale_pagamento":
                             causalePagamento = new Option<string>(utf8JsonReader.GetString());

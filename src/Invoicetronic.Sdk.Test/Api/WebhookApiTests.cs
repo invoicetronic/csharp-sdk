@@ -57,10 +57,15 @@ namespace Invoicetronic.Sdk.Test.Api
         [Fact (Skip = "not implemented")]
         public async Task WebhookGetAsyncTest()
         {
+            Client.Option<int> companyId = default;
             Client.Option<int> page = default;
             Client.Option<int> pageSize = default;
             Client.Option<string> sort = default;
-            var response = await _instance.WebhookGetAsync(page, pageSize, sort);
+            Client.Option<string> description = default;
+            Client.Option<bool> enabled = default;
+            Client.Option<string> events = default;
+            Client.Option<string> url = default;
+            var response = await _instance.WebhookGetAsync(companyId, page, pageSize, sort, description, enabled, events, url);
             var model = response.Ok();
             Assert.IsType<List<WebHook>>(model);
         }
@@ -122,7 +127,8 @@ namespace Invoicetronic.Sdk.Test.Api
             Client.Option<int> page = default;
             Client.Option<int> pageSize = default;
             Client.Option<string> sort = default;
-            var response = await _instance.WebhookhistoryGetAsync(page, pageSize, sort);
+            Client.Option<int> webhookId = default;
+            var response = await _instance.WebhookhistoryGetAsync(page, pageSize, sort, webhookId);
             var model = response.Ok();
             Assert.IsType<List<WebHookHistory>>(model);
         }

@@ -139,8 +139,7 @@ namespace Invoicetronic.Sdk.Model
                             bolloVirtuale = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "importo_bollo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importoBollo = new Option<double?>(utf8JsonReader.GetDouble());
+                            importoBollo = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         default:
                             break;

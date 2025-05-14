@@ -534,36 +534,28 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<int?>(utf8JsonReader.GetInt32());
+                            id = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "version":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varVersion = new Option<int?>(utf8JsonReader.GetInt32());
+                            varVersion = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "user_id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userId = new Option<int?>(utf8JsonReader.GetInt32());
+                            userId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "company_id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                companyId = new Option<int?>(utf8JsonReader.GetInt32());
+                            companyId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "send_id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sendId = new Option<int?>(utf8JsonReader.GetInt32());
+                            sendId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "date_sent":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dateSent = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateSent = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "last_update":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lastUpdate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            lastUpdate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "identifier":
                             identifier = new Option<string>(utf8JsonReader.GetString());
@@ -580,12 +572,10 @@ namespace Invoicetronic.Sdk.Model
                             messageId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "errors":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                errors = new Option<List<Error>>(JsonSerializer.Deserialize<List<Error>>(ref utf8JsonReader, jsonSerializerOptions));
+                            errors = new Option<List<Error>>(JsonSerializer.Deserialize<List<Error>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "is_read":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isRead = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isRead = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

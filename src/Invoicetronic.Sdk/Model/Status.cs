@@ -138,12 +138,10 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "operation_left":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                operationLeft = new Option<int?>(utf8JsonReader.GetInt32());
+                            operationLeft = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "signature_left":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                signatureLeft = new Option<int?>(utf8JsonReader.GetInt32());
+                            signatureLeft = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         default:
                             break;

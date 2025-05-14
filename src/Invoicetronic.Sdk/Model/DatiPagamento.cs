@@ -139,8 +139,7 @@ namespace Invoicetronic.Sdk.Model
                             condizioniPagamento = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "dettaglio_pagamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dettaglioPagamento = new Option<List<DettaglioPagamento>>(JsonSerializer.Deserialize<List<DettaglioPagamento>>(ref utf8JsonReader, jsonSerializerOptions));
+                            dettaglioPagamento = new Option<List<DettaglioPagamento>>(JsonSerializer.Deserialize<List<DettaglioPagamento>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

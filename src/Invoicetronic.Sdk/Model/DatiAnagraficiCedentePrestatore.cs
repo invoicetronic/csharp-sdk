@@ -243,15 +243,13 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id_fiscale_iva":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                idFiscaleIva = new Option<IdFiscaleIVA>(JsonSerializer.Deserialize<IdFiscaleIVA>(ref utf8JsonReader, jsonSerializerOptions));
+                            idFiscaleIva = new Option<IdFiscaleIVA>(JsonSerializer.Deserialize<IdFiscaleIVA>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "codice_fiscale":
                             codiceFiscale = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "anagrafica":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                anagrafica = new Option<Anagrafica>(JsonSerializer.Deserialize<Anagrafica>(ref utf8JsonReader, jsonSerializerOptions));
+                            anagrafica = new Option<Anagrafica>(JsonSerializer.Deserialize<Anagrafica>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "albo_professionale":
                             alboProfessionale = new Option<string>(utf8JsonReader.GetString());
@@ -263,8 +261,7 @@ namespace Invoicetronic.Sdk.Model
                             numeroIscrizioneAlbo = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data_iscrizione_albo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataIscrizioneAlbo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataIscrizioneAlbo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "regime_fiscale":
                             regimeFiscale = new Option<string>(utf8JsonReader.GetString());

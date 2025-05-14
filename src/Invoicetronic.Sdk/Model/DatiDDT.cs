@@ -161,12 +161,10 @@ namespace Invoicetronic.Sdk.Model
                             numeroDdt = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data_ddt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataDdt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataDdt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "riferimento_numero_linea":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                riferimentoNumeroLinea = new Option<List<int>>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
+                            riferimentoNumeroLinea = new Option<List<int>>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

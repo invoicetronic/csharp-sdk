@@ -410,7 +410,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/update";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/update"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/update");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -708,7 +710,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/update/{id}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/update/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/update/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();

@@ -119,8 +119,7 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_anagrafici":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiAnagrafici = new Option<DatiAnagrafici>(JsonSerializer.Deserialize<DatiAnagrafici>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiAnagrafici = new Option<DatiAnagrafici>(JsonSerializer.Deserialize<DatiAnagrafici>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

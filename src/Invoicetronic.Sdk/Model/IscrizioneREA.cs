@@ -193,8 +193,7 @@ namespace Invoicetronic.Sdk.Model
                             numeroRea = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "capitale_sociale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                capitaleSociale = new Option<double?>(utf8JsonReader.GetDouble());
+                            capitaleSociale = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "socio_unico":
                             socioUnico = new Option<string>(utf8JsonReader.GetString());

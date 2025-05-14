@@ -156,12 +156,10 @@ namespace Invoicetronic.Sdk.Model
                             sistemaEmittente = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "fattura_elettronica_header":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                fatturaElettronicaHeader = new Option<FatturaElettronicaHeader>(JsonSerializer.Deserialize<FatturaElettronicaHeader>(ref utf8JsonReader, jsonSerializerOptions));
+                            fatturaElettronicaHeader = new Option<FatturaElettronicaHeader>(JsonSerializer.Deserialize<FatturaElettronicaHeader>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "fattura_elettronica_body":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                fatturaElettronicaBody = new Option<List<FatturaElettronicaBody>>(JsonSerializer.Deserialize<List<FatturaElettronicaBody>>(ref utf8JsonReader, jsonSerializerOptions));
+                            fatturaElettronicaBody = new Option<List<FatturaElettronicaBody>>(JsonSerializer.Deserialize<List<FatturaElettronicaBody>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

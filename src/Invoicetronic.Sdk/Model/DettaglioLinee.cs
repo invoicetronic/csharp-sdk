@@ -384,49 +384,40 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "numero_linea":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                numeroLinea = new Option<int?>(utf8JsonReader.GetInt32());
+                            numeroLinea = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "tipo_cessione_prestazione":
                             tipoCessionePrestazione = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "codice_articolo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                codiceArticolo = new Option<List<CodiceArticolo>>(JsonSerializer.Deserialize<List<CodiceArticolo>>(ref utf8JsonReader, jsonSerializerOptions));
+                            codiceArticolo = new Option<List<CodiceArticolo>>(JsonSerializer.Deserialize<List<CodiceArticolo>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "descrizione":
                             descrizione = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "quantita":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                quantita = new Option<double?>(utf8JsonReader.GetDouble());
+                            quantita = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "unita_misura":
                             unitaMisura = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data_inizio_periodo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataInizioPeriodo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataInizioPeriodo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "data_fine_periodo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataFinePeriodo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataFinePeriodo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "prezzo_unitario":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                prezzoUnitario = new Option<double?>(utf8JsonReader.GetDouble());
+                            prezzoUnitario = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "sconto_maggiorazione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                scontoMaggiorazione = new Option<List<ScontoMaggiorazione>>(JsonSerializer.Deserialize<List<ScontoMaggiorazione>>(ref utf8JsonReader, jsonSerializerOptions));
+                            scontoMaggiorazione = new Option<List<ScontoMaggiorazione>>(JsonSerializer.Deserialize<List<ScontoMaggiorazione>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "prezzo_totale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                prezzoTotale = new Option<double?>(utf8JsonReader.GetDouble());
+                            prezzoTotale = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "aliquota_iva":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                aliquotaIva = new Option<double?>(utf8JsonReader.GetDouble());
+                            aliquotaIva = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "ritenuta":
                             ritenuta = new Option<string>(utf8JsonReader.GetString());
@@ -438,8 +429,7 @@ namespace Invoicetronic.Sdk.Model
                             riferimentoAmministrazione = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "altri_dati_gestionali":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                altriDatiGestionali = new Option<List<AltriDatiGestionali>>(JsonSerializer.Deserialize<List<AltriDatiGestionali>>(ref utf8JsonReader, jsonSerializerOptions));
+                            altriDatiGestionali = new Option<List<AltriDatiGestionali>>(JsonSerializer.Deserialize<List<AltriDatiGestionali>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

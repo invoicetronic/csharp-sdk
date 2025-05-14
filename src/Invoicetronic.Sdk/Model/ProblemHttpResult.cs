@@ -153,15 +153,13 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "problem_details":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                problemDetails = new Option<ProblemDetails>(JsonSerializer.Deserialize<ProblemDetails>(ref utf8JsonReader, jsonSerializerOptions));
+                            problemDetails = new Option<ProblemDetails>(JsonSerializer.Deserialize<ProblemDetails>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "content_type":
                             contentType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "status_code":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                statusCode = new Option<int?>(utf8JsonReader.GetInt32());
+                            statusCode = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         default:
                             break;

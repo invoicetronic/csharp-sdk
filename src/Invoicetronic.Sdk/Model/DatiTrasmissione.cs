@@ -204,8 +204,7 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id_trasmittente":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                idTrasmittente = new Option<IdTrasmittente>(JsonSerializer.Deserialize<IdTrasmittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            idTrasmittente = new Option<IdTrasmittente>(JsonSerializer.Deserialize<IdTrasmittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "progressivo_invio":
                             progressivoInvio = new Option<string>(utf8JsonReader.GetString());
@@ -217,8 +216,7 @@ namespace Invoicetronic.Sdk.Model
                             codiceDestinatario = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "contatti_trasmittente":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                contattiTrasmittente = new Option<ContattiTrasmittente>(JsonSerializer.Deserialize<ContattiTrasmittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            contattiTrasmittente = new Option<ContattiTrasmittente>(JsonSerializer.Deserialize<ContattiTrasmittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "pec_destinatario":
                             pecDestinatario = new Option<string>(utf8JsonReader.GetString());

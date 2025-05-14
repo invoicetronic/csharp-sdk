@@ -204,24 +204,19 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_anagrafici":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiAnagrafici = new Option<DatiAnagraficiCedentePrestatore>(JsonSerializer.Deserialize<DatiAnagraficiCedentePrestatore>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiAnagrafici = new Option<DatiAnagraficiCedentePrestatore>(JsonSerializer.Deserialize<DatiAnagraficiCedentePrestatore>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sede":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sede = new Option<SedeCedentePrestatore>(JsonSerializer.Deserialize<SedeCedentePrestatore>(ref utf8JsonReader, jsonSerializerOptions));
+                            sede = new Option<SedeCedentePrestatore>(JsonSerializer.Deserialize<SedeCedentePrestatore>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "stabile_organizzazione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                stabileOrganizzazione = new Option<StabileOrganizzazione>(JsonSerializer.Deserialize<StabileOrganizzazione>(ref utf8JsonReader, jsonSerializerOptions));
+                            stabileOrganizzazione = new Option<StabileOrganizzazione>(JsonSerializer.Deserialize<StabileOrganizzazione>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "iscrizione_rea":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                iscrizioneRea = new Option<IscrizioneREA>(JsonSerializer.Deserialize<IscrizioneREA>(ref utf8JsonReader, jsonSerializerOptions));
+                            iscrizioneRea = new Option<IscrizioneREA>(JsonSerializer.Deserialize<IscrizioneREA>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "contatti":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                contatti = new Option<Contatti>(JsonSerializer.Deserialize<Contatti>(ref utf8JsonReader, jsonSerializerOptions));
+                            contatti = new Option<Contatti>(JsonSerializer.Deserialize<Contatti>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "riferimento_amministrazione":
                             riferimentoAmministrazione = new Option<string>(utf8JsonReader.GetString());

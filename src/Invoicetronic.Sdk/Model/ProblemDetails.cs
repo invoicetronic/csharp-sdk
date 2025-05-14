@@ -200,8 +200,7 @@ namespace Invoicetronic.Sdk.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "status":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                status = new Option<int?>(utf8JsonReader.GetInt32());
+                            status = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "detail":
                             detail = new Option<string>(utf8JsonReader.GetString());

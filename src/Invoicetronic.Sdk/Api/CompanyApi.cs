@@ -537,7 +537,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/company";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/company"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/company");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -808,7 +810,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/company/{id}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/company/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/company/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -1105,7 +1109,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/company/{id}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/company/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/company/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -1339,7 +1345,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/company";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/company"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/company");
 
                     httpRequestMessageLocalVar.Content = (company as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -1655,7 +1663,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/company";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/company"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/company");
 
                     httpRequestMessageLocalVar.Content = (company as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)

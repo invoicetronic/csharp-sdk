@@ -187,24 +187,19 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_generali":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiGenerali = new Option<DatiGenerali>(JsonSerializer.Deserialize<DatiGenerali>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiGenerali = new Option<DatiGenerali>(JsonSerializer.Deserialize<DatiGenerali>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_beni_servizi":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiBeniServizi = new Option<DatiBeniServizi>(JsonSerializer.Deserialize<DatiBeniServizi>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiBeniServizi = new Option<DatiBeniServizi>(JsonSerializer.Deserialize<DatiBeniServizi>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_veicoli":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiVeicoli = new Option<DatiVeicoli>(JsonSerializer.Deserialize<DatiVeicoli>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiVeicoli = new Option<DatiVeicoli>(JsonSerializer.Deserialize<DatiVeicoli>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_pagamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiPagamento = new Option<List<DatiPagamento>>(JsonSerializer.Deserialize<List<DatiPagamento>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiPagamento = new Option<List<DatiPagamento>>(JsonSerializer.Deserialize<List<DatiPagamento>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allegati":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                allegati = new Option<List<Allegati>>(JsonSerializer.Deserialize<List<Allegati>>(ref utf8JsonReader, jsonSerializerOptions));
+                            allegati = new Option<List<Allegati>>(JsonSerializer.Deserialize<List<Allegati>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

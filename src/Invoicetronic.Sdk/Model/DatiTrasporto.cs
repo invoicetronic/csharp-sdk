@@ -338,8 +338,7 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_anagrafici_vettore":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiAnagraficiVettore = new Option<DatiAnagraficiVettore>(JsonSerializer.Deserialize<DatiAnagraficiVettore>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiAnagraficiVettore = new Option<DatiAnagraficiVettore>(JsonSerializer.Deserialize<DatiAnagraficiVettore>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "mezzo_trasporto":
                             mezzoTrasporto = new Option<string>(utf8JsonReader.GetString());
@@ -348,8 +347,7 @@ namespace Invoicetronic.Sdk.Model
                             causaleTrasporto = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "numero_colli":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                numeroColli = new Option<int?>(utf8JsonReader.GetInt32());
+                            numeroColli = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "descrizione":
                             descrizione = new Option<string>(utf8JsonReader.GetString());
@@ -358,31 +356,25 @@ namespace Invoicetronic.Sdk.Model
                             unitaMisuraPeso = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "peso_lordo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pesoLordo = new Option<double?>(utf8JsonReader.GetDouble());
+                            pesoLordo = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "peso_netto":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pesoNetto = new Option<double?>(utf8JsonReader.GetDouble());
+                            pesoNetto = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "data_ora_ritiro":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataOraRitiro = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataOraRitiro = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "data_inizio_trasporto":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataInizioTrasporto = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataInizioTrasporto = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "tipo_resa":
                             tipoResa = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "indirizzo_resa":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                indirizzoResa = new Option<IndirizzoResa>(JsonSerializer.Deserialize<IndirizzoResa>(ref utf8JsonReader, jsonSerializerOptions));
+                            indirizzoResa = new Option<IndirizzoResa>(JsonSerializer.Deserialize<IndirizzoResa>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "data_ora_consegna":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataOraConsegna = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataOraConsegna = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -144,8 +144,7 @@ namespace Invoicetronic.Sdk.Model
                             number = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "date":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                date = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            date = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

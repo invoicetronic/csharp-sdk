@@ -238,27 +238,22 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "aliquota_iva":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                aliquotaIva = new Option<double?>(utf8JsonReader.GetDouble());
+                            aliquotaIva = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "natura":
                             natura = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "spese_accessorie":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                speseAccessorie = new Option<double?>(utf8JsonReader.GetDouble());
+                            speseAccessorie = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "arrotondamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                arrotondamento = new Option<double?>(utf8JsonReader.GetDouble());
+                            arrotondamento = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "imponibile_importo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                imponibileImporto = new Option<double?>(utf8JsonReader.GetDouble());
+                            imponibileImporto = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "imposta":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                imposta = new Option<double?>(utf8JsonReader.GetDouble());
+                            imposta = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "esigibilita_iva":
                             esigibilitaIva = new Option<string>(utf8JsonReader.GetString());

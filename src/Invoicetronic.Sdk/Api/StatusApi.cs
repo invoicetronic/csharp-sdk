@@ -216,7 +216,9 @@ namespace Invoicetronic.Sdk.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/status";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/status"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/status");
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;

@@ -156,12 +156,10 @@ namespace Invoicetronic.Sdk.Model
                             tipo = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "percentuale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                percentuale = new Option<double?>(utf8JsonReader.GetDouble());
+                            percentuale = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "importo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importo = new Option<double?>(utf8JsonReader.GetDouble());
+                            importo = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         default:
                             break;

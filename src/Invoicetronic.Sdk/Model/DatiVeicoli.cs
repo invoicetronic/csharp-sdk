@@ -141,8 +141,7 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totale_percorso":
                             totalePercorso = new Option<string>(utf8JsonReader.GetString());

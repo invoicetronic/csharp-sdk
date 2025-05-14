@@ -119,8 +119,7 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "riferimento_fase":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                riferimentoFase = new Option<int?>(utf8JsonReader.GetInt32());
+                            riferimentoFase = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         default:
                             break;

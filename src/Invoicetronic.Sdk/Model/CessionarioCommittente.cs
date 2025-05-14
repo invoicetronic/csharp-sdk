@@ -170,20 +170,16 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_anagrafici":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiAnagrafici = new Option<DatiAnagraficiCessionarioCommittente>(JsonSerializer.Deserialize<DatiAnagraficiCessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiAnagrafici = new Option<DatiAnagraficiCessionarioCommittente>(JsonSerializer.Deserialize<DatiAnagraficiCessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sede":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sede = new Option<SedeCessionarioCommittente>(JsonSerializer.Deserialize<SedeCessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            sede = new Option<SedeCessionarioCommittente>(JsonSerializer.Deserialize<SedeCessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "stabile_organizzazione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                stabileOrganizzazione = new Option<StabileOrganizzazione>(JsonSerializer.Deserialize<StabileOrganizzazione>(ref utf8JsonReader, jsonSerializerOptions));
+                            stabileOrganizzazione = new Option<StabileOrganizzazione>(JsonSerializer.Deserialize<StabileOrganizzazione>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "rappresentante_fiscale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rappresentanteFiscale = new Option<RappresentanteFiscaleCessionarioCommittente>(JsonSerializer.Deserialize<RappresentanteFiscaleCessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
+                            rappresentanteFiscale = new Option<RappresentanteFiscaleCessionarioCommittente>(JsonSerializer.Deserialize<RappresentanteFiscaleCessionarioCommittente>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

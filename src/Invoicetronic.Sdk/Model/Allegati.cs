@@ -199,8 +199,7 @@ namespace Invoicetronic.Sdk.Model
                             descrizioneAttachment = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "attachment":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attachment = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
+                            attachment = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

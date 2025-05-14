@@ -179,8 +179,7 @@ namespace Invoicetronic.Sdk.Model
                             cognome = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "id_fiscale_iva":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                idFiscaleIva = new Option<IdFiscaleIVA>(JsonSerializer.Deserialize<IdFiscaleIVA>(ref utf8JsonReader, jsonSerializerOptions));
+                            idFiscaleIva = new Option<IdFiscaleIVA>(JsonSerializer.Deserialize<IdFiscaleIVA>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -485,20 +485,16 @@ namespace Invoicetronic.Sdk.Model
                             modalitaPagamento = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data_riferimento_termini_pagamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataRiferimentoTerminiPagamento = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataRiferimentoTerminiPagamento = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "giorni_termini_pagamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                giorniTerminiPagamento = new Option<int?>(utf8JsonReader.GetInt32());
+                            giorniTerminiPagamento = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "data_scadenza_pagamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataScadenzaPagamento = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataScadenzaPagamento = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "importo_pagamento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importoPagamento = new Option<double?>(utf8JsonReader.GetDouble());
+                            importoPagamento = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "cod_ufficio_postale":
                             codUfficioPostale = new Option<string>(utf8JsonReader.GetString());
@@ -531,20 +527,16 @@ namespace Invoicetronic.Sdk.Model
                             bic = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "sconto_pagamento_anticipato":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                scontoPagamentoAnticipato = new Option<double?>(utf8JsonReader.GetDouble());
+                            scontoPagamentoAnticipato = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "data_limite_pagamento_anticipato":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataLimitePagamentoAnticipato = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataLimitePagamentoAnticipato = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "penalita_pagamenti_ritardati":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                penalitaPagamentiRitardati = new Option<double?>(utf8JsonReader.GetDouble());
+                            penalitaPagamentiRitardati = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "data_decorrenza_penale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataDecorrenzaPenale = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataDecorrenzaPenale = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "codice_pagamento":
                             codicePagamento = new Option<string>(utf8JsonReader.GetString());

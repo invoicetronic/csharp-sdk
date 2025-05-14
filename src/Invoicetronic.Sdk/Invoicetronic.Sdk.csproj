@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-<!-- test -->
 
   <PropertyGroup>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo> <!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->

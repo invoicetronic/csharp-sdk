@@ -181,12 +181,10 @@ namespace Invoicetronic.Sdk.Model
                             riferimentoTesto = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "riferimento_numero":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                riferimentoNumero = new Option<double?>(utf8JsonReader.GetDouble());
+                            riferimentoNumero = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         case "riferimento_data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                riferimentoData = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            riferimentoData = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

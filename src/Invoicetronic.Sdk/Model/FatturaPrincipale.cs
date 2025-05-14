@@ -144,8 +144,7 @@ namespace Invoicetronic.Sdk.Model
                             numeroFatturaPrincipale = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "data_fattura_principale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dataFatturaPrincipale = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            dataFatturaPrincipale = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

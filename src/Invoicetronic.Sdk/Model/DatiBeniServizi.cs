@@ -136,12 +136,10 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dettaglio_linee":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dettaglioLinee = new Option<List<DettaglioLinee>>(JsonSerializer.Deserialize<List<DettaglioLinee>>(ref utf8JsonReader, jsonSerializerOptions));
+                            dettaglioLinee = new Option<List<DettaglioLinee>>(JsonSerializer.Deserialize<List<DettaglioLinee>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_riepilogo":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiRiepilogo = new Option<List<DatiRiepilogo>>(JsonSerializer.Deserialize<List<DatiRiepilogo>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiRiepilogo = new Option<List<DatiRiepilogo>>(JsonSerializer.Deserialize<List<DatiRiepilogo>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

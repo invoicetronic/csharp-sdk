@@ -272,44 +272,34 @@ namespace Invoicetronic.Sdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "dati_generali_documento":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiGeneraliDocumento = new Option<DatiGeneraliDocumento>(JsonSerializer.Deserialize<DatiGeneraliDocumento>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiGeneraliDocumento = new Option<DatiGeneraliDocumento>(JsonSerializer.Deserialize<DatiGeneraliDocumento>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_ordine_acquisto":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiOrdineAcquisto = new Option<List<DatiOrdineAcquisto>>(JsonSerializer.Deserialize<List<DatiOrdineAcquisto>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiOrdineAcquisto = new Option<List<DatiOrdineAcquisto>>(JsonSerializer.Deserialize<List<DatiOrdineAcquisto>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_contratto":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiContratto = new Option<List<DatiContratto>>(JsonSerializer.Deserialize<List<DatiContratto>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiContratto = new Option<List<DatiContratto>>(JsonSerializer.Deserialize<List<DatiContratto>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_convenzione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiConvenzione = new Option<List<DatiConvenzione>>(JsonSerializer.Deserialize<List<DatiConvenzione>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiConvenzione = new Option<List<DatiConvenzione>>(JsonSerializer.Deserialize<List<DatiConvenzione>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_ricezione":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiRicezione = new Option<List<DatiRicezione>>(JsonSerializer.Deserialize<List<DatiRicezione>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiRicezione = new Option<List<DatiRicezione>>(JsonSerializer.Deserialize<List<DatiRicezione>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_fatture_collegate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiFattureCollegate = new Option<List<DatiFattureCollegate>>(JsonSerializer.Deserialize<List<DatiFattureCollegate>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiFattureCollegate = new Option<List<DatiFattureCollegate>>(JsonSerializer.Deserialize<List<DatiFattureCollegate>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_sal":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiSal = new Option<List<DatiSAL>>(JsonSerializer.Deserialize<List<DatiSAL>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiSal = new Option<List<DatiSAL>>(JsonSerializer.Deserialize<List<DatiSAL>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_ddt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiDdt = new Option<List<DatiDDT>>(JsonSerializer.Deserialize<List<DatiDDT>>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiDdt = new Option<List<DatiDDT>>(JsonSerializer.Deserialize<List<DatiDDT>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dati_trasporto":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                datiTrasporto = new Option<DatiTrasporto>(JsonSerializer.Deserialize<DatiTrasporto>(ref utf8JsonReader, jsonSerializerOptions));
+                            datiTrasporto = new Option<DatiTrasporto>(JsonSerializer.Deserialize<DatiTrasporto>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "fattura_principale":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                fatturaPrincipale = new Option<FatturaPrincipale>(JsonSerializer.Deserialize<FatturaPrincipale>(ref utf8JsonReader, jsonSerializerOptions));
+                            fatturaPrincipale = new Option<FatturaPrincipale>(JsonSerializer.Deserialize<FatturaPrincipale>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

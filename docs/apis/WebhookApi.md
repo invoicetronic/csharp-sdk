@@ -14,7 +14,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="webhookget"></a>
 # **WebhookGet**
-> List&lt;WebHook&gt; WebhookGet (int page = null, int pageSize = null, string sort = null)
+> List&lt;WebHook&gt; WebhookGet (int companyId = null, int page = null, int pageSize = null, string sort = null, string description = null, bool enabled = null, string events = null, string url = null)
 
 List webhooks
 
@@ -41,14 +41,19 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new WebhookApi(config);
+            var companyId = 56;  // int | Company id (optional) 
             var page = 1;  // int | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
+            var description = "description_example";  // string |  (optional) 
+            var enabled = true;  // bool |  (optional) 
+            var events = "events_example";  // string |  (optional) 
+            var url = "url_example";  // string |  (optional) 
 
             try
             {
                 // List webhooks
-                List<WebHook> result = apiInstance.WebhookGet(page, pageSize, sort);
+                List<WebHook> result = apiInstance.WebhookGet(companyId, page, pageSize, sort, description, enabled, events, url);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -69,7 +74,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List webhooks
-    ApiResponse<List<WebHook>> response = apiInstance.WebhookGetWithHttpInfo(page, pageSize, sort);
+    ApiResponse<List<WebHook>> response = apiInstance.WebhookGetWithHttpInfo(companyId, page, pageSize, sort, description, enabled, events, url);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -86,9 +91,14 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **companyId** | **int** | Company id | [optional]  |
 | **page** | **int** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 | **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
+| **description** | **string** |  | [optional]  |
+| **enabled** | **bool** |  | [optional]  |
+| **events** | **string** |  | [optional]  |
+| **url** | **string** |  | [optional]  |
 
 ### Return type
 
@@ -503,7 +513,7 @@ catch (ApiException e)
 
 <a id="webhookhistoryget"></a>
 # **WebhookhistoryGet**
-> List&lt;WebHookHistory&gt; WebhookhistoryGet (int page = null, int pageSize = null, string sort = null)
+> List&lt;WebHookHistory&gt; WebhookhistoryGet (int page = null, int pageSize = null, string sort = null, int webhookId = null)
 
 List webhook history items
 
@@ -533,11 +543,12 @@ namespace Example
             var page = 1;  // int | Page number. Defaults to 1. (optional)  (default to 1)
             var pageSize = 100;  // int | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
+            var webhookId = 56;  // int | WebHook id (optional) 
 
             try
             {
                 // List webhook history items
-                List<WebHookHistory> result = apiInstance.WebhookhistoryGet(page, pageSize, sort);
+                List<WebHookHistory> result = apiInstance.WebhookhistoryGet(page, pageSize, sort, webhookId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -558,7 +569,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List webhook history items
-    ApiResponse<List<WebHookHistory>> response = apiInstance.WebhookhistoryGetWithHttpInfo(page, pageSize, sort);
+    ApiResponse<List<WebHookHistory>> response = apiInstance.WebhookhistoryGetWithHttpInfo(page, pageSize, sort, webhookId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -578,6 +589,7 @@ catch (ApiException e)
 | **page** | **int** | Page number. Defaults to 1. | [optional] [default to 1] |
 | **pageSize** | **int** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
 | **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
+| **webhookId** | **int** | WebHook id | [optional]  |
 
 ### Return type
 

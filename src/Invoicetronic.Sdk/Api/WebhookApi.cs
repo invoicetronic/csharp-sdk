@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.Mime;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -43,8 +42,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHook&gt;</returns>
-        List<WebHook> WebhookGet(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default);
+        List<WebHook> WebhookGet(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0);
 
         /// <summary>
         /// List webhooks
@@ -61,8 +61,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHook&gt;</returns>
-        ApiResponse<List<WebHook>> WebhookGetWithHttpInfo(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default);
+        ApiResponse<List<WebHook>> WebhookGetWithHttpInfo(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0);
         /// <summary>
         /// Delete a webhook by id
         /// </summary>
@@ -71,8 +72,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        WebHook WebhookIdDelete(int id);
+        WebHook WebhookIdDelete(int id, int operationIndex = 0);
 
         /// <summary>
         /// Delete a webhook by id
@@ -82,8 +84,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        ApiResponse<WebHook> WebhookIdDeleteWithHttpInfo(int id);
+        ApiResponse<WebHook> WebhookIdDeleteWithHttpInfo(int id, int operationIndex = 0);
         /// <summary>
         /// Get a webhook by id
         /// </summary>
@@ -92,8 +95,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        WebHook WebhookIdGet(int id);
+        WebHook WebhookIdGet(int id, int operationIndex = 0);
 
         /// <summary>
         /// Get a webhook by id
@@ -103,8 +107,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        ApiResponse<WebHook> WebhookIdGetWithHttpInfo(int id);
+        ApiResponse<WebHook> WebhookIdGetWithHttpInfo(int id, int operationIndex = 0);
         /// <summary>
         /// Add a webhook
         /// </summary>
@@ -113,8 +118,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        WebHook WebhookPost(WebHook webHook);
+        WebHook WebhookPost(WebHook webHook, int operationIndex = 0);
 
         /// <summary>
         /// Add a webhook
@@ -124,8 +130,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        ApiResponse<WebHook> WebhookPostWithHttpInfo(WebHook webHook);
+        ApiResponse<WebHook> WebhookPostWithHttpInfo(WebHook webHook, int operationIndex = 0);
         /// <summary>
         /// Update a webhook
         /// </summary>
@@ -134,8 +141,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        WebHook WebhookPut(WebHook webHook);
+        WebHook WebhookPut(WebHook webHook, int operationIndex = 0);
 
         /// <summary>
         /// Update a webhook
@@ -145,8 +153,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        ApiResponse<WebHook> WebhookPutWithHttpInfo(WebHook webHook);
+        ApiResponse<WebHook> WebhookPutWithHttpInfo(WebHook webHook, int operationIndex = 0);
         /// <summary>
         /// List webhook history items
         /// </summary>
@@ -158,8 +167,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHookHistory&gt;</returns>
-        List<WebHookHistory> WebhookhistoryGet(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default);
+        List<WebHookHistory> WebhookhistoryGet(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0);
 
         /// <summary>
         /// List webhook history items
@@ -172,8 +182,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHookHistory&gt;</returns>
-        ApiResponse<List<WebHookHistory>> WebhookhistoryGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default);
+        ApiResponse<List<WebHookHistory>> WebhookhistoryGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0);
         /// <summary>
         /// Get a webhook history item by id
         /// </summary>
@@ -182,8 +193,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHookHistory</returns>
-        WebHookHistory WebhookhistoryIdGet(int id);
+        WebHookHistory WebhookhistoryIdGet(int id, int operationIndex = 0);
 
         /// <summary>
         /// Get a webhook history item by id
@@ -193,8 +205,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHookHistory</returns>
-        ApiResponse<WebHookHistory> WebhookhistoryIdGetWithHttpInfo(int id);
+        ApiResponse<WebHookHistory> WebhookhistoryIdGetWithHttpInfo(int id, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -219,9 +232,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHook&gt;</returns>
-        System.Threading.Tasks.Task<List<WebHook>> WebhookGetAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<WebHook>> WebhookGetAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List webhooks
@@ -238,9 +252,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHook&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<WebHook>>> WebhookGetWithHttpInfoAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<WebHook>>> WebhookGetWithHttpInfoAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a webhook by id
         /// </summary>
@@ -249,9 +264,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        System.Threading.Tasks.Task<WebHook> WebhookIdDeleteAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<WebHook> WebhookIdDeleteAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a webhook by id
@@ -261,9 +277,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookIdDeleteWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a webhook by id
         /// </summary>
@@ -272,9 +289,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        System.Threading.Tasks.Task<WebHook> WebhookIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<WebHook> WebhookIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a webhook by id
@@ -284,9 +302,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add a webhook
         /// </summary>
@@ -295,9 +314,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        System.Threading.Tasks.Task<WebHook> WebhookPostAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<WebHook> WebhookPostAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add a webhook
@@ -307,9 +327,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookPostWithHttpInfoAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookPostWithHttpInfoAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a webhook
         /// </summary>
@@ -318,9 +339,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        System.Threading.Tasks.Task<WebHook> WebhookPutAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<WebHook> WebhookPutAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a webhook
@@ -330,9 +352,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookPutWithHttpInfoAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<WebHook>> WebhookPutWithHttpInfoAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List webhook history items
         /// </summary>
@@ -344,9 +367,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHookHistory&gt;</returns>
-        System.Threading.Tasks.Task<List<WebHookHistory>> WebhookhistoryGetAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<WebHookHistory>> WebhookhistoryGetAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List webhook history items
@@ -359,9 +383,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHookHistory&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<WebHookHistory>>> WebhookhistoryGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<WebHookHistory>>> WebhookhistoryGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a webhook history item by id
         /// </summary>
@@ -370,9 +395,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHookHistory</returns>
-        System.Threading.Tasks.Task<WebHookHistory> WebhookhistoryIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<WebHookHistory> WebhookhistoryIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a webhook history item by id
@@ -382,9 +408,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHookHistory)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebHookHistory>> WebhookhistoryIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<WebHookHistory>> WebhookhistoryIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -399,14 +426,12 @@ namespace Invoicetronic.Sdk.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class WebhookApi : IDisposable, IWebhookApi
+    public partial class WebhookApi : IWebhookApi
     {
         private Invoicetronic.Sdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public WebhookApi() : this((string)null)
@@ -415,11 +440,7 @@ namespace Invoicetronic.Sdk.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public WebhookApi(string basePath)
         {
@@ -427,19 +448,16 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookApi"/> class using Configuration object.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
+        /// Initializes a new instance of the <see cref="WebhookApi"/> class
+        /// using Configuration object
         /// </summary>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public WebhookApi(Invoicetronic.Sdk.Client.Configuration configuration)
         {
@@ -449,78 +467,8 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public WebhookApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public WebhookApi(HttpClient client, string basePath, HttpClientHandler handler = null)
-        {
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookApi"/> class using Configuration object.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public WebhookApi(HttpClient client, Invoicetronic.Sdk.Client.Configuration configuration, HttpClientHandler handler = null)
-        {
-            if (configuration == null) throw new ArgumentNullException("configuration");
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                configuration
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -531,7 +479,6 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        /// <exception cref="ArgumentNullException"></exception>
         public WebhookApi(Invoicetronic.Sdk.Client.ISynchronousClient client, Invoicetronic.Sdk.Client.IAsynchronousClient asyncClient, Invoicetronic.Sdk.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -543,19 +490,6 @@ namespace Invoicetronic.Sdk.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
-
-        /// <summary>
-        /// Disposes resources if they were created by us
-        /// </summary>
-        public void Dispose()
-        {
-            this.ApiClient?.Dispose();
-        }
-
-        /// <summary>
-        /// Holds the ApiClient if created
-        /// </summary>
-        public Invoicetronic.Sdk.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -610,8 +544,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHook&gt;</returns>
-        public List<WebHook> WebhookGet(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default)
+        public List<WebHook> WebhookGet(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>> localVarResponse = WebhookGetWithHttpInfo(companyId, page, pageSize, sort, description, enabled, events, url);
             return localVarResponse.Data;
@@ -629,8 +564,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHook&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>> WebhookGetWithHttpInfo(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>> WebhookGetWithHttpInfo(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -643,10 +579,17 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (companyId != null)
             {
@@ -680,6 +623,9 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "url", url));
             }
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -690,11 +636,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<List<WebHook>>("/webhook", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -712,11 +660,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHook&gt;</returns>
-        public async System.Threading.Tasks.Task<List<WebHook>> WebhookGetAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<WebHook>> WebhookGetAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>> localVarResponse = await WebhookGetWithHttpInfoAsync(companyId, page, pageSize, sort, description, enabled, events, url, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>> localVarResponse = await WebhookGetWithHttpInfoAsync(companyId, page, pageSize, sort, description, enabled, events, url, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -732,9 +681,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="enabled"> (optional)</param>
         /// <param name="events"> (optional)</param>
         /// <param name="url"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHook&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>>> WebhookGetWithHttpInfoAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<WebHook>>> WebhookGetWithHttpInfoAsync(int? companyId = default, int? page = default, int? pageSize = default, string sort = default, string description = default, bool? enabled = default, string events = default, string url = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -747,12 +697,17 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (companyId != null)
             {
@@ -787,6 +742,9 @@ namespace Invoicetronic.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "url", url));
             }
 
+            localVarRequestOptions.Operation = "WebhookApi.WebhookGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
             // authentication (Basic) required
             // http basic authentication required
             if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -795,13 +753,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<List<WebHook>>("/webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -812,8 +772,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        public WebHook WebhookIdDelete(int id)
+        public WebHook WebhookIdDelete(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = WebhookIdDeleteWithHttpInfo(id);
             return localVarResponse.Data;
@@ -824,8 +785,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookIdDeleteWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookIdDeleteWithHttpInfo(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -838,12 +800,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookIdDelete";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -854,11 +826,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<WebHook>("/webhook/{id}", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookIdDelete", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -869,11 +843,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        public async System.Threading.Tasks.Task<WebHook> WebhookIdDeleteAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<WebHook> WebhookIdDeleteAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookIdDeleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookIdDeleteWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -882,9 +857,10 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookIdDeleteWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -897,14 +873,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookIdDelete";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -914,13 +898,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.DeleteAsync<WebHook>("/webhook/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookIdDelete", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -931,8 +917,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        public WebHook WebhookIdGet(int id)
+        public WebHook WebhookIdGet(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = WebhookIdGetWithHttpInfo(id);
             return localVarResponse.Data;
@@ -943,8 +930,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookIdGetWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookIdGetWithHttpInfo(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -957,12 +945,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -973,11 +971,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<WebHook>("/webhook/{id}", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -988,11 +988,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        public async System.Threading.Tasks.Task<WebHook> WebhookIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<WebHook> WebhookIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookIdGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookIdGetWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1001,9 +1002,10 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1016,14 +1018,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1033,13 +1043,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<WebHook>("/webhook/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1050,8 +1062,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        public WebHook WebhookPost(WebHook webHook)
+        public WebHook WebhookPost(WebHook webHook, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = WebhookPostWithHttpInfo(webHook);
             return localVarResponse.Data;
@@ -1062,12 +1075,15 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookPostWithHttpInfo(WebHook webHook)
+        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookPostWithHttpInfo(WebHook webHook, int operationIndex = 0)
         {
             // verify the required parameter 'webHook' is set
             if (webHook == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'webHook' when calling WebhookApi->WebhookPost");
+            }
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1081,12 +1097,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = webHook;
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1097,11 +1123,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<WebHook>("/webhook", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookPost", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1112,11 +1140,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        public async System.Threading.Tasks.Task<WebHook> WebhookPostAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<WebHook> WebhookPostAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookPostWithHttpInfoAsync(webHook, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookPostWithHttpInfoAsync(webHook, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1125,13 +1154,16 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookPostWithHttpInfoAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookPostWithHttpInfoAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'webHook' is set
             if (webHook == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'webHook' when calling WebhookApi->WebhookPost");
+            }
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1145,14 +1177,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = webHook;
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1162,13 +1202,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PostAsync<WebHook>("/webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookPost", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1179,8 +1221,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHook</returns>
-        public WebHook WebhookPut(WebHook webHook)
+        public WebHook WebhookPut(WebHook webHook, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = WebhookPutWithHttpInfo(webHook);
             return localVarResponse.Data;
@@ -1191,12 +1234,15 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHook</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookPutWithHttpInfo(WebHook webHook)
+        public Invoicetronic.Sdk.Client.ApiResponse<WebHook> WebhookPutWithHttpInfo(WebHook webHook, int operationIndex = 0)
         {
             // verify the required parameter 'webHook' is set
             if (webHook == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'webHook' when calling WebhookApi->WebhookPut");
+            }
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1210,12 +1256,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = webHook;
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookPut";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1226,11 +1282,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<WebHook>("/webhook", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookPut", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1241,11 +1299,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHook</returns>
-        public async System.Threading.Tasks.Task<WebHook> WebhookPutAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<WebHook> WebhookPutAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookPutWithHttpInfoAsync(webHook, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<WebHook> localVarResponse = await WebhookPutWithHttpInfoAsync(webHook, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1254,13 +1313,16 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webHook"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHook)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookPutWithHttpInfoAsync(WebHook webHook, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHook>> WebhookPutWithHttpInfoAsync(WebHook webHook, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'webHook' is set
             if (webHook == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'webHook' when calling WebhookApi->WebhookPut");
+            }
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1274,14 +1336,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = webHook;
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookPut";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1291,13 +1361,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PutAsync<WebHook>("/webhook", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookPut", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1311,8 +1383,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;WebHookHistory&gt;</returns>
-        public List<WebHookHistory> WebhookhistoryGet(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default)
+        public List<WebHookHistory> WebhookhistoryGet(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>> localVarResponse = WebhookhistoryGetWithHttpInfo(page, pageSize, sort, webhookId);
             return localVarResponse.Data;
@@ -1326,8 +1399,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;WebHookHistory&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>> WebhookhistoryGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>> WebhookhistoryGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1340,10 +1414,17 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (page != null)
             {
@@ -1361,6 +1442,9 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "webhook_id", webhookId));
             }
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookhistoryGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1371,11 +1455,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<List<WebHookHistory>>("/webhookhistory", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookhistoryGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1389,11 +1475,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;WebHookHistory&gt;</returns>
-        public async System.Threading.Tasks.Task<List<WebHookHistory>> WebhookhistoryGetAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<WebHookHistory>> WebhookhistoryGetAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>> localVarResponse = await WebhookhistoryGetWithHttpInfoAsync(page, pageSize, sort, webhookId, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>> localVarResponse = await WebhookhistoryGetWithHttpInfoAsync(page, pageSize, sort, webhookId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1405,9 +1492,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;WebHookHistory&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>>> WebhookhistoryGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<WebHookHistory>>> WebhookhistoryGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, int? webhookId = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1420,12 +1508,17 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (page != null)
             {
@@ -1444,6 +1537,9 @@ namespace Invoicetronic.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "webhook_id", webhookId));
             }
 
+            localVarRequestOptions.Operation = "WebhookApi.WebhookhistoryGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
             // authentication (Basic) required
             // http basic authentication required
             if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1452,13 +1548,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<List<WebHookHistory>>("/webhookhistory", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookhistoryGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1469,8 +1567,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>WebHookHistory</returns>
-        public WebHookHistory WebhookhistoryIdGet(int id)
+        public WebHookHistory WebhookhistoryIdGet(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory> localVarResponse = WebhookhistoryIdGetWithHttpInfo(id);
             return localVarResponse.Data;
@@ -1481,8 +1580,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of WebHookHistory</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory> WebhookhistoryIdGetWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory> WebhookhistoryIdGetWithHttpInfo(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1495,12 +1595,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookhistoryIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1511,11 +1621,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<WebHookHistory>("/webhookhistory/{id}", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookhistoryIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1526,11 +1638,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of WebHookHistory</returns>
-        public async System.Threading.Tasks.Task<WebHookHistory> WebhookhistoryIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<WebHookHistory> WebhookhistoryIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory> localVarResponse = await WebhookhistoryIdGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory> localVarResponse = await WebhookhistoryIdGetWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1539,9 +1652,10 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebHookHistory)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory>> WebhookhistoryIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<WebHookHistory>> WebhookhistoryIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1554,14 +1668,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "WebhookApi.WebhookhistoryIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1571,13 +1693,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<WebHookHistory>("/webhookhistory/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WebhookhistoryIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

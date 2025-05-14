@@ -47,12 +47,22 @@ namespace Invoicetronic.Sdk.Client
         /// <summary>
         /// File parameters to be sent along with the request.
         /// </summary>
-        public Multimap<string, FileParameter> FileParameters { get; set; }
+        public Multimap<string, Stream> FileParameters { get; set; }
 
         /// <summary>
         /// Cookies to be sent along with the request.
         /// </summary>
         public List<Cookie> Cookies { get; set; }
+
+        /// <summary>
+        /// Operation associated with the request path.
+        /// </summary>
+        public string Operation { get; set; }
+
+        /// <summary>
+        /// Index associated with the operation.
+        /// </summary>
+        public int OperationIndex { get; set; }
 
         /// <summary>
         /// Any data associated with a request body.
@@ -68,7 +78,7 @@ namespace Invoicetronic.Sdk.Client
             QueryParameters = new Multimap<string, string>();
             HeaderParameters = new Multimap<string, string>();
             FormParameters = new Dictionary<string, string>();
-            FileParameters = new Multimap<string, FileParameter>();
+            FileParameters = new Multimap<string, Stream>();
             Cookies = new List<Cookie>();
         }
     }

@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.Mime;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -38,8 +37,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Company&gt;</returns>
-        List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default);
+        List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0);
 
         /// <summary>
         /// List companies
@@ -51,8 +51,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
-        ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default);
+        ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0);
         /// <summary>
         /// Delete a company
         /// </summary>
@@ -61,8 +62,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        Company CompanyIdDelete(int id);
+        Company CompanyIdDelete(int id, int operationIndex = 0);
 
         /// <summary>
         /// Delete a company
@@ -72,8 +74,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id);
+        ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id, int operationIndex = 0);
         /// <summary>
         /// Get a company by id
         /// </summary>
@@ -82,8 +85,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        Company CompanyIdGet(int id);
+        Company CompanyIdGet(int id, int operationIndex = 0);
 
         /// <summary>
         /// Get a company by id
@@ -93,8 +97,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        ApiResponse<Company> CompanyIdGetWithHttpInfo(int id);
+        ApiResponse<Company> CompanyIdGetWithHttpInfo(int id, int operationIndex = 0);
         /// <summary>
         /// Add a company
         /// </summary>
@@ -103,8 +108,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        Company CompanyPost(Company company);
+        Company CompanyPost(Company company, int operationIndex = 0);
 
         /// <summary>
         /// Add a company
@@ -114,8 +120,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        ApiResponse<Company> CompanyPostWithHttpInfo(Company company);
+        ApiResponse<Company> CompanyPostWithHttpInfo(Company company, int operationIndex = 0);
         /// <summary>
         /// Update a company
         /// </summary>
@@ -124,8 +131,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        Company CompanyPut(Company company);
+        Company CompanyPut(Company company, int operationIndex = 0);
 
         /// <summary>
         /// Update a company
@@ -135,8 +143,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        ApiResponse<Company> CompanyPutWithHttpInfo(Company company);
+        ApiResponse<Company> CompanyPutWithHttpInfo(Company company, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -156,9 +165,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
-        System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List companies
@@ -170,9 +180,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a company
         /// </summary>
@@ -181,9 +192,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a company
@@ -193,9 +205,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a company by id
         /// </summary>
@@ -204,9 +217,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        System.Threading.Tasks.Task<Company> CompanyIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Company> CompanyIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a company by id
@@ -216,9 +230,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add a company
         /// </summary>
@@ -227,9 +242,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        System.Threading.Tasks.Task<Company> CompanyPostAsync(Company company, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Company> CompanyPostAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add a company
@@ -239,9 +255,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyPostWithHttpInfoAsync(Company company, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyPostWithHttpInfoAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a company
         /// </summary>
@@ -250,9 +267,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        System.Threading.Tasks.Task<Company> CompanyPutAsync(Company company, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Company> CompanyPutAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a company
@@ -262,9 +280,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyPutWithHttpInfoAsync(Company company, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyPutWithHttpInfoAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -279,14 +298,12 @@ namespace Invoicetronic.Sdk.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class CompanyApi : IDisposable, ICompanyApi
+    public partial class CompanyApi : ICompanyApi
     {
         private Invoicetronic.Sdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public CompanyApi() : this((string)null)
@@ -295,11 +312,7 @@ namespace Invoicetronic.Sdk.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public CompanyApi(string basePath)
         {
@@ -307,19 +320,16 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompanyApi"/> class using Configuration object.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
+        /// Initializes a new instance of the <see cref="CompanyApi"/> class
+        /// using Configuration object
         /// </summary>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public CompanyApi(Invoicetronic.Sdk.Client.Configuration configuration)
         {
@@ -329,78 +339,8 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CompanyApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public CompanyApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CompanyApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public CompanyApi(HttpClient client, string basePath, HttpClientHandler handler = null)
-        {
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CompanyApi"/> class using Configuration object.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public CompanyApi(HttpClient client, Invoicetronic.Sdk.Client.Configuration configuration, HttpClientHandler handler = null)
-        {
-            if (configuration == null) throw new ArgumentNullException("configuration");
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                configuration
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -411,7 +351,6 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        /// <exception cref="ArgumentNullException"></exception>
         public CompanyApi(Invoicetronic.Sdk.Client.ISynchronousClient client, Invoicetronic.Sdk.Client.IAsynchronousClient asyncClient, Invoicetronic.Sdk.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -423,19 +362,6 @@ namespace Invoicetronic.Sdk.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
-
-        /// <summary>
-        /// Disposes resources if they were created by us
-        /// </summary>
-        public void Dispose()
-        {
-            this.ApiClient?.Dispose();
-        }
-
-        /// <summary>
-        /// Holds the ApiClient if created
-        /// </summary>
-        public Invoicetronic.Sdk.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -485,8 +411,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Company&gt;</returns>
-        public List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default)
+        public List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = CompanyGetWithHttpInfo(page, pageSize, sort);
             return localVarResponse.Data;
@@ -499,8 +426,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -513,10 +441,17 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (page != null)
             {
@@ -530,6 +465,9 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
             }
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -540,11 +478,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<List<Company>>("/company", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -557,11 +497,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = await CompanyGetWithHttpInfoAsync(page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = await CompanyGetWithHttpInfoAsync(page, pageSize, sort, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -572,9 +513,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -587,12 +529,17 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (page != null)
             {
@@ -607,6 +554,9 @@ namespace Invoicetronic.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
             }
 
+            localVarRequestOptions.Operation = "CompanyApi.CompanyGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
             // authentication (Basic) required
             // http basic authentication required
             if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -615,13 +565,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<List<Company>>("/company", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -632,8 +584,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        public Company CompanyIdDelete(int id)
+        public Company CompanyIdDelete(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyIdDeleteWithHttpInfo(id);
             return localVarResponse.Data;
@@ -644,8 +597,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -658,12 +612,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyIdDelete";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -674,11 +638,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<Company>("/company/{id}", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyIdDelete", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -689,11 +655,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        public async System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyIdDeleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyIdDeleteWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -702,9 +669,10 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -717,14 +685,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyIdDelete";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -734,13 +710,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.DeleteAsync<Company>("/company/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyIdDelete", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -751,8 +729,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        public Company CompanyIdGet(int id)
+        public Company CompanyIdGet(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyIdGetWithHttpInfo(id);
             return localVarResponse.Data;
@@ -763,8 +742,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyIdGetWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyIdGetWithHttpInfo(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -777,12 +757,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -793,11 +783,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Company>("/company/{id}", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -808,11 +800,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        public async System.Threading.Tasks.Task<Company> CompanyIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Company> CompanyIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyIdGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyIdGetWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -821,9 +814,10 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -836,14 +830,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -853,13 +855,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<Company>("/company/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -870,8 +874,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        public Company CompanyPost(Company company)
+        public Company CompanyPost(Company company, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyPostWithHttpInfo(company);
             return localVarResponse.Data;
@@ -882,12 +887,15 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyPostWithHttpInfo(Company company)
+        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyPostWithHttpInfo(Company company, int operationIndex = 0)
         {
             // verify the required parameter 'company' is set
             if (company == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'company' when calling CompanyApi->CompanyPost");
+            }
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -901,12 +909,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = company;
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -917,11 +935,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<Company>("/company", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyPost", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -932,11 +952,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        public async System.Threading.Tasks.Task<Company> CompanyPostAsync(Company company, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Company> CompanyPostAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyPostWithHttpInfoAsync(company, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyPostWithHttpInfoAsync(company, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -945,13 +966,16 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyPostWithHttpInfoAsync(Company company, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyPostWithHttpInfoAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'company' is set
             if (company == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'company' when calling CompanyApi->CompanyPost");
+            }
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -965,14 +989,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = company;
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -982,13 +1014,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PostAsync<Company>("/company", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyPost", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -999,8 +1033,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Company</returns>
-        public Company CompanyPut(Company company)
+        public Company CompanyPut(Company company, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyPutWithHttpInfo(company);
             return localVarResponse.Data;
@@ -1011,12 +1046,15 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Company</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyPutWithHttpInfo(Company company)
+        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyPutWithHttpInfo(Company company, int operationIndex = 0)
         {
             // verify the required parameter 'company' is set
             if (company == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'company' when calling CompanyApi->CompanyPut");
+            }
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1030,12 +1068,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = company;
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyPut";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1046,11 +1094,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<Company>("/company", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyPut", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -1061,11 +1111,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        public async System.Threading.Tasks.Task<Company> CompanyPutAsync(Company company, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Company> CompanyPutAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyPutWithHttpInfoAsync(company, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyPutWithHttpInfoAsync(company, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1074,13 +1125,16 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyPutWithHttpInfoAsync(Company company, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyPutWithHttpInfoAsync(Company company, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'company' is set
             if (company == null)
+            {
                 throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'company' when calling CompanyApi->CompanyPut");
+            }
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1094,14 +1148,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = company;
+
+            localVarRequestOptions.Operation = "CompanyApi.CompanyPut";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1111,13 +1173,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PutAsync<Company>("/company", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyPut", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

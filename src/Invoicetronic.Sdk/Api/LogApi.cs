@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.Mime;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -49,8 +48,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Event&gt;</returns>
-        List<Event> LogGet(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default);
+        List<Event> LogGet(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0);
 
         /// <summary>
         /// List events
@@ -73,8 +73,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Event&gt;</returns>
-        ApiResponse<List<Event>> LogGetWithHttpInfo(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default);
+        ApiResponse<List<Event>> LogGetWithHttpInfo(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0);
         /// <summary>
         /// Get an event by id
         /// </summary>
@@ -83,8 +84,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Event</returns>
-        Event LogIdGet(int id);
+        Event LogIdGet(int id, int operationIndex = 0);
 
         /// <summary>
         /// Get an event by id
@@ -94,8 +96,9 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Event</returns>
-        ApiResponse<Event> LogIdGetWithHttpInfo(int id);
+        ApiResponse<Event> LogIdGetWithHttpInfo(int id, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -126,9 +129,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Event&gt;</returns>
-        System.Threading.Tasks.Task<List<Event>> LogGetAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<Event>> LogGetAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List events
@@ -151,9 +155,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Event&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Event>>> LogGetWithHttpInfoAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<Event>>> LogGetWithHttpInfoAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get an event by id
         /// </summary>
@@ -162,9 +167,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Event</returns>
-        System.Threading.Tasks.Task<Event> LogIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Event> LogIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an event by id
@@ -174,9 +180,10 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Event)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Event>> LogIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Event>> LogIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -191,14 +198,12 @@ namespace Invoicetronic.Sdk.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class LogApi : IDisposable, ILogApi
+    public partial class LogApi : ILogApi
     {
         private Invoicetronic.Sdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public LogApi() : this((string)null)
@@ -207,11 +212,7 @@ namespace Invoicetronic.Sdk.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public LogApi(string basePath)
         {
@@ -219,19 +220,16 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogApi"/> class using Configuration object.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
+        /// Initializes a new instance of the <see cref="LogApi"/> class
+        /// using Configuration object
         /// </summary>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public LogApi(Invoicetronic.Sdk.Client.Configuration configuration)
         {
@@ -241,78 +239,8 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LogApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public LogApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LogApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public LogApi(HttpClient client, string basePath, HttpClientHandler handler = null)
-        {
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LogApi"/> class using Configuration object.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public LogApi(HttpClient client, Invoicetronic.Sdk.Client.Configuration configuration, HttpClientHandler handler = null)
-        {
-            if (configuration == null) throw new ArgumentNullException("configuration");
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                configuration
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -323,7 +251,6 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        /// <exception cref="ArgumentNullException"></exception>
         public LogApi(Invoicetronic.Sdk.Client.ISynchronousClient client, Invoicetronic.Sdk.Client.IAsynchronousClient asyncClient, Invoicetronic.Sdk.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -335,19 +262,6 @@ namespace Invoicetronic.Sdk.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
-
-        /// <summary>
-        /// Disposes resources if they were created by us
-        /// </summary>
-        public void Dispose()
-        {
-            this.ApiClient?.Dispose();
-        }
-
-        /// <summary>
-        /// Holds the ApiClient if created
-        /// </summary>
-        public Invoicetronic.Sdk.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -408,8 +322,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Event&gt;</returns>
-        public List<Event> LogGet(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default)
+        public List<Event> LogGet(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<List<Event>> localVarResponse = LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo);
             return localVarResponse.Data;
@@ -433,8 +348,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Event&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<Event>> LogGetWithHttpInfo(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<Event>> LogGetWithHttpInfo(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -447,10 +363,17 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (companyId != null)
             {
@@ -508,6 +431,9 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "date_time_to", dateTimeTo));
             }
+
+            localVarRequestOptions.Operation = "LogApi.LogGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -518,11 +444,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<List<Event>>("/log", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("LogGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -546,11 +474,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Event&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Event>> LogGetAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<Event>> LogGetAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Event>> localVarResponse = await LogGetWithHttpInfoAsync(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Event>> localVarResponse = await LogGetWithHttpInfoAsync(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -572,9 +501,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="success"> (optional)</param>
         /// <param name="dateTimeFrom">Date and time of the event (optional)</param>
         /// <param name="dateTimeTo">Date and time of the event (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Event&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Event>>> LogGetWithHttpInfoAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Event>>> LogGetWithHttpInfoAsync(int? companyId = default, string endpoint = default, string method = default, int? apiVerion = default, int? statusCode = default, DateTime? dateCreatedFrom = default, DateTime? dateCreatedTo = default, int? page = default, int? pageSize = default, string sort = default, string query = default, bool? success = default, DateTime? dateTimeFrom = default, DateTime? dateTimeTo = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -587,12 +517,17 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             if (companyId != null)
             {
@@ -651,6 +586,9 @@ namespace Invoicetronic.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "date_time_to", dateTimeTo));
             }
 
+            localVarRequestOptions.Operation = "LogApi.LogGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
             // authentication (Basic) required
             // http basic authentication required
             if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -659,13 +597,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<List<Event>>("/log", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("LogGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -676,8 +616,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Event</returns>
-        public Event LogIdGet(int id)
+        public Event LogIdGet(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<Event> localVarResponse = LogIdGetWithHttpInfo(id);
             return localVarResponse.Data;
@@ -688,8 +629,9 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Event</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Event> LogIdGetWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<Event> LogIdGetWithHttpInfo(int id, int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -702,12 +644,22 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "LogApi.LogIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -718,11 +670,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Event>("/log/{id}", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("LogIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -733,11 +687,12 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Event</returns>
-        public async System.Threading.Tasks.Task<Event> LogIdGetAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Event> LogIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Event> localVarResponse = await LogIdGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Event> localVarResponse = await LogIdGetWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -746,9 +701,10 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Event)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Event>> LogIdGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Event>> LogIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -761,14 +717,22 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "LogApi.LogIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -778,13 +742,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<Event>("/log/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("LogIdGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

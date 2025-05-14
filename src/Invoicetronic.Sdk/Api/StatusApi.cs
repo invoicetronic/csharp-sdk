@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.Mime;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -35,8 +34,9 @@ namespace Invoicetronic.Sdk.Api
         /// This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Status</returns>
-        Status StatusGet();
+        Status StatusGet(int operationIndex = 0);
 
         /// <summary>
         /// Account status
@@ -45,8 +45,9 @@ namespace Invoicetronic.Sdk.Api
         /// This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Status</returns>
-        ApiResponse<Status> StatusGetWithHttpInfo();
+        ApiResponse<Status> StatusGetWithHttpInfo(int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -63,9 +64,10 @@ namespace Invoicetronic.Sdk.Api
         /// This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Status</returns>
-        System.Threading.Tasks.Task<Status> StatusGetAsync(System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Status> StatusGetAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Account status
@@ -74,9 +76,10 @@ namespace Invoicetronic.Sdk.Api
         /// This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Status)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Status>> StatusGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Status>> StatusGetWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -91,14 +94,12 @@ namespace Invoicetronic.Sdk.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class StatusApi : IDisposable, IStatusApi
+    public partial class StatusApi : IStatusApi
     {
         private Invoicetronic.Sdk.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StatusApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public StatusApi() : this((string)null)
@@ -107,11 +108,7 @@ namespace Invoicetronic.Sdk.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StatusApi"/> class.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public StatusApi(string basePath)
         {
@@ -119,19 +116,16 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StatusApi"/> class using Configuration object.
-        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
-        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
+        /// Initializes a new instance of the <see cref="StatusApi"/> class
+        /// using Configuration object
         /// </summary>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public StatusApi(Invoicetronic.Sdk.Client.Configuration configuration)
         {
@@ -141,78 +135,8 @@ namespace Invoicetronic.Sdk.Api
                 Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StatusApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public StatusApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StatusApi"/> class.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public StatusApi(HttpClient client, string basePath, HttpClientHandler handler = null)
-        {
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                new Invoicetronic.Sdk.Client.Configuration { BasePath = basePath }
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client =  this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StatusApi"/> class using Configuration object.
-        /// </summary>
-        /// <param name="client">An instance of HttpClient.</param>
-        /// <param name="configuration">An instance of Configuration.</param>
-        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <returns></returns>
-        /// <remarks>
-        /// Some configuration settings will not be applied without passing an HttpClientHandler.
-        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
-        /// </remarks>
-        public StatusApi(HttpClient client, Invoicetronic.Sdk.Client.Configuration configuration, HttpClientHandler handler = null)
-        {
-            if (configuration == null) throw new ArgumentNullException("configuration");
-            if (client == null) throw new ArgumentNullException("client");
-
-            this.Configuration = Invoicetronic.Sdk.Client.Configuration.MergeConfigurations(
-                Invoicetronic.Sdk.Client.GlobalConfiguration.Instance,
-                configuration
-            );
-            this.ApiClient = new Invoicetronic.Sdk.Client.ApiClient(client, this.Configuration.BasePath, handler);
-            this.Client = this.ApiClient;
-            this.AsynchronousClient = this.ApiClient;
+            this.Client = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
+            this.AsynchronousClient = new Invoicetronic.Sdk.Client.ApiClient(this.Configuration.BasePath);
             ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -223,7 +147,6 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        /// <exception cref="ArgumentNullException"></exception>
         public StatusApi(Invoicetronic.Sdk.Client.ISynchronousClient client, Invoicetronic.Sdk.Client.IAsynchronousClient asyncClient, Invoicetronic.Sdk.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -235,19 +158,6 @@ namespace Invoicetronic.Sdk.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Invoicetronic.Sdk.Client.Configuration.DefaultExceptionFactory;
         }
-
-        /// <summary>
-        /// Disposes resources if they were created by us
-        /// </summary>
-        public void Dispose()
-        {
-            this.ApiClient?.Dispose();
-        }
-
-        /// <summary>
-        /// Holds the ApiClient if created
-        /// </summary>
-        public Invoicetronic.Sdk.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -294,8 +204,9 @@ namespace Invoicetronic.Sdk.Api
         /// Account status This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Status</returns>
-        public Status StatusGet()
+        public Status StatusGet(int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.ApiResponse<Status> localVarResponse = StatusGetWithHttpInfo();
             return localVarResponse.Data;
@@ -305,8 +216,9 @@ namespace Invoicetronic.Sdk.Api
         /// Account status This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Status</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Status> StatusGetWithHttpInfo()
+        public Invoicetronic.Sdk.Client.ApiResponse<Status> StatusGetWithHttpInfo(int operationIndex = 0)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -319,11 +231,21 @@ namespace Invoicetronic.Sdk.Api
             };
 
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
+
+            localVarRequestOptions.Operation = "StatusApi.StatusGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -334,11 +256,13 @@ namespace Invoicetronic.Sdk.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<Status>("/status", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("StatusGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -348,11 +272,12 @@ namespace Invoicetronic.Sdk.Api
         /// Account status This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Status</returns>
-        public async System.Threading.Tasks.Task<Status> StatusGetAsync(System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Status> StatusGetAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Status> localVarResponse = await StatusGetWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Status> localVarResponse = await StatusGetWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -360,9 +285,10 @@ namespace Invoicetronic.Sdk.Api
         /// Account status This endpoint is used to know how many operations (invoices + validations) and signatures are left on your account.   When &#x60;signature_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response if you try to sign an invoice. Likewise, if &#x60;operation_left&#x60; is 0, you will receive a &#x60;403 Forbidden&#x60; response when storing or validating an invoice.  You can raise the limits by purchasing operations and/or signatures from the [Dashboard](https://dashboard.invoicetronic.com).  __Please note__ that these values are not enforced if you are on the Sandbox. See the [API Keys &amp; Sandbox](https://invoicetronic.com/apikeys/) documentation section to learn more about the Sandbox.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Status)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Status>> StatusGetWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Status>> StatusGetWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -375,13 +301,21 @@ namespace Invoicetronic.Sdk.Api
                 "application/json"
             };
 
-
             var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
+
+            localVarRequestOptions.Operation = "StatusApi.StatusGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -391,13 +325,15 @@ namespace Invoicetronic.Sdk.Api
             }
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.GetAsync<Status>("/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("StatusGet", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

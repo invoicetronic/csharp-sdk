@@ -9,24 +9,26 @@
  */
 
 
-using Polly;
-using RestSharp;
-
 namespace Invoicetronic.Sdk.Client
 {
     /// <summary>
-    /// Configuration class to set the polly retry policies to be applied to the requests.
+    /// Http methods supported by swagger
     /// </summary>
-    public static class RetryConfiguration
+    public enum HttpMethod
     {
-        /// <summary>
-        /// Retry policy
-        /// </summary>
-        public static ISyncPolicy<RestResponse> RetryPolicy { get; set; }
-
-        /// <summary>
-        /// Async retry policy
-        /// </summary>
-        public static IAsyncPolicy<RestResponse> AsyncRetryPolicy { get; set; }
+        /// <summary>HTTP GET request.</summary>
+        Get,
+        /// <summary>HTTP POST request.</summary>
+        Post,
+        /// <summary>HTTP PUT request.</summary>
+        Put,
+        /// <summary>HTTP DELETE request.</summary>
+        Delete,
+        /// <summary>HTTP HEAD request.</summary>
+        Head,
+        /// <summary>HTTP OPTIONS request.</summary>
+        Options,
+        /// <summary>HTTP PATCH request.</summary>
+        Patch
     }
 }

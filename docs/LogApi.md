@@ -19,7 +19,6 @@ Every API operation is logged and can be retrieved here. Log records are preserv
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -36,10 +35,7 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new LogApi(httpClient, config, httpClientHandler);
+            var apiInstance = new LogApi(config);
             var companyId = 56;  // int? | Company id (optional) 
             var endpoint = "endpoint_example";  // string |  (optional) 
             var method = "method_example";  // string |  (optional) 
@@ -146,7 +142,6 @@ Every API operation is logged and can be retrieved here. Log records are preserv
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.Http;
 using Invoicetronic.Sdk.Api;
 using Invoicetronic.Sdk.Client;
 using Invoicetronic.Sdk.Model;
@@ -163,10 +158,7 @@ namespace Example
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
 
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new LogApi(httpClient, config, httpClientHandler);
+            var apiInstance = new LogApi(config);
             var id = 56;  // int | Item id
 
             try

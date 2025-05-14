@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using Invoicetronic.Sdk.Model;
 using Invoicetronic.Sdk.Client;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace Invoicetronic.Sdk.Test.Model
 {

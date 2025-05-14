@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using Invoicetronic.Sdk.Model;
 using Invoicetronic.Sdk.Client;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace Invoicetronic.Sdk.Test.Model
 {
@@ -55,33 +56,6 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Vat'
-        /// </summary>
-        [Fact]
-        public void VatTest()
-        {
-            // TODO unit test for the property 'Vat'
-        }
-
-        /// <summary>
-        /// Test the property 'FiscalCode'
-        /// </summary>
-        [Fact]
-        public void FiscalCodeTest()
-        {
-            // TODO unit test for the property 'FiscalCode'
-        }
-
-        /// <summary>
-        /// Test the property 'Name'
-        /// </summary>
-        [Fact]
-        public void NameTest()
-        {
-            // TODO unit test for the property 'Name'
-        }
-
-        /// <summary>
         /// Test the property 'Id'
         /// </summary>
         [Fact]
@@ -115,6 +89,33 @@ namespace Invoicetronic.Sdk.Test.Model
         public void UserIdTest()
         {
             // TODO unit test for the property 'UserId'
+        }
+
+        /// <summary>
+        /// Test the property 'Vat'
+        /// </summary>
+        [Fact]
+        public void VatTest()
+        {
+            // TODO unit test for the property 'Vat'
+        }
+
+        /// <summary>
+        /// Test the property 'FiscalCode'
+        /// </summary>
+        [Fact]
+        public void FiscalCodeTest()
+        {
+            // TODO unit test for the property 'FiscalCode'
+        }
+
+        /// <summary>
+        /// Test the property 'Name'
+        /// </summary>
+        [Fact]
+        public void NameTest()
+        {
+            // TODO unit test for the property 'Name'
         }
 
         /// <summary>

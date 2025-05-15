@@ -180,5 +180,23 @@ namespace Invoicetronic.Sdk.Test.Model
         {
             // TODO unit test for the property 'IsRead'
         }
+
+        /// <summary>
+        /// Test the property 'MetaData'
+        /// </summary>
+        [Fact]
+        public void MetaDataTest()
+        {
+            // TODO unit test for the property 'MetaData'
+        }
+
+        /// <summary>
+        /// Test the property 'Documents'
+        /// </summary>
+        [Fact]
+        public void DocumentsTest()
+        {
+            // TODO unit test for the property 'Documents'
+        }
     }
 }

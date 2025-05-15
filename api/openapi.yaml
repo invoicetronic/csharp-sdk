@@ -5253,6 +5253,11 @@ components:
         identifier: identifier
         date_sent: 2000-01-23T04:56:07.000+00:00
         company_id: 5
+        documents:
+        - date: 2000-01-23T04:56:07.000+00:00
+          number: number
+        - date: 2000-01-23T04:56:07.000+00:00
+          number: number
         created: 2000-01-23T04:56:07.000+00:00
         description: description
         message_id: message_id
@@ -5261,6 +5266,8 @@ components:
         send_id: 5
         user_id: 1
         last_update: 2000-01-23T04:56:07.000+00:00
+        meta_data:
+          key: meta_data
         id: 0
         state: Inviato
         errors:
@@ -5342,6 +5349,18 @@ components:
         is_read:
           description: Wether the item has been read at least once.
           type: boolean
+        meta_data:
+          additionalProperties:
+            type: string
+          description: Metadata from the Send item this update refers to.
+          nullable: true
+          type: object
+        documents:
+          description: Invoice references from the Send item this update refers to.
+          items:
+            $ref: '#/components/schemas/DocumentData'
+          nullable: true
+          type: array
       type: object
     WebHook:
       additionalProperties: false

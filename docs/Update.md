@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **MessageId** | **string** | SDI message id. | [optional] 
 **Errors** | [**List&lt;Error&gt;**](Error.md) | SDI errors, if any. | [optional] 
 **IsRead** | **bool** | Wether the item has been read at least once. | [optional] 
+**MetaData** | **Dictionary&lt;string, string&gt;** | Metadata from the Send item this update refers to. | [optional] 
+**Documents** | [**List&lt;DocumentData&gt;**](DocumentData.md) | Invoice references from the Send item this update refers to. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

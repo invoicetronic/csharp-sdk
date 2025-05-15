@@ -119,7 +119,9 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="messageId">SDI message id..</param>
         /// <param name="errors">SDI errors, if any..</param>
         /// <param name="isRead">Wether the item has been read at least once..</param>
-        public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime? dateSent = default, DateTime lastUpdate = default, string identifier = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default)
+        /// <param name="metaData">Metadata from the Send item this update refers to..</param>
+        /// <param name="documents">Invoice references from the Send item this update refers to..</param>
+        public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime? dateSent = default, DateTime lastUpdate = default, string identifier = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default, Dictionary<string, string> metaData = default, List<DocumentData> documents = default)
         {
             this.Id = id;
             this.Created = created;
@@ -135,6 +137,8 @@ namespace Invoicetronic.Sdk.Model
             this.MessageId = messageId;
             this.Errors = errors;
             this.IsRead = isRead;
+            this.MetaData = metaData;
+            this.Documents = documents;
         }
 
         /// <summary>
@@ -229,6 +233,20 @@ namespace Invoicetronic.Sdk.Model
         public bool IsRead { get; set; }
 
         /// <summary>
+        /// Metadata from the Send item this update refers to.
+        /// </summary>
+        /// <value>Metadata from the Send item this update refers to.</value>
+        [DataMember(Name = "meta_data", EmitDefaultValue = true)]
+        public Dictionary<string, string> MetaData { get; set; }
+
+        /// <summary>
+        /// Invoice references from the Send item this update refers to.
+        /// </summary>
+        /// <value>Invoice references from the Send item this update refers to.</value>
+        [DataMember(Name = "documents", EmitDefaultValue = true)]
+        public List<DocumentData> Documents { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -250,6 +268,8 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
+            sb.Append("  MetaData: ").Append(MetaData).Append("\n");
+            sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

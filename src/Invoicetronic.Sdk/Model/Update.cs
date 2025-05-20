@@ -121,7 +121,8 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="isRead">Wether the item has been read at least once..</param>
         /// <param name="metaData">Metadata from the Send item this update refers to..</param>
         /// <param name="documents">Invoice references from the Send item this update refers to..</param>
-        public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime? dateSent = default, DateTime lastUpdate = default, string identifier = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default, Dictionary<string, string> metaData = default, List<DocumentData> documents = default)
+        /// <param name="prestatore">Prestatore reference from the Send item this status refers to..</param>
+        public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime? dateSent = default, DateTime lastUpdate = default, string identifier = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default, Dictionary<string, string> metaData = default, List<DocumentData> documents = default, string prestatore = default)
         {
             this.Id = id;
             this.Created = created;
@@ -139,6 +140,7 @@ namespace Invoicetronic.Sdk.Model
             this.IsRead = isRead;
             this.MetaData = metaData;
             this.Documents = documents;
+            this.Prestatore = prestatore;
         }
 
         /// <summary>
@@ -247,6 +249,13 @@ namespace Invoicetronic.Sdk.Model
         public List<DocumentData> Documents { get; set; }
 
         /// <summary>
+        /// Prestatore reference from the Send item this status refers to.
+        /// </summary>
+        /// <value>Prestatore reference from the Send item this status refers to.</value>
+        [DataMember(Name = "prestatore", EmitDefaultValue = true)]
+        public string Prestatore { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -270,6 +279,7 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
             sb.Append("  MetaData: ").Append(MetaData).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
+            sb.Append("  Prestatore: ").Append(Prestatore).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

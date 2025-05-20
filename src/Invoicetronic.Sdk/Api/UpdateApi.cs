@@ -37,6 +37,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -48,7 +49,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Update&gt;</returns>
-        List<Update> UpdateGet(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default);
+        List<Update> UpdateGet(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default);
 
         /// <summary>
         /// List updates
@@ -59,6 +60,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -70,7 +72,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Update&gt;</returns>
-        ApiResponse<List<Update>> UpdateGetWithHttpInfo(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default);
+        ApiResponse<List<Update>> UpdateGetWithHttpInfo(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default);
         /// <summary>
         /// Get an update by id
         /// </summary>
@@ -110,6 +112,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -122,7 +125,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Update&gt;</returns>
-        System.Threading.Tasks.Task<List<Update>> UpdateGetAsync(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<Update>> UpdateGetAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List updates
@@ -133,6 +136,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -145,7 +149,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Update&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Update>>> UpdateGetWithHttpInfoAsync(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<Update>>> UpdateGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get an update by id
         /// </summary>
@@ -388,6 +392,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -399,9 +404,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Update&gt;</returns>
-        public List<Update> UpdateGet(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default)
+        public List<Update> UpdateGet(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Update>> localVarResponse = UpdateGetWithHttpInfo(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Update>> localVarResponse = UpdateGetWithHttpInfo(companyId, identifier, prestatore, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
             return localVarResponse.Data;
         }
 
@@ -411,6 +416,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -422,7 +428,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Update&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<Update>> UpdateGetWithHttpInfo(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<Update>> UpdateGetWithHttpInfo(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -447,6 +453,10 @@ namespace Invoicetronic.Sdk.Api
             if (identifier != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "identifier", identifier));
+            }
+            if (prestatore != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "prestatore", prestatore));
             }
             if (unread != null)
             {
@@ -514,6 +524,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -526,9 +537,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Update&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Update>> UpdateGetAsync(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<Update>> UpdateGetAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Update>> localVarResponse = await UpdateGetWithHttpInfoAsync(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Update>> localVarResponse = await UpdateGetWithHttpInfoAsync(companyId, identifier, prestatore, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -538,6 +549,7 @@ namespace Invoicetronic.Sdk.Api
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
         /// <param name="identifier">SDI identifier. (optional)</param>
+        /// <param name="prestatore">Vat number or fiscal code. (optional)</param>
         /// <param name="unread">Unread items only. (optional)</param>
         /// <param name="sendId">Send item&#39;s id. (optional)</param>
         /// <param name="state">SDI state (optional)</param>
@@ -550,7 +562,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Update&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Update>>> UpdateGetWithHttpInfoAsync(int? companyId = default, string identifier = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Update>>> UpdateGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -577,6 +589,10 @@ namespace Invoicetronic.Sdk.Api
             if (identifier != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "identifier", identifier));
+            }
+            if (prestatore != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "prestatore", prestatore));
             }
             if (unread != null)
             {

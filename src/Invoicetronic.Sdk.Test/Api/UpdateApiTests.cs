@@ -63,6 +63,7 @@ namespace Invoicetronic.Sdk.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //int? companyId = null;
             //string identifier = null;
+            //string prestatore = null;
             //bool? unread = null;
             //int? sendId = null;
             //string state = null;
@@ -73,7 +74,7 @@ namespace Invoicetronic.Sdk.Test.Api
             //int? page = null;
             //int? pageSize = null;
             //string sort = null;
-            //var response = instance.UpdateGet(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
+            //var response = instance.UpdateGet(companyId, identifier, prestatore, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
             //Assert.IsType<List<Update>>(response);
         }
 

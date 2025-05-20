@@ -9,7 +9,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="updateget"></a>
 # **UpdateGet**
-> List&lt;Update&gt; UpdateGet (int? companyId = null, string identifier = null, bool? unread = null, int? sendId = null, string state = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, int? page = null, int? pageSize = null, string sort = null)
+> List&lt;Update&gt; UpdateGet (int? companyId = null, string identifier = null, string prestatore = null, bool? unread = null, int? sendId = null, string state = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, int? page = null, int? pageSize = null, string sort = null)
 
 List updates
 
@@ -42,6 +42,7 @@ namespace Example
             var apiInstance = new UpdateApi(httpClient, config, httpClientHandler);
             var companyId = 56;  // int? | Company id (optional) 
             var identifier = "identifier_example";  // string | SDI identifier. (optional) 
+            var prestatore = "prestatore_example";  // string | Vat number or fiscal code. (optional) 
             var unread = true;  // bool? | Unread items only. (optional) 
             var sendId = 56;  // int? | Send item's id. (optional) 
             var state = "Inviato";  // string | SDI state (optional) 
@@ -56,7 +57,7 @@ namespace Example
             try
             {
                 // List updates
-                List<Update> result = apiInstance.UpdateGet(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
+                List<Update> result = apiInstance.UpdateGet(companyId, identifier, prestatore, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -77,7 +78,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List updates
-    ApiResponse<List<Update>> response = apiInstance.UpdateGetWithHttpInfo(companyId, identifier, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
+    ApiResponse<List<Update>> response = apiInstance.UpdateGetWithHttpInfo(companyId, identifier, prestatore, unread, sendId, state, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, page, pageSize, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -96,6 +97,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **companyId** | **int?** | Company id | [optional]  |
 | **identifier** | **string** | SDI identifier. | [optional]  |
+| **prestatore** | **string** | Vat number or fiscal code. | [optional]  |
 | **unread** | **bool?** | Unread items only. | [optional]  |
 | **sendId** | **int?** | Send item&#39;s id. | [optional]  |
 | **state** | **string** | SDI state | [optional]  |

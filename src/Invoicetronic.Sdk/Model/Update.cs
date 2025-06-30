@@ -111,18 +111,14 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="userId">User id..</param>
         /// <param name="companyId">Company id..</param>
         /// <param name="sendId">Send id. This is the id of the sent invoice to which this update refers to..</param>
-        /// <param name="dateSent">When the document was sent to the SDI..</param>
         /// <param name="lastUpdate">Last update from SDI..</param>
-        /// <param name="identifier">SDI identifier. This is set by the SDI and it is unique within the SDI system..</param>
         /// <param name="state">State of the document. Theses are the possible values, as per the SDI documentation:.</param>
         /// <param name="description">Description for the state..</param>
         /// <param name="messageId">SDI message id..</param>
         /// <param name="errors">SDI errors, if any..</param>
         /// <param name="isRead">Wether the item has been read at least once..</param>
-        /// <param name="metaData">Metadata from the Send item this update refers to..</param>
-        /// <param name="documents">Invoice references from the Send item this update refers to..</param>
-        /// <param name="prestatore">Prestatore reference from the Send item this status refers to..</param>
-        public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime? dateSent = default, DateTime lastUpdate = default, string identifier = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default, Dictionary<string, string> metaData = default, List<DocumentData> documents = default, string prestatore = default)
+        /// <param name="send">send.</param>
+        public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime lastUpdate = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default, SendReduced send = default)
         {
             this.Id = id;
             this.Created = created;
@@ -130,17 +126,13 @@ namespace Invoicetronic.Sdk.Model
             this.UserId = userId;
             this.CompanyId = companyId;
             this.SendId = sendId;
-            this.DateSent = dateSent;
             this.LastUpdate = lastUpdate;
-            this.Identifier = identifier;
             this.State = state;
             this.Description = description;
             this.MessageId = messageId;
             this.Errors = errors;
             this.IsRead = isRead;
-            this.MetaData = metaData;
-            this.Documents = documents;
-            this.Prestatore = prestatore;
+            this.Send = send;
         }
 
         /// <summary>
@@ -186,25 +178,11 @@ namespace Invoicetronic.Sdk.Model
         public int SendId { get; set; }
 
         /// <summary>
-        /// When the document was sent to the SDI.
-        /// </summary>
-        /// <value>When the document was sent to the SDI.</value>
-        [DataMember(Name = "date_sent", EmitDefaultValue = true)]
-        public DateTime? DateSent { get; set; }
-
-        /// <summary>
         /// Last update from SDI.
         /// </summary>
         /// <value>Last update from SDI.</value>
         [DataMember(Name = "last_update", EmitDefaultValue = false)]
         public DateTime LastUpdate { get; set; }
-
-        /// <summary>
-        /// SDI identifier. This is set by the SDI and it is unique within the SDI system.
-        /// </summary>
-        /// <value>SDI identifier. This is set by the SDI and it is unique within the SDI system.</value>
-        [DataMember(Name = "identifier", EmitDefaultValue = true)]
-        public string Identifier { get; set; }
 
         /// <summary>
         /// Description for the state.
@@ -235,25 +213,10 @@ namespace Invoicetronic.Sdk.Model
         public bool IsRead { get; set; }
 
         /// <summary>
-        /// Metadata from the Send item this update refers to.
+        /// Gets or Sets Send
         /// </summary>
-        /// <value>Metadata from the Send item this update refers to.</value>
-        [DataMember(Name = "meta_data", EmitDefaultValue = true)]
-        public Dictionary<string, string> MetaData { get; set; }
-
-        /// <summary>
-        /// Invoice references from the Send item this update refers to.
-        /// </summary>
-        /// <value>Invoice references from the Send item this update refers to.</value>
-        [DataMember(Name = "documents", EmitDefaultValue = true)]
-        public List<DocumentData> Documents { get; set; }
-
-        /// <summary>
-        /// Prestatore reference from the Send item this status refers to.
-        /// </summary>
-        /// <value>Prestatore reference from the Send item this status refers to.</value>
-        [DataMember(Name = "prestatore", EmitDefaultValue = true)]
-        public string Prestatore { get; set; }
+        [DataMember(Name = "send", EmitDefaultValue = false)]
+        public SendReduced Send { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -269,17 +232,13 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  CompanyId: ").Append(CompanyId).Append("\n");
             sb.Append("  SendId: ").Append(SendId).Append("\n");
-            sb.Append("  DateSent: ").Append(DateSent).Append("\n");
             sb.Append("  LastUpdate: ").Append(LastUpdate).Append("\n");
-            sb.Append("  Identifier: ").Append(Identifier).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
-            sb.Append("  MetaData: ").Append(MetaData).Append("\n");
-            sb.Append("  Documents: ").Append(Documents).Append("\n");
-            sb.Append("  Prestatore: ").Append(Prestatore).Append("\n");
+            sb.Append("  Send: ").Append(Send).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

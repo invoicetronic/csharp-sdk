@@ -10,17 +10,13 @@ Name | Type | Description | Notes
 **UserId** | **int** | User id. | [optional] 
 **CompanyId** | **int** | Company id. | [optional] 
 **SendId** | **int** | Send id. This is the id of the sent invoice to which this update refers to. | [optional] 
-**DateSent** | **DateTime?** | When the document was sent to the SDI. | [optional] 
 **LastUpdate** | **DateTime** | Last update from SDI. | [optional] 
-**Identifier** | **string** | SDI identifier. This is set by the SDI and it is unique within the SDI system. | [optional] 
 **State** | **string** | State of the document. Theses are the possible values, as per the SDI documentation: | [optional] 
 **Description** | **string** | Description for the state. | [optional] 
 **MessageId** | **string** | SDI message id. | [optional] 
 **Errors** | [**List&lt;Error&gt;**](Error.md) | SDI errors, if any. | [optional] 
 **IsRead** | **bool** | Wether the item has been read at least once. | [optional] 
-**MetaData** | **Dictionary&lt;string, string&gt;** | Metadata from the Send item this update refers to. | [optional] 
-**Documents** | [**List&lt;DocumentData&gt;**](DocumentData.md) | Invoice references from the Send item this update refers to. | [optional] 
-**Prestatore** | **string** | Prestatore reference from the Send item this status refers to. | [optional] 
+**Send** | [**SendReduced**](SendReduced.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

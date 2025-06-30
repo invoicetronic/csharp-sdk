@@ -110,30 +110,12 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'DateSent'
-        /// </summary>
-        [Fact]
-        public void DateSentTest()
-        {
-            // TODO unit test for the property 'DateSent'
-        }
-
-        /// <summary>
         /// Test the property 'LastUpdate'
         /// </summary>
         [Fact]
         public void LastUpdateTest()
         {
             // TODO unit test for the property 'LastUpdate'
-        }
-
-        /// <summary>
-        /// Test the property 'Identifier'
-        /// </summary>
-        [Fact]
-        public void IdentifierTest()
-        {
-            // TODO unit test for the property 'Identifier'
         }
 
         /// <summary>
@@ -182,30 +164,12 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'MetaData'
+        /// Test the property 'Send'
         /// </summary>
         [Fact]
-        public void MetaDataTest()
+        public void SendTest()
         {
-            // TODO unit test for the property 'MetaData'
-        }
-
-        /// <summary>
-        /// Test the property 'Documents'
-        /// </summary>
-        [Fact]
-        public void DocumentsTest()
-        {
-            // TODO unit test for the property 'Documents'
-        }
-
-        /// <summary>
-        /// Test the property 'Prestatore'
-        /// </summary>
-        [Fact]
-        public void PrestatoreTest()
-        {
-            // TODO unit test for the property 'Prestatore'
+            // TODO unit test for the property 'Send'
         }
     }
 }

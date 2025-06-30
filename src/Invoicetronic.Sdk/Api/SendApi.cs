@@ -72,11 +72,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Send&gt;</returns>
-        List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default);
+        List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default);
 
         /// <summary>
         /// List invoices
@@ -97,11 +98,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
-        ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default);
+        ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default);
         /// <summary>
         /// Get a invoice by id
         /// </summary>
@@ -337,12 +339,13 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Send&gt;</returns>
-        System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List invoices
@@ -363,12 +366,13 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a invoice by id
         /// </summary>
@@ -947,13 +951,14 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Send&gt;</returns>
-        public List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default)
+        public List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort);
             return localVarResponse.Data;
         }
 
@@ -973,11 +978,12 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1042,6 +1048,10 @@ namespace Invoicetronic.Sdk.Api
             if (documentNumber != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "document_number", documentNumber));
+            }
+            if (includePayload != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "include_payload", includePayload));
             }
             if (page != null)
             {
@@ -1091,14 +1101,15 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Send&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = await SendGetWithHttpInfoAsync(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = await SendGetWithHttpInfoAsync(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1118,12 +1129,13 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
         /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1190,6 +1202,10 @@ namespace Invoicetronic.Sdk.Api
             if (documentNumber != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "document_number", documentNumber));
+            }
+            if (includePayload != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "include_payload", includePayload));
             }
             if (page != null)
             {

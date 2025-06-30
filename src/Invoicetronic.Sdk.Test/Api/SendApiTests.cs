@@ -87,10 +87,11 @@ namespace Invoicetronic.Sdk.Test.Api
             //DateTime? documentDateFrom = null;
             //DateTime? documentDateTo = null;
             //string documentNumber = null;
+            //bool? includePayload = null;
             //int? page = null;
             //int? pageSize = null;
             //string sort = null;
-            //var response = instance.SendGet(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, page, pageSize, sort);
+            //var response = instance.SendGet(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort);
             //Assert.IsType<List<Send>>(response);
         }
 

@@ -43,8 +43,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
-            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var page = 1;  // int? | Page number. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
@@ -88,8 +88,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **page** | **int?** | Page number. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Cannot be greater than 200. | [optional] [default to 100] |
 | **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type

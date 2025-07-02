@@ -49,8 +49,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Receive&gt;</returns>
         List<Receive> ReceiveGet(int? companyId = default, string identifier = default, bool? unread = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default);
@@ -76,8 +76,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Receive&gt;</returns>
         ApiResponse<List<Receive>> ReceiveGetWithHttpInfo(int? companyId = default, string identifier = default, bool? unread = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default);
@@ -153,8 +153,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Receive&gt;</returns>
@@ -181,8 +181,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Receive&gt;)</returns>
@@ -464,8 +464,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Receive&gt;</returns>
         public List<Receive> ReceiveGet(int? companyId = default, string identifier = default, bool? unread = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default)
@@ -492,8 +492,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Receive&gt;</returns>
         public Invoicetronic.Sdk.Client.ApiResponse<List<Receive>> ReceiveGetWithHttpInfo(int? companyId = default, string identifier = default, bool? unread = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default)
@@ -620,8 +620,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Receive&gt;</returns>
@@ -649,8 +649,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="documentDateTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="documentNumber">Document number. (optional)</param>
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Receive&gt;)</returns>

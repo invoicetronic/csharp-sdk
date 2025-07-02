@@ -42,8 +42,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -66,8 +66,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -119,8 +119,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -144,8 +144,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -401,8 +401,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -426,8 +426,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -539,8 +539,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>
@@ -565,8 +565,8 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="statusCode">Response status code (optional)</param>
         /// <param name="dateCreatedFrom">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="dateCreatedTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="success"> (optional)</param>

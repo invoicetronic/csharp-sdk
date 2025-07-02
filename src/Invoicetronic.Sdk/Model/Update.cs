@@ -44,37 +44,37 @@ namespace Invoicetronic.Sdk.Model
             /// Enum Inviato for value: Inviato
             /// </summary>
             [EnumMember(Value = "Inviato")]
-            Inviato = 1,
+            Inviato = 2,
 
             /// <summary>
             /// Enum Consegnato for value: Consegnato
             /// </summary>
             [EnumMember(Value = "Consegnato")]
-            Consegnato = 2,
+            Consegnato = 5,
 
             /// <summary>
             /// Enum NonConsegnato for value: NonConsegnato
             /// </summary>
             [EnumMember(Value = "NonConsegnato")]
-            NonConsegnato = 3,
+            NonConsegnato = 6,
 
             /// <summary>
             /// Enum Scartato for value: Scartato
             /// </summary>
             [EnumMember(Value = "Scartato")]
-            Scartato = 4,
+            Scartato = 7,
 
             /// <summary>
             /// Enum AccettatoDalDestinatario for value: AccettatoDalDestinatario
             /// </summary>
             [EnumMember(Value = "AccettatoDalDestinatario")]
-            AccettatoDalDestinatario = 5,
+            AccettatoDalDestinatario = 8,
 
             /// <summary>
             /// Enum RifiutatoDalDestinatario for value: RifiutatoDalDestinatario
             /// </summary>
             [EnumMember(Value = "RifiutatoDalDestinatario")]
-            RifiutatoDalDestinatario = 6,
+            RifiutatoDalDestinatario = 9,
 
             /// <summary>
             /// Enum ImpossibilitDiRecapito for value: ImpossibilitàDiRecapito
@@ -86,13 +86,13 @@ namespace Invoicetronic.Sdk.Model
             /// Enum DecorrenzaTermini for value: DecorrenzaTermini
             /// </summary>
             [EnumMember(Value = "DecorrenzaTermini")]
-            DecorrenzaTermini = 8,
+            DecorrenzaTermini = 11,
 
             /// <summary>
             /// Enum AttestazioneTrasmissioneFattura for value: AttestazioneTrasmissioneFattura
             /// </summary>
             [EnumMember(Value = "AttestazioneTrasmissioneFattura")]
-            AttestazioneTrasmissioneFattura = 9
+            AttestazioneTrasmissioneFattura = 12
         }
 
 

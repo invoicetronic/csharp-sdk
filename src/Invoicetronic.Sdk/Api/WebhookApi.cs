@@ -36,8 +36,8 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -54,8 +54,8 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -154,8 +154,8 @@ namespace Invoicetronic.Sdk.Api
         /// Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <returns>List&lt;WebHookHistory&gt;</returns>
@@ -168,8 +168,8 @@ namespace Invoicetronic.Sdk.Api
         /// Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <returns>ApiResponse of List&lt;WebHookHistory&gt;</returns>
@@ -212,8 +212,8 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -231,8 +231,8 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -340,8 +340,8 @@ namespace Invoicetronic.Sdk.Api
         /// Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -355,8 +355,8 @@ namespace Invoicetronic.Sdk.Api
         /// Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -603,8 +603,8 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -622,8 +622,8 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -705,8 +705,8 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -725,8 +725,8 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="enabled"> (optional)</param>
@@ -1307,8 +1307,8 @@ namespace Invoicetronic.Sdk.Api
         /// List webhook history items Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <returns>List&lt;WebHookHistory&gt;</returns>
@@ -1322,8 +1322,8 @@ namespace Invoicetronic.Sdk.Api
         /// List webhook history items Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <returns>ApiResponse of List&lt;WebHookHistory&gt;</returns>
@@ -1385,8 +1385,8 @@ namespace Invoicetronic.Sdk.Api
         /// List webhook history items Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1401,8 +1401,8 @@ namespace Invoicetronic.Sdk.Api
         /// List webhook history items Webhook history items are stored in the database and can be accessed via the API. They are preserved for 15 in both the live and sandbox environments.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="webhookId">WebHook id (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

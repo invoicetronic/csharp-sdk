@@ -166,8 +166,8 @@ namespace Example
             var documentDateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var documentNumber = "documentNumber_example";  // string | Document number. (optional) 
             var includePayload = true;  // bool? | Include payload in the response. Defaults to false. (optional) 
-            var page = 1;  // int? | Page number. Defaults to 1. (optional)  (default to 1)
-            var pageSize = 100;  // int? | Items per page. Defaults to 50. Cannot be greater than 200. (optional)  (default to 100)
+            var page = 1;  // int? | Page number. (optional)  (default to 1)
+            var pageSize = 100;  // int? | Items per page. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
 
             try
@@ -224,8 +224,8 @@ catch (ApiException e)
 | **documentDateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **documentNumber** | **string** | Document number. | [optional]  |
 | **includePayload** | **bool?** | Include payload in the response. Defaults to false. | [optional]  |
-| **page** | **int?** | Page number. Defaults to 1. | [optional] [default to 1] |
-| **pageSize** | **int?** | Items per page. Defaults to 50. Cannot be greater than 200. | [optional] [default to 100] |
+| **page** | **int?** | Page number. | [optional] [default to 1] |
+| **pageSize** | **int?** | Items per page. Cannot be greater than 200. | [optional] [default to 100] |
 | **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
 
 ### Return type

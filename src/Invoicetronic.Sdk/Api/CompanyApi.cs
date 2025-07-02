@@ -35,8 +35,8 @@ namespace Invoicetronic.Sdk.Api
         /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Company&gt;</returns>
         List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default);
@@ -48,8 +48,8 @@ namespace Invoicetronic.Sdk.Api
         /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
         ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default);
@@ -153,8 +153,8 @@ namespace Invoicetronic.Sdk.Api
         /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
@@ -167,8 +167,8 @@ namespace Invoicetronic.Sdk.Api
         /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
@@ -482,8 +482,8 @@ namespace Invoicetronic.Sdk.Api
         /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>List&lt;Company&gt;</returns>
         public List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default)
@@ -496,8 +496,8 @@ namespace Invoicetronic.Sdk.Api
         /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
         public Invoicetronic.Sdk.Client.ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default)
@@ -554,8 +554,8 @@ namespace Invoicetronic.Sdk.Api
         /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
@@ -569,8 +569,8 @@ namespace Invoicetronic.Sdk.Api
         /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">Page number. Defaults to 1. (optional, default to 1)</param>
-        /// <param name="pageSize">Items per page. Defaults to 50. Cannot be greater than 200. (optional, default to 100)</param>
+        /// <param name="page">Page number. (optional, default to 1)</param>
+        /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>

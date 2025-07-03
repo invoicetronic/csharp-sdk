@@ -7,6 +7,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 | [**SendFilePost**](SendApi.md#sendfilepost) | **POST** /send/file | Add an invoice by file |
 | [**SendGet**](SendApi.md#sendget) | **GET** /send | List invoices |
 | [**SendIdGet**](SendApi.md#sendidget) | **GET** /send/{id} | Get a invoice by id |
+| [**SendIdentifierGet**](SendApi.md#sendidentifierget) | **GET** /send/{identifier} | Get a invoice by identifier |
 | [**SendJsonPost**](SendApi.md#sendjsonpost) | **POST** /send/json | Add an invoice by json |
 | [**SendPost**](SendApi.md#sendpost) | **POST** /send | Add an invoice |
 | [**SendValidateFilePost**](SendApi.md#sendvalidatefilepost) | **POST** /send/validate/file | Validate an invoice file |
@@ -253,7 +254,7 @@ catch (ApiException e)
 
 <a id="sendidget"></a>
 # **SendIdGet**
-> Send SendIdGet (int id)
+> Send SendIdGet (int id, bool? includePayload = null)
 
 Get a invoice by id
 
@@ -285,11 +286,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
+            var includePayload = false;  // bool? |  (optional)  (default to false)
 
             try
             {
                 // Get a invoice by id
-                Send result = apiInstance.SendIdGet(id);
+                Send result = apiInstance.SendIdGet(id, includePayload);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -310,7 +312,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a invoice by id
-    ApiResponse<Send> response = apiInstance.SendIdGetWithHttpInfo(id);
+    ApiResponse<Send> response = apiInstance.SendIdGetWithHttpInfo(id, includePayload);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -328,6 +330,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | Item id |  |
+| **includePayload** | **bool?** |  | [optional] [default to false] |
 
 ### Return type
 
@@ -348,6 +351,109 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="sendidentifierget"></a>
+# **SendIdentifierGet**
+> Send SendIdentifierGet (string identifier, bool? includePayload = null)
+
+Get a invoice by identifier
+
+Send invoices are the invoices that are sent to the SDI. They are preserved for two years in the live environment and 15 days in the Sandbox.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Invoicetronic.Sdk.Api;
+using Invoicetronic.Sdk.Client;
+using Invoicetronic.Sdk.Model;
+
+namespace Example
+{
+    public class SendIdentifierGetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
+            var identifier = "identifier_example";  // string | 
+            var includePayload = false;  // bool? |  (optional)  (default to false)
+
+            try
+            {
+                // Get a invoice by identifier
+                Send result = apiInstance.SendIdentifierGet(identifier, includePayload);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SendApi.SendIdentifierGet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SendIdentifierGetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a invoice by identifier
+    ApiResponse<Send> response = apiInstance.SendIdentifierGetWithHttpInfo(identifier, includePayload);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SendApi.SendIdentifierGetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **identifier** | **string** |  |  |
+| **includePayload** | **bool?** |  | [optional] [default to false] |
+
+### Return type
+
+[**Send**](Send.md)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
+| **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

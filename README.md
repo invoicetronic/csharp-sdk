@@ -152,6 +152,7 @@ Class | Method | HTTP request | Description
 *SendApi* | [**SendFilePost**](docs/SendApi.md#sendfilepost) | **POST** /send/file | Add an invoice by file
 *SendApi* | [**SendGet**](docs/SendApi.md#sendget) | **GET** /send | List invoices
 *SendApi* | [**SendIdGet**](docs/SendApi.md#sendidget) | **GET** /send/{id} | Get a invoice by id
+*SendApi* | [**SendIdentifierGet**](docs/SendApi.md#sendidentifierget) | **GET** /send/{identifier} | Get a invoice by identifier
 *SendApi* | [**SendJsonPost**](docs/SendApi.md#sendjsonpost) | **POST** /send/json | Add an invoice by json
 *SendApi* | [**SendPost**](docs/SendApi.md#sendpost) | **POST** /send | Add an invoice
 *SendApi* | [**SendValidateFilePost**](docs/SendApi.md#sendvalidatefilepost) | **POST** /send/validate/file | Validate an invoice file

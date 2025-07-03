@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   contact:
-    email: support@invoicetronic.com
+    email: info@invoicetronic.com
     name: Invoicetronic
     url: https://invoicetronic.com
   description: |-
@@ -11,6 +11,7 @@ info:
 
     [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/
     [2]: https://invoicetronic.com/
+  termsOfService: https://invoicetronic.com/tos
   title: Invoicetronic API
   version: "1"
   x-logo:
@@ -427,6 +428,14 @@ paths:
           format: int32
           type: integer
         style: simple
+      - explode: true
+        in: query
+        name: includePayload
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -626,6 +635,14 @@ paths:
           format: int32
           type: integer
         style: simple
+      - explode: true
+        in: query
+        name: includePayload
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -636,6 +653,44 @@ paths:
         "404":
           description: Not Found
       summary: Get a invoice by id
+      tags:
+      - send
+  /send/{identifier}:
+    get:
+      description: Send invoices are the invoices that are sent to the SDI. They are
+        preserved for two years in the live environment and 15 days in the Sandbox.
+      parameters:
+      - explode: false
+        in: path
+        name: identifier
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: includePayload
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Send"
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemHttpResult"
+          description: Bad Request
+      summary: Get a invoice by identifier
       tags:
       - send
   /send:

@@ -245,7 +245,7 @@ catch (ApiException e)
 
 <a id="receiveidget"></a>
 # **ReceiveIdGet**
-> Receive ReceiveIdGet (int id)
+> Receive ReceiveIdGet (int id, bool? includePayload = null)
 
 Get an incoming invoice by id
 
@@ -277,11 +277,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ReceiveApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
+            var includePayload = false;  // bool? |  (optional)  (default to false)
 
             try
             {
                 // Get an incoming invoice by id
-                Receive result = apiInstance.ReceiveIdGet(id);
+                Receive result = apiInstance.ReceiveIdGet(id, includePayload);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -302,7 +303,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get an incoming invoice by id
-    ApiResponse<Receive> response = apiInstance.ReceiveIdGetWithHttpInfo(id);
+    ApiResponse<Receive> response = apiInstance.ReceiveIdGetWithHttpInfo(id, includePayload);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -320,6 +321,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | Item id |  |
+| **includePayload** | **bool?** |  | [optional] [default to false] |
 
 ### Return type
 

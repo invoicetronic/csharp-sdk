@@ -80,7 +80,7 @@ namespace Invoicetronic.Sdk.Model
             /// Enum ImpossibilitDiRecapito for value: ImpossibilitàDiRecapito
             /// </summary>
             [EnumMember(Value = "ImpossibilitàDiRecapito")]
-            ImpossibilitàDiRecapito = 10,
+            ImpossibilitDiRecapito = 7,
 
             /// <summary>
             /// Enum DecorrenzaTermini for value: DecorrenzaTermini

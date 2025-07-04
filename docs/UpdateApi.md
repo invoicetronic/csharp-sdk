@@ -52,7 +52,7 @@ namespace Example
             var dateSentTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var page = 1;  // int? | Page number. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Cannot be greater than 200. (optional)  (default to 100)
-            var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
+            var sort = "\"last_update\"";  // string | Sort by field. Prefix with '-' for descending order. (optional)  (default to "last_update")
 
             try
             {
@@ -107,7 +107,7 @@ catch (ApiException e)
 | **dateSentTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **page** | **int?** | Page number. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Cannot be greater than 200. | [optional] [default to 100] |
-| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
+| **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional] [default to &quot;last_update&quot;] |
 
 ### Return type
 

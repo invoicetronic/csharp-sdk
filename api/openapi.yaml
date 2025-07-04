@@ -1373,6 +1373,7 @@ paths:
         name: sort
         required: false
         schema:
+          default: last_update
           type: string
         style: form
       responses:

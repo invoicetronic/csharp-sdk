@@ -47,7 +47,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <returns>List&lt;Update&gt;</returns>
         List<Update> UpdateGet(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default);
 
@@ -70,7 +70,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <returns>ApiResponse of List&lt;Update&gt;</returns>
         ApiResponse<List<Update>> UpdateGetWithHttpInfo(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default);
         /// <summary>
@@ -122,7 +122,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Update&gt;</returns>
         System.Threading.Tasks.Task<List<Update>> UpdateGetAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
@@ -146,7 +146,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Update&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Update>>> UpdateGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
@@ -402,7 +402,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <returns>List&lt;Update&gt;</returns>
         public List<Update> UpdateGet(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default)
         {
@@ -426,7 +426,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <returns>ApiResponse of List&lt;Update&gt;</returns>
         public Invoicetronic.Sdk.Client.ApiResponse<List<Update>> UpdateGetWithHttpInfo(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default)
         {
@@ -534,7 +534,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Update&gt;</returns>
         public async System.Threading.Tasks.Task<List<Update>> UpdateGetAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
@@ -559,7 +559,7 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="dateSentTo">UTC ISO 8601 (2024-11-29T12:34:56Z) (optional)</param>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
-        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional, default to &quot;last_update&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Update&gt;)</returns>
         public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Update>>> UpdateGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string prestatore = default, bool? unread = default, int? sendId = default, string state = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)

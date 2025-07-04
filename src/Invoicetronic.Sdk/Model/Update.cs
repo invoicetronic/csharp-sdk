@@ -77,10 +77,10 @@ namespace Invoicetronic.Sdk.Model
             RifiutatoDalDestinatario = 9,
 
             /// <summary>
-            /// Enum ImpossibilitDiRecapito for value: ImpossibilitàDiRecapito
+            /// Enum ImpossibilitaDiRecapito for value: ImpossibilitaDiRecapito
             /// </summary>
-            [EnumMember(Value = "ImpossibilitàDiRecapito")]
-            ImpossibilitDiRecapito = 7,
+            [EnumMember(Value = "ImpossibilitaDiRecapito")]
+            ImpossibilitaDiRecapito = 10,
 
             /// <summary>
             /// Enum DecorrenzaTermini for value: DecorrenzaTermini

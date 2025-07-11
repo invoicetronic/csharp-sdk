@@ -286,7 +286,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
-            var includePayload = false;  // bool? |  (optional)  (default to false)
+            var includePayload = false;  // bool? | Include payload in the response. Defaults to false. (optional)  (default to false)
 
             try
             {
@@ -330,7 +330,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | Item id |  |
-| **includePayload** | **bool?** |  | [optional] [default to false] |
+| **includePayload** | **bool?** | Include payload in the response. Defaults to false. | [optional] [default to false] |
 
 ### Return type
 
@@ -388,7 +388,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
             var identifier = "identifier_example";  // string | 
-            var includePayload = false;  // bool? |  (optional)  (default to false)
+            var includePayload = false;  // bool? | Include payload in the response. Defaults to false. (optional)  (default to false)
 
             try
             {
@@ -432,7 +432,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **identifier** | **string** |  |  |
-| **includePayload** | **bool?** |  | [optional] [default to false] |
+| **includePayload** | **bool?** | Include payload in the response. Defaults to false. | [optional] [default to false] |
 
 ### Return type
 

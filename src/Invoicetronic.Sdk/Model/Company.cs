@@ -48,8 +48,7 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="vat">Vat number. Must include the country code. (required).</param>
         /// <param name="fiscalCode">Fiscal code. In most cases it&#39;s the same as the vat number. (required).</param>
         /// <param name="name">Name (required).</param>
-        /// <param name="counter">Holds the last unique value used to generate a XML filename. This is automatically updated by the system   when a raw XML file is uploaded. Normally, you do not need or want to change this value..</param>
-        public Company(int id = default, DateTime created = default, int varVersion = default, int userId = default, string vat = default, string fiscalCode = default, string name = default, int counter = default)
+        public Company(int id = default, DateTime created = default, int varVersion = default, int userId = default, string vat = default, string fiscalCode = default, string name = default)
         {
             // to ensure "vat" is required (not null)
             if (vat == null)
@@ -73,7 +72,6 @@ namespace Invoicetronic.Sdk.Model
             this.Created = created;
             this.VarVersion = varVersion;
             this.UserId = userId;
-            this.Counter = counter;
         }
 
         /// <summary>
@@ -135,13 +133,6 @@ namespace Invoicetronic.Sdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Holds the last unique value used to generate a XML filename. This is automatically updated by the system   when a raw XML file is uploaded. Normally, you do not need or want to change this value.
-        /// </summary>
-        /// <value>Holds the last unique value used to generate a XML filename. This is automatically updated by the system   when a raw XML file is uploaded. Normally, you do not need or want to change this value.</value>
-        [DataMember(Name = "counter", EmitDefaultValue = false)]
-        public int Counter { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -156,7 +147,6 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  Vat: ").Append(Vat).Append("\n");
             sb.Append("  FiscalCode: ").Append(FiscalCode).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Counter: ").Append(Counter).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

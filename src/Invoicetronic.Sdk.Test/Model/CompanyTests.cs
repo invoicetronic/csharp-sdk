@@ -117,14 +117,5 @@ namespace Invoicetronic.Sdk.Test.Model
         {
             // TODO unit test for the property 'Name'
         }
-
-        /// <summary>
-        /// Test the property 'Counter'
-        /// </summary>
-        [Fact]
-        public void CounterTest()
-        {
-            // TODO unit test for the property 'Counter'
-        }
     }
 }

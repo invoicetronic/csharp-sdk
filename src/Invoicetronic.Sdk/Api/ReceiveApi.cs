@@ -110,7 +110,7 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <returns>Receive</returns>
         Receive ReceiveIdGet(int id, bool? includePayload = default);
 
@@ -122,7 +122,7 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <returns>ApiResponse of Receive</returns>
         ApiResponse<Receive> ReceiveIdGetWithHttpInfo(int id, bool? includePayload = default);
         #endregion Synchronous Operations
@@ -220,7 +220,7 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Receive</returns>
         System.Threading.Tasks.Task<Receive> ReceiveIdGetAsync(int id, bool? includePayload = default, System.Threading.CancellationToken cancellationToken = default);
@@ -233,7 +233,7 @@ namespace Invoicetronic.Sdk.Api
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>
         System.Threading.Tasks.Task<ApiResponse<Receive>> ReceiveIdGetWithHttpInfoAsync(int id, bool? includePayload = default, System.Threading.CancellationToken cancellationToken = default);
@@ -891,7 +891,7 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <returns>Receive</returns>
         public Receive ReceiveIdGet(int id, bool? includePayload = default)
         {
@@ -904,7 +904,7 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <returns>ApiResponse of Receive</returns>
         public Invoicetronic.Sdk.Client.ApiResponse<Receive> ReceiveIdGetWithHttpInfo(int id, bool? includePayload = default)
         {
@@ -927,7 +927,7 @@ namespace Invoicetronic.Sdk.Api
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (includePayload != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "includePayload", includePayload));
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "include_payload", includePayload));
             }
 
             // authentication (Basic) required
@@ -954,7 +954,7 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Receive</returns>
         public async System.Threading.Tasks.Task<Receive> ReceiveIdGetAsync(int id, bool? includePayload = default, System.Threading.CancellationToken cancellationToken = default)
@@ -968,7 +968,7 @@ namespace Invoicetronic.Sdk.Api
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
-        /// <param name="includePayload"> (optional, default to false)</param>
+        /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>
         public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Receive>> ReceiveIdGetWithHttpInfoAsync(int id, bool? includePayload = default, System.Threading.CancellationToken cancellationToken = default)
@@ -994,7 +994,7 @@ namespace Invoicetronic.Sdk.Api
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (includePayload != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "includePayload", includePayload));
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "include_payload", includePayload));
             }
 
             // authentication (Basic) required

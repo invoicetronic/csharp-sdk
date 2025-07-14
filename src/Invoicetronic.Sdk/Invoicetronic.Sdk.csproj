@@ -20,6 +20,7 @@
     <PackageReleaseNotes>bumping version to 1.0.0</PackageReleaseNotes>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
     <PackageReference Include="Polly" Version="8.1.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    <None Include="../../icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
     
 

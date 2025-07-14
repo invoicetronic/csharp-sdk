@@ -5,3 +5,4 @@ logs/
 .idea/
 appsettings.Secrets.*
 *.private.env.json
+.claude/

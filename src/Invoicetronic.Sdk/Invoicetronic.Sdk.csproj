@@ -14,7 +14,6 @@
     <RootNamespace>Invoicetronic.Sdk</RootNamespace>
     <Version>main</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Invoicetronic.Sdk.xml</DocumentationFile>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/invoicetronic/csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>bumping version to main</PackageReleaseNotes>

@@ -119,15 +119,6 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Query'
-        /// </summary>
-        [Fact]
-        public void QueryTest()
-        {
-            // TODO unit test for the property 'Query'
-        }
-
-        /// <summary>
         /// Test the property 'Endpoint'
         /// </summary>
         [Fact]
@@ -173,12 +164,30 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ResourceId'
+        /// </summary>
+        [Fact]
+        public void ResourceIdTest()
+        {
+            // TODO unit test for the property 'ResourceId'
+        }
+
+        /// <summary>
         /// Test the property 'Success'
         /// </summary>
         [Fact]
         public void SuccessTest()
         {
             // TODO unit test for the property 'Success'
+        }
+
+        /// <summary>
+        /// Test the property 'Query'
+        /// </summary>
+        [Fact]
+        public void QueryTest()
+        {
+            // TODO unit test for the property 'Query'
         }
 
         /// <summary>

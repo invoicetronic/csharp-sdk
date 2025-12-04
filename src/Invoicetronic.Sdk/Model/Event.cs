@@ -43,14 +43,15 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="apiKeyId">Api key id..</param>
         /// <param name="companyId">Company id..</param>
         /// <param name="method">Request method..</param>
-        /// <param name="query">Request query..</param>
         /// <param name="endpoint">API endpoint..</param>
         /// <param name="apiVersion">Api version..</param>
         /// <param name="statusCode">Status code returned by the API..</param>
         /// <param name="dateTime">Date and time of the request..</param>
         /// <param name="error">Response error..</param>
+        /// <param name="resourceId">ID of the resource created or modified by this request..</param>
+        /// <param name="query">Request query. Only used for internal logging, not sent to webhooks..</param>
         /// <param name="responseBody">Response payload. It is guaranteed to be cyphered at rest..</param>
-        public Event(int id = default, DateTime created = default, int varVersion = default, int userId = default, int apiKeyId = default, int? companyId = default, string method = default, string query = default, string endpoint = default, int apiVersion = default, int statusCode = default, DateTime dateTime = default, string error = default, string responseBody = default)
+        public Event(int id = default, DateTime created = default, int varVersion = default, int userId = default, int apiKeyId = default, int? companyId = default, string method = default, string endpoint = default, int apiVersion = default, int statusCode = default, DateTime dateTime = default, string error = default, int? resourceId = default, string query = default, string responseBody = default)
         {
             this.Id = id;
             this.Created = created;
@@ -59,12 +60,13 @@ namespace Invoicetronic.Sdk.Model
             this.ApiKeyId = apiKeyId;
             this.CompanyId = companyId;
             this.Method = method;
-            this.Query = query;
             this.Endpoint = endpoint;
             this.ApiVersion = apiVersion;
             this.StatusCode = statusCode;
             this.DateTime = dateTime;
             this.Error = error;
+            this.ResourceId = resourceId;
+            this.Query = query;
             this.ResponseBody = responseBody;
         }
 
@@ -118,13 +120,6 @@ namespace Invoicetronic.Sdk.Model
         public string Method { get; set; }
 
         /// <summary>
-        /// Request query.
-        /// </summary>
-        /// <value>Request query.</value>
-        [DataMember(Name = "query", EmitDefaultValue = true)]
-        public string Query { get; set; }
-
-        /// <summary>
         /// API endpoint.
         /// </summary>
         /// <value>API endpoint.</value>
@@ -160,6 +155,13 @@ namespace Invoicetronic.Sdk.Model
         public string Error { get; set; }
 
         /// <summary>
+        /// ID of the resource created or modified by this request.
+        /// </summary>
+        /// <value>ID of the resource created or modified by this request.</value>
+        [DataMember(Name = "resource_id", EmitDefaultValue = true)]
+        public int? ResourceId { get; set; }
+
+        /// <summary>
         /// Wether the request was successful.
         /// </summary>
         /// <value>Wether the request was successful.</value>
@@ -174,6 +176,13 @@ namespace Invoicetronic.Sdk.Model
         {
             return false;
         }
+        /// <summary>
+        /// Request query. Only used for internal logging, not sent to webhooks.
+        /// </summary>
+        /// <value>Request query. Only used for internal logging, not sent to webhooks.</value>
+        [DataMember(Name = "query", EmitDefaultValue = true)]
+        public string Query { get; set; }
+
         /// <summary>
         /// Response payload. It is guaranteed to be cyphered at rest.
         /// </summary>
@@ -196,13 +205,14 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  ApiKeyId: ").Append(ApiKeyId).Append("\n");
             sb.Append("  CompanyId: ").Append(CompanyId).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
-            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Endpoint: ").Append(Endpoint).Append("\n");
             sb.Append("  ApiVersion: ").Append(ApiVersion).Append("\n");
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");
             sb.Append("  DateTime: ").Append(DateTime).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  ResourceId: ").Append(ResourceId).Append("\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  ResponseBody: ").Append(ResponseBody).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -3288,6 +3288,7 @@ components:
         date_time: 2000-01-23T04:56:07.000+00:00
         user_id: 1
         success: true
+        resource_id: 9
         id: 0
       properties:
         id:
@@ -3320,10 +3321,6 @@ components:
           description: Request method.
           nullable: true
           type: string
-        query:
-          description: Request query.
-          nullable: true
-          type: string
         endpoint:
           description: API endpoint.
           nullable: true
@@ -3344,10 +3341,20 @@ components:
           description: Response error.
           nullable: true
           type: string
+        resource_id:
+          description: ID of the resource created or modified by this request.
+          format: int32
+          nullable: true
+          type: integer
         success:
           description: Wether the request was successful.
           readOnly: true
           type: boolean
+        query:
+          description: "Request query. Only used for internal logging, not sent to\
+            \ webhooks."
+          nullable: true
+          type: string
         response_body:
           description: Response payload. It is guaranteed to be cyphered at rest.
           nullable: true

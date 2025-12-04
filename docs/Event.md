@@ -11,13 +11,14 @@ Name | Type | Description | Notes
 **ApiKeyId** | **int** | Api key id. | [optional] 
 **CompanyId** | **int?** | Company id. | [optional] 
 **Method** | **string** | Request method. | [optional] 
-**Query** | **string** | Request query. | [optional] 
 **Endpoint** | **string** | API endpoint. | [optional] 
 **ApiVersion** | **int** | Api version. | [optional] 
 **StatusCode** | **int** | Status code returned by the API. | [optional] 
 **DateTime** | **DateTime** | Date and time of the request. | [optional] 
 **Error** | **string** | Response error. | [optional] 
+**ResourceId** | **int?** | ID of the resource created or modified by this request. | [optional] 
 **Success** | **bool** | Wether the request was successful. | [optional] [readonly] 
+**Query** | **string** | Request query. Only used for internal logging, not sent to webhooks. | [optional] 
 **ResponseBody** | **string** | Response payload. It is guaranteed to be cyphered at rest. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

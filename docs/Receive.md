@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Identifier** | **string** | SDI identifier. This is set by the SDI and is guaranted to be unique within the SDI system. | [optional] 
 **FileName** | **string** | Xml file name. | [optional] 
 **Format** | **string** | SDI format (FPA12, FPR12, FSM10, ...) | [optional] 
-**Payload** | **string** | Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest. | [optional] 
+**Payload** | **string** | Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest. | 
 **LastUpdate** | **DateTime?** | Last update from SDI. | [optional] 
 **DateSent** | **DateTime?** | When the invoice was sent to SDI. | [optional] 
 **Documents** | [**List&lt;DocumentData&gt;**](DocumentData.md) | The invoices included in the payload. This is set by the system, based on the xml content. | [optional] 

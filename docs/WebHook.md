@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **VarVersion** | **int** | Row version, for optimistic concurrency. It is set automatically. | [optional] 
 **UserId** | **int** | User id. | [optional] 
 **CompanyId** | **int?** | Company id. | [optional] 
-**Url** | **string** | The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired. | [optional] 
+**Url** | **string** | The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired. | 
 **Enabled** | **bool** | Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;. | [optional] 
 **Secret** | **string** | The secret used to generate webhook signatures, only returned on creation. You should store this value securely and validate it on every call, to ensure that the caller is InvoicetronicApi. | [optional] 
 **Description** | **string** | An optional description. | [optional] 

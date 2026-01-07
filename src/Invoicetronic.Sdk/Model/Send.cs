@@ -63,6 +63,11 @@ namespace Invoicetronic.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Send" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Send() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Send" /> class.
+        /// </summary>
         /// <param name="id">Unique identifier. Leave it at 0 for new records as it will be set automatically..</param>
         /// <param name="created">Creation date. It is set automatically..</param>
         /// <param name="varVersion">Row version, for optimistic concurrency. It is set automatically..</param>
@@ -73,7 +78,7 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="identifier">SDI identifier. This is set by the SDI and is guaranted to be unique within the SDI system..</param>
         /// <param name="fileName">Xml file name..</param>
         /// <param name="format">SDI format (FPA12, FPR12, FSM10, ...).</param>
-        /// <param name="payload">Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest..</param>
+        /// <param name="payload">Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest. (required).</param>
         /// <param name="lastUpdate">Last update from SDI..</param>
         /// <param name="dateSent">When the invoice was sent to SDI..</param>
         /// <param name="documents">The invoices included in the payload. This is set by the system, based on the xml content..</param>
@@ -82,6 +87,12 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="company">company.</param>
         public Send(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, string committente = default, string prestatore = default, string identifier = default, string fileName = default, string format = default, string payload = default, DateTime? lastUpdate = default, DateTime? dateSent = default, List<DocumentData> documents = default, EncodingEnum? encoding = default, Dictionary<string, string> metaData = default, Company company = default)
         {
+            // to ensure "payload" is required (not null)
+            if (payload == null)
+            {
+                throw new ArgumentNullException("payload is a required property for Send and cannot be null");
+            }
+            this.Payload = payload;
             this.Id = id;
             this.Created = created;
             this.VarVersion = varVersion;
@@ -92,7 +103,6 @@ namespace Invoicetronic.Sdk.Model
             this.Identifier = identifier;
             this.FileName = fileName;
             this.Format = format;
-            this.Payload = payload;
             this.LastUpdate = lastUpdate;
             this.DateSent = dateSent;
             this.Documents = documents;
@@ -175,7 +185,7 @@ namespace Invoicetronic.Sdk.Model
         /// Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest.
         /// </summary>
         /// <value>Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest.</value>
-        [DataMember(Name = "payload", EmitDefaultValue = true)]
+        [DataMember(Name = "payload", IsRequired = true, EmitDefaultValue = true)]
         public string Payload { get; set; }
 
         /// <summary>
@@ -257,6 +267,12 @@ namespace Invoicetronic.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Payload (string) minLength
+            if (this.Payload != null && this.Payload.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Payload, length must be greater than 1.", new [] { "Payload" });
+            }
+
             yield break;
         }
     }

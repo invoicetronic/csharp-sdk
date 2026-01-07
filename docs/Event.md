@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **UserId** | **int** | User id. | [optional] 
 **ApiKeyId** | **int** | Api key id. | [optional] 
 **CompanyId** | **int?** | Company id. | [optional] 
-**Method** | **string** | Request method. | [optional] 
-**Endpoint** | **string** | API endpoint. | [optional] 
+**Method** | **string** | Request method. | 
+**Endpoint** | **string** | API endpoint. | 
 **ApiVersion** | **int** | Api version. | [optional] 
 **StatusCode** | **int** | Status code returned by the API. | [optional] 
 **DateTime** | **DateTime** | Date and time of the request. | [optional] 

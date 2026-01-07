@@ -36,14 +36,19 @@ namespace Invoicetronic.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Event" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Event() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Event" /> class.
+        /// </summary>
         /// <param name="id">Unique identifier. Leave it at 0 for new records as it will be set automatically..</param>
         /// <param name="created">Creation date. It is set automatically..</param>
         /// <param name="varVersion">Row version, for optimistic concurrency. It is set automatically..</param>
         /// <param name="userId">User id..</param>
         /// <param name="apiKeyId">Api key id..</param>
         /// <param name="companyId">Company id..</param>
-        /// <param name="method">Request method..</param>
-        /// <param name="endpoint">API endpoint..</param>
+        /// <param name="method">Request method. (required).</param>
+        /// <param name="endpoint">API endpoint. (required).</param>
         /// <param name="apiVersion">Api version..</param>
         /// <param name="statusCode">Status code returned by the API..</param>
         /// <param name="dateTime">Date and time of the request..</param>
@@ -53,14 +58,24 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="responseBody">Response payload. It is guaranteed to be cyphered at rest..</param>
         public Event(int id = default, DateTime created = default, int varVersion = default, int userId = default, int apiKeyId = default, int? companyId = default, string method = default, string endpoint = default, int apiVersion = default, int statusCode = default, DateTime dateTime = default, string error = default, int? resourceId = default, string query = default, string responseBody = default)
         {
+            // to ensure "method" is required (not null)
+            if (method == null)
+            {
+                throw new ArgumentNullException("method is a required property for Event and cannot be null");
+            }
+            this.Method = method;
+            // to ensure "endpoint" is required (not null)
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException("endpoint is a required property for Event and cannot be null");
+            }
+            this.Endpoint = endpoint;
             this.Id = id;
             this.Created = created;
             this.VarVersion = varVersion;
             this.UserId = userId;
             this.ApiKeyId = apiKeyId;
             this.CompanyId = companyId;
-            this.Method = method;
-            this.Endpoint = endpoint;
             this.ApiVersion = apiVersion;
             this.StatusCode = statusCode;
             this.DateTime = dateTime;
@@ -116,14 +131,14 @@ namespace Invoicetronic.Sdk.Model
         /// Request method.
         /// </summary>
         /// <value>Request method.</value>
-        [DataMember(Name = "method", EmitDefaultValue = true)]
+        [DataMember(Name = "method", IsRequired = true, EmitDefaultValue = true)]
         public string Method { get; set; }
 
         /// <summary>
         /// API endpoint.
         /// </summary>
         /// <value>API endpoint.</value>
-        [DataMember(Name = "endpoint", EmitDefaultValue = true)]
+        [DataMember(Name = "endpoint", IsRequired = true, EmitDefaultValue = true)]
         public string Endpoint { get; set; }
 
         /// <summary>
@@ -234,6 +249,18 @@ namespace Invoicetronic.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Method (string) minLength
+            if (this.Method != null && this.Method.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Method, length must be greater than 1.", new [] { "Method" });
+            }
+
+            // Endpoint (string) minLength
+            if (this.Endpoint != null && this.Endpoint.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Endpoint, length must be greater than 1.", new [] { "Endpoint" });
+            }
+
             yield break;
         }
     }

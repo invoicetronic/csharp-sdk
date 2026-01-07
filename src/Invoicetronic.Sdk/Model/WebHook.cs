@@ -36,24 +36,34 @@ namespace Invoicetronic.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebHook" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected WebHook() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebHook" /> class.
+        /// </summary>
         /// <param name="id">Unique identifier. Leave it at 0 for new records as it will be set automatically..</param>
         /// <param name="created">Creation date. It is set automatically..</param>
         /// <param name="varVersion">Row version, for optimistic concurrency. It is set automatically..</param>
         /// <param name="userId">User id..</param>
         /// <param name="companyId">Company id..</param>
-        /// <param name="url">The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired..</param>
+        /// <param name="url">The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired. (required).</param>
         /// <param name="enabled">Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;..</param>
         /// <param name="secret">The secret used to generate webhook signatures, only returned on creation. You should store this value securely and validate it on every call, to ensure that the caller is InvoicetronicApi..</param>
         /// <param name="description">An optional description..</param>
         /// <param name="events">List of events to that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names..</param>
         public WebHook(int id = default, DateTime created = default, int varVersion = default, int userId = default, int? companyId = default, string url = default, bool enabled = default, string secret = default, string description = default, List<string> events = default)
         {
+            // to ensure "url" is required (not null)
+            if (url == null)
+            {
+                throw new ArgumentNullException("url is a required property for WebHook and cannot be null");
+            }
+            this.Url = url;
             this.Id = id;
             this.Created = created;
             this.VarVersion = varVersion;
             this.UserId = userId;
             this.CompanyId = companyId;
-            this.Url = url;
             this.Enabled = enabled;
             this.Secret = secret;
             this.Description = description;
@@ -99,7 +109,7 @@ namespace Invoicetronic.Sdk.Model
         /// The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired.
         /// </summary>
         /// <value>The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired.</value>
-        [DataMember(Name = "url", EmitDefaultValue = true)]
+        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
         /// <summary>
@@ -168,6 +178,12 @@ namespace Invoicetronic.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Url (string) minLength
+            if (this.Url != null && this.Url.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Url, length must be greater than 1.", new [] { "Url" });
+            }
+
             yield break;
         }
     }

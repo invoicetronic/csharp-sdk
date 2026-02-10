@@ -75,10 +75,10 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="companyId">Company id. On send, this is the sender and must be set in advance. On receive, it will be  automatically set based on the recipient&#39;s VAT number. If a matching company is not found, the invoice will be rejected until the company is created..</param>
         /// <param name="committente">VAT number of the Cessionario/Committente (customer). This is automatically set based on the recipient&#39;s VAT number..</param>
         /// <param name="prestatore">VAT number of the Cedente/Prestatore (vendor). This is automatically set based on the sender&#39;s VAT number..</param>
-        /// <param name="identifier">SDI identifier. This is set by the SDI and is guaranted to be unique within the SDI system..</param>
+        /// <param name="identifier">SDI identifier. This is set by the SDI and is guaranteed to be unique within the SDI system..</param>
         /// <param name="fileName">Xml file name..</param>
         /// <param name="format">SDI format (FPA12, FPR12, FSM10, ...).</param>
-        /// <param name="payload">Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest. (required).</param>
+        /// <param name="payload">Xml payload. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be encrypted at rest. (required).</param>
         /// <param name="lastUpdate">Last update from SDI..</param>
         /// <param name="dateSent">When the invoice was sent to SDI..</param>
         /// <param name="documents">The invoices included in the payload. This is set by the system, based on the xml content..</param>
@@ -161,9 +161,9 @@ namespace Invoicetronic.Sdk.Model
         public string Prestatore { get; set; }
 
         /// <summary>
-        /// SDI identifier. This is set by the SDI and is guaranted to be unique within the SDI system.
+        /// SDI identifier. This is set by the SDI and is guaranteed to be unique within the SDI system.
         /// </summary>
-        /// <value>SDI identifier. This is set by the SDI and is guaranted to be unique within the SDI system.</value>
+        /// <value>SDI identifier. This is set by the SDI and is guaranteed to be unique within the SDI system.</value>
         [DataMember(Name = "identifier", EmitDefaultValue = true)]
         public string Identifier { get; set; }
 
@@ -182,9 +182,9 @@ namespace Invoicetronic.Sdk.Model
         public string Format { get; set; }
 
         /// <summary>
-        /// Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest.
+        /// Xml payload. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be encrypted at rest.
         /// </summary>
-        /// <value>Xml payloaad. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be cyphered at rest.</value>
+        /// <value>Xml payload. This is the actual xml content, as string. On send, it can be base64 encoded. If it&#39;s not, it will be encoded before sending. It is guaranteed to be encrypted at rest.</value>
         [DataMember(Name = "payload", IsRequired = true, EmitDefaultValue = true)]
         public string Payload { get; set; }
 

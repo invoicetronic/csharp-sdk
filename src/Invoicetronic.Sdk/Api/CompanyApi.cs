@@ -32,7 +32,7 @@ namespace Invoicetronic.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -45,7 +45,7 @@ namespace Invoicetronic.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -57,28 +57,30 @@ namespace Invoicetronic.Sdk.Api
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <returns>Company</returns>
-        Company CompanyIdDelete(int id);
+        Company CompanyIdDelete(int id, bool? force = default);
 
         /// <summary>
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <returns>ApiResponse of Company</returns>
-        ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id);
+        ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id, bool? force = default);
         /// <summary>
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -89,7 +91,7 @@ namespace Invoicetronic.Sdk.Api
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -99,7 +101,7 @@ namespace Invoicetronic.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -110,7 +112,7 @@ namespace Invoicetronic.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -120,7 +122,7 @@ namespace Invoicetronic.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -131,7 +133,7 @@ namespace Invoicetronic.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -150,7 +152,7 @@ namespace Invoicetronic.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -164,7 +166,7 @@ namespace Invoicetronic.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -177,30 +179,32 @@ namespace Invoicetronic.Sdk.Api
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, bool? force = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, bool? force = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -212,7 +216,7 @@ namespace Invoicetronic.Sdk.Api
         /// Get a company by id
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -223,7 +227,7 @@ namespace Invoicetronic.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -235,7 +239,7 @@ namespace Invoicetronic.Sdk.Api
         /// Add a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -246,7 +250,7 @@ namespace Invoicetronic.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -258,7 +262,7 @@ namespace Invoicetronic.Sdk.Api
         /// Update a company
         /// </summary>
         /// <remarks>
-        /// Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -479,7 +483,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -493,7 +497,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -551,7 +555,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -566,7 +570,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
@@ -628,24 +632,26 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <returns>Company</returns>
-        public Company CompanyIdDelete(int id)
+        public Company CompanyIdDelete(int id, bool? force = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyIdDeleteWithHttpInfo(id);
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyIdDeleteWithHttpInfo(id, force);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <returns>ApiResponse of Company</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id)
+        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyIdDeleteWithHttpInfo(int id, bool? force = default)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -664,6 +670,10 @@ namespace Invoicetronic.Sdk.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (force != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "force", force));
+            }
 
             // authentication (Basic) required
             // http basic authentication required
@@ -685,26 +695,28 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Company</returns>
-        public async System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Company> CompanyIdDeleteAsync(int id, bool? force = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyIdDeleteWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyIdDeleteWithHttpInfoAsync(id, force, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Delete a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Delete a company Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding &#x60;?force&#x3D;true&#x60; to the request. Without this parameter, the API will return &#x60;409 Conflict&#x60; with details about the linked data.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
+        /// <param name="force">Force delete including all related data. (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyIdDeleteWithHttpInfoAsync(int id, bool? force = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -725,6 +737,10 @@ namespace Invoicetronic.Sdk.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (force != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "force", force));
+            }
 
             // authentication (Basic) required
             // http basic authentication required
@@ -747,7 +763,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Get a company by id Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -759,7 +775,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Get a company by id Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -804,7 +820,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Get a company by id Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -817,7 +833,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Get a company by id Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Get a company by id Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Item id</param>
@@ -866,7 +882,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a company Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -878,7 +894,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a company Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -928,7 +944,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a company Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -941,7 +957,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Add a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Add a company Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -995,7 +1011,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update a company Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1007,7 +1023,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update a company Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1057,7 +1073,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update a company Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>
@@ -1070,7 +1086,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// Update a company Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+        /// Update a company Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="company"></param>

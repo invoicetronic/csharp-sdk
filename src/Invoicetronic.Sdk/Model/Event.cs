@@ -55,7 +55,7 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="error">Response error..</param>
         /// <param name="resourceId">ID of the resource created or modified by this request..</param>
         /// <param name="query">Request query. Only used for internal logging, not sent to webhooks..</param>
-        /// <param name="responseBody">Response payload. It is guaranteed to be cyphered at rest..</param>
+        /// <param name="responseBody">Response payload. It is guaranteed to be encrypted at rest..</param>
         public Event(int id = default, DateTime created = default, int varVersion = default, int userId = default, int apiKeyId = default, int? companyId = default, string method = default, string endpoint = default, int apiVersion = default, int statusCode = default, DateTime dateTime = default, string error = default, int? resourceId = default, string query = default, string responseBody = default)
         {
             // to ensure "method" is required (not null)
@@ -177,9 +177,9 @@ namespace Invoicetronic.Sdk.Model
         public int? ResourceId { get; set; }
 
         /// <summary>
-        /// Wether the request was successful.
+        /// Whether the request was successful.
         /// </summary>
-        /// <value>Wether the request was successful.</value>
+        /// <value>Whether the request was successful.</value>
         [DataMember(Name = "success", EmitDefaultValue = true)]
         public bool Success { get; private set; }
 
@@ -199,9 +199,9 @@ namespace Invoicetronic.Sdk.Model
         public string Query { get; set; }
 
         /// <summary>
-        /// Response payload. It is guaranteed to be cyphered at rest.
+        /// Response payload. It is guaranteed to be encrypted at rest.
         /// </summary>
-        /// <value>Response payload. It is guaranteed to be cyphered at rest.</value>
+        /// <value>Response payload. It is guaranteed to be encrypted at rest.</value>
         [DataMember(Name = "response_body", EmitDefaultValue = true)]
         public string ResponseBody { get; set; }
 

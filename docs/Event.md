@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 **DateTime** | **DateTime** | Date and time of the request. | [optional] 
 **Error** | **string** | Response error. | [optional] 
 **ResourceId** | **int?** | ID of the resource created or modified by this request. | [optional] 
-**Success** | **bool** | Wether the request was successful. | [optional] [readonly] 
+**Success** | **bool** | Whether the request was successful. | [optional] [readonly] 
 **Query** | **string** | Request query. Only used for internal logging, not sent to webhooks. | [optional] 
-**ResponseBody** | **string** | Response payload. It is guaranteed to be cyphered at rest. | [optional] 
+**ResponseBody** | **string** | Response payload. It is guaranteed to be encrypted at rest. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

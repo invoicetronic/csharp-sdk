@@ -47,10 +47,10 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="userId">User id..</param>
         /// <param name="companyId">Company id..</param>
         /// <param name="url">The url of your application&#39;s endpoint that will receive a POST request when the webhook is fired. (required).</param>
-        /// <param name="enabled">Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;..</param>
+        /// <param name="enabled">Whether the webhook is enabled. On creation, this is set to &#x60;true&#x60;..</param>
         /// <param name="secret">The secret used to generate webhook signatures, only returned on creation. You should store this value securely and validate it on every call, to ensure that the caller is InvoicetronicApi..</param>
         /// <param name="description">An optional description..</param>
-        /// <param name="events">List of events to that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names..</param>
+        /// <param name="events">List of events that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names..</param>
         public WebHook(int id = default, DateTime created = default, int varVersion = default, int userId = default, int? companyId = default, string url = default, bool enabled = default, string secret = default, string description = default, List<string> events = default)
         {
             // to ensure "url" is required (not null)
@@ -113,9 +113,9 @@ namespace Invoicetronic.Sdk.Model
         public string Url { get; set; }
 
         /// <summary>
-        /// Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.
+        /// Whether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.
         /// </summary>
-        /// <value>Wether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.</value>
+        /// <value>Whether the webhook is enabled. On creation, this is set to &#x60;true&#x60;.</value>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 
@@ -134,9 +134,9 @@ namespace Invoicetronic.Sdk.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// List of events to that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names.
+        /// List of events that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names.
         /// </summary>
-        /// <value>List of events to that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names.</value>
+        /// <value>List of events that trigger the webhook.  See Invoicetronic.SupportedEvents.Available for a list of valid event names.</value>
         [DataMember(Name = "events", EmitDefaultValue = true)]
         public List<string> Events { get; set; }
 

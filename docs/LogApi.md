@@ -13,7 +13,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 List events
 
-Every API operation is logged and can be retrieved here. Log records are preserved for 15 days.
+Retrieve a paginated list of log events. Results can be filtered by various criteria such as endpoint, method, status code, and date ranges.  **Logs** record every API request. They are preserved for 15 days.  You can also view logs in the Events section of the [Dashboard](https://dashboard.invoicetronic.com).
 
 ### Example
 ```csharp
@@ -140,7 +140,7 @@ catch (ApiException e)
 
 Get an event by id
 
-Every API operation is logged and can be retrieved here. Log records are preserved for 15 days.
+Retrieve a log event by its internal id.  **Logs** record every API request. They are preserved for 15 days.  You can also view logs in the Events section of the [Dashboard](https://dashboard.invoicetronic.com).
 
 ### Example
 ```csharp

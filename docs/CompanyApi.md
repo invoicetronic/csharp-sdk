@@ -16,7 +16,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 List companies
 
-Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
 ### Example
 ```csharp
@@ -117,11 +117,11 @@ catch (ApiException e)
 
 <a id="companyiddelete"></a>
 # **CompanyIdDelete**
-> Company CompanyIdDelete (int id)
+> Company CompanyIdDelete (int id, bool? force = null)
 
 Delete a company
 
-Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding `?force=true` to the request. Without this parameter, the API will return `409 Conflict` with details about the linked data.
 
 ### Example
 ```csharp
@@ -149,11 +149,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
             var id = 56;  // int | Item id
+            var force = false;  // bool? | Force delete including all related data. (optional)  (default to false)
 
             try
             {
                 // Delete a company
-                Company result = apiInstance.CompanyIdDelete(id);
+                Company result = apiInstance.CompanyIdDelete(id, force);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -174,7 +175,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a company
-    ApiResponse<Company> response = apiInstance.CompanyIdDeleteWithHttpInfo(id);
+    ApiResponse<Company> response = apiInstance.CompanyIdDeleteWithHttpInfo(id, force);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -192,6 +193,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | Item id |  |
+| **force** | **bool?** | Force delete including all related data. | [optional] [default to false] |
 
 ### Return type
 
@@ -213,6 +215,7 @@ catch (ApiException e)
 | **200** | OK |  -  |
 | **422** | Unprocessable Content |  -  |
 | **400** | Bad Request |  -  |
+| **409** | Conflict |  -  |
 | **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -223,7 +226,7 @@ catch (ApiException e)
 
 Get a company by id
 
-Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
 ### Example
 ```csharp
@@ -323,7 +326,7 @@ catch (ApiException e)
 
 Add a company
 
-Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+Add a new company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
 ### Example
 ```csharp
@@ -424,7 +427,7 @@ catch (ApiException e)
 
 Update a company
 
-Companies are the entities that send and receive invoices. As you send invoices, companies are added as needed (company details are extrapolated). **You can only receive invoices for existing companies, so ensure they exist**.
+Update an existing company.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
 ### Example
 ```csharp

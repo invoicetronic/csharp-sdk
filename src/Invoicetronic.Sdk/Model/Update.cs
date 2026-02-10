@@ -34,9 +34,9 @@ namespace Invoicetronic.Sdk.Model
     public partial class Update : IValidatableObject
     {
         /// <summary>
-        /// State of the document. Theses are the possible values, as per the SDI documentation:
+        /// State of the document. These are the possible values, as per the SDI documentation:
         /// </summary>
-        /// <value>State of the document. Theses are the possible values, as per the SDI documentation:</value>
+        /// <value>State of the document. These are the possible values, as per the SDI documentation:</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StateEnum
         {
@@ -97,9 +97,9 @@ namespace Invoicetronic.Sdk.Model
 
 
         /// <summary>
-        /// State of the document. Theses are the possible values, as per the SDI documentation:
+        /// State of the document. These are the possible values, as per the SDI documentation:
         /// </summary>
-        /// <value>State of the document. Theses are the possible values, as per the SDI documentation:</value>
+        /// <value>State of the document. These are the possible values, as per the SDI documentation:</value>
         [DataMember(Name = "state", EmitDefaultValue = false)]
         public StateEnum? State { get; set; }
         /// <summary>
@@ -112,11 +112,11 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="companyId">Company id..</param>
         /// <param name="sendId">Send id. This is the id of the sent invoice to which this update refers to..</param>
         /// <param name="lastUpdate">Last update from SDI..</param>
-        /// <param name="state">State of the document. Theses are the possible values, as per the SDI documentation:.</param>
+        /// <param name="state">State of the document. These are the possible values, as per the SDI documentation:.</param>
         /// <param name="description">Description for the state..</param>
         /// <param name="messageId">SDI message id..</param>
         /// <param name="errors">SDI errors, if any..</param>
-        /// <param name="isRead">Wether the item has been read at least once..</param>
+        /// <param name="isRead">Whether the item has been read at least once..</param>
         /// <param name="send">send.</param>
         public Update(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, int sendId = default, DateTime lastUpdate = default, StateEnum? state = default, string description = default, string messageId = default, List<Error> errors = default, bool isRead = default, SendReduced send = default)
         {
@@ -206,9 +206,9 @@ namespace Invoicetronic.Sdk.Model
         public List<Error> Errors { get; set; }
 
         /// <summary>
-        /// Wether the item has been read at least once.
+        /// Whether the item has been read at least once.
         /// </summary>
-        /// <value>Wether the item has been read at least once.</value>
+        /// <value>Whether the item has been read at least once.</value>
         [DataMember(Name = "is_read", EmitDefaultValue = true)]
         public bool IsRead { get; set; }
 

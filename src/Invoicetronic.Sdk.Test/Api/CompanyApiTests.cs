@@ -76,7 +76,8 @@ namespace Invoicetronic.Sdk.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int id = null;
-            //var response = instance.CompanyIdDelete(id);
+            //bool? force = null;
+            //var response = instance.CompanyIdDelete(id, force);
             //Assert.IsType<Company>(response);
         }
 

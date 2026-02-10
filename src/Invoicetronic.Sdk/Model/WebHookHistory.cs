@@ -113,9 +113,9 @@ namespace Invoicetronic.Sdk.Model
         public DateTime DateTime { get; set; }
 
         /// <summary>
-        /// Wether the request was successful.
+        /// Whether the request was successful.
         /// </summary>
-        /// <value>Wether the request was successful.</value>
+        /// <value>Whether the request was successful.</value>
         [DataMember(Name = "success", EmitDefaultValue = true)]
         public bool Success { get; private set; }
 

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Invoicetronic.Sdk.Client.OpenAPIDateConverter;
 namespace Invoicetronic.Sdk.Model
 {
     /// <summary>
-    /// Send
+    /// A sent invoice.
     /// </summary>
     [DataContract(Name = "Send")]
     public partial class Send : IValidatableObject

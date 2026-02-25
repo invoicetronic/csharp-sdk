@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Invoicetronic.Sdk.Client.OpenAPIDateConverter;
 namespace Invoicetronic.Sdk.Model
 {
     /// <summary>
-    /// Status
+    /// Account status with remaining operations and signatures.
     /// </summary>
     [DataContract(Name = "Status")]
     public partial class Status : IValidatableObject

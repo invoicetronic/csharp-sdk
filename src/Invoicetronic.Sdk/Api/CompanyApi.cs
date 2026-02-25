@@ -139,6 +139,27 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="company"></param>
         /// <returns>ApiResponse of Company</returns>
         ApiResponse<Company> CompanyPutWithHttpInfo(Company company);
+        /// <summary>
+        /// Get a company by vat number
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <returns>Company</returns>
+        Company CompanyVatGet(string vat);
+
+        /// <summary>
+        /// Get a company by vat number
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <returns>ApiResponse of Company</returns>
+        ApiResponse<Company> CompanyVatGetWithHttpInfo(string vat);
         #endregion Synchronous Operations
     }
 
@@ -269,6 +290,29 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Company)</returns>
         System.Threading.Tasks.Task<ApiResponse<Company>> CompanyPutWithHttpInfoAsync(Company company, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get a company by vat number
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Company</returns>
+        System.Threading.Tasks.Task<Company> CompanyVatGetAsync(string vat, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a company by vat number
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Company)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Company>> CompanyVatGetWithHttpInfoAsync(string vat, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1133,6 +1177,133 @@ namespace Invoicetronic.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CompanyPut", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a company by vat number Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <returns>Company</returns>
+        public Company CompanyVatGet(string vat)
+        {
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = CompanyVatGetWithHttpInfo(vat);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a company by vat number Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <returns>ApiResponse of Company</returns>
+        public Invoicetronic.Sdk.Client.ApiResponse<Company> CompanyVatGetWithHttpInfo(string vat)
+        {
+            // verify the required parameter 'vat' is set
+            if (vat == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'vat' when calling CompanyApi->CompanyVatGet");
+
+            Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("vat", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(vat)); // path parameter
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<Company>("/company/{vat}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CompanyVatGet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a company by vat number Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Company</returns>
+        public async System.Threading.Tasks.Task<Company> CompanyVatGetAsync(string vat, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Invoicetronic.Sdk.Client.ApiResponse<Company> localVarResponse = await CompanyVatGetWithHttpInfoAsync(vat, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a company by vat number Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="vat"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Company)</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Company>> CompanyVatGetWithHttpInfoAsync(string vat, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'vat' is set
+            if (vat == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'vat' when calling CompanyApi->CompanyVatGet");
+
+
+            Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("vat", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(vat)); // path parameter
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<Company>("/company/{vat}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CompanyVatGet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

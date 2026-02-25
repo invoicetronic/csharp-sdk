@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Invoicetronic.Sdk.Client.OpenAPIDateConverter;
 namespace Invoicetronic.Sdk.Model
 {
     /// <summary>
-    /// WebHook
+    /// A webhook subscription.
     /// </summary>
     [DataContract(Name = "WebHook")]
     public partial class WebHook : IValidatableObject

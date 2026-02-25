@@ -7,6 +7,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 | [**SendFilePost**](SendApi.md#sendfilepost) | **POST** /send/file | Add an invoice by file |
 | [**SendGet**](SendApi.md#sendget) | **GET** /send | List invoices |
 | [**SendIdGet**](SendApi.md#sendidget) | **GET** /send/{id} | Get a invoice by id |
+| [**SendIdPayloadGet**](SendApi.md#sendidpayloadget) | **GET** /send/{id}/payload | Get a send invoice payload by id |
 | [**SendIdentifierGet**](SendApi.md#sendidentifierget) | **GET** /send/{identifier} | Get a invoice by identifier |
 | [**SendJsonPost**](SendApi.md#sendjsonpost) | **POST** /send/json | Add an invoice by json |
 | [**SendPost**](SendApi.md#sendpost) | **POST** /send | Add an invoice |
@@ -344,6 +345,102 @@ catch (ApiException e)
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="sendidpayloadget"></a>
+# **SendIdPayloadGet**
+> void SendIdPayloadGet (int id)
+
+Get a send invoice payload by id
+
+Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a `text/plain` string, identical to the `payload` field returned by the standard GET endpoint with `include_payload=true`. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Invoicetronic.Sdk.Api;
+using Invoicetronic.Sdk.Client;
+using Invoicetronic.Sdk.Model;
+
+namespace Example
+{
+    public class SendIdPayloadGetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SendApi(httpClient, config, httpClientHandler);
+            var id = 56;  // int | Item id
+
+            try
+            {
+                // Get a send invoice payload by id
+                apiInstance.SendIdPayloadGet(id);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SendApi.SendIdPayloadGet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SendIdPayloadGetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a send invoice payload by id
+    apiInstance.SendIdPayloadGetWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SendApi.SendIdPayloadGetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | Item id |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
 
 
 ### HTTP response details

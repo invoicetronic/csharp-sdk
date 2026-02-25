@@ -7,6 +7,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 | [**ReceiveGet**](ReceiveApi.md#receiveget) | **GET** /receive | List incoming invoices |
 | [**ReceiveIdDelete**](ReceiveApi.md#receiveiddelete) | **DELETE** /receive/{id} | Delete an incoming invoice by id |
 | [**ReceiveIdGet**](ReceiveApi.md#receiveidget) | **GET** /receive/{id} | Get an incoming invoice by id |
+| [**ReceiveIdPayloadGet**](ReceiveApi.md#receiveidpayloadget) | **GET** /receive/{id}/payload | Get a receive invoice payload by id |
 
 <a id="receiveget"></a>
 # **ReceiveGet**
@@ -336,6 +337,102 @@ catch (ApiException e)
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="receiveidpayloadget"></a>
+# **ReceiveIdPayloadGet**
+> void ReceiveIdPayloadGet (int id)
+
+Get a receive invoice payload by id
+
+Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a `text/plain` string, identical to the `payload` field returned by the standard GET endpoint with `include_payload=true`.  The invoice is marked as read (`is_read` = true) and counted as an operation, same as when retrieving the full invoice with `include_payload=true`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Invoicetronic.Sdk.Api;
+using Invoicetronic.Sdk.Client;
+using Invoicetronic.Sdk.Model;
+
+namespace Example
+{
+    public class ReceiveIdPayloadGetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ReceiveApi(httpClient, config, httpClientHandler);
+            var id = 56;  // int | Item id
+
+            try
+            {
+                // Get a receive invoice payload by id
+                apiInstance.ReceiveIdPayloadGet(id);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ReceiveApi.ReceiveIdPayloadGet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReceiveIdPayloadGetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a receive invoice payload by id
+    apiInstance.ReceiveIdPayloadGetWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ReceiveApi.ReceiveIdPayloadGetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | Item id |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
 
 
 ### HTTP response details

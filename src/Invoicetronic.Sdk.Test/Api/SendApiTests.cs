@@ -109,6 +109,17 @@ namespace Invoicetronic.Sdk.Test.Api
         }
 
         /// <summary>
+        /// Test SendIdPayloadGet
+        /// </summary>
+        [Fact]
+        public void SendIdPayloadGetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int id = null;
+            //instance.SendIdPayloadGet(id);
+        }
+
+        /// <summary>
         /// Test SendIdentifierGet
         /// </summary>
         [Fact]

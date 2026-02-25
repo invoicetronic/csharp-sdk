@@ -128,6 +128,27 @@ namespace Invoicetronic.Sdk.Api
         /// <returns>ApiResponse of Send</returns>
         ApiResponse<Send> SendIdGetWithHttpInfo(int id, bool? includePayload = default);
         /// <summary>
+        /// Get a send invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns></returns>
+        void SendIdPayloadGet(int id);
+
+        /// <summary>
+        /// Get a send invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> SendIdPayloadGetWithHttpInfo(int id);
+        /// <summary>
         /// Get a invoice by identifier
         /// </summary>
         /// <remarks>
@@ -423,6 +444,29 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
         System.Threading.Tasks.Task<ApiResponse<Send>> SendIdGetWithHttpInfoAsync(int id, bool? includePayload = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get a send invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task SendIdPayloadGetAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a send invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> SendIdPayloadGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a invoice by identifier
         /// </summary>
@@ -1417,6 +1461,123 @@ namespace Invoicetronic.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SendIdGet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a send invoice payload by id Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns></returns>
+        public void SendIdPayloadGet(int id)
+        {
+            SendIdPayloadGetWithHttpInfo(id);
+        }
+
+        /// <summary>
+        /// Get a send invoice payload by id Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Invoicetronic.Sdk.Client.ApiResponse<Object> SendIdPayloadGetWithHttpInfo(int id)
+        {
+            Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/problem+json"
+            };
+
+            var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<Object>("/send/{id}/payload", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendIdPayloadGet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a send invoice payload by id Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task SendIdPayloadGetAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await SendIdPayloadGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get a send invoice payload by id Retrieve only the payload of a send invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;. Depending on how the invoice was originally submitted, the payload may be Base64-encoded or plain XML. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Object>> SendIdPayloadGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/problem+json"
+            };
+
+
+            var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/send/{id}/payload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendIdPayloadGet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

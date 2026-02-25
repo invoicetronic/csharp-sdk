@@ -125,6 +125,27 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="includePayload">Include payload in the response. Defaults to false. (optional, default to false)</param>
         /// <returns>ApiResponse of Receive</returns>
         ApiResponse<Receive> ReceiveIdGetWithHttpInfo(int id, bool? includePayload = default);
+        /// <summary>
+        /// Get a receive invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns></returns>
+        void ReceiveIdPayloadGet(int id);
+
+        /// <summary>
+        /// Get a receive invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ReceiveIdPayloadGetWithHttpInfo(int id);
         #endregion Synchronous Operations
     }
 
@@ -237,6 +258,29 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Receive)</returns>
         System.Threading.Tasks.Task<ApiResponse<Receive>> ReceiveIdGetWithHttpInfoAsync(int id, bool? includePayload = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get a receive invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ReceiveIdPayloadGetAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a receive invoice payload by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </remarks>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ReceiveIdPayloadGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1011,6 +1055,123 @@ namespace Invoicetronic.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ReceiveIdGet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a receive invoice payload by id Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns></returns>
+        public void ReceiveIdPayloadGet(int id)
+        {
+            ReceiveIdPayloadGetWithHttpInfo(id);
+        }
+
+        /// <summary>
+        /// Get a receive invoice payload by id Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Invoicetronic.Sdk.Client.ApiResponse<Object> ReceiveIdPayloadGetWithHttpInfo(int id)
+        {
+            Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/problem+json"
+            };
+
+            var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<Object>("/receive/{id}/payload", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReceiveIdPayloadGet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a receive invoice payload by id Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ReceiveIdPayloadGetAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await ReceiveIdPayloadGetWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get a receive invoice payload by id Retrieve only the payload of a receive invoice, without the full invoice metadata. This is useful when you already have the invoice metadata and only need the XML content.  The response is a &#x60;text/plain&#x60; string, identical to the &#x60;payload&#x60; field returned by the standard GET endpoint with &#x60;include_payload&#x3D;true&#x60;.  The invoice is marked as read (&#x60;is_read&#x60; &#x3D; true) and counted as an operation, same as when retrieving the full invoice with &#x60;include_payload&#x3D;true&#x60;. 
+        /// </summary>
+        /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Item id</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Object>> ReceiveIdPayloadGetWithHttpInfoAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/problem+json"
+            };
+
+
+            var localVarContentType = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Invoicetronic.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Invoicetronic.Sdk.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/receive/{id}/payload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReceiveIdPayloadGet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

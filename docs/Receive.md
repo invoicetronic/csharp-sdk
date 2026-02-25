@@ -1,4 +1,5 @@
 # Invoicetronic.Sdk.Model.Receive
+A received invoice.
 
 ## Properties
 

@@ -1,4 +1,5 @@
 # Invoicetronic.Sdk.Model.Send
+A sent invoice.
 
 ## Properties
 

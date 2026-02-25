@@ -106,5 +106,16 @@ namespace Invoicetronic.Sdk.Test.Api
             //var response = instance.ReceiveIdGet(id, includePayload);
             //Assert.IsType<Receive>(response);
         }
+
+        /// <summary>
+        /// Test ReceiveIdPayloadGet
+        /// </summary>
+        [Fact]
+        public void ReceiveIdPayloadGetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int id = null;
+            //instance.ReceiveIdPayloadGet(id);
+        }
     }
 }

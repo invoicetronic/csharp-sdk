@@ -1,4 +1,5 @@
 # Invoicetronic.Sdk.Model.Update
+An SDI status update for a sent invoice.
 
 ## Properties
 

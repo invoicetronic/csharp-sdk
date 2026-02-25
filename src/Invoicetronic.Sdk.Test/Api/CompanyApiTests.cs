@@ -116,5 +116,17 @@ namespace Invoicetronic.Sdk.Test.Api
             //var response = instance.CompanyPut(company);
             //Assert.IsType<Company>(response);
         }
+
+        /// <summary>
+        /// Test CompanyVatGet
+        /// </summary>
+        [Fact]
+        public void CompanyVatGetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string vat = null;
+            //var response = instance.CompanyVatGet(vat);
+            //Assert.IsType<Company>(response);
+        }
     }
 }

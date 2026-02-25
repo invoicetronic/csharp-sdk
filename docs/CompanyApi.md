@@ -9,6 +9,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 | [**CompanyIdGet**](CompanyApi.md#companyidget) | **GET** /company/{id} | Get a company by id |
 | [**CompanyPost**](CompanyApi.md#companypost) | **POST** /company | Add a company |
 | [**CompanyPut**](CompanyApi.md#companyput) | **PUT** /company | Update a company |
+| [**CompanyVatGet**](CompanyApi.md#companyvatget) | **GET** /company/{vat} | Get a company by vat number |
 
 <a id="companyget"></a>
 # **CompanyGet**
@@ -518,6 +519,107 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **422** | Unprocessable Content |  -  |
+| **400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="companyvatget"></a>
+# **CompanyVatGet**
+> Company CompanyVatGet (string vat)
+
+Get a company by vat number
+
+Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Invoicetronic.Sdk.Api;
+using Invoicetronic.Sdk.Client;
+using Invoicetronic.Sdk.Model;
+
+namespace Example
+{
+    public class CompanyVatGetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CompanyApi(httpClient, config, httpClientHandler);
+            var vat = "vat_example";  // string | 
+
+            try
+            {
+                // Get a company by vat number
+                Company result = apiInstance.CompanyVatGet(vat);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CompanyApi.CompanyVatGet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CompanyVatGetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a company by vat number
+    ApiResponse<Company> response = apiInstance.CompanyVatGetWithHttpInfo(vat);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CompanyApi.CompanyVatGetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **vat** | **string** |  |  |
+
+### Return type
+
+[**Company**](Company.md)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
 | **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

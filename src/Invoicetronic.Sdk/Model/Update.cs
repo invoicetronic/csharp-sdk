@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Invoicetronic.Sdk.Client.OpenAPIDateConverter;
 namespace Invoicetronic.Sdk.Model
 {
     /// <summary>
-    /// Update
+    /// An SDI status update for a sent invoice.
     /// </summary>
     [DataContract(Name = "Update")]
     public partial class Update : IValidatableObject

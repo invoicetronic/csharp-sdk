@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Invoicetronic.Sdk.Client.OpenAPIDateConverter;
 namespace Invoicetronic.Sdk.Model
 {
     /// <summary>
-    /// Event
+    /// An API request log entry.
     /// </summary>
     [DataContract(Name = "Event")]
     public partial class Event : IValidatableObject

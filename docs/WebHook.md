@@ -1,4 +1,5 @@
 # Invoicetronic.Sdk.Model.WebHook
+A webhook subscription.
 
 ## Properties
 

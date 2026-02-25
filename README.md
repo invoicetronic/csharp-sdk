@@ -180,9 +180,14 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Model.Company](docs/Company.md)
+ - [Model.DocumentData](docs/DocumentData.md)
+ - [Model.Error](docs/Error.md)
  - [Model.Event](docs/Event.md)
+ - [Model.ProblemDetails](docs/ProblemDetails.md)
+ - [Model.ProblemHttpResult](docs/ProblemHttpResult.md)
  - [Model.Receive](docs/Receive.md)
  - [Model.Send](docs/Send.md)
+ - [Model.SendReduced](docs/SendReduced.md)
  - [Model.Status](docs/Status.md)
  - [Model.Update](docs/Update.md)
  - [Model.WebHook](docs/WebHook.md)

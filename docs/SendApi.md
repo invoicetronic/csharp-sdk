@@ -556,7 +556,7 @@ catch (ApiException e)
 
 <a id="sendjsonpost"></a>
 # **SendJsonPost**
-> Send SendJsonPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
+> Send SendJsonPost (Object body, bool? validate = null, string signature = null)
 
 Add an invoice by json
 
@@ -587,14 +587,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
-            var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
+            var body = null;  // Object | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice by json
-                Send result = apiInstance.SendJsonPost(fatturaOrdinaria, validate, signature);
+                Send result = apiInstance.SendJsonPost(body, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -615,7 +615,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add an invoice by json
-    ApiResponse<Send> response = apiInstance.SendJsonPostWithHttpInfo(fatturaOrdinaria, validate, signature);
+    ApiResponse<Send> response = apiInstance.SendJsonPostWithHttpInfo(body, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -632,7 +632,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
+| **body** | **Object** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 
@@ -863,7 +863,7 @@ void (empty response body)
 
 <a id="sendvalidatejsonpost"></a>
 # **SendValidateJsonPost**
-> void SendValidateJsonPost (FatturaOrdinaria fatturaOrdinaria)
+> void SendValidateJsonPost (Object body)
 
 Validate an invoice by json
 
@@ -894,12 +894,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
-            var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
+            var body = null;  // Object | 
 
             try
             {
                 // Validate an invoice by json
-                apiInstance.SendValidateJsonPost(fatturaOrdinaria);
+                apiInstance.SendValidateJsonPost(body);
             }
             catch (ApiException  e)
             {
@@ -919,7 +919,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Validate an invoice by json
-    apiInstance.SendValidateJsonPostWithHttpInfo(fatturaOrdinaria);
+    apiInstance.SendValidateJsonPostWithHttpInfo(body);
 }
 catch (ApiException e)
 {
@@ -933,7 +933,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
+| **body** | **Object** |  |  |
 
 ### Return type
 
@@ -1057,7 +1057,7 @@ void (empty response body)
 
 <a id="sendvalidatexmlpost"></a>
 # **SendValidateXmlPost**
-> void SendValidateXmlPost (FatturaOrdinaria fatturaOrdinaria)
+> void SendValidateXmlPost (Object body)
 
 Validate an invoice by xml
 
@@ -1088,12 +1088,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
-            var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
+            var body = null;  // Object | 
 
             try
             {
                 // Validate an invoice by xml
-                apiInstance.SendValidateXmlPost(fatturaOrdinaria);
+                apiInstance.SendValidateXmlPost(body);
             }
             catch (ApiException  e)
             {
@@ -1113,7 +1113,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Validate an invoice by xml
-    apiInstance.SendValidateXmlPostWithHttpInfo(fatturaOrdinaria);
+    apiInstance.SendValidateXmlPostWithHttpInfo(body);
 }
 catch (ApiException e)
 {
@@ -1127,7 +1127,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
+| **body** | **Object** |  |  |
 
 ### Return type
 
@@ -1154,7 +1154,7 @@ void (empty response body)
 
 <a id="sendxmlpost"></a>
 # **SendXmlPost**
-> Send SendXmlPost (FatturaOrdinaria fatturaOrdinaria, bool? validate = null, string signature = null)
+> Send SendXmlPost (Object body, bool? validate = null, string signature = null)
 
 Add an invoice by xml
 
@@ -1185,14 +1185,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SendApi(httpClient, config, httpClientHandler);
-            var fatturaOrdinaria = new FatturaOrdinaria(); // FatturaOrdinaria | 
+            var body = null;  // Object | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
 
             try
             {
                 // Add an invoice by xml
-                Send result = apiInstance.SendXmlPost(fatturaOrdinaria, validate, signature);
+                Send result = apiInstance.SendXmlPost(body, validate, signature);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1213,7 +1213,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add an invoice by xml
-    ApiResponse<Send> response = apiInstance.SendXmlPostWithHttpInfo(fatturaOrdinaria, validate, signature);
+    ApiResponse<Send> response = apiInstance.SendXmlPostWithHttpInfo(body, validate, signature);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1230,7 +1230,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **fatturaOrdinaria** | [**FatturaOrdinaria**](FatturaOrdinaria.md) |  |  |
+| **body** | **Object** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
 

@@ -178,11 +178,11 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>Send</returns>
-        Send SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default);
+        Send SendJsonPost(Object body, bool? validate = default, string signature = default);
 
         /// <summary>
         /// Add an invoice by json
@@ -191,11 +191,11 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>ApiResponse of Send</returns>
-        ApiResponse<Send> SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default);
+        ApiResponse<Send> SendJsonPostWithHttpInfo(Object body, bool? validate = default, string signature = default);
         /// <summary>
         /// Add an invoice
         /// </summary>
@@ -249,9 +249,9 @@ namespace Invoicetronic.Sdk.Api
         /// Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns></returns>
-        void SendValidateJsonPost(FatturaOrdinaria fatturaOrdinaria);
+        void SendValidateJsonPost(Object body);
 
         /// <summary>
         /// Validate an invoice by json
@@ -260,9 +260,9 @@ namespace Invoicetronic.Sdk.Api
         /// Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SendValidateJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria);
+        ApiResponse<Object> SendValidateJsonPostWithHttpInfo(Object body);
         /// <summary>
         /// Validate an invoice
         /// </summary>
@@ -291,9 +291,9 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns></returns>
-        void SendValidateXmlPost(FatturaOrdinaria fatturaOrdinaria);
+        void SendValidateXmlPost(Object body);
 
         /// <summary>
         /// Validate an invoice by xml
@@ -302,9 +302,9 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SendValidateXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria);
+        ApiResponse<Object> SendValidateXmlPostWithHttpInfo(Object body);
         /// <summary>
         /// Add an invoice by xml
         /// </summary>
@@ -312,11 +312,11 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>Send</returns>
-        Send SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default);
+        Send SendXmlPost(Object body, bool? validate = default, string signature = default);
 
         /// <summary>
         /// Add an invoice by xml
@@ -325,11 +325,11 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>ApiResponse of Send</returns>
-        ApiResponse<Send> SendXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default);
+        ApiResponse<Send> SendXmlPostWithHttpInfo(Object body, bool? validate = default, string signature = default);
         #endregion Synchronous Operations
     }
 
@@ -499,12 +499,12 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        System.Threading.Tasks.Task<Send> SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Send> SendJsonPostAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add an invoice by json
@@ -513,12 +513,12 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Send>> SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Send>> SendJsonPostWithHttpInfoAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add an invoice
         /// </summary>
@@ -576,10 +576,10 @@ namespace Invoicetronic.Sdk.Api
         /// Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SendValidateJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task SendValidateJsonPostAsync(Object body, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Validate an invoice by json
@@ -588,10 +588,10 @@ namespace Invoicetronic.Sdk.Api
         /// Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SendValidateJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Object>> SendValidateJsonPostWithHttpInfoAsync(Object body, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Validate an invoice
         /// </summary>
@@ -622,10 +622,10 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SendValidateXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task SendValidateXmlPostAsync(Object body, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Validate an invoice by xml
@@ -634,10 +634,10 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SendValidateXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Object>> SendValidateXmlPostWithHttpInfoAsync(Object body, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add an invoice by xml
         /// </summary>
@@ -645,12 +645,12 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        System.Threading.Tasks.Task<Send> SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<Send> SendXmlPostAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add an invoice by xml
@@ -659,12 +659,12 @@ namespace Invoicetronic.Sdk.Api
         /// Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Send>> SendXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Send>> SendXmlPostWithHttpInfoAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1727,13 +1727,13 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by json Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>Send</returns>
-        public Send SendJsonPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default)
+        public Send SendJsonPost(Object body, bool? validate = default, string signature = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = SendJsonPostWithHttpInfo(fatturaOrdinaria, validate, signature);
+            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = SendJsonPostWithHttpInfo(body, validate, signature);
             return localVarResponse.Data;
         }
 
@@ -1741,15 +1741,15 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by json Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>ApiResponse of Send</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Send> SendJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<Send> SendJsonPostWithHttpInfo(Object body, bool? validate = default, string signature = default)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendJsonPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendJsonPost");
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1776,7 +1776,7 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -1801,14 +1801,14 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by json Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        public async System.Threading.Tasks.Task<Send> SendJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Send> SendJsonPostAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = await SendJsonPostWithHttpInfoAsync(fatturaOrdinaria, validate, signature, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = await SendJsonPostWithHttpInfoAsync(body, validate, signature, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1816,16 +1816,16 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by json Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Send>> SendJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Send>> SendJsonPostWithHttpInfoAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendJsonPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendJsonPost");
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1854,7 +1854,7 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -2160,24 +2160,24 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an invoice by json Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns></returns>
-        public void SendValidateJsonPost(FatturaOrdinaria fatturaOrdinaria)
+        public void SendValidateJsonPost(Object body)
         {
-            SendValidateJsonPostWithHttpInfo(fatturaOrdinaria);
+            SendValidateJsonPostWithHttpInfo(body);
         }
 
         /// <summary>
         /// Validate an invoice by json Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Object> SendValidateJsonPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria)
+        public Invoicetronic.Sdk.Client.ApiResponse<Object> SendValidateJsonPostWithHttpInfo(Object body)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendValidateJsonPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendValidateJsonPost");
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -2196,7 +2196,7 @@ namespace Invoicetronic.Sdk.Api
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -2221,26 +2221,26 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an invoice by json Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SendValidateJsonPostAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task SendValidateJsonPostAsync(Object body, System.Threading.CancellationToken cancellationToken = default)
         {
-            await SendValidateJsonPostWithHttpInfoAsync(fatturaOrdinaria, cancellationToken).ConfigureAwait(false);
+            await SendValidateJsonPostWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Validate an invoice by json Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Object>> SendValidateJsonPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Object>> SendValidateJsonPostWithHttpInfoAsync(Object body, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendValidateJsonPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendValidateJsonPost");
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -2261,7 +2261,7 @@ namespace Invoicetronic.Sdk.Api
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -2414,24 +2414,24 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an invoice by xml Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns></returns>
-        public void SendValidateXmlPost(FatturaOrdinaria fatturaOrdinaria)
+        public void SendValidateXmlPost(Object body)
         {
-            SendValidateXmlPostWithHttpInfo(fatturaOrdinaria);
+            SendValidateXmlPostWithHttpInfo(body);
         }
 
         /// <summary>
         /// Validate an invoice by xml Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Object> SendValidateXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria)
+        public Invoicetronic.Sdk.Client.ApiResponse<Object> SendValidateXmlPostWithHttpInfo(Object body)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendValidateXmlPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendValidateXmlPost");
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -2450,7 +2450,7 @@ namespace Invoicetronic.Sdk.Api
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -2475,26 +2475,26 @@ namespace Invoicetronic.Sdk.Api
         /// Validate an invoice by xml Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SendValidateXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task SendValidateXmlPostAsync(Object body, System.Threading.CancellationToken cancellationToken = default)
         {
-            await SendValidateXmlPostWithHttpInfoAsync(fatturaOrdinaria, cancellationToken).ConfigureAwait(false);
+            await SendValidateXmlPostWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Validate an invoice by xml Validate an XML invoice document without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Object>> SendValidateXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Object>> SendValidateXmlPostWithHttpInfoAsync(Object body, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendValidateXmlPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendValidateXmlPost");
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -2515,7 +2515,7 @@ namespace Invoicetronic.Sdk.Api
             var localVarAccept = Invoicetronic.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -2541,13 +2541,13 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by xml Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>Send</returns>
-        public Send SendXmlPost(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default)
+        public Send SendXmlPost(Object body, bool? validate = default, string signature = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = SendXmlPostWithHttpInfo(fatturaOrdinaria, validate, signature);
+            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = SendXmlPostWithHttpInfo(body, validate, signature);
             return localVarResponse.Data;
         }
 
@@ -2555,15 +2555,15 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by xml Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <returns>ApiResponse of Send</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<Send> SendXmlPostWithHttpInfo(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<Send> SendXmlPostWithHttpInfo(Object body, bool? validate = default, string signature = default)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendXmlPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendXmlPost");
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -2590,7 +2590,7 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required
@@ -2615,14 +2615,14 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by xml Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Send</returns>
-        public async System.Threading.Tasks.Task<Send> SendXmlPostAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Send> SendXmlPostAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = await SendXmlPostWithHttpInfoAsync(fatturaOrdinaria, validate, signature, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<Send> localVarResponse = await SendXmlPostWithHttpInfoAsync(body, validate, signature, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2630,16 +2630,16 @@ namespace Invoicetronic.Sdk.Api
         /// Add an invoice by xml Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the &#x60;update&#x60; endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="fatturaOrdinaria"></param>
+        /// <param name="body"></param>
         /// <param name="validate">Validate the document first, and reject it on failure. (optional, default to false)</param>
         /// <param name="signature">Whether to digitally sign the document. (optional, default to Auto)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Send)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Send>> SendXmlPostWithHttpInfoAsync(FatturaOrdinaria fatturaOrdinaria, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<Send>> SendXmlPostWithHttpInfoAsync(Object body, bool? validate = default, string signature = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'fatturaOrdinaria' is set
-            if (fatturaOrdinaria == null)
-                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'fatturaOrdinaria' when calling SendApi->SendXmlPost");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Invoicetronic.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling SendApi->SendXmlPost");
 
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -2668,7 +2668,7 @@ namespace Invoicetronic.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "signature", signature));
             }
-            localVarRequestOptions.Data = fatturaOrdinaria;
+            localVarRequestOptions.Data = body;
 
             // authentication (Basic) required
             // http basic authentication required

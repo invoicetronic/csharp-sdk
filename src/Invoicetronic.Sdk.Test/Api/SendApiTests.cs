@@ -139,10 +139,10 @@ namespace Invoicetronic.Sdk.Test.Api
         public void SendJsonPostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //FatturaOrdinaria fatturaOrdinaria = null;
+            //Object body = null;
             //bool? validate = null;
             //string signature = null;
-            //var response = instance.SendJsonPost(fatturaOrdinaria, validate, signature);
+            //var response = instance.SendJsonPost(body, validate, signature);
             //Assert.IsType<Send>(response);
         }
 
@@ -178,8 +178,8 @@ namespace Invoicetronic.Sdk.Test.Api
         public void SendValidateJsonPostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //FatturaOrdinaria fatturaOrdinaria = null;
-            //instance.SendValidateJsonPost(fatturaOrdinaria);
+            //Object body = null;
+            //instance.SendValidateJsonPost(body);
         }
 
         /// <summary>
@@ -200,8 +200,8 @@ namespace Invoicetronic.Sdk.Test.Api
         public void SendValidateXmlPostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //FatturaOrdinaria fatturaOrdinaria = null;
-            //instance.SendValidateXmlPost(fatturaOrdinaria);
+            //Object body = null;
+            //instance.SendValidateXmlPost(body);
         }
 
         /// <summary>
@@ -211,10 +211,10 @@ namespace Invoicetronic.Sdk.Test.Api
         public void SendXmlPostTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //FatturaOrdinaria fatturaOrdinaria = null;
+            //Object body = null;
             //bool? validate = null;
             //string signature = null;
-            //var response = instance.SendXmlPost(fatturaOrdinaria, validate, signature);
+            //var response = instance.SendXmlPost(body, validate, signature);
             //Assert.IsType<Send>(response);
         }
     }

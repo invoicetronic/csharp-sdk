@@ -83,9 +83,10 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="dateSent">When the invoice was sent to SDI..</param>
         /// <param name="documents">The invoices included in the payload. This is set by the system, based on the xml content..</param>
         /// <param name="encoding">Whether the payload is Base64 encoded or a plain XML (text)..</param>
+        /// <param name="nomeCommittente">Business name of the committente (client/buyer) extracted from the invoice XML..</param>
         /// <param name="metaData">Optional metadata, as json..</param>
         /// <param name="company">company.</param>
-        public Send(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, string committente = default, string prestatore = default, string identifier = default, string fileName = default, string format = default, string payload = default, DateTime? lastUpdate = default, DateTime? dateSent = default, List<DocumentData> documents = default, EncodingEnum? encoding = default, Dictionary<string, string> metaData = default, Company company = default)
+        public Send(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, string committente = default, string prestatore = default, string identifier = default, string fileName = default, string format = default, string payload = default, DateTime? lastUpdate = default, DateTime? dateSent = default, List<DocumentData> documents = default, EncodingEnum? encoding = default, string nomeCommittente = default, Dictionary<string, string> metaData = default, Company company = default)
         {
             // to ensure "payload" is required (not null)
             if (payload == null)
@@ -107,6 +108,7 @@ namespace Invoicetronic.Sdk.Model
             this.DateSent = dateSent;
             this.Documents = documents;
             this.Encoding = encoding;
+            this.NomeCommittente = nomeCommittente;
             this.MetaData = metaData;
             this.Company = company;
         }
@@ -210,6 +212,13 @@ namespace Invoicetronic.Sdk.Model
         public List<DocumentData> Documents { get; set; }
 
         /// <summary>
+        /// Business name of the committente (client/buyer) extracted from the invoice XML.
+        /// </summary>
+        /// <value>Business name of the committente (client/buyer) extracted from the invoice XML.</value>
+        [DataMember(Name = "nome_committente", EmitDefaultValue = true)]
+        public string NomeCommittente { get; set; }
+
+        /// <summary>
         /// Optional metadata, as json.
         /// </summary>
         /// <value>Optional metadata, as json.</value>
@@ -245,6 +254,7 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  DateSent: ").Append(DateSent).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Encoding: ").Append(Encoding).Append("\n");
+            sb.Append("  NomeCommittente: ").Append(NomeCommittente).Append("\n");
             sb.Append("  MetaData: ").Append(MetaData).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("}\n");

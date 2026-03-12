@@ -83,9 +83,10 @@ namespace Invoicetronic.Sdk.Model
         /// <param name="dateSent">When the invoice was sent to SDI..</param>
         /// <param name="documents">The invoices included in the payload. This is set by the system, based on the xml content..</param>
         /// <param name="encoding">Whether the payload is Base64 encoded or a plain XML (text)..</param>
+        /// <param name="nomePrestatore">Business name of the prestatore (supplier/seller) extracted from the invoice XML..</param>
         /// <param name="isRead">Whether the invoice has been read at least once. Set to true only when the invoice is requested with include_payload&#x3D;true..</param>
         /// <param name="messageId">SDI message id..</param>
-        public Receive(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, string committente = default, string prestatore = default, string identifier = default, string fileName = default, string format = default, string payload = default, DateTime? lastUpdate = default, DateTime? dateSent = default, List<DocumentData> documents = default, EncodingEnum? encoding = default, bool isRead = default, string messageId = default)
+        public Receive(int id = default, DateTime created = default, int varVersion = default, int userId = default, int companyId = default, string committente = default, string prestatore = default, string identifier = default, string fileName = default, string format = default, string payload = default, DateTime? lastUpdate = default, DateTime? dateSent = default, List<DocumentData> documents = default, EncodingEnum? encoding = default, string nomePrestatore = default, bool isRead = default, string messageId = default)
         {
             // to ensure "payload" is required (not null)
             if (payload == null)
@@ -107,6 +108,7 @@ namespace Invoicetronic.Sdk.Model
             this.DateSent = dateSent;
             this.Documents = documents;
             this.Encoding = encoding;
+            this.NomePrestatore = nomePrestatore;
             this.IsRead = isRead;
             this.MessageId = messageId;
         }
@@ -210,6 +212,13 @@ namespace Invoicetronic.Sdk.Model
         public List<DocumentData> Documents { get; set; }
 
         /// <summary>
+        /// Business name of the prestatore (supplier/seller) extracted from the invoice XML.
+        /// </summary>
+        /// <value>Business name of the prestatore (supplier/seller) extracted from the invoice XML.</value>
+        [DataMember(Name = "nome_prestatore", EmitDefaultValue = true)]
+        public string NomePrestatore { get; set; }
+
+        /// <summary>
         /// Whether the invoice has been read at least once. Set to true only when the invoice is requested with include_payload&#x3D;true.
         /// </summary>
         /// <value>Whether the invoice has been read at least once. Set to true only when the invoice is requested with include_payload&#x3D;true.</value>
@@ -246,6 +255,7 @@ namespace Invoicetronic.Sdk.Model
             sb.Append("  DateSent: ").Append(DateSent).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Encoding: ").Append(Encoding).Append("\n");
+            sb.Append("  NomePrestatore: ").Append(NomePrestatore).Append("\n");
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
             sb.Append("}\n");

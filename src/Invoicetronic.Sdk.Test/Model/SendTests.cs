@@ -191,6 +191,15 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'NomeCommittente'
+        /// </summary>
+        [Fact]
+        public void NomeCommittenteTest()
+        {
+            // TODO unit test for the property 'NomeCommittente'
+        }
+
+        /// <summary>
         /// Test the property 'MetaData'
         /// </summary>
         [Fact]

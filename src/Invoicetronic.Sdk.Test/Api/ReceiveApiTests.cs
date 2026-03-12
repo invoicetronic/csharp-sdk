@@ -78,7 +78,8 @@ namespace Invoicetronic.Sdk.Test.Api
             //int? page = null;
             //int? pageSize = null;
             //string sort = null;
-            //var response = instance.ReceiveGet(companyId, identifier, unread, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort);
+            //string q = null;
+            //var response = instance.ReceiveGet(companyId, identifier, unread, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, q);
             //Assert.IsType<List<Receive>>(response);
         }
 

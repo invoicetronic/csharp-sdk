@@ -143,7 +143,7 @@ paths:
   /company:
     get:
       description: |-
-        Retrieve a paginated list of companies.
+        Retrieve a paginated list of companies. Results can be filtered by free-text search (`q`) across name, VAT number, and fiscal code.
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
       parameters:
@@ -171,6 +171,15 @@ paths:
         explode: true
         in: query
         name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Full-text search across committente, prestatore, identifier,\
+          \ and file name."
+        explode: true
+        in: query
+        name: q
         required: false
         schema:
           type: string
@@ -292,11 +301,6 @@ paths:
         name: type
         required: false
         schema:
-          default: Both
-          enum:
-          - Send
-          - Receive
-          - Both
           type: string
         style: form
       - description: Company id
@@ -364,6 +368,20 @@ paths:
       summary: Export invoices as a ZIP archive
       tags:
       - export
+  /health:
+    get:
+      description: Returns the health status of the API and its dependencies. No authentication
+        required. Rate limited to 12 requests per minute.
+      responses:
+        "200":
+          description: OK
+        "429":
+          description: Too Many Requests
+        "503":
+          description: Service Unavailable
+      summary: Health check
+      tags:
+      - health
   /log/{id}:
     get:
       description: |-
@@ -660,7 +678,7 @@ paths:
   /receive:
     get:
       description: |-
-        Retrieve a paginated list of receive invoices. Results can be filtered by various criteria such as company, date ranges, sender, and document number. Returns invoice metadata; set `include_payload` to true to include the full invoice content. Invoices are marked as read (`is_read` = true) only when `include_payload` is true.
+        Retrieve a paginated list of receive invoices. Results can be filtered by various criteria such as company, date ranges, sender, document number, and free-text search (`q`). Returns invoice metadata; set `include_payload` to true to include the full invoice content. Invoices are marked as read (`is_read` = true) only when `include_payload` is true.
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
       parameters:
@@ -811,6 +829,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Full-text search across committente, prestatore, identifier,\
+          \ and file name."
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -943,7 +970,7 @@ paths:
   /send:
     get:
       description: |-
-        Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set `include_payload` to true to include the full invoice content.
+        Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (`q`). Returns invoice metadata; set `include_payload` to true to include the full invoice content.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
       parameters:
@@ -1082,6 +1109,15 @@ paths:
         explode: true
         in: query
         name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Full-text search across committente, prestatore, identifier,\
+          \ and file name."
+        explode: true
+        in: query
+        name: q
         required: false
         schema:
           type: string
@@ -1514,6 +1550,8 @@ paths:
         | 11 | `DecorrenzaTermini` | A public administration entity has not responded for more than 15 days. The document is considered delivered. |
         | 12 | `AttestazioneTrasmissioneFattura` | A public administration entity has received the document, but has not yet processed it. |
 
+        **Cost:** Querying this endpoint is free and does not count as an operation against your plan limits.
+
         **Important:** Always monitor the state of your sent invoices. A state of `Inviato` only means the invoice has been submitted to SDI, not that it has been delivered. A state like `Scartato` indicates that the invoice was **not** successfully delivered and may require corrective action, such as fixing validation errors and resubmitting. In that case, `description` contains the reason for the rejection.
       parameters:
       - description: Item id
@@ -1557,6 +1595,8 @@ paths:
         | 10 | `ImpossibilitaDiRecapito` | Available on the recipient's tax drawer, but it was not possible to deliver it to the recipient's reception system. |
         | 11 | `DecorrenzaTermini` | A public administration entity has not responded for more than 15 days. The document is considered delivered. |
         | 12 | `AttestazioneTrasmissioneFattura` | A public administration entity has received the document, but has not yet processed it. |
+
+        **Cost:** Querying this endpoint is free and does not count as an operation against your plan limits.
 
         **Important:** Always monitor the state of your sent invoices. A state of `Inviato` only means the invoice has been submitted to SDI, not that it has been delivered. A state like `Scartato` indicates that the invoice was **not** successfully delivered and may require corrective action, such as fixing validation errors and resubmitting. In that case, `description` contains the reason for the rejection.
       parameters:
@@ -2296,6 +2336,7 @@ components:
         prestatore: prestatore
         last_update: 2000-01-23T04:56:07.000+00:00
         id: 0
+        nome_prestatore: nome_prestatore
       properties:
         id:
           description: Unique identifier. Leave it at 0 for new records as it will
@@ -2373,6 +2414,11 @@ components:
           - Xml
           - Base64
           type: string
+        nome_prestatore:
+          description: Business name of the prestatore (supplier/seller) extracted
+            from the invoice XML.
+          nullable: true
+          type: string
         is_read:
           description: Whether the invoice has been read at least once. Set to true
             only when the invoice is requested with include_payload=true.
@@ -2402,6 +2448,7 @@ components:
         format: format
         encoding: Xml
         version: 6
+        nome_committente: nome_committente
         user_id: 1
         payload: payload
         prestatore: prestatore
@@ -2493,6 +2540,11 @@ components:
           enum:
           - Xml
           - Base64
+          type: string
+        nome_committente:
+          description: Business name of the committente (client/buyer) extracted from
+            the invoice XML.
+          nullable: true
           type: string
         meta_data:
           additionalProperties:

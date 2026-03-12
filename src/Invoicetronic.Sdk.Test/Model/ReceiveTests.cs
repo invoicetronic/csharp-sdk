@@ -191,6 +191,15 @@ namespace Invoicetronic.Sdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'NomePrestatore'
+        /// </summary>
+        [Fact]
+        public void NomePrestatoreTest()
+        {
+            // TODO unit test for the property 'NomePrestatore'
+        }
+
+        /// <summary>
         /// Test the property 'IsRead'
         /// </summary>
         [Fact]

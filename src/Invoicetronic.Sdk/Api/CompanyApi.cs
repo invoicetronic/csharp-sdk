@@ -32,27 +32,29 @@ namespace Invoicetronic.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>List&lt;Company&gt;</returns>
-        List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default);
+        List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default, string q = default);
 
         /// <summary>
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
-        ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default);
+        ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, string q = default);
         /// <summary>
         /// Delete a company
         /// </summary>
@@ -173,29 +175,31 @@ namespace Invoicetronic.Sdk.Api
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
-        System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List companies
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a company
         /// </summary>
@@ -527,28 +531,30 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// List companies Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>List&lt;Company&gt;</returns>
-        public List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default)
+        public List<Company> CompanyGet(int? page = default, int? pageSize = default, string sort = default, string q = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = CompanyGetWithHttpInfo(page, pageSize, sort);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = CompanyGetWithHttpInfo(page, pageSize, sort, q);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// List companies Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>ApiResponse of List&lt;Company&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<Company>> CompanyGetWithHttpInfo(int? page = default, int? pageSize = default, string sort = default, string q = default)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -577,6 +583,10 @@ namespace Invoicetronic.Sdk.Api
             if (sort != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
+            }
+            if (q != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "q", q));
             }
 
             // authentication (Basic) required
@@ -599,30 +609,32 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// List companies Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Company&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<Company>> CompanyGetAsync(int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = await CompanyGetWithHttpInfoAsync(page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Company>> localVarResponse = await CompanyGetWithHttpInfoAsync(page, pageSize, sort, q, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List companies Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+        /// List companies Retrieve a paginated list of companies. Results can be filtered by free-text search (&#x60;q&#x60;) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Company&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Company>>> CompanyGetWithHttpInfoAsync(int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -653,6 +665,10 @@ namespace Invoicetronic.Sdk.Api
             if (sort != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
+            }
+            if (q != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "q", q));
             }
 
             // authentication (Basic) required

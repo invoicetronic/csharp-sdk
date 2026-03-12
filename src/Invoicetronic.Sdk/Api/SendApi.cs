@@ -57,7 +57,7 @@ namespace Invoicetronic.Sdk.Api
         /// List invoices
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -76,14 +76,15 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>List&lt;Send&gt;</returns>
-        List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default);
+        List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default);
 
         /// <summary>
         /// List invoices
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -102,8 +103,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
-        ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default);
+        ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default);
         /// <summary>
         /// Get a invoice by id
         /// </summary>
@@ -370,7 +372,7 @@ namespace Invoicetronic.Sdk.Api
         /// List invoices
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -389,15 +391,16 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Send&gt;</returns>
-        System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List invoices
         /// </summary>
         /// <remarks>
-        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </remarks>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -416,9 +419,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a invoice by id
         /// </summary>
@@ -1032,7 +1036,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -1051,15 +1055,16 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>List&lt;Send&gt;</returns>
-        public List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default)
+        public List<Send> SendGet(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, q);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -1078,8 +1083,9 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <returns>ApiResponse of List&lt;Send&gt;</returns>
-        public Invoicetronic.Sdk.Client.ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default)
+        public Invoicetronic.Sdk.Client.ApiResponse<List<Send>> SendGetWithHttpInfo(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default)
         {
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
 
@@ -1160,6 +1166,10 @@ namespace Invoicetronic.Sdk.Api
             if (sort != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
+            }
+            if (q != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "q", q));
             }
 
             // authentication (Basic) required
@@ -1182,7 +1192,7 @@ namespace Invoicetronic.Sdk.Api
         }
 
         /// <summary>
-        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -1201,16 +1211,17 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Send&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<List<Send>> SendGetAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = await SendGetWithHttpInfoAsync(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, cancellationToken).ConfigureAwait(false);
+            Invoicetronic.Sdk.Client.ApiResponse<List<Send>> localVarResponse = await SendGetWithHttpInfoAsync(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, q, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, and document number. Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+        /// List invoices Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (&#x60;q&#x60;). Returns invoice metadata; set &#x60;include_payload&#x60; to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy&#39;s SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
         /// </summary>
         /// <exception cref="Invoicetronic.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">Company id (optional)</param>
@@ -1229,9 +1240,10 @@ namespace Invoicetronic.Sdk.Api
         /// <param name="page">Page number. (optional, default to 1)</param>
         /// <param name="pageSize">Items per page. Cannot be greater than 200. (optional, default to 100)</param>
         /// <param name="sort">Sort by field. Prefix with &#39;-&#39; for descending order. (optional)</param>
+        /// <param name="q">Full-text search across committente, prestatore, identifier, and file name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Send&gt;)</returns>
-        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Invoicetronic.Sdk.Client.ApiResponse<List<Send>>> SendGetWithHttpInfoAsync(int? companyId = default, string identifier = default, string committente = default, string prestatore = default, string fileName = default, DateTime? lastUpdateFrom = default, DateTime? lastUpdateTo = default, DateTime? dateSentFrom = default, DateTime? dateSentTo = default, DateTime? documentDateFrom = default, DateTime? documentDateTo = default, string documentNumber = default, bool? includePayload = default, int? page = default, int? pageSize = default, string sort = default, string q = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Invoicetronic.Sdk.Client.RequestOptions localVarRequestOptions = new Invoicetronic.Sdk.Client.RequestOptions();
@@ -1314,6 +1326,10 @@ namespace Invoicetronic.Sdk.Api
             if (sort != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
+            }
+            if (q != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Invoicetronic.Sdk.Client.ClientUtils.ParameterToMultiMap("", "q", q));
             }
 
             // authentication (Basic) required

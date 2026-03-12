@@ -64,7 +64,8 @@ namespace Invoicetronic.Sdk.Test.Api
             //int? page = null;
             //int? pageSize = null;
             //string sort = null;
-            //var response = instance.CompanyGet(page, pageSize, sort);
+            //string q = null;
+            //var response = instance.CompanyGet(page, pageSize, sort, q);
             //Assert.IsType<List<Company>>(response);
         }
 

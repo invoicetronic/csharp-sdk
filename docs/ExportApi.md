@@ -39,7 +39,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ExportApi(httpClient, config, httpClientHandler);
-            var type = "Send";  // string |  (optional)  (default to Both)
+            var type = "type_example";  // string |  (optional) 
             var companyId = 56;  // int? | Company id (optional) 
             var year = 56;  // int? |  (optional) 
             var month = 56;  // int? |  (optional) 
@@ -84,7 +84,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | **string** |  | [optional] [default to Both] |
+| **type** | **string** |  | [optional]  |
 | **companyId** | **int?** | Company id | [optional]  |
 | **year** | **int?** |  | [optional]  |
 | **month** | **int?** |  | [optional]  |

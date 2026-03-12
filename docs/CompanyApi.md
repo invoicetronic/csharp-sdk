@@ -13,11 +13,11 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="companyget"></a>
 # **CompanyGet**
-> List&lt;Company&gt; CompanyGet (int? page = null, int? pageSize = null, string sort = null)
+> List&lt;Company&gt; CompanyGet (int? page = null, int? pageSize = null, string sort = null, string q = null)
 
 List companies
 
-Retrieve a paginated list of companies.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
+Retrieve a paginated list of companies. Results can be filtered by free-text search (`q`) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
 ### Example
 ```csharp
@@ -47,11 +47,12 @@ namespace Example
             var page = 1;  // int? | Page number. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
+            var q = "q_example";  // string | Full-text search across committente, prestatore, identifier, and file name. (optional) 
 
             try
             {
                 // List companies
-                List<Company> result = apiInstance.CompanyGet(page, pageSize, sort);
+                List<Company> result = apiInstance.CompanyGet(page, pageSize, sort, q);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -72,7 +73,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List companies
-    ApiResponse<List<Company>> response = apiInstance.CompanyGetWithHttpInfo(page, pageSize, sort);
+    ApiResponse<List<Company>> response = apiInstance.CompanyGetWithHttpInfo(page, pageSize, sort, q);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -92,6 +93,7 @@ catch (ApiException e)
 | **page** | **int?** | Page number. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Cannot be greater than 200. | [optional] [default to 100] |
 | **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |
+| **q** | **string** | Full-text search across committente, prestatore, identifier, and file name. | [optional]  |
 
 ### Return type
 

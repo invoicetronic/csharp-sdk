@@ -9,7 +9,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 <a id="logget"></a>
 # **LogGet**
-> List&lt;Event&gt; LogGet (int? companyId = null, string endpoint = null, string method = null, int? apiVerion = null, int? statusCode = null, DateTime? dateCreatedFrom = null, DateTime? dateCreatedTo = null, int? page = null, int? pageSize = null, string sort = null, string query = null, bool? success = null, DateTime? dateTimeFrom = null, DateTime? dateTimeTo = null)
+> List&lt;Event&gt; LogGet (int? companyId = null, string endpoint = null, string method = null, int? apiVerion = null, int? statusCode = null, DateTime? dateCreatedFrom = null, DateTime? dateCreatedTo = null, int? page = null, int? pageSize = null, string sort = null, string query = null, bool? success = null, DateTime? dateTimeFrom = null, DateTime? dateTimeTo = null, string userAgent = null)
 
 List events
 
@@ -32,10 +32,6 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
-            // Configure HTTP basic authorization: Basic
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -54,11 +50,12 @@ namespace Example
             var success = true;  // bool? |  (optional) 
             var dateTimeFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Date and time of the event (optional) 
             var dateTimeTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Date and time of the event (optional) 
+            var userAgent = "userAgent_example";  // string |  (optional) 
 
             try
             {
                 // List events
-                List<Event> result = apiInstance.LogGet(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo);
+                List<Event> result = apiInstance.LogGet(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo, userAgent);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -79,7 +76,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List events
-    ApiResponse<List<Event>> response = apiInstance.LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo);
+    ApiResponse<List<Event>> response = apiInstance.LogGetWithHttpInfo(companyId, endpoint, method, apiVerion, statusCode, dateCreatedFrom, dateCreatedTo, page, pageSize, sort, query, success, dateTimeFrom, dateTimeTo, userAgent);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -110,6 +107,7 @@ catch (ApiException e)
 | **success** | **bool?** |  | [optional]  |
 | **dateTimeFrom** | **DateTime?** | Date and time of the event | [optional]  |
 | **dateTimeTo** | **DateTime?** | Date and time of the event | [optional]  |
+| **userAgent** | **string** |  | [optional]  |
 
 ### Return type
 
@@ -117,7 +115,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+No authorization required
 
 ### HTTP request headers
 
@@ -130,7 +128,6 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **404** | Not Found |  -  |
-| **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -159,10 +156,6 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
-            // Configure HTTP basic authorization: Basic
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -218,7 +211,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+No authorization required
 
 ### HTTP request headers
 

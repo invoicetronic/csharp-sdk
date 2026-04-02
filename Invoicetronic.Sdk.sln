@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicetronic.Sdk", "src\Invoicetronic.Sdk\Invoicetronic.Sdk.csproj", "{16849DB5-ED79-4F97-92A0-17F446563042}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicetronic.Sdk", "src\Invoicetronic.Sdk\Invoicetronic.Sdk.csproj", "{14D99D6A-571C-43C6-BCEA-25DF032D708D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicetronic.Sdk.Test", "src\Invoicetronic.Sdk.Test\Invoicetronic.Sdk.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{16849DB5-ED79-4F97-92A0-17F446563042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16849DB5-ED79-4F97-92A0-17F446563042}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16849DB5-ED79-4F97-92A0-17F446563042}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16849DB5-ED79-4F97-92A0-17F446563042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D99D6A-571C-43C6-BCEA-25DF032D708D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D99D6A-571C-43C6-BCEA-25DF032D708D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D99D6A-571C-43C6-BCEA-25DF032D708D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D99D6A-571C-43C6-BCEA-25DF032D708D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

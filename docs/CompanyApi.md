@@ -36,6 +36,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -97,7 +101,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -138,6 +142,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -195,7 +203,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -236,6 +244,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -291,7 +303,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -332,6 +344,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -387,7 +403,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -428,6 +444,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -483,7 +503,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -524,6 +544,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.invoicetronic.com";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -579,7 +603,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 

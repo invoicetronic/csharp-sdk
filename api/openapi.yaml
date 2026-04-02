@@ -16,11 +16,11 @@ info:
     url: https://github.com/invoicetronic/openapi/blob/main/LICENSE
   termsOfService: https://invoicetronic.com/tos
   title: Invoicetronic API
-  version: 1.6.1
+  version: 1.6.4
 servers:
 - url: /
 security:
-- {}
+- Basic: []
 tags:
 - name: company
 - name: export

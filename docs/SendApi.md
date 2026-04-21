@@ -123,11 +123,11 @@ catch (ApiException e)
 
 <a id="sendget"></a>
 # **SendGet**
-> List&lt;Send&gt; SendGet (int? companyId = null, string identifier = null, string committente = null, string prestatore = null, string fileName = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, DateTime? documentDateFrom = null, DateTime? documentDateTo = null, string documentNumber = null, bool? includePayload = null, int? page = null, int? pageSize = null, string sort = null, string q = null)
+> List&lt;Send&gt; SendGet (int? companyId = null, string identifier = null, string committente = null, string prestatore = null, string fileName = null, DateTime? lastUpdateFrom = null, DateTime? lastUpdateTo = null, DateTime? dateSentFrom = null, DateTime? dateSentTo = null, DateTime? documentDateFrom = null, DateTime? documentDateTo = null, string documentNumber = null, bool? includePayload = null, string ids = null, int? page = null, int? pageSize = null, string sort = null, string q = null)
 
 List invoices
 
-Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (`q`). Returns invoice metadata; set `include_payload` to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (`q`). Use `ids` to fetch specific Send records in a single call (comma-separated, up to 100). Returns invoice metadata; set `include_payload` to true to include the full invoice content.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
 ### Example
 ```csharp
@@ -167,6 +167,7 @@ namespace Example
             var documentDateTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | UTC ISO 8601 (2024-11-29T12:34:56Z) (optional) 
             var documentNumber = "documentNumber_example";  // string | Document number. (optional) 
             var includePayload = true;  // bool? | Include payload in the response. Defaults to false. (optional) 
+            var ids = "ids_example";  // string | Comma-separated list of Send ids (max 100). Filters the collection to the matching rows; unknown or unauthorized ids are silently skipped. (optional) 
             var page = 1;  // int? | Page number. (optional)  (default to 1)
             var pageSize = 100;  // int? | Items per page. Cannot be greater than 200. (optional)  (default to 100)
             var sort = "sort_example";  // string | Sort by field. Prefix with '-' for descending order. (optional) 
@@ -175,7 +176,7 @@ namespace Example
             try
             {
                 // List invoices
-                List<Send> result = apiInstance.SendGet(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, q);
+                List<Send> result = apiInstance.SendGet(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, ids, page, pageSize, sort, q);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -196,7 +197,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List invoices
-    ApiResponse<List<Send>> response = apiInstance.SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, page, pageSize, sort, q);
+    ApiResponse<List<Send>> response = apiInstance.SendGetWithHttpInfo(companyId, identifier, committente, prestatore, fileName, lastUpdateFrom, lastUpdateTo, dateSentFrom, dateSentTo, documentDateFrom, documentDateTo, documentNumber, includePayload, ids, page, pageSize, sort, q);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -226,6 +227,7 @@ catch (ApiException e)
 | **documentDateTo** | **DateTime?** | UTC ISO 8601 (2024-11-29T12:34:56Z) | [optional]  |
 | **documentNumber** | **string** | Document number. | [optional]  |
 | **includePayload** | **bool?** | Include payload in the response. Defaults to false. | [optional]  |
+| **ids** | **string** | Comma-separated list of Send ids (max 100). Filters the collection to the matching rows; unknown or unauthorized ids are silently skipped. | [optional]  |
 | **page** | **int?** | Page number. | [optional] [default to 1] |
 | **pageSize** | **int?** | Items per page. Cannot be greater than 200. | [optional] [default to 100] |
 | **sort** | **string** | Sort by field. Prefix with &#39;-&#39; for descending order. | [optional]  |

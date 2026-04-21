@@ -16,7 +16,7 @@ info:
     url: https://github.com/invoicetronic/openapi/blob/main/LICENSE
   termsOfService: https://invoicetronic.com/tos
   title: Invoicetronic API
-  version: 1.6.4
+  version: 1.12.0
 servers:
 - url: /
 security:
@@ -535,6 +535,8 @@ paths:
         Permanently delete a receive invoice by its internal id. This action cannot be undone.
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+
+        Inbound invoices are routed to your account via the recipient VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
       parameters:
       - description: Item id
         explode: false
@@ -562,6 +564,8 @@ paths:
         Retrieve an incoming invoice by its internal id. The `id` is unique and assigned by the system when the invoice is received. Returns invoice metadata; set `include_payload` to true to include the full invoice content. The invoice is marked as read (`is_read` = true) only when `include_payload` is true.
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+
+        Inbound invoices are routed to your account via the recipient VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
       parameters:
       - description: Item id
         explode: false
@@ -632,6 +636,8 @@ paths:
         Retrieve a paginated list of receive invoices. Results can be filtered by various criteria such as company, date ranges, sender, document number, and free-text search (`q`). Returns invoice metadata; set `include_payload` to true to include the full invoice content. Invoices are marked as read (`is_read` = true) only when `include_payload` is true.
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
+
+        Inbound invoices are routed to your account via the recipient VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
       parameters:
       - description: Company id
         explode: true
@@ -909,7 +915,7 @@ paths:
   /send:
     get:
       description: |-
-        Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (`q`). Returns invoice metadata; set `include_payload` to true to include the full invoice content.
+        Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (`q`). Use `ids` to fetch specific Send records in a single call (comma-separated, up to 100). Returns invoice metadata; set `include_payload` to true to include the full invoice content.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
       parameters:
@@ -1023,6 +1029,15 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: Comma-separated list of Send ids (max 100). Filters the collection
+          to the matching rows; unknown or unauthorized ids are silently skipped.
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
         style: form
       - description: Page number.
         explode: true
@@ -1927,30 +1942,36 @@ components:
       additionalProperties: false
       description: A company model.
       example:
-        user_id: 1
+        user_id: 6
         created: 2000-01-23T04:56:07.000+00:00
         vat: IT01234567891
         name: Mario Rossi Srl
         id: 0
         fiscal_code: RSSMRA70A01F205V
-        version: 6
+        version: 0
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         user_id:
-          description: User id.
+          description: User id. It is set automatically based on the authenticated
+            user.
           format: int32
+          readOnly: true
           type: integer
         vat:
           description: Vat number. Must include the country code.
@@ -2010,36 +2031,40 @@ components:
       additionalProperties: false
       description: An API request log entry.
       example:
-        status_code: 7
+        status_code: 2
         company_id: 5
         method: method
         created: 2000-01-23T04:56:07.000+00:00
         query: query
         response_body: response_body
-        api_version: 2
+        api_version: 5
         error: error
-        version: 6
-        api_key_id: 5
+        version: 0
+        api_key_id: 1
         endpoint: endpoint
         date_time: 2000-01-23T04:56:07.000+00:00
-        user_id: 1
+        user_id: 6
         success: true
-        resource_id: 9
+        resource_id: 7
         id: 0
         user_agent: user_agent
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         user_id:
           description: User id.
@@ -2137,88 +2162,103 @@ components:
       example:
         identifier: identifier
         date_sent: 2000-01-23T04:56:07.000+00:00
-        company_id: 5
+        company_id: 1
         documents:
         - date: 2000-01-23T04:56:07.000+00:00
           number: number
         - date: 2000-01-23T04:56:07.000+00:00
           number: number
         created: 2000-01-23T04:56:07.000+00:00
-        file_name: file_name
+        file_name: IT01180680397ITRON_00001.xml
         committente: committente
-        format: format
+        format: FPR12
         message_id: message_id
         encoding: Xml
-        version: 6
+        version: 0
         is_read: true
-        user_id: 1
-        payload: payload
+        user_id: 6
+        payload: PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48cDpGYXR0dXJhRWxldHRyb25pY2EgLi4uPjwvcDpGYXR0dXJhRWxldHRyb25pY2E+
         prestatore: prestatore
         last_update: 2000-01-23T04:56:07.000+00:00
         id: 0
         nome_prestatore: nome_prestatore
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         user_id:
-          description: User id.
+          description: User id. It is set automatically based on the authenticated
+            user.
           format: int32
+          readOnly: true
           type: integer
         company_id:
-          description: |-
-            Company id. On send, this is the sender and must be set in advance. On receive, it will be
-            automatically set based on the recipient's VAT number. If a matching company is not found, the invoice will be rejected until the company is created.
+          description: "Company id. It is set automatically based on the VAT number\
+            \ extracted from the invoice payload (the sender for `send`, the recipient\
+            \ for `receive`)."
           format: int32
+          readOnly: true
           type: integer
         committente:
           description: VAT number of the Cessionario/Committente (customer). This
             is automatically set based on the recipient's VAT number.
           nullable: true
+          readOnly: true
           type: string
         prestatore:
           description: VAT number of the Cedente/Prestatore (vendor). This is automatically
             set based on the sender's VAT number.
           nullable: true
+          readOnly: true
           type: string
         identifier:
           description: SDI identifier. This is set by the SDI and is guaranteed to
             be unique within the SDI system.
           nullable: true
+          readOnly: true
           type: string
         file_name:
-          description: Xml file name.
+          description: "Xml file name. If not provided on send, it will be auto-generated."
+          example: IT01180680397ITRON_00001.xml
           nullable: true
           type: string
         format:
           description: "SDI format (FPA12, FPR12, FSM10, ...)"
+          example: FPR12
           nullable: true
           type: string
         payload:
           description: "Xml payload. This is the actual xml content, as string. On\
             \ send, it can be base64 encoded. If it's not, it will be encoded before\
             \ sending. It is guaranteed to be encrypted at rest."
+          example: PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48cDpGYXR0dXJhRWxldHRyb25pY2EgLi4uPjwvcDpGYXR0dXJhRWxldHRyb25pY2E+
           minLength: 1
           type: string
         last_update:
           description: Last update from SDI.
           format: date-time
           nullable: true
+          readOnly: true
           type: string
         date_sent:
           description: When the invoice was sent to SDI.
           format: date-time
           nullable: true
+          readOnly: true
           type: string
         documents:
           description: "The invoices included in the payload. This is set by the system,\
@@ -2226,6 +2266,7 @@ components:
           items:
             $ref: "#/components/schemas/DocumentData"
           nullable: true
+          readOnly: true
           type: array
         encoding:
           description: Whether the payload is Base64 encoded or a plain XML (text).
@@ -2255,96 +2296,112 @@ components:
       example:
         identifier: identifier
         date_sent: 2000-01-23T04:56:07.000+00:00
-        company_id: 5
+        company_id: 1
         documents:
         - date: 2000-01-23T04:56:07.000+00:00
           number: number
         - date: 2000-01-23T04:56:07.000+00:00
           number: number
         created: 2000-01-23T04:56:07.000+00:00
-        file_name: file_name
+        file_name: IT01180680397ITRON_00001.xml
         committente: committente
-        format: format
+        format: FPR12
         encoding: Xml
-        version: 6
+        version: 0
         nome_committente: nome_committente
-        user_id: 1
-        payload: payload
+        user_id: 6
+        payload: PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48cDpGYXR0dXJhRWxldHRyb25pY2EgLi4uPjwvcDpGYXR0dXJhRWxldHRyb25pY2E+
         prestatore: prestatore
         last_update: 2000-01-23T04:56:07.000+00:00
         meta_data:
-          key: meta_data
+          order_id: ORD-123
+        latest_state: Inviato
         company:
-          user_id: 1
+          user_id: 6
           created: 2000-01-23T04:56:07.000+00:00
           vat: IT01234567891
           name: Mario Rossi Srl
           id: 0
           fiscal_code: RSSMRA70A01F205V
-          version: 6
+          version: 0
         id: 0
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         user_id:
-          description: User id.
+          description: User id. It is set automatically based on the authenticated
+            user.
           format: int32
+          readOnly: true
           type: integer
         company_id:
-          description: |-
-            Company id. On send, this is the sender and must be set in advance. On receive, it will be
-            automatically set based on the recipient's VAT number. If a matching company is not found, the invoice will be rejected until the company is created.
+          description: "Company id. It is set automatically based on the VAT number\
+            \ extracted from the invoice payload (the sender for `send`, the recipient\
+            \ for `receive`)."
           format: int32
+          readOnly: true
           type: integer
         committente:
           description: VAT number of the Cessionario/Committente (customer). This
             is automatically set based on the recipient's VAT number.
           nullable: true
+          readOnly: true
           type: string
         prestatore:
           description: VAT number of the Cedente/Prestatore (vendor). This is automatically
             set based on the sender's VAT number.
           nullable: true
+          readOnly: true
           type: string
         identifier:
           description: SDI identifier. This is set by the SDI and is guaranteed to
             be unique within the SDI system.
           nullable: true
+          readOnly: true
           type: string
         file_name:
-          description: Xml file name.
+          description: "Xml file name. If not provided on send, it will be auto-generated."
+          example: IT01180680397ITRON_00001.xml
           nullable: true
           type: string
         format:
           description: "SDI format (FPA12, FPR12, FSM10, ...)"
+          example: FPR12
           nullable: true
           type: string
         payload:
           description: "Xml payload. This is the actual xml content, as string. On\
             \ send, it can be base64 encoded. If it's not, it will be encoded before\
             \ sending. It is guaranteed to be encrypted at rest."
+          example: PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48cDpGYXR0dXJhRWxldHRyb25pY2EgLi4uPjwvcDpGYXR0dXJhRWxldHRyb25pY2E+
           minLength: 1
           type: string
         last_update:
           description: Last update from SDI.
           format: date-time
           nullable: true
+          readOnly: true
           type: string
         date_sent:
           description: When the invoice was sent to SDI.
           format: date-time
           nullable: true
+          readOnly: true
           type: string
         documents:
           description: "The invoices included in the payload. This is set by the system,\
@@ -2352,6 +2409,7 @@ components:
           items:
             $ref: "#/components/schemas/DocumentData"
           nullable: true
+          readOnly: true
           type: array
         encoding:
           description: Whether the payload is Base64 encoded or a plain XML (text).
@@ -2363,13 +2421,33 @@ components:
           description: Business name of the committente (client/buyer) extracted from
             the invoice XML.
           nullable: true
+          readOnly: true
           type: string
         meta_data:
           additionalProperties:
             type: string
           description: "Optional metadata, as json."
+          example:
+            order_id: ORD-123
           nullable: true
           type: object
+        latest_state:
+          description: |-
+            Current SDI state of the invoice. Reflects the most recent update received from SDI.
+            Null when no update has been received yet.
+          enum:
+          - Inviato
+          - Consegnato
+          - NonConsegnato
+          - Scartato
+          - AccettatoDalDestinatario
+          - RifiutatoDalDestinatario
+          - ImpossibilitaDiRecapito
+          - DecorrenzaTermini
+          - AttestazioneTrasmissioneFattura
+          nullable: true
+          readOnly: true
+          type: string
         company:
           $ref: "#/components/schemas/Company"
       required:
@@ -2390,6 +2468,7 @@ components:
         prestatore: prestatore
         meta_data:
           key: meta_data
+        latest_state: Inviato
       properties:
         identifier:
           description: SDI identifier.
@@ -2416,12 +2495,29 @@ components:
           format: date-time
           nullable: true
           type: string
+        latest_state:
+          description: Current SDI state of the invoice. Reflects the most recent
+            update received from SDI.
+          enum:
+          - Inviato
+          - Consegnato
+          - NonConsegnato
+          - Scartato
+          - AccettatoDalDestinatario
+          - RifiutatoDalDestinatario
+          - ImpossibilitaDiRecapito
+          - DecorrenzaTermini
+          - AttestazioneTrasmissioneFattura
+          nullable: true
+          type: string
       type: object
     Status:
       additionalProperties: false
       description: Account status with remaining operations and signatures.
       example:
+        has_active_seat: true
         signature_left: 6
+        is_sub_key: true
         operation_left: 0
       properties:
         operation_left:
@@ -2432,19 +2528,25 @@ components:
           description: Signatures left.
           format: int32
           type: integer
+        has_active_seat:
+          description: Whether the current API key has an active Desk seat.
+          type: boolean
+        is_sub_key:
+          description: Whether the current API key is a sub-key (restricted key).
+          type: boolean
       type: object
     Update:
       additionalProperties: false
       description: An SDI status update for a sent invoice.
       example:
-        company_id: 5
+        company_id: 1
         created: 2000-01-23T04:56:07.000+00:00
         description: description
         message_id: message_id
-        version: 6
+        version: 0
         is_read: true
         send_id: 5
-        user_id: 1
+        user_id: 6
         last_update: 2000-01-23T04:56:07.000+00:00
         id: 0
         state: Inviato
@@ -2459,6 +2561,7 @@ components:
           prestatore: prestatore
           meta_data:
             key: meta_data
+          latest_state: Inviato
         errors:
         - code: code
           hint: hint
@@ -2468,17 +2571,21 @@ components:
           description: description
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         user_id:
           description: User id.
@@ -2535,44 +2642,55 @@ components:
       additionalProperties: false
       description: A webhook subscription.
       example:
-        company_id: 5
-        user_id: 1
+        company_id: 1
+        user_id: 6
         created: 2000-01-23T04:56:07.000+00:00
-        description: description
+        description: Production webhook
         id: 0
-        secret: secret
-        version: 6
-        url: url
+        secret: wh_sec_1a2b3c4d5e6f7g8h9i0j
+        failure_notified_at: 2000-01-23T04:56:07.000+00:00
+        version: 0
+        url: https://example.com/webhooks/invoicetronic
         enabled: true
         events:
-        - events
-        - events
+        - send.add
+        - receive.add
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         user_id:
-          description: User id.
+          description: User id. It is set automatically based on the authenticated
+            user.
           format: int32
+          readOnly: true
           type: integer
         company_id:
-          description: Company id.
+          description: "Optional company id. If set, the webhook is restricted to\
+            \ events for that company; if omitted, it fires for all companies on the\
+            \ account."
+          example: 1
           format: int32
           nullable: true
           type: integer
         url:
           description: The url of your application's endpoint that will receive a
             POST request when the webhook is fired.
+          example: https://example.com/webhooks/invoicetronic
           minLength: 1
           type: string
         enabled:
@@ -2583,20 +2701,32 @@ components:
           description: "The secret used to generate webhook signatures, only returned\
             \ on creation. You should store this value securely and validate it on\
             \ every call, to ensure that the caller is InvoicetronicApi."
+          example: wh_sec_1a2b3c4d5e6f7g8h9i0j
           nullable: true
           type: string
         description:
           description: An optional description.
+          example: Production webhook
           nullable: true
           type: string
         events:
           description: |-
             List of events that trigger the webhook.
             See Invoicetronic.SupportedEvents.Available for a list of valid event names.
+          example:
+          - send.add
+          - receive.add
           items:
             type: string
           nullable: true
           type: array
+        failure_notified_at:
+          description: Timestamp of the last failure notification email sent for this
+            webhook. Set by the notifier service; reset to null on successful delivery.
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
       required:
       - url
       type: object
@@ -2606,26 +2736,31 @@ components:
       example:
         status_code: 5
         date_time: 2000-01-23T04:56:07.000+00:00
-        user_id: 5
+        user_id: 1
         created: 2000-01-23T04:56:07.000+00:00
         success: true
-        web_hook_id: 1
+        web_hook_id: 6
         id: 0
         event: event
-        version: 6
+        error: error
+        version: 0
       properties:
         id:
-          description: Unique identifier. Leave it at 0 for new records as it will
-            be set automatically.
+          description: |-
+            Unique identifier. For POST requests, leave it at `0` — the server will assign one automatically.
+            For PUT requests, set it to the id of the record you want to update.
+          example: 0
           format: int32
           type: integer
         created:
           description: Creation date. It is set automatically.
           format: date-time
+          readOnly: true
           type: string
         version:
           description: "Row version, for optimistic concurrency. It is set automatically."
           format: int32
+          readOnly: true
           type: integer
         web_hook_id:
           description: Webhook id.
@@ -2640,9 +2775,19 @@ components:
           nullable: true
           type: string
         status_code:
-          description: Status code.
+          description: "HTTP status code returned by the webhook endpoint. A value\
+            \ of 0 means the request could not be completed due to a network error\
+            \ (e.g., DNS resolution failure, connection refused, or timeout). This\
+            \ typically indicates that the endpoint URL is misconfigured or no longer\
+            \ exists."
           format: int32
           type: integer
+        error:
+          description: "Error description, if any. Null when the delivery is successful\
+            \ (2xx). Contains the exception message for network errors (status code\
+            \ 0) or the response body for non-2xx HTTP responses."
+          nullable: true
+          type: string
         date_time:
           description: Date and time of the request.
           format: date-time

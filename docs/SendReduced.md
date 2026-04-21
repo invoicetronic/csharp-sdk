@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **MetaData** | **Dictionary&lt;string, string&gt;** | Optional metadata, as json. | [optional] 
 **Documents** | [**List&lt;DocumentData&gt;**](DocumentData.md) | The invoices included in the payload. | [optional] 
 **DateSent** | **DateTime?** | When the invoice was sent to SDI. | [optional] 
+**LatestState** | **string** | Current SDI state of the invoice. Reflects the most recent update received from SDI. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

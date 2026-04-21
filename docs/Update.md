@@ -5,9 +5,9 @@ An SDI status update for a sent invoice.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int** | Unique identifier. Leave it at 0 for new records as it will be set automatically. | [optional] 
-**Created** | **DateTime** | Creation date. It is set automatically. | [optional] 
-**VarVersion** | **int** | Row version, for optimistic concurrency. It is set automatically. | [optional] 
+**Id** | **int** | Unique identifier. For POST requests, leave it at &#x60;0&#x60; — the server will assign one automatically. For PUT requests, set it to the id of the record you want to update. | [optional] 
+**Created** | **DateTime** | Creation date. It is set automatically. | [optional] [readonly] 
+**VarVersion** | **int** | Row version, for optimistic concurrency. It is set automatically. | [optional] [readonly] 
 **UserId** | **int** | User id. | [optional] 
 **CompanyId** | **int** | Company id. | [optional] 
 **SendId** | **int** | Send id. This is the id of the sent invoice to which this update refers to. | [optional] 

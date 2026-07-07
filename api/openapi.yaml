@@ -4,10 +4,23 @@ info:
     email: info@invoicetronic.com
     name: Invoicetronic
     url: https://invoicetronic.com/en/contact/
-  description: |-
+  description: |
     The [Invoicetronic API][2] is a RESTful service that allows you to send and receive invoices through the Italian [Servizio di Interscambio (SDI)][1], or Interchange Service. The API is designed to be simple and easy to use, abstracting away SDI complexity while providing complete control over the invoice send/receive process. It provides advanced features as encryption at rest, multi-language pre-flight invoice validation, multiple upload formats, webhooks, event logging, client SDKs, and CLI tools.
 
     For more information, see  [Invoicetronic website][2]
+
+    ## Before you start
+
+    For the full integration guide, tutorials, SDKs and quickstarts, see the **[Documentation](https://invoicetronic.com/en/docs/)**. A few cross-cutting topics worth knowing before integrating:
+
+    - **[Prerequisites](https://invoicetronic.com/en/docs/prerequisites/)** — what you need to start in Sandbox and what's required to move to production.
+    - **[API Keys](https://invoicetronic.com/en/docs/apikeys/)** — how `ik_live_` and `ik_test_` keys select the environment.
+    - **[Sandbox](https://invoicetronic.com/en/docs/sandbox/)** — free test environment that mirrors the live workflow, with no credits consumed.
+    - **[Rate Limiting](https://invoicetronic.com/en/docs/ratelimiting/)** — per-second, per-minute and per-day limits; how to handle `429 Too Many Requests`.
+    - **[Pagination](https://invoicetronic.com/en/docs/pagination/)** — `page` and `page_size` parameters and the `Invoicetronic-Total-Count` response header.
+    - **[CORS](https://invoicetronic.com/en/docs/cors/)** — calling the API from the browser; allowed origins are configured per key.
+    - **[Webhooks](https://invoicetronic.com/en/docs/webhooks/)** — real-time event notifications with HMAC-SHA256 signature validation.
+    - **[Localization](https://invoicetronic.com/en/docs/accept-language/)** — use the `Accept-Language` header to receive error messages in Italian, English or German.
 
     [1]: https://www.fatturapa.gov.it/it/sistemainterscambio/cose-il-sdi/
     [2]: https://invoicetronic.com/
@@ -16,7 +29,7 @@ info:
     url: https://github.com/invoicetronic/openapi/blob/main/LICENSE
   termsOfService: https://invoicetronic.com/tos
   title: Invoicetronic API
-  version: 1.12.0
+  version: 1.14.0
 servers:
 - url: /
 security:
@@ -915,7 +928,7 @@ paths:
   /send:
     get:
       description: |-
-        Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, and free-text search (`q`). Use `ids` to fetch specific Send records in a single call (comma-separated, up to 100). Returns invoice metadata; set `include_payload` to true to include the full invoice content.
+        Retrieve a paginated list of send invoices. Results can be filtered by various criteria such as company, date ranges, document number, current SDI state (`latest_state`), and free-text search (`q`). Use `ids` to fetch specific Send records in a single call (comma-separated, up to 100). Returns invoice metadata; set `include_payload` to true to include the full invoice content.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
       parameters:
@@ -1022,6 +1035,25 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter by the most recent SDI state for the invoice. Matches
+          the `latest_state` field exposed inline on each Send.
+        explode: true
+        in: query
+        name: latest_state
+        required: false
+        schema:
+          enum:
+          - Inviato
+          - Consegnato
+          - NonConsegnato
+          - Scartato
+          - AccettatoDalDestinatario
+          - RifiutatoDalDestinatario
+          - ImpossibilitaDiRecapito
+          - DecorrenzaTermini
+          - AttestazioneTrasmissioneFattura
+          type: string
+        style: form
       - description: Include payload in the response. Defaults to false.
         explode: true
         in: query
@@ -1097,6 +1129,17 @@ paths:
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
         You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        ### Idempotency
+
+        To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).
+
+        - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours.
+        - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI.
+        - If a request with the same key is still being processed, the retry receives `409 Conflict`.
+        - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
+
+        Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1122,6 +1165,17 @@ paths:
           - Auto
           type: string
         style: form
+      - description: Optional client-generated key that makes the submission idempotent.
+          Retrying the same request with the same key within 24 hours returns the
+          original response instead of creating a duplicate invoice.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1152,6 +1206,17 @@ paths:
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
         You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        ### Idempotency
+
+        To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).
+
+        - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours.
+        - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI.
+        - If a request with the same key is still being processed, the retry receives `409 Conflict`.
+        - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
+
+        Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1177,9 +1242,107 @@ paths:
           - Auto
           type: string
         style: form
+      - description: Optional client-generated key that makes the submission idempotent.
+          Retrying the same request with the same key within 24 hours returns the
+          original response instead of creating a duplicate invoice.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       requestBody:
         content:
           application/xml:
+            example: |-
+              <?xml version="1.0" encoding="UTF-8"?>
+              <p:FatturaElettronica versione="FPR12" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+                <FatturaElettronicaHeader>
+                  <DatiTrasmissione>
+                    <IdTrasmittente>
+                      <IdPaese>IT</IdPaese>
+                      <IdCodice>01234567890</IdCodice>
+                    </IdTrasmittente>
+                    <ProgressivoInvio>00001</ProgressivoInvio>
+                    <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+                    <CodiceDestinatario>0000000</CodiceDestinatario>
+                  </DatiTrasmissione>
+                  <CedentePrestatore>
+                    <DatiAnagrafici>
+                      <IdFiscaleIVA>
+                        <IdPaese>IT</IdPaese>
+                        <IdCodice>01234567890</IdCodice>
+                      </IdFiscaleIVA>
+                      <Anagrafica>
+                        <Denominazione>Prestatore Srl</Denominazione>
+                      </Anagrafica>
+                      <RegimeFiscale>RF01</RegimeFiscale>
+                    </DatiAnagrafici>
+                    <Sede>
+                      <Indirizzo>Via Roma 1</Indirizzo>
+                      <CAP>00100</CAP>
+                      <Comune>Roma</Comune>
+                      <Provincia>RM</Provincia>
+                      <Nazione>IT</Nazione>
+                    </Sede>
+                  </CedentePrestatore>
+                  <CessionarioCommittente>
+                    <DatiAnagrafici>
+                      <IdFiscaleIVA>
+                        <IdPaese>IT</IdPaese>
+                        <IdCodice>09876543210</IdCodice>
+                      </IdFiscaleIVA>
+                      <Anagrafica>
+                        <Denominazione>Committente Srl</Denominazione>
+                      </Anagrafica>
+                    </DatiAnagrafici>
+                    <Sede>
+                      <Indirizzo>Via Milano 2</Indirizzo>
+                      <CAP>20100</CAP>
+                      <Comune>Milano</Comune>
+                      <Provincia>MI</Provincia>
+                      <Nazione>IT</Nazione>
+                    </Sede>
+                  </CessionarioCommittente>
+                </FatturaElettronicaHeader>
+                <FatturaElettronicaBody>
+                  <DatiGenerali>
+                    <DatiGeneraliDocumento>
+                      <TipoDocumento>TD01</TipoDocumento>
+                      <Divisa>EUR</Divisa>
+                      <Data>2025-01-01</Data>
+                      <Numero>1</Numero>
+                      <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
+                    </DatiGeneraliDocumento>
+                  </DatiGenerali>
+                  <DatiBeniServizi>
+                    <DettaglioLinee>
+                      <NumeroLinea>1</NumeroLinea>
+                      <Descrizione>Servizio di consulenza</Descrizione>
+                      <Quantita>1.00</Quantita>
+                      <PrezzoUnitario>100.00</PrezzoUnitario>
+                      <PrezzoTotale>100.00</PrezzoTotale>
+                      <AliquotaIVA>22.00</AliquotaIVA>
+                    </DettaglioLinee>
+                    <DatiRiepilogo>
+                      <AliquotaIVA>22.00</AliquotaIVA>
+                      <ImponibileImporto>100.00</ImponibileImporto>
+                      <Imposta>22.00</Imposta>
+                      <EsigibilitaIVA>I</EsigibilitaIVA>
+                    </DatiRiepilogo>
+                  </DatiBeniServizi>
+                  <DatiPagamento>
+                    <CondizioniPagamento>TP02</CondizioniPagamento>
+                    <DettaglioPagamento>
+                      <ModalitaPagamento>MP05</ModalitaPagamento>
+                      <DataScadenzaPagamento>2025-01-31</DataScadenzaPagamento>
+                      <ImportoPagamento>122.00</ImportoPagamento>
+                    </DettaglioPagamento>
+                  </DatiPagamento>
+                </FatturaElettronicaBody>
+              </p:FatturaElettronica>
             schema:
               type: object
         required: true
@@ -1207,6 +1370,17 @@ paths:
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
         You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        ### Idempotency
+
+        To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).
+
+        - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours.
+        - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI.
+        - If a request with the same key is still being processed, the retry receives `409 Conflict`.
+        - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
+
+        Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1232,6 +1406,17 @@ paths:
           - Auto
           type: string
         style: form
+      - description: Optional client-generated key that makes the submission idempotent.
+          Retrying the same request with the same key within 24 hours returns the
+          original response instead of creating a duplicate invoice.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       requestBody:
         content:
           multipart/form-data:
@@ -1259,11 +1444,22 @@ paths:
   /send/json:
     post:
       description: |-
-        Add a new invoice using a FatturaPA JSON representation. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.
+        Add a new invoice using a FatturaPA JSON representation. Property names mirror the FatturaPA XML schema (PascalCase, e.g. `FatturaElettronicaHeader`). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
         You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        ### Idempotency
+
+        To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).
+
+        - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours.
+        - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI.
+        - If a request with the same key is still being processed, the retry receives `409 Conflict`.
+        - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
+
+        Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1289,6 +1485,17 @@ paths:
           - Auto
           type: string
         style: form
+      - description: Optional client-generated key that makes the submission idempotent.
+          Retrying the same request with the same key within 24 hours returns the
+          original response instead of creating a duplicate invoice.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1344,6 +1551,93 @@ paths:
       requestBody:
         content:
           application/xml:
+            example: |-
+              <?xml version="1.0" encoding="UTF-8"?>
+              <p:FatturaElettronica versione="FPR12" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+                <FatturaElettronicaHeader>
+                  <DatiTrasmissione>
+                    <IdTrasmittente>
+                      <IdPaese>IT</IdPaese>
+                      <IdCodice>01234567890</IdCodice>
+                    </IdTrasmittente>
+                    <ProgressivoInvio>00001</ProgressivoInvio>
+                    <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+                    <CodiceDestinatario>0000000</CodiceDestinatario>
+                  </DatiTrasmissione>
+                  <CedentePrestatore>
+                    <DatiAnagrafici>
+                      <IdFiscaleIVA>
+                        <IdPaese>IT</IdPaese>
+                        <IdCodice>01234567890</IdCodice>
+                      </IdFiscaleIVA>
+                      <Anagrafica>
+                        <Denominazione>Prestatore Srl</Denominazione>
+                      </Anagrafica>
+                      <RegimeFiscale>RF01</RegimeFiscale>
+                    </DatiAnagrafici>
+                    <Sede>
+                      <Indirizzo>Via Roma 1</Indirizzo>
+                      <CAP>00100</CAP>
+                      <Comune>Roma</Comune>
+                      <Provincia>RM</Provincia>
+                      <Nazione>IT</Nazione>
+                    </Sede>
+                  </CedentePrestatore>
+                  <CessionarioCommittente>
+                    <DatiAnagrafici>
+                      <IdFiscaleIVA>
+                        <IdPaese>IT</IdPaese>
+                        <IdCodice>09876543210</IdCodice>
+                      </IdFiscaleIVA>
+                      <Anagrafica>
+                        <Denominazione>Committente Srl</Denominazione>
+                      </Anagrafica>
+                    </DatiAnagrafici>
+                    <Sede>
+                      <Indirizzo>Via Milano 2</Indirizzo>
+                      <CAP>20100</CAP>
+                      <Comune>Milano</Comune>
+                      <Provincia>MI</Provincia>
+                      <Nazione>IT</Nazione>
+                    </Sede>
+                  </CessionarioCommittente>
+                </FatturaElettronicaHeader>
+                <FatturaElettronicaBody>
+                  <DatiGenerali>
+                    <DatiGeneraliDocumento>
+                      <TipoDocumento>TD01</TipoDocumento>
+                      <Divisa>EUR</Divisa>
+                      <Data>2025-01-01</Data>
+                      <Numero>1</Numero>
+                      <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
+                    </DatiGeneraliDocumento>
+                  </DatiGenerali>
+                  <DatiBeniServizi>
+                    <DettaglioLinee>
+                      <NumeroLinea>1</NumeroLinea>
+                      <Descrizione>Servizio di consulenza</Descrizione>
+                      <Quantita>1.00</Quantita>
+                      <PrezzoUnitario>100.00</PrezzoUnitario>
+                      <PrezzoTotale>100.00</PrezzoTotale>
+                      <AliquotaIVA>22.00</AliquotaIVA>
+                    </DettaglioLinee>
+                    <DatiRiepilogo>
+                      <AliquotaIVA>22.00</AliquotaIVA>
+                      <ImponibileImporto>100.00</ImponibileImporto>
+                      <Imposta>22.00</Imposta>
+                      <EsigibilitaIVA>I</EsigibilitaIVA>
+                    </DatiRiepilogo>
+                  </DatiBeniServizi>
+                  <DatiPagamento>
+                    <CondizioniPagamento>TP02</CondizioniPagamento>
+                    <DettaglioPagamento>
+                      <ModalitaPagamento>MP05</ModalitaPagamento>
+                      <DataScadenzaPagamento>2025-01-31</DataScadenzaPagamento>
+                      <ImportoPagamento>122.00</ImportoPagamento>
+                    </DettaglioPagamento>
+                  </DatiPagamento>
+                </FatturaElettronicaBody>
+              </p:FatturaElettronica>
             schema:
               type: object
         required: true
@@ -1388,7 +1682,7 @@ paths:
   /send/validate/json:
     post:
       description: |-
-        Validate a JSON invoice without sending it to SDI. Use this to check for errors before actual submission. Returns validation results with any errors found.
+        Validate a FatturaPA JSON invoice without sending it to SDI. Property names mirror the FatturaPA XML schema (PascalCase, e.g. `FatturaElettronicaHeader`). Use this to check for errors before actual submission. Returns validation results with any errors found.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
       requestBody:
@@ -1648,6 +1942,8 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
+        A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
+
         For more information, see the **[Webhooks documentation page](https://invoicetronic.com/en/docs/webhooks/)**.
       parameters:
       - description: Item id
@@ -1678,6 +1974,8 @@ paths:
         **Webhooks** allow you to receive notifications to an external service when specific events occur, such as invoice creation or status updates. You can subscribe to specific events and receive a notification when they occur.
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
         For more information, see the **[Webhooks documentation page](https://invoicetronic.com/en/docs/webhooks/)**.
       parameters:
@@ -1710,6 +2008,8 @@ paths:
         **Webhooks** allow you to receive notifications to an external service when specific events occur, such as invoice creation or status updates. You can subscribe to specific events and receive a notification when they occur.
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
         For more information, see the **[Webhooks documentation page](https://invoicetronic.com/en/docs/webhooks/)**.
       parameters:
@@ -1800,6 +2100,8 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
+        A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
+
         For more information, see the **[Webhooks documentation page](https://invoicetronic.com/en/docs/webhooks/)**.
       requestBody:
         content:
@@ -1830,6 +2132,8 @@ paths:
         **Webhooks** allow you to receive notifications to an external service when specific events occur, such as invoice creation or status updates. You can subscribe to specific events and receive a notification when they occur.
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
+
+        A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
         For more information, see the **[Webhooks documentation page](https://invoicetronic.com/en/docs/webhooks/)**.
       requestBody:

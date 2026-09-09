@@ -23,7 +23,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 Add an invoice by file
 
-Add a new invoice by uploading a file. Supported formats are XML (FatturaPA) and P7M (signed). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+Add a new invoice by uploading a file. Supported formats are XML (FatturaPA) and P7M (signed). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. A replayed response carries the `Idempotent-Replayed: true` header, so you can tell it apart from a freshly processed one. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
 
 ### Example
 ```csharp
@@ -53,7 +53,7 @@ namespace Example
             var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
-            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the `Idempotent-Replayed: true` header. (optional) 
 
             try
             {
@@ -99,7 +99,7 @@ catch (ApiException e)
 | **file** | **FileParameter****FileParameter** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
-| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. | [optional]  |
+| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the &#x60;Idempotent-Replayed: true&#x60; header. | [optional]  |
 
 ### Return type
 
@@ -112,14 +112,15 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Created |  -  |
-| **422** | Unprocessable Content |  -  |
+| **201** | Created |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **403** | Forbidden |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **422** | Unprocessable Content |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -565,7 +566,7 @@ catch (ApiException e)
 
 Add an invoice by json
 
-Add a new invoice using a FatturaPA JSON representation. Property names mirror the FatturaPA XML schema (PascalCase, e.g. `FatturaElettronicaHeader`). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+Add a new invoice using a FatturaPA JSON representation. Property names mirror the FatturaPA XML schema (PascalCase, e.g. `FatturaElettronicaHeader`). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. A replayed response carries the `Idempotent-Replayed: true` header, so you can tell it apart from a freshly processed one. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
 
 ### Example
 ```csharp
@@ -595,7 +596,7 @@ namespace Example
             var body = null;  // Object | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
-            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the `Idempotent-Replayed: true` header. (optional) 
 
             try
             {
@@ -641,7 +642,7 @@ catch (ApiException e)
 | **body** | **Object** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
-| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. | [optional]  |
+| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the &#x60;Idempotent-Replayed: true&#x60; header. | [optional]  |
 
 ### Return type
 
@@ -654,14 +655,15 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Created |  -  |
-| **422** | Unprocessable Content |  -  |
+| **201** | Created |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **403** | Forbidden |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **422** | Unprocessable Content |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -671,7 +673,7 @@ catch (ApiException e)
 
 Add an invoice
 
-Add a new invoice using a structured Send object. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+Add a new invoice using a structured Send object. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. A replayed response carries the `Idempotent-Replayed: true` header, so you can tell it apart from a freshly processed one. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
 
 ### Example
 ```csharp
@@ -701,7 +703,7 @@ namespace Example
             var send = new Send(); // Send | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
-            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the `Idempotent-Replayed: true` header. (optional) 
 
             try
             {
@@ -747,7 +749,7 @@ catch (ApiException e)
 | **send** | [**Send**](Send.md) |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
-| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. | [optional]  |
+| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the &#x60;Idempotent-Replayed: true&#x60; header. | [optional]  |
 
 ### Return type
 
@@ -760,14 +762,15 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Created |  -  |
-| **422** | Unprocessable Content |  -  |
+| **201** | Created |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **403** | Forbidden |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **422** | Unprocessable Content |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -856,7 +859,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
@@ -864,6 +867,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
 | **422** | Unprocessable Content |  -  |
+| **403** | Forbidden |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -952,7 +956,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
@@ -960,6 +964,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
 | **422** | Unprocessable Content |  -  |
+| **403** | Forbidden |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1048,7 +1053,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
@@ -1056,6 +1061,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
 | **422** | Unprocessable Content |  -  |
+| **403** | Forbidden |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1229,7 +1235,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/xml
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
@@ -1237,6 +1243,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
 | **422** | Unprocessable Content |  -  |
+| **403** | Forbidden |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1246,7 +1253,7 @@ void (empty response body)
 
 Add an invoice by xml
 
-Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.  **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).  You can also upload invoices via the [Dashboard](https://dashboard.invoicetronic.com).  ### Idempotency  To protect against duplicate submissions caused by network retries, you can send an optional `Idempotency-Key` header with any unique, client-generated value (up to 255 characters).  - The first request with a given key is processed normally, and its response (status, body and `Location`) is stored for 24 hours. - Any subsequent request that reuses the same key within that window replays the original response instead of sending a second invoice to SDI. A replayed response carries the `Idempotent-Replayed: true` header, so you can tell it apart from a freshly processed one. - If a request with the same key is still being processed, the retry receives `409 Conflict`. - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.  Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
 
 ### Example
 ```csharp
@@ -1361,7 +1368,7 @@ namespace Example
 </p:FatturaElettronica>;  // Object | 
             var validate = false;  // bool? | Validate the document first, and reject it on failure. (optional)  (default to false)
             var signature = "None";  // string | Whether to digitally sign the document. (optional)  (default to Auto)
-            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the `Idempotent-Replayed: true` header. (optional) 
 
             try
             {
@@ -1407,7 +1414,7 @@ catch (ApiException e)
 | **body** | **Object** |  |  |
 | **validate** | **bool?** | Validate the document first, and reject it on failure. | [optional] [default to false] |
 | **signature** | **string** | Whether to digitally sign the document. | [optional] [default to Auto] |
-| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. | [optional]  |
+| **idempotencyKey** | **string** | Optional client-generated key that makes the submission idempotent. Retrying the same request with the same key within 24 hours returns the original response instead of creating a duplicate invoice. A replayed response carries the &#x60;Idempotent-Replayed: true&#x60; header. | [optional]  |
 
 ### Return type
 
@@ -1420,14 +1427,15 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/xml
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Created |  -  |
-| **422** | Unprocessable Content |  -  |
+| **201** | Created |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **403** | Forbidden |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
+| **422** | Unprocessable Content |  * Idempotent-Replayed - Present and set to &#x60;true&#x60; only when the response was replayed from a previous request with the same &#x60;Idempotency-Key&#x60;; absent otherwise. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

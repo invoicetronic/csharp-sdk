@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **WebHookId** | **int** | Webhook id. | [optional] 
 **UserId** | **int** | User id. | [optional] 
 **Event** | **string** | Event name. | [optional] 
+**EventId** | **int?** | Id of the event that triggered the delivery. It matches the &#x60;id&#x60; field of the webhook payload, so all the attempts made for the same event share it. Null for deliveries recorded before retries were introduced. | [optional] 
+**Attempt** | **int** | Delivery attempt number, starting at 1. Failed deliveries (any non-2xx response except 410, or a network error) are retried with increasing delays; each retry is recorded as a separate history item. | [optional] 
 **StatusCode** | **int** | HTTP status code returned by the webhook endpoint. A value of 0 means the request could not be completed due to a network error (e.g., DNS resolution failure, connection refused, or timeout). This typically indicates that the endpoint URL is misconfigured or no longer exists. | [optional] 
 **Error** | **string** | Error description, if any. Null when the delivery is successful (2xx). Contains the exception message for network errors (status code 0) or the response body for non-2xx HTTP responses. | [optional] 
 **DateTime** | **DateTime** | Date and time of the request. | [optional] 

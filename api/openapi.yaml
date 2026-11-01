@@ -15,6 +15,7 @@ info:
 
     - **[Prerequisites](https://invoicetronic.com/en/docs/prerequisites/)** — what you need to start in Sandbox and what's required to move to production.
     - **[API Keys](https://invoicetronic.com/en/docs/apikeys/)** — how `ik_live_` and `ik_test_` keys select the environment.
+    - **[Restricted Keys](https://invoicetronic.com/en/docs/sub-keys/)** — keys limited to some companies and permissions, managed from the Dashboard or through `/subkey`.
     - **[Sandbox](https://invoicetronic.com/en/docs/sandbox/)** — free test environment that mirrors the live workflow, with no credits consumed.
     - **[Rate Limiting](https://invoicetronic.com/en/docs/ratelimiting/)** — per-second, per-minute and per-day limits; how to handle `429 Too Many Requests`.
     - **[Pagination](https://invoicetronic.com/en/docs/pagination/)** — `page` and `page_size` parameters and the `Invoicetronic-Total-Count` response header.
@@ -29,7 +30,7 @@ info:
     url: https://github.com/invoicetronic/openapi/blob/main/LICENSE
   termsOfService: https://invoicetronic.com/tos
   title: Invoicetronic API
-  version: 1.17.0
+  version: 1.20.3
 servers:
 - url: /
 security:
@@ -53,7 +54,9 @@ paths:
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
-        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+
+        Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.
 
 
         **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.
@@ -85,6 +88,24 @@ paths:
               schema:
                 $ref: "#/components/schemas/Company"
           description: OK
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Unprocessable Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+        "409":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Conflict
         "404":
           description: Not Found
       summary: Delete a company
@@ -96,7 +117,9 @@ paths:
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
-        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+
+        Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.
       parameters:
       - description: Item id
         explode: false
@@ -126,7 +149,9 @@ paths:
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
-        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+
+        Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.
       parameters:
       - explode: false
         in: path
@@ -144,6 +169,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: Get a company by vat number
       tags:
       - company
@@ -154,7 +185,9 @@ paths:
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
-        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+
+        Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.
       parameters:
       - description: Page number.
         explode: true
@@ -204,6 +237,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: List companies
       tags:
       - company
@@ -215,7 +254,9 @@ paths:
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
-        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+
+        Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.
       requestBody:
         content:
           application/json:
@@ -235,6 +276,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProblemDetails"
           description: Forbidden
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -252,7 +299,9 @@ paths:
 
         **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.
 
-        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+        A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.
+
+        Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.
       requestBody:
         content:
           application/json:
@@ -272,6 +321,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProblemDetails"
           description: Unprocessable Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "404":
           description: Not Found
         "403":
@@ -571,6 +626,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: List events
       tags:
       - log
@@ -581,7 +642,7 @@ paths:
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
-        Inbound invoices are routed to your account via the recipient VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
+        Inbound invoices are routed to your account via the recipient VAT number, or its fiscal code when the invoice has no VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
       parameters:
       - description: Item id
         explode: false
@@ -599,6 +660,24 @@ paths:
               schema:
                 $ref: "#/components/schemas/Receive"
           description: OK
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Unprocessable Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+        "409":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Conflict
         "404":
           description: Not Found
       summary: Delete an incoming invoice by id
@@ -610,7 +689,7 @@ paths:
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
-        Inbound invoices are routed to your account via the recipient VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
+        Inbound invoices are routed to your account via the recipient VAT number, or its fiscal code when the invoice has no VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
       parameters:
       - description: Item id
         explode: false
@@ -694,7 +773,7 @@ paths:
 
         **Receive** invoices are inbound purchase invoices received from suppliers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 24 hours in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
 
-        Inbound invoices are routed to your account via the recipient VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
+        Inbound invoices are routed to your account via the recipient VAT number, or its fiscal code when the invoice has no VAT number, so the recipient company must exist in Invoicetronic for the invoice to be matched. If an invoice arrives before its company has been registered, it is held by our SDI infrastructure and automatically re-processed once the company is created—no invoice is lost. See [Prerequisites](https://invoicetronic.com/en/docs/prerequisites/) for the recommended setup order.
       parameters:
       - description: Company id
         explode: true
@@ -863,6 +942,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "403":
           content:
             application/problem+json:
@@ -941,6 +1026,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: Get a invoice by identifier
       tags:
       - send
@@ -1169,11 +1260,17 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: List invoices
       tags:
       - send
     post:
-      description: |-
+      description: |
         Add a new invoice using a structured Send object. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
@@ -1190,6 +1287,14 @@ paths:
         - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
 
         Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+
+        ### Company registered under another account
+
+        The company issuing the invoice (or receiving it, for self-invoices) is created automatically on the first send. VAT numbers and fiscal codes are unique across the whole platform: if the company is already registered under another account, the request fails with `400 Bad Request` and `code` set to `company_already_registered`, the same code returned by `POST /company/`. To move the company to your account, ask support for a transfer: the transfer requires the written authorisation of the company being transferred.
+
+        ### Signature service unavailable
+
+        This is an unlikely event, as the signature service is normally always available. Should it be temporarily unavailable when an invoice has to be signed (see the `signature` parameter), the request fails with `503 Service Unavailable` and `code` set to `signature_unavailable`. The invoice is **not** saved: retry after the delay suggested by the `Retry-After` header. A retry with the same `Idempotency-Key` is processed again, not replayed.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1262,6 +1367,20 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
         "422":
           content:
             application/json:
@@ -1276,12 +1395,26 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Service Unavailable
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
       summary: Add an invoice
       tags:
       - send
   /send/xml:
     post:
-      description: |-
+      description: |
         Add a new invoice using a raw XML document in FatturaPA format. The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
@@ -1298,6 +1431,14 @@ paths:
         - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
 
         Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+
+        ### Company registered under another account
+
+        The company issuing the invoice (or receiving it, for self-invoices) is created automatically on the first send. VAT numbers and fiscal codes are unique across the whole platform: if the company is already registered under another account, the request fails with `400 Bad Request` and `code` set to `company_already_registered`, the same code returned by `POST /company/`. To move the company to your account, ask support for a transfer: the transfer requires the written authorisation of the company being transferred.
+
+        ### Signature service unavailable
+
+        This is an unlikely event, as the signature service is normally always available. Should it be temporarily unavailable when an invoice has to be signed (see the `signature` parameter), the request fails with `503 Service Unavailable` and `code` set to `signature_unavailable`. The invoice is **not** saved: retry after the delay suggested by the `Retry-After` header. A retry with the same `Idempotency-Key` is processed again, not replayed.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1457,6 +1598,20 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
         "422":
           content:
             application/json:
@@ -1471,12 +1626,26 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Service Unavailable
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
       summary: Add an invoice by xml
       tags:
       - send
   /send/file:
     post:
-      description: |-
+      description: |
         Add a new invoice by uploading a file. Supported formats are XML (FatturaPA) and P7M (signed). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
@@ -1493,6 +1662,14 @@ paths:
         - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
 
         Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+
+        ### Company registered under another account
+
+        The company issuing the invoice (or receiving it, for self-invoices) is created automatically on the first send. VAT numbers and fiscal codes are unique across the whole platform: if the company is already registered under another account, the request fails with `400 Bad Request` and `code` set to `company_already_registered`, the same code returned by `POST /company/`. To move the company to your account, ask support for a transfer: the transfer requires the written authorisation of the company being transferred.
+
+        ### Signature service unavailable
+
+        This is an unlikely event, as the signature service is normally always available. Should it be temporarily unavailable when an invoice has to be signed (see the `signature` parameter), the request fails with `503 Service Unavailable` and `code` set to `signature_unavailable`. The invoice is **not** saved: retry after the delay suggested by the `Retry-After` header. A retry with the same `Idempotency-Key` is processed again, not replayed.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1567,6 +1744,20 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
         "422":
           content:
             application/json:
@@ -1581,12 +1772,26 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Service Unavailable
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
       summary: Add an invoice by file
       tags:
       - send
   /send/json:
     post:
-      description: |-
+      description: |
         Add a new invoice using a FatturaPA JSON representation. Property names mirror the FatturaPA XML schema (PascalCase, e.g. `FatturaElettronicaHeader`). The invoice will be signed (if requested), validated (if requested), and queued for delivery to SDI. Status updates from SDI will be available in the `update` endpoint.
 
         **Send** invoices are outbound sales invoices transmitted to customers through Italy's SDI (Sistema di Interscambio). Preserved for two years in the live environment and 15 days in the [Sandbox](https://invoicetronic.com/en/docs/sandbox/).
@@ -1603,6 +1808,14 @@ paths:
         - If the same key is reused with a **different** invoice payload, the request is rejected with `422 Unprocessable Entity`: a given key must always map to the same request.
 
         Keys are scoped per account, so different accounts can use the same key value without interfering. If the idempotency store is temporarily unavailable, the request is processed normally without idempotency protection.
+
+        ### Company registered under another account
+
+        The company issuing the invoice (or receiving it, for self-invoices) is created automatically on the first send. VAT numbers and fiscal codes are unique across the whole platform: if the company is already registered under another account, the request fails with `400 Bad Request` and `code` set to `company_already_registered`, the same code returned by `POST /company/`. To move the company to your account, ask support for a transfer: the transfer requires the written authorisation of the company being transferred.
+
+        ### Signature service unavailable
+
+        This is an unlikely event, as the signature service is normally always available. Should it be temporarily unavailable when an invoice has to be signed (see the `signature` parameter), the request fails with `503 Service Unavailable` and `code` set to `signature_unavailable`. The invoice is **not** saved: retry after the delay suggested by the `Retry-After` header. A retry with the same `Idempotency-Key` is processed again, not replayed.
       parameters:
       - description: "Validate the document first, and reject it on failure."
         explode: true
@@ -1675,12 +1888,40 @@ paths:
               schema:
                 type: boolean
               style: simple
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
         "422":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProblemDetails"
           description: Unprocessable Content
+          headers:
+            Idempotent-Replayed:
+              description: Present and set to `true` only when the response was replayed
+                from a previous request with the same `Idempotency-Key`; absent otherwise.
+              explode: false
+              schema:
+                type: boolean
+              style: simple
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Service Unavailable
           headers:
             Idempotent-Replayed:
               description: Present and set to `true` only when the response was replayed
@@ -1707,6 +1948,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -1824,6 +2071,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -1856,6 +2109,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -1886,6 +2145,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -1906,7 +2171,7 @@ paths:
       description: |-
         Retrieve the number of operations (invoices + validations) and signatures left on your account.
 
-        When `signature_left` is 0, you will receive a `403 Forbidden` response when trying to sign an invoice. Likewise, if `operation_left` is 0, you will receive a `403 Forbidden` response when storing or validating an invoice.
+        When `signature_left` is 0, you will receive a `403 Forbidden` response when trying to sign an invoice. Likewise, if `operation_left` is 0, you will receive a `403 Forbidden` response when storing or validating an invoice, or when retrieving incoming invoices. Webhooks can still be created and updated, but no notification is delivered until operations are available again.
 
         These responses carry a problem details body whose `code` member tells them apart from other `403 Forbidden` responses: `usage_limit_exceeded` when you are out of operations, `signature_limit_exceeded` when you are out of signatures. Branch on `code`, not on `detail`, which is localized according to the `Accept-Language` header.
 
@@ -1929,6 +2194,8 @@ paths:
         Retrieve a paginated list of the restricted keys of the calling main key. Secrets are never included.
 
         **Restricted keys** are API keys created under your main key, with the permissions and companies you choose. Use them to give each of your customers, integrations or collaborators only the access they need: a restricted key limited to one company sees only that company's invoices, updates, webhooks and events.
+
+        The [Restricted Keys documentation page](https://invoicetronic.com/en/docs/sub-keys/) covers the whole feature, including managing restricted keys from the Dashboard.
 
         Only a main key can manage restricted keys: a restricted key calling these endpoints gets `403 Forbidden` with `code` = `subkey_not_allowed`.
 
@@ -2004,6 +2271,12 @@ paths:
                   $ref: "#/components/schemas/SubKey"
                 type: array
           description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "403":
           content:
             application/problem+json:
@@ -2018,6 +2291,8 @@ paths:
         Create a restricted key under the calling main key. The response is the only one carrying `test_key` and `live_key`, together with the one of a roll: store them safely.
 
         **Restricted keys** are API keys created under your main key, with the permissions and companies you choose. Use them to give each of your customers, integrations or collaborators only the access they need: a restricted key limited to one company sees only that company's invoices, updates, webhooks and events.
+
+        The [Restricted Keys documentation page](https://invoicetronic.com/en/docs/sub-keys/) covers the whole feature, including managing restricted keys from the Dashboard.
 
         Only a main key can manage restricted keys: a restricted key calling these endpoints gets `403 Forbidden` with `code` = `subkey_not_allowed`.
 
@@ -2051,6 +2326,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/SubKeyWithSecrets"
           description: Created
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "403":
           content:
             application/problem+json:
@@ -2065,6 +2346,8 @@ paths:
         Replace the description, active flag, permissions, companies and CORS origins of a restricted key. Omitted `permissions`, `company_ids` or `cors_origins` mean none. A stale `version` fails with `422`.
 
         **Restricted keys** are API keys created under your main key, with the permissions and companies you choose. Use them to give each of your customers, integrations or collaborators only the access they need: a restricted key limited to one company sees only that company's invoices, updates, webhooks and events.
+
+        The [Restricted Keys documentation page](https://invoicetronic.com/en/docs/sub-keys/) covers the whole feature, including managing restricted keys from the Dashboard.
 
         Only a main key can manage restricted keys: a restricted key calling these endpoints gets `403 Forbidden` with `code` = `subkey_not_allowed`.
 
@@ -2100,6 +2383,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -2121,6 +2410,8 @@ paths:
         Delete a restricted key of the calling main key. It stops authenticating at once.
 
         **Restricted keys** are API keys created under your main key, with the permissions and companies you choose. Use them to give each of your customers, integrations or collaborators only the access they need: a restricted key limited to one company sees only that company's invoices, updates, webhooks and events.
+
+        The [Restricted Keys documentation page](https://invoicetronic.com/en/docs/sub-keys/) covers the whole feature, including managing restricted keys from the Dashboard.
 
         Only a main key can manage restricted keys: a restricted key calling these endpoints gets `403 Forbidden` with `code` = `subkey_not_allowed`.
 
@@ -2174,6 +2465,8 @@ paths:
         Retrieve a restricted key of the calling main key. Secrets are never included.
 
         **Restricted keys** are API keys created under your main key, with the permissions and companies you choose. Use them to give each of your customers, integrations or collaborators only the access they need: a restricted key limited to one company sees only that company's invoices, updates, webhooks and events.
+
+        The [Restricted Keys documentation page](https://invoicetronic.com/en/docs/sub-keys/) covers the whole feature, including managing restricted keys from the Dashboard.
 
         Only a main key can manage restricted keys: a restricted key calling these endpoints gets `403 Forbidden` with `code` = `subkey_not_allowed`.
 
@@ -2229,6 +2522,8 @@ paths:
 
         **Restricted keys** are API keys created under your main key, with the permissions and companies you choose. Use them to give each of your customers, integrations or collaborators only the access they need: a restricted key limited to one company sees only that company's invoices, updates, webhooks and events.
 
+        The [Restricted Keys documentation page](https://invoicetronic.com/en/docs/sub-keys/) covers the whole feature, including managing restricted keys from the Dashboard.
+
         Only a main key can manage restricted keys: a restricted key calling these endpoints gets `403 Forbidden` with `code` = `subkey_not_allowed`.
 
         **Onboarding a company in two calls.** Create the company with `POST /company`, then create a restricted key limited to it with `POST /subkey` and `company_ids` = `[<company id>]`. Hand the key to your customer: it can operate only on that company.
@@ -2277,6 +2572,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "403":
           content:
             application/problem+json:
@@ -2493,6 +2794,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: List updates
       tags:
       - update
@@ -2505,7 +2812,7 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
-        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `id` in the payload to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
+        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `Id` in the payload (webhook payloads are PascalCase) to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
 
         A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
@@ -2527,6 +2834,24 @@ paths:
               schema:
                 $ref: "#/components/schemas/WebHook"
           description: OK
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Unprocessable Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
+        "409":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Conflict
         "404":
           description: Not Found
       summary: Delete a webhook by id
@@ -2540,7 +2865,7 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
-        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `id` in the payload to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
+        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `Id` in the payload (webhook payloads are PascalCase) to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
 
         A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
@@ -2576,7 +2901,7 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
-        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `id` in the payload to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
+        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `Id` in the payload (webhook payloads are PascalCase) to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
 
         A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
@@ -2658,6 +2983,12 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: List webhooks
       tags:
       - webhook
@@ -2669,7 +3000,7 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
-        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `id` in the payload to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
+        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `Id` in the payload (webhook payloads are PascalCase) to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
 
         A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
@@ -2693,6 +3024,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProblemDetails"
           description: Forbidden
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "422":
           content:
             application/json:
@@ -2710,7 +3047,7 @@ paths:
 
         You can also manage webhooks via the [Dashboard](https://dashboard.invoicetronic.com).
 
-        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `id` in the payload to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
+        Failed deliveries (any non-2xx response except `410 Gone`, or a network error or timeout) are retried up to 7 times, about 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours, 12 hours and 24 hours after the previous attempt: 8 attempts over about 45 hours. Delivery is therefore *at least once*: use the event `Id` in the payload (webhook payloads are PascalCase) to discard duplicates. Each request carries an `Invoicetronic-Delivery-Attempt` header with the attempt number. Responding with `410 Gone` disables the webhook and stops the retries.
 
         A webhook that fails continuously for 7 days (no successful delivery in between) is automatically disabled (`enabled` set to `false`) and the account owner is notified by email. To resume deliveries, set `enabled` back to `true` from the Dashboard or via `PATCH /webhook/{id}`.
 
@@ -2734,6 +3071,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProblemDetails"
           description: Unprocessable Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
         "404":
           description: Not Found
         "403":
@@ -2828,13 +3171,18 @@ paths:
           description: OK
         "404":
           description: Not Found
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad Request
       summary: List webhook history items
       tags:
       - webhook
 components:
   schemas:
     Company:
-      additionalProperties: false
       description: A company model.
       example:
         user_id: 6
@@ -2869,14 +3217,17 @@ components:
           readOnly: true
           type: integer
         vat:
-          description: Vat number. Must include the country code.
+          description: |-
+            Vat number. Must include the country code. Required when fiscal_code is missing; omit it for entities
+            that only have a fiscal code, such as non-profit organizations.
           example: IT01234567891
-          minLength: 1
+          nullable: true
           type: string
         fiscal_code:
-          description: Fiscal code. In most cases it's the same as the vat number.
+          description: "Fiscal code. In most cases it's the same as the vat number.\
+            \ When missing, it is derived from the vat number."
           example: RSSMRA70A01F205V
-          minLength: 1
+          nullable: true
           type: string
         name:
           description: Name
@@ -2884,12 +3235,9 @@ components:
           minLength: 1
           type: string
       required:
-      - fiscal_code
       - name
-      - vat
       type: object
     DocumentData:
-      additionalProperties: false
       example:
         date: 2000-01-23T04:56:07.000+00:00
         number: number
@@ -2902,7 +3250,6 @@ components:
           type: string
       type: object
     Error:
-      additionalProperties: false
       description: Validation error from the SDI.
       example:
         code: code
@@ -2923,7 +3270,6 @@ components:
           type: string
       type: object
     Event:
-      additionalProperties: false
       description: An API request log entry.
       example:
         status_code: 2
@@ -3026,7 +3372,6 @@ components:
       - method
       type: object
     Permissions:
-      additionalProperties: false
       description: |-
         Permissions of a restricted key, per resource. A missing property means no access to that resource. Each
         permission cannot exceed the one of the main key the restricted key belongs to.
@@ -3131,7 +3476,6 @@ components:
           type: string
       type: object
     Receive:
-      additionalProperties: false
       description: A received invoice.
       example:
         identifier: identifier
@@ -3265,7 +3609,6 @@ components:
       - payload
       type: object
     Send:
-      additionalProperties: false
       description: A sent invoice.
       example:
         identifier: identifier
@@ -3428,7 +3771,6 @@ components:
       - payload
       type: object
     SendReduced:
-      additionalProperties: false
       description: "Reduced Send data for Update responses, containing only the essential\
         \ fields."
       example:
@@ -3486,7 +3828,6 @@ components:
           type: string
       type: object
     Status:
-      additionalProperties: false
       description: Account status with remaining operations and signatures.
       example:
         has_active_seat: true
@@ -3510,7 +3851,6 @@ components:
           type: boolean
       type: object
     SubKey:
-      additionalProperties: false
       description: A restricted key. Its secrets are returned only when the key is
         created or rolled.
       example:
@@ -3582,7 +3922,6 @@ components:
           type: string
       type: object
     SubKeyRequest:
-      additionalProperties: false
       description: A restricted key to create.
       example:
         company_ids:
@@ -3636,7 +3975,6 @@ components:
       - description
       type: object
     SubKeyUpdate:
-      additionalProperties: false
       description: |-
         A restricted key to update. All the editable fields are replaced: an omitted `permissions`,
         `company_ids` or `cors_origins` means none.
@@ -3703,7 +4041,6 @@ components:
       - description
       type: object
     SubKeyWithSecrets:
-      additionalProperties: false
       description: |-
         A restricted key with its secrets, returned only when the key is created or rolled. Store them safely: they
         cannot be read again.
@@ -3786,7 +4123,6 @@ components:
           type: string
       type: object
     Update:
-      additionalProperties: false
       description: An SDI status update for a sent invoice.
       example:
         company_id: 1
@@ -3889,7 +4225,6 @@ components:
           $ref: "#/components/schemas/SendReduced"
       type: object
     WebHook:
-      additionalProperties: false
       description: A webhook subscription.
       example:
         company_id: 1
@@ -3981,7 +4316,6 @@ components:
       - url
       type: object
     WebHookHistory:
-      additionalProperties: false
       description: Webhook history.
       example:
         event_id: 5

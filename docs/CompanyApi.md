@@ -17,7 +17,7 @@ All URIs are relative to *https://api.invoicetronic.com*
 
 List companies
 
-Retrieve a paginated list of companies. Results can be filtered by free-text search (`q`) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization. 
+Retrieve a paginated list of companies. Results can be filtered by free-text search (`q`) across name, VAT number, and fiscal code.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.  Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`. 
 
 ### Example
 ```csharp
@@ -106,7 +106,7 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
@@ -114,6 +114,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **404** | Not Found |  -  |
+| **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -123,7 +124,7 @@ catch (ApiException e)
 
 Delete a company
 
-Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.   **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding `?force=true` to the request. Without this parameter, the API will return `409 Conflict` with details about the linked data.
+Delete a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.  Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`.   **Warning:** Deleting a company will permanently remove all associated data, including sent invoices, received invoices, invoice updates from SDI, logs, and webhooks.  If the company has any linked invoices, you must explicitly confirm deletion by adding `?force=true` to the request. Without this parameter, the API will return `409 Conflict` with details about the linked data.
 
 ### Example
 ```csharp
@@ -208,13 +209,16 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **422** | Unprocessable Content |  -  |
+| **400** | Bad Request |  -  |
+| **409** | Conflict |  -  |
 | **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -225,7 +229,7 @@ catch (ApiException e)
 
 Get a company by id
 
-Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization. 
+Retrieve a company by its internal id.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.  Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`. 
 
 ### Example
 ```csharp
@@ -325,7 +329,7 @@ catch (ApiException e)
 
 Add a company
 
-Add a new company.  When the company is already registered on the platform, the request fails with `400 Bad Request` and a problem details body whose `code` member is `company_already_registered`. Branch on `code`, not on `detail`, which is localized according to the `Accept-Language` header.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization. 
+Add a new company.  When the company is already registered on the platform, the request fails with `400 Bad Request` and a problem details body whose `code` member is `company_already_registered`. Branch on `code`, not on `detail`, which is localized according to the `Accept-Language` header.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.  Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`. 
 
 ### Example
 ```csharp
@@ -416,6 +420,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Created |  -  |
 | **403** | Forbidden |  -  |
+| **400** | Bad Request |  -  |
 | **422** | Unprocessable Content |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -426,7 +431,7 @@ catch (ApiException e)
 
 Update a company
 
-Update an existing company.  Changing `vat` or `fiscal_code` to a value already registered on the platform fails with `400 Bad Request` and `code` = `company_already_registered`.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization. 
+Update an existing company.  Changing `vat` or `fiscal_code` to a value already registered on the platform fails with `400 Bad Request` and `code` = `company_already_registered`.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.  Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`. 
 
 ### Example
 ```csharp
@@ -517,6 +522,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **422** | Unprocessable Content |  -  |
+| **400** | Bad Request |  -  |
 | **404** | Not Found |  -  |
 | **403** | Forbidden |  -  |
 
@@ -528,7 +534,7 @@ catch (ApiException e)
 
 Get a company by vat number
 
-Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number alone, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization. 
+Retrieve a company by its VAT number.  **Companies** are the entities that send and receive invoices. They are automatically created from invoice data when invoices are sent or received.  A company's `vat` and `fiscal_code` are unique platform-wide, not just within your account: incoming invoices are routed to their owner by VAT number, or by fiscal code when the invoice has none, so a company belongs to one account at a time. Registering a company that is already active under another account is therefore not possible, and that account is not disclosed to you. Moving a company to your account is a transfer: contact support with the company's written authorization.  Entities that only have a fiscal code, such as non-profit associations and parishes, are registered with `fiscal_code` alone and no `vat`. When `fiscal_code` is omitted it is derived from `vat`. 
 
 ### Example
 ```csharp
@@ -611,7 +617,7 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 
 ### HTTP response details
@@ -619,6 +625,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **404** | Not Found |  -  |
+| **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

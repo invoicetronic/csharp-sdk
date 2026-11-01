@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **Created** | **DateTime** | Creation date. It is set automatically. | [optional] [readonly] 
 **VarVersion** | **int** | Row version, for optimistic concurrency. It is set automatically. | [optional] [readonly] 
 **UserId** | **int** | User id. It is set automatically based on the authenticated user. | [optional] [readonly] 
-**Vat** | **string** | Vat number. Must include the country code. | 
-**FiscalCode** | **string** | Fiscal code. In most cases it&#39;s the same as the vat number. | 
+**Vat** | **string** | Vat number. Must include the country code. Required when fiscal_code is missing; omit it for entities that only have a fiscal code, such as non-profit organizations. | [optional] 
+**FiscalCode** | **string** | Fiscal code. In most cases it&#39;s the same as the vat number. When missing, it is derived from the vat number. | [optional] 
 **Name** | **string** | Name | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
